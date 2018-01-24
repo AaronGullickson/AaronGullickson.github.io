@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  Setting Up a Git Repository
-categories: Geek
+description: Basic instructions on setting up linked local and remote git repositories.
+share: true
 tags:
     - git
 ---

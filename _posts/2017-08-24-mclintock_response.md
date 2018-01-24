@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  Response to McClintock Response
-categories: Research
+description: A few comments on McClintock's Response to my comment on ASR beauty exchange article.
+share: true
 tags:
     - status exchange
     - modeling

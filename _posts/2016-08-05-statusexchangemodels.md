@@ -1,12 +1,13 @@
 ---
 layout: post
 title:  Measuring Status Exchange
-date:   2016-08-05 10:27:58 -0700
-categories: Research
+description: Code for measuring status exchange in R
+share: true
 tags:
     - status exchange
     - modeling
     - intermarriage
+    - R
 ---
 
 There has been a lot of interest in the log-linear methods used to
