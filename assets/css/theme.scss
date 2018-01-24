@@ -60,7 +60,7 @@ h6 { font-size: .75em; }
 
 img {
   display: inline-block;
-  margin: 0 auto;
+  margin: 10px auto;
   max-width: 100%;
   max-height: 100%;
 }
@@ -80,6 +80,23 @@ blockquote {
 a {
   color: $accent-color;
 }
+
+table, th, td {
+  font-size: 90%;
+  border-collapse: collapse;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  margin: 10px;
+}
+
+th {
+  border-bottom: 2px solid white;
+}
+
+tr:nth-child(even) {background-color: #707070;}
+
 
 //********************************************************
 //                    Social Links
