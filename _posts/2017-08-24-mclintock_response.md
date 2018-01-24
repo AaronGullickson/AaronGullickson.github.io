@@ -35,7 +35,7 @@ If you have any two of these values (i.e. a main effect and difference or two ma
 In the table below, I show the parameter estimates for men's and women's beauty effects using all three approaches. I also label each approach where it applies to a model used in my response.
 
 | Beauty effect on exchange | Symmetric (1a) | Men as reference (1b) | Women as reference | Separate Effects (1c) |
-|---------------------------|----------------|-----------------------|--------------------|-----------------------|
+|:--------------------------|---------------:|----------------------:|-------------------:|----------------------:|
 | Gender-Symmetric          |           0.52*|                       |                    |                       |
 | Men                       |                |                  0.34 |                    |                  0.34 |
 | Women                     |                |                       |               0.69*|                 0.69* |
@@ -65,7 +65,7 @@ Please read that again twice. Her presumption is correct. I do label them differ
 To help illustrate the problem with her approach let me show the same table I presented above but this time using McClintock's approach to labeling:
 
 | Beauty effect on exchange | Symmetric (1a) | Men as reference (1b) | Women as reference | Separate Effects (1c) |
-|---------------------------|----------------|-----------------------|--------------------|-----------------------|
+|:--------------------------|---------------:|----------------------:|-------------------:|----------------------:|
 | Gender-Symmetric          |           0.52*|                  0.34 |              0.69* |                       |
 | Stereotypical             |                |                  0.35 |                    |                 0.69* |
 | Reverse-Stereotypical     |                |                       |              -0.35 |                 0.34  |
@@ -73,7 +73,7 @@ To help illustrate the problem with her approach let me show the same table I pr
 Compare this to my table:
 
 | Beauty effect on exchange | Symmetric (1a) | Men as reference (1b) | Women as reference | Separate Effects (1c) |
-|---------------------------|----------------|-----------------------|--------------------|-----------------------|
+|:--------------------------|---------------:|----------------------:|-------------------:|----------------------:|
 | Gender-Symmetric          |           0.52*|                       |                    |                       |
 | Men                       |                |                  0.34 |                    |                  0.34 |
 | Women                     |                |                       |               0.69*|                 0.69* |
