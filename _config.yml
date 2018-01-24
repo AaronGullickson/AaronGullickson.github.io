@@ -12,9 +12,9 @@ baseurl:
 share:
   facebook: true
   twitter: true
-  gplus: true
-  linkedin: true
-  pinterest: true
+  gplus: false
+  linkedin: false
+  pinterest: false
   email: true
 
 social:
