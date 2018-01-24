@@ -38,7 +38,9 @@ Neither set of authors provide any real discussion of **why** such a large bias 
 In order to run the simulation, I first constructed a fake dataset with two time points and no fluidity. There are two groups, A and D, where D is the disadvantaged group (10% of the population). I refer to the social status characteristic as unemployment, but really it could be any dummy variable where 1 indicates a negative social status. I set the unemployment rate for A at 10% and for D at 20%. All of these parameters are adjustable and I have played around with different values. The conclusions seem pretty robust for realistic values.
 
 
-```r
+>R
+{:.filename}
+{% highlight R %}
 sampleSize <- 10000
 
 #two groups, A and D, for advantaged and disadvantaged. What proportion are D?
@@ -76,7 +78,7 @@ baseData$unemp.time2[baseData$race.time1=="A"] <- temp
 temp <- baseData$unemp.time1[baseData$race.time1=="D"]
 temp <- temp[sample(1:length(temp),length(temp),replace=FALSE)]
 baseData$unemp.time2[baseData$race.time1=="D"] <- temp
-```
+{% endhighlight %}
 
 Perform some checks to make sure everything lines up as expected.
 
