@@ -10,17 +10,7 @@ tags:
     - R
 ---
 
-There has been a lot of interest in the log-linear methods used to
-measure exchange in
-[my 2006 Demography article](http://link.springer.com/article/10.1353/dem.2006.0033#page-1)
-and in my
-[2014 Demography article](http://link.springer.com/article/10.1007/s13524-014-0300-2)
-with
-[Florencia Torche](https://sociology.stanford.edu/people/florencia-torche). However,
-many people have expressed that the methods seem complex. In an effort
-to help people understand these models, I am providing here some basic
-code written in R that sets up the "market" and "dyadic" exchange
-models that we fit in Gullickson and Torche (2014).
+There has been a lot of interest in the log-linear methods used to measure exchange in [my 2006 Demography article](http://link.springer.com/article/10.1353/dem.2006.0033#page-1) and in my [2014 Demography article](http://link.springer.com/article/10.1007/s13524-014-0300-2) with [Florencia Torche](https://sociology.stanford.edu/people/florencia-torche). However, many people have expressed that the methods seem complex. In an effort to help people understand these models, I am providing here some basic code written in R that sets up the "market" and "dyadic" exchange models that we fit in Gullickson and Torche (2014).
 
 I run the models on some [1990 census data]({{ site.baseurl }}/assets/usmardata1990.csv) that I had lying around, although I can't verify how representative that data is, so the results here should not be used to draw conclusions. I also include some models to show that Rosenfeld's proposed model corrections (namely conrtrolling for all two and three-way interaction terms) lead to perfect collinearity and are therefore bad models. I also show how to do the geometric mean models we discussed in the [appendix]({{ site.baseurl }}/assets/intermar_appendix.pdf) to the the Gullickson and Torche paper.
 
