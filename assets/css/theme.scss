@@ -344,6 +344,74 @@ nav.shrink .navbar-toggle {
 }
 
 //********************************************************
+//                    CV
+//********************************************************
+
+/* make the title of the resume disappear because we already
+   have name in the title of the blog */
+.cv h1 {
+    font-size: 0px;
+    margin:0px;
+}
+
+.cv h2 {
+    color: $accent-color;
+    font-size: 20px;
+}
+
+.cv h3 {
+    color: $accent_color;
+    font-size: 18px;
+}
+
+/* There is a bar just before each category */
+.cv h2:before {
+    content: "";
+    display: inline-block;
+    margin-right:1%;
+    width: 16%;
+    height: 10px;
+    background-color: $accent_color;
+}
+
+//define spacing of individual elements
+.cv dd {
+    margin: 10px 0;
+}
+
+/* Definitions */
+.cv dt {
+    float: left;
+    clear: left;
+    width: 17%;
+    /*font-weight: bold;*/
+}
+.cv dd {
+    margin-left: 17%;
+}
+.cv p {
+    margin-top:0;
+    margin-bottom:7px;
+}
+
+/* Blockquotes */
+.cv blockquote {
+    text-align: center
+}
+
+.cv table, th, td {
+  width: 80%;
+  font-size: 100%;
+  margin: 0px;
+}
+
+th {
+  border-bottom: 0px solid white;
+}
+
+.cv tr:nth-child(even) {background-color: $post_panel_color}
+
+//********************************************************
 //       Custom classes to apply to block elements,
 //  more info: http://pavelmakhov.com/2015/12/images-in-jekyll
 //********************************************************
