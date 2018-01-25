@@ -1,0 +1,1 @@
+This repository contains the jekyll files to produce [my GitHub Pages blog](https://aarongullickson.github.io). The theme is based on the [Dark clean theme for Jekyll](https://github.com/streetturtle/jekyll-clean-dark) by Pavel Makhov, with a few changes by me. 
