@@ -347,6 +347,17 @@ nav.shrink .navbar-toggle {
 //                    CV
 //********************************************************
 
+//copied this from .well because GitHub pages doesn't seem
+//to be able to pick up both styles correctly, although
+//it worked fine locally
+.cv {
+  background-color: $post-panel-color;
+  box-shadow: 0 0 0 0, 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border: 0;
+  border-radius: 6px;
+  padding: 0px 20px 20px;
+}
+
 .cv h1 {
     font-size: 0px;
     margin:0px;
@@ -395,9 +406,11 @@ nav.shrink .navbar-toggle {
 }
 
 .cv table, th, td {
-  width: 80%;
+  width: 60%;
   font-size: 100%;
   margin: 0px;
+  align: left;
+  padding: 3px; 
 }
 
 th {
