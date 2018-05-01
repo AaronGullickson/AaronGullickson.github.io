@@ -344,6 +344,31 @@ nav.shrink .navbar-toggle {
 }
 
 //********************************************************
+//                    Gallery (for Shiny)
+//********************************************************
+
+div.gallery {
+    margin: 20px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 300px;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+//********************************************************
 //                    CV
 //********************************************************
 
@@ -410,7 +435,7 @@ nav.shrink .navbar-toggle {
   font-size: 100%;
   margin: 0px;
   align: left;
-  padding: 3px; 
+  padding: 3px;
 }
 
 th {

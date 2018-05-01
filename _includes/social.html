@@ -1,11 +1,35 @@
 <ul class="social-media">
 
+  {% if site.social.orcid %}
+  <li>
+    <a title="orcid" 
+    href="https://orcid.org/{{ site.social.orcid }}" 
+    target="_blank"><i class="ai ai-orcid-square ai-2x"></i></a>
+  </li>
+  {% endif %}
+  
+  {% if site.social.osf %}
+  <li>
+    <a title="Open Science Foundation" 
+    href="https://osf.io/{{ site.social.osf }}" 
+    target="_blank"><i class="ai ai-osf-square ai-2x"></i></a>
+  </li>
+  {% endif %}
+  
+  {% if site.social.gscholar %}
+  <li>
+    <a title="Google Scholar" 
+    href="https://scholar.google.com/citations?user={{ site.social.gscholar }}" 
+    target="_blank"><i class="ai ai-google-scholar-square ai-2x"></i></a>
+  </li>
+  {% endif %}
+
   {% if site.social.github %}
     <li>
       <a title="{{ site.social.github }} on Github" href="https://github.com/{{ site.social.github }}" target="_blank"><i class="fa fa-github fa-2x"></i></a>
     </li>
   {% endif %}
-
+  
   {% if site.social.twitter %}
     <li>
       <a title="{{ site.social.twitter }} on Twitter" href="https://twitter.com/{{ site.social.twitter }}" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
