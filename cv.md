@@ -1,15 +1,16 @@
 ---
 layout: cv
-title: CV
+title:
+output: pdf_document
 ---
 
 # Aaron Gullickson
 
 |			|	            |
 |--------------|--------------------------|
-|727 PLC    | 541-346-5061           |
+|719 PLC    | 541-346-5061           |
 |University of Oregon | [aarong@uoregon.edu](mailto:aarong.uoregon.edu)|
-|Eugene, OR 97403 | [aarongullickson.github.io](https://aarongullickson.github.io) |
+|Eugene, OR 97403 | [http://pages.uoregon.edu/aarong](http://pages.uoregon.edu/aarong) |
 
 ## Employment
 
@@ -86,6 +87,11 @@ title: CV
 
 2005
 : Hammel, Eugene A. and Aaron Gullickson. “[Maternal Mortality as an Indicator of the Standard of Living in Eighteenth and Nineteenth Century Slavonia](http://m.oxfordscholarship.com/view/10.1093/0199280681.001.0001/acprof-9780199280681-chapter-12)” in Robert C. Allen, Tommy Bengtsson and Martin Dribe, *Living Standards in the Past: New Perspectives on Well-Being in Asia and Europe*. Oxford: Oxford University Press, pp. 277-306.
+
+## Awards and Honors
+
+2018
+: Excellence Award for Director of Graduate Studies, Graduate School, University of Oregon.
 
 ## Grants Awarded
 
