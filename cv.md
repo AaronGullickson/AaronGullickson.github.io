@@ -10,7 +10,7 @@ output: pdf_document
 |--------------|--------------------------|
 |719 PLC    | 541-346-5061           |
 |University of Oregon | [aarong@uoregon.edu](mailto:aarong.uoregon.edu)|
-|Eugene, OR 97403 | [http://pages.uoregon.edu/aarong](http://pages.uoregon.edu/aarong) |
+|Eugene, OR 97403 | [https://aarongullickson.github.io](https://aarongullickson.github.io) |
 
 ## Employment
 
