@@ -27,7 +27,7 @@ How to properly organize your data and code files for the easy accessibility of 
 
 The [Open Science Foundation](https://osf.io) provides an excellent tool for   organizing research projects and disseminating information about them. You can associate manuscripts, data, and code with projects, track changes to the project, and even include a wiki. You can also link your OSF project to manuscripts on [SocArxIV](https://socopen.org/). [Here is an example](https://osf.io/rcaxh/) of a project for one of my own recently published papers. If you don't already have an account, you should create one. 
 
-You can create a view-only link for any OSF project. A view-only link will open up the project page, but with all name references removed.  [Here is an example](https://osf.io/rcaxh/?view_only=65b57cc4f8d64c6db1c62bf9c2176bcb) of that same example project of mine but provided through a view-only link. Notice that contributors are listed as "Anonymous" and the person responsible for all changes to the project is listed as "user." 
+You can create a view-only link for any OSF project. A view-only link will open up the project page, but with all name references removed.  [Here is an example](https://osf.io/rcaxh/?view_only=65b57cc4f8d64c6db1c62bf9c2176bcb) of that same example project of mine but provided through a view-only link. Notice that contributors are listed as "Anonymous" and the person responsible for all changes to the project is listed as "user." UPDATE: As noted by Phil Cohen on Twitter, this link provides "courtesy" anonymity, not secure anonymity. A sophisticated viewer can still access the names project page by removing the `?view_only` part of the html address. 
 
 To set up a view-only link for a project, follow these steps:
 
