@@ -46,7 +46,7 @@ output: pdf_document
 
 
 2018
-: Gullickson, Aaron. [The Diverging Beliefs and Practices of the Religiously Affiliated and Unaffiliated in the United States](https://osf.io/preprints/socarxiv/ae97g/)." *Sociological Science*, Forthcoming.
+: Gullickson, Aaron. [The Diverging Beliefs and Practices of the Religiously Affiliated and Unaffiliated in the United States](https://dx.doi.org/10.15195/v5.a16)." *Sociological Science*, 5: 361-379.
 
 2017
 : Gullickson, Aaron. "[Comments on Conceptualizing and Measuring the Exchange of Beauty and Status](https://osf.io/preprints/socarxiv/5ydxd/)." *American Sociological Review*, 82(5):1093-1099.
@@ -166,12 +166,6 @@ output: pdf_document
 ### Ph.D. Dissertation Committees
 
 TBD
-:	Kathleen Thomas. *Title to be Determined*. Sociology, University of Oregon. (Chair)
-
-TBD
-: Tongyu Wu. *Coding Productivity: Negotiation of Ethnicized Masculine Boundaries in High-Tech Corporations.* Sociology, University of Oregon.
-
-TBD
 : Katie Warden. *Advocacy Strategies of Parents of Children with Disabilities*. Sociology, University of Oregon.
 
 TBD
@@ -179,6 +173,12 @@ TBD
 
 TBD
 : Alberto Lioy. *Electoral Revolutions: a comparative study of rapid changes in voter turnout.* Political Science, University of Oregon. (outside member)
+
+TBD
+: Nathan Biemiller. *Title to Be Determined.* Economics, University of Oregon. (outside member)
+
+2018
+: Tongyu Wu. *Coding Productivity: Negotiation of Ethnicized Masculine Boundaries in High-Tech Corporations.* Sociology, University of Oregon.
 
 2017
 :	MeCherri Abedi-Anim. *African Immigrant Identities: Black Identity and Racial Solidarity in Post-Civil Rights America*. Sociology, University of Oregon.  (chair)
