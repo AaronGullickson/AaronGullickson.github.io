@@ -46,7 +46,7 @@ output: pdf_document
 
 
 2018
-: Gullickson, Aaron. [The Diverging Beliefs and Practices of the Religiously Affiliated and Unaffiliated in the United States](https://dx.doi.org/10.15195/v5.a16)." *Sociological Science*, 5: 361-379.
+: Gullickson, Aaron. "[The Diverging Beliefs and Practices of the Religiously Affiliated and Unaffiliated in the United States](https://dx.doi.org/10.15195/v5.a16)." *Sociological Science*, 5: 361-379.
 
 2017
 : Gullickson, Aaron. "[Comments on Conceptualizing and Measuring the Exchange of Beauty and Status](https://osf.io/preprints/socarxiv/5ydxd/)." *American Sociological Review*, 82(5):1093-1099.
