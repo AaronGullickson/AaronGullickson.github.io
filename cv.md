@@ -45,6 +45,9 @@ output: pdf_document
 ### Refereed Articles
 
 
+2018, exp.
+: Gullickson, Aaron. "The Racial Identification of Young Adults in a Racially Complex Society." *Emerging Adulthood*, Forthcoming.
+
 2018
 : Gullickson, Aaron. "[The Diverging Beliefs and Practices of the Religiously Affiliated and Unaffiliated in the United States](https://dx.doi.org/10.15195/v5.a16)." *Sociological Science*, 5: 361-379.
 
