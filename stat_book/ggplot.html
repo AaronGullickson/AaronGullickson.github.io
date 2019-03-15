@@ -294,11 +294,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="kw">library</span>(scales)</code></pre>
 <p>Ggplot builds up a graph from layers. The first and most essential component is the function <code>ggplot</code> where I indicate the data I am using and the aesthetics that I want to be carried through to all of the other layers:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nyc, <span class="kw">aes</span>(<span class="dt">x=</span>poverty, <span class="dt">y=</span>amtcapita))</code></pre>
-<p><img src="_main_files/figure-html/ggplot1-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/ggplot1-1.png" width="672" /></p>
 <p>This command does not actually plot anything yet. It just sets up the basic structure of my plot by identifying the dataset and that I will use <code>poverty</code> as my <code>x</code> variable and <code>amtcapita</code> as my <code>y</code> variable. I then can add layers to this basic command using the “+” sign. For example, if I wanted to create a scatterplot by plotting points:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nyc, <span class="kw">aes</span>(<span class="dt">x=</span>poverty, <span class="dt">y=</span>amtcapita))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="_main_files/figure-html/ggplot_scatter-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/ggplot_scatter-1.png" width="672" /></p>
 <p>Now, I have a basic (and very ugly) scatterplot that is similar to what I started with in base plot. I can now add a variety of layers to that start to make a better graph. There are three types of layers I can add:</p>
 <ol style="list-style-type: decimal">
 <li><code>geoms</code> - these are a variety of geometric patterns such as points, bars, lines, etc.</li>
@@ -310,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nyc, <span class="kw">aes</span>(<span class="dt">x=</span>poverty, <span class="dt">y=</span>amtcapita))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>dollar)</code></pre>
-<p><img src="_main_files/figure-html/ggplot_scale-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/ggplot_scale-1.png" width="672" /></p>
 <p>That looks better. Notice that I also gave the <code>scale_y_log10</code> command an argument of <code>labels</code>. This argument identifies the specific labels I want to use for the tick mark. In this case, I am supplying a function from the <code>scales</code> library that turns raw numbers into formatted dollar amounts.</p>
 <p>From here I can add a variety of layers and aesthetics to enrich my graph. Let me first add aesthetics for color and size. I will also tranform borough into a proper factor variable so it displays more nicelyin the legend.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nyc, <span class="kw">aes</span>(<span class="dt">x=</span>poverty, <span class="dt">y=</span>amtcapita, <span class="dt">size=</span>popn, <span class="dt">color=</span>borough))<span class="op">+</span>
@@ -318,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>dollar)<span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Dark2&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
-<p><img src="_main_files/figure-html/ggplot_clor-1.png" width="672" />
+<p><img src="stat_book_files/figure-html/ggplot_clor-1.png" width="672" />
 By just adding in the borough and pop size as aesthetics, the graph was quickly adjusted. I didn’t have to fiddle around with exact sizing of the dots. Ggplot handled those details. Note that I also added a scale for the color using one of ggplot’s pre-defined palettes. I also used the argument of <code>alpha=0.7</code> to add some transparency to points, which helps me deal with issues of overplotting. Finally, I used <code>theme_bw()</code> at the bottom to change to a black and white theme.</p>
 <p>I also want to add a line for the best-fitting OLS regressin line. The <code>geom_smooth</code> function will allow me to do this, although I will have to specify the method:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nyc, <span class="kw">aes</span>(<span class="dt">x=</span>poverty, <span class="dt">y=</span>amtcapita))<span class="op">+</span>
@@ -327,7 +327,7 @@ By just adding in the borough and pop size as aesthetics, the graph was quickly 
 <span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>dollar)<span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Dark2&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
-<p><img src="_main_files/figure-html/ggplot_smooth-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/ggplot_smooth-1.png" width="672" /></p>
 <p>I made a couple of important changes here that are quite subtle but important. First, I moves the aesthetics for color and size out of the <code>ggplot</code> command and put them into the <code>geom_point</code>. This is because I don’t want those aesthetics to apply to all geoms. I only want them to apply to <code>geom_point</code>. If I had left them in they would have affected the <code>geom_smooth</code> and we would have had five separate lines for each borough.</p>
 <p>I also added <code>color="black"</code> to the <code>geom_smooth</code> command. Note that this is not part of an aesthetic call (e.g. <code>aes()</code>). It is not considered an aesthetic because we are just asking for the line to be a single color. Try surrounding that command in an <code>aes</code> and see what happens.</p>
 <p>I also used the <code>se=FALSE</code>. If I don’t do this then the line above will be surrounded by a confidence band, which may be good or bad. For our purposes, I did not want to clutter the graph.</p>
@@ -347,7 +347,7 @@ By just adding in the borough and pop size as aesthetics, the graph was quickly 
        <span class="dt">caption=</span><span class="st">&quot;Data from NYC, 2009-2010&quot;</span>,
        <span class="dt">color=</span><span class="st">&quot;Borough&quot;</span>,
        <span class="dt">size=</span><span class="st">&quot;Population&quot;</span>)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <p>I did a couple of other things here as well. I added a <code>scale_x_continuous</code> so I could label the x tick mark labels as percents. I also added another <code>theme</code> command that would allow me to change the placement of the legends. I want to keep it on the right, but could have chosen “left”, “right”, “top”, or “bottom.”</p>
 <p>We now have a very nice looking graph. Ggplot can be a little overwhelming at first, but it has quite a few advantages over base plot. It is designed so that we have to fidget around less with things like the size of our labels, the exact placement of our legends, and the margins of our table. All of that just works internally, and we can focus on the “grammar of graphics”, i.e. the logic structure of what we are trying to say with our graph.</p>
 <p>Lets do one more example to show how flexible ggplot is. Lets look at the distribution of popularity by race in the Add Health data. Because we have one categorical and one quantitative variable, we want comparative boxplots. Here is our basic set up:</p>
@@ -355,13 +355,13 @@ By just adding in the borough and pop size as aesthetics, the graph was quickly 
 <span class="kw">ggplot</span>(addhealth, <span class="kw">aes</span>(<span class="dt">x=</span>race, <span class="dt">y=</span>indegree))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <p>That works pretty well, However, its often better to display these boxplots horizontally so that we don’t have to worry about category labels overlapping. We can do that with ggplot with the <code>coord_flip</code> command (an example of a coordinate layer):</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(addhealth, <span class="kw">aes</span>(<span class="dt">x=</span>race, <span class="dt">y=</span>indegree))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <p>This is already pretty good. Notice that I don’t have to worry about specifying margins to make sure my category labels fit. Ggplot does that for me. I just need to apply labels and maybe a bit of tint to my boxplots.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(addhealth, <span class="kw">aes</span>(<span class="dt">x=</span>race, <span class="dt">y=</span>indegree))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey70&quot;</span>)<span class="op">+</span>
@@ -371,7 +371,7 @@ By just adding in the borough and pop size as aesthetics, the graph was quickly 
        <span class="dt">y=</span><span class="st">&quot;Number of friend nominations received&quot;</span>,
        <span class="dt">title=</span><span class="st">&quot;Comparative boxplots of friend nominations by race&quot;</span>,
        <span class="dt">caption=</span><span class="st">&quot;Add Health data, Wave 1&quot;</span>)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p>Note that the labels for x and y refer to the logic decision of which value is x and y as defined in the aesthetics not the actual placement, which was reversed due to the <code>coord_flip</code>. Note also that I used <code>NULL</code> for the x label because the category labels and title are self-explanatory.</p>
 <p>There are also some more advanced geoms that do something similar to a boxplot. A popular one is the <code>geom_violin</code> which plots a mirror image of the density distribution. With ggplot, its as simple as swapping out my boxplot with the violin:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(addhealth, <span class="kw">aes</span>(<span class="dt">x=</span>race, <span class="dt">y=</span>indegree))<span class="op">+</span>
@@ -382,7 +382,7 @@ By just adding in the borough and pop size as aesthetics, the graph was quickly 
        <span class="dt">y=</span><span class="st">&quot;Number of friend nominations received&quot;</span>,
        <span class="dt">title=</span><span class="st">&quot;Comparative boxplots of friend nominations by race&quot;</span>,
        <span class="dt">caption=</span><span class="st">&quot;Add Health data, Wave 1&quot;</span>)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 <p>I encourage you to explore the online <a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot documentation</a>. I would also highly recommend Kieran Healy’s new book, <a href="https://kieranhealy.org/publications/dataviz/"><em>Data Visualization</em></a> which uses ggplot extensively if you want to learn more about using ggplot most effectively.</p>
 
 </div>

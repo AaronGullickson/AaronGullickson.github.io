@@ -426,10 +426,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now that we have proportions/percents, we can use these values to construct a graphical display of the distribution. The <strong>piechart</strong> is a very common technique here. I am sure you have all seen examples of piecharts. In a piechart, you show each category’s percentage as a slice of a pie. Here is the R code and output of a piechart for the passenger class variable:</p>
 <pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(titanic<span class="op">$</span>pclass))
 <span class="kw">pie</span>(p)</code></pre>
-<p><img src="_main_files/figure-html/piechart_passclass-1.png" width="672" /></p>
+<p><img src="stat_book_files/figure-html/piechart_passclass-1.png" width="672" /></p>
 <p>Although piecharts are popular, they are actually not a very good tool. In order to judge the relative size of the slices, your eye has to make judgments in two dimensions and it can often be difficult to decide which slice is bigger. In this case, for example, the relative size of first and second class are quite close. A better way to display the distribution is by using a <strong>barplot</strong> in which vertical (or horizontal) bars give the proportion or percent:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(p, <span class="dt">col=</span><span class="st">&quot;skyblue&quot;</span>, <span class="dt">las=</span><span class="dv">1</span>)</code></pre>
-<p><img src="_main_files/figure-html/barplot_passclass-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/barplot_passclass-1.png" width="500px" height="400px" /></p>
 <p>Now your eye only has to work in one dimension to identify the relative size of each share. In this case, we can clearly see that the first class bar is higher than the second class bar. Barplots are almost always better at displaying distributions than piecharts.</p>
 </div>
 </div>
@@ -493,13 +493,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r">bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">90</span>, <span class="dt">by=</span><span class="dv">10</span>)
 <span class="kw">hist</span>(politics<span class="op">$</span>age, <span class="dt">breaks=</span>bins, <span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;age&quot;</span>,
      <span class="dt">main=</span><span class="st">&quot;Histogram of age in politics data&quot;</span>, <span class="dt">las=</span><span class="dv">1</span>)</code></pre>
-<p><img src="_main_files/figure-html/hist_agepol-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/hist_agepol-1.png" width="500px" height="400px" /></p>
 <p>I can see the peak in the distribution in the 50’s (the baby boomers) with a long fat tail to the right and steeper drop off (due to smaller cohorts and higher mortality) on the left.</p>
 <p>What would this histogram look like if I had used 5-year bin widths instead of 10-year bins? Lets try it:</p>
 <pre class="sourceCode r"><code class="sourceCode r">bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">90</span>, <span class="dt">by=</span><span class="dv">5</span>)
 <span class="kw">hist</span>(politics<span class="op">$</span>age, <span class="dt">breaks=</span>bins, <span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;age&quot;</span>,
      <span class="dt">main=</span><span class="st">&quot;Histogram of age in politics data&quot;</span>, <span class="dt">las=</span><span class="dv">1</span>)</code></pre>
-<p><img src="_main_files/figure-html/hist_agepol_bin5-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/hist_agepol_bin5-1.png" width="500px" height="400px" /></p>
 <p>I get more or less the same overall impression but a more fine-grained view. Sometimes adjusting bin width can reveal or hide important trends and sometimes it can just make it more difficult to read. As an exercise, <a href="https://aarongullickson.shinyapps.io/histogram/">try adjusting the bin width in this example histogram for movie runtime from our movie dataset</a>.</p>
 <p>There are four general things to be on the lookout for when examining a histogram.</p>
 <ol style="list-style-type: decimal">
@@ -509,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Outliers</strong>. Are there extreme values which fall outside the range of the rest of the data? We want to pay attention to these values because they may have a strong influence on the statistics we calculate to summarize a distribution. They might also help identify data input errors.</li>
 </ol>
 <p>The figure below shows some examples of each of these concepts from the various datasets we are using in class.</p>
-<p><img src="_main_files/figure-html/hist_examples-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/hist_examples-1.png" width="500px" height="400px" /></p>
 <hr />
 </div>
 </div>

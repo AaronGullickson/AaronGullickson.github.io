@@ -299,13 +299,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 &quot;Mary&quot;,&quot;Oakland,CA&quot;,&quot;White&quot;,&quot;Female&quot;,16</code></pre>
 <p>There are a couple of things to note here about the format. First, the top line is the “header” line that gives the names of the variables. Its important for your statistical program to know whether the data file has a header line or not in order to properly process the file. Second, notice that character strings representing category labels are surrounded by quotes. This is good practice because character strings may sometimes include commas within them, as the location variable does in this case, and the program will treat that as a delimiter if not surrounded by quotation marks.</p>
 <p>We can read this data into R with the <code>read_csv</code> command in the <code>readr</code> library:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;readr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:scales&#39;:
-## 
-##     col_factor</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">mydata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;resources/data.csv&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+mydata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;resources/data.csv&quot;</span>)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   name = col_character(),

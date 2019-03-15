@@ -309,7 +309,7 @@ Hello World
 <pre><code>## 
 ## &gt; cat(&quot;Hello World&quot;)
 ## Hello World
-## &gt; 2 + 2
+## &gt; 2+2
 ## [1] 4</code></pre>
 <p>Now lets try a slightly more useful script. In this script, I am going to do the following:</p>
 <ul>
@@ -332,9 +332,9 @@ OR</code></pre>
 <pre><code>## 
 ## &gt; load(&quot;example_datasets/politics/politics.RData&quot;)
 ## 
-## &gt; politics$supportgmar &lt;- politics$gaymarriage == &quot;Support gay marriage&quot;
+## &gt; politics$supportgmar &lt;- politics$gaymarriage==&quot;Support gay marriage&quot;
 ## 
-## &gt; politics$evangelical &lt;- politics$relig == &quot;Evangelical Protestant&quot;
+## &gt; politics$evangelical &lt;- politics$relig==&quot;Evangelical Protestant&quot;
 ## 
 ## &gt; tab &lt;- table(politics$supportgmar, politics$evangelical)
 ## 
@@ -344,13 +344,13 @@ OR</code></pre>
 ##   FALSE  1103  662
 ##   TRUE   2218  255
 ## 
-## &gt; prop.table(tab, 2)
+## &gt;  prop.table(tab, 2)
 ##        
 ##             FALSE      TRUE
 ##   FALSE 0.3321289 0.7219193
 ##   TRUE  0.6678711 0.2780807
 ## 
-## &gt; OR &lt;- tab[1, 1] * tab[2, 2]/(tab[1, 2] * tab[2, 1])
+## &gt; OR &lt;- tab[1,1]*tab[2,2]/(tab[1,2]*tab[2,1])
 ## 
 ## &gt; OR
 ## [1] 0.1915562</code></pre>
@@ -362,10 +362,9 @@ OR</code></pre>
 <pre><code>## 
 ## &gt; load(&quot;example_datasets/politics/politics.RData&quot;)
 ## 
-## &gt; politics$supportgmar &lt;- politics$gaymarriage == &quot;Support gay marriage&quot; | 
-## +     politics$gaymarriage == &quot;Civil unions&quot;
+## &gt; politics$supportgmar &lt;- politics$gaymarriage==&quot;Support gay marriage&quot; | politics$gaymarriage==&quot;Civil unions&quot;
 ## 
-## &gt; politics$evangelical &lt;- politics$relig == &quot;Evangelical Protestant&quot;
+## &gt; politics$evangelical &lt;- politics$relig==&quot;Evangelical Protestant&quot;
 ## 
 ## &gt; tab &lt;- table(politics$supportgmar, politics$evangelical)
 ## 
@@ -381,7 +380,7 @@ OR</code></pre>
 ##   FALSE 0.1108100 0.4416576
 ##   TRUE  0.8891900 0.5583424
 ## 
-## &gt; OR &lt;- tab[1, 1] * tab[2, 2]/(tab[1, 2] * tab[2, 1])
+## &gt; OR &lt;- tab[1,1]*tab[2,2]/(tab[1,2]*tab[2,1])
 ## 
 ## &gt; OR
 ## [1] 0.1575431</code></pre>

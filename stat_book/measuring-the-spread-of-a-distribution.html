@@ -288,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="measuring-the-spread-of-a-distribution" class="section level2">
 <h2>Measuring the Spread of a Distribution</h2>
 <p>The second most important measure of a distribution is its spread. Spread indicates how far individual values tend to fall from the center of the distribution. As the figure below shows, two distributions can have the same center and general shape (in this case, a bell curve) but have very different spreads.</p>
-<p><img src="_main_files/figure-html/spread_compare-1.png" width="500px" height="200px" /></p>
+<p><img src="stat_book_files/figure-html/spread_compare-1.png" width="500px" height="200px" /></p>
 <div id="range-and-interquartile-range" class="section level3">
 <h3>Range and interquartile range</h3>
 <p>One of the simplest measures of spread is to calculate the <strong>range</strong>. The range is the distance between the highest and lowest value. Lets take a look at the range in the fare paid (in British pounds) for tickets on the Titanic. The <code>summary</code> command, will give us the information we need:</p>
@@ -300,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(titanic<span class="op">$</span>fare, <span class="dt">col=</span><span class="st">&quot;seagreen&quot;</span>,
         <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">ylab=</span><span class="st">&quot;British pounds&quot;</span>, 
         <span class="dt">main=</span><span class="st">&quot;Boxplot of fare paid&quot;</span>)</code></pre>
-<p><img src="_main_files/figure-html/boxplot_fare-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/boxplot_fare-1.png" width="500px" height="400px" /></p>
 <p>The maximum value is such an outlier that the rest of the boxplot has to be “scrunched” in order to fit it all into the graph. Clearly this is not a good indicator of spread. However, we have already seen a better measure of spread using a similar idea: the <strong>interquartile range</strong> or <strong>IQR</strong>. The IQR is just the range between the 25th and 75th percentile. We already have these numbers from the output above, so the IQR = 31.28-7.90=23.38. So, the difference in fare between the 25th and 75th percentile (the middle 50% of the data) was 23.4 pounds. That result suggests a much smaller spread of fares.</p>
 <p>You can also use the <code>IQR</code> command in <em>R</em> to directly calculate the IQR.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IQR</span>(titanic<span class="op">$</span>fare)</code></pre>

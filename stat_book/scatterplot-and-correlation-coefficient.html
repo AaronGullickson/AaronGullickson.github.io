@@ -294,9 +294,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>The scatterplot</h3>
 <p>We can examine the relationship between two quantitative variables by constructing a <strong>scatterplot</strong>. A scatterplot is a two-dimensional graph. We put the independent variable on the x-axis and the dependent variable on the y-axis. For this reason, we often refer generically to the independent variable as x and the dependent variable generically as y.</p>
 <p>To construct the scatterplot, we plot each observation as a point, based on the value of its independent and dependent variable. For example, lets say we are interested in the relationship between the median age of the state population and violent crime in our crime data. Our first observation, Alabama, has a median age of 37.8 and a violent crime rate of 378 crimes per 100,000. We can plot this point on our graph as follows:</p>
-<p><img src="_main_files/figure-html/scatter_onepoint-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_onepoint-1.png" width="500px" height="400px" /></p>
 <p>If I repeat that process for all of my observations, I will get a scatterplot that looks like:</p>
-<p><img src="_main_files/figure-html/scatter_age_violent-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_age_violent-1.png" width="500px" height="400px" /></p>
 <p>It is not necessary to show the names of states here, but I have done so here in order to identify individual observations.</p>
 <p>What are we looking for when we look at a scatterplot? There are four important questions we can ask of the scatterplot. First, what is the <strong>direction</strong> of the relationship. We refer to a relationship as <strong>positive</strong> if both variables move in the same direction. if y tends to be higher when x is higher and y tends to be lower when x is lower, then we have a positive relationship. On the other hand, if the variables move in opposite directions, then we have a <strong>negative</strong> relationship. If y tends to be lower when x is higher and y tends to be higher when x is lower, then we have a negative relationship. In the case above, it seems like we have a generally negative relationship. States with higher median age tend to have lower violent crime rates.</p>
 <p>Second, is the relationship <strong>linear</strong>? I don’t mean here that the points fall exactly on a straight line (which is part of the next question) but rather does the general shape of the points appear to have any “curve” to it. If it has a curve to it, then the relationship would be non-linear. This issue will become important later, because our two primary measures of association are based on the assumption of a linear relationship. In this case, there is no evidence that the relationship is non-linear.</p>
@@ -306,27 +306,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Constructing scatterplots in <em>R</em></h4>
 <p>You can construct scatterplots in <em>R</em> with the <code>plot</code> command. At a very basic level, you can just feed in the independent and dependent variables:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(crimes<span class="op">$</span>Poverty, crimes<span class="op">$</span>Property)</code></pre>
-<p><img src="_main_files/figure-html/scatter_basic1-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_basic1-1.png" width="500px" height="400px" /></p>
 <p>We can improve on this command with our usual bells and whistles to label x and y axes, titles, etc. We can also use the <code>pch</code> option to define different dots for our points. If you pull up the help command <code>?points</code>, it will show a list of codes for all the different points you can use. I like to use <code>pch=21</code> because it will draw circles where you can color in both the center and the border. For example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(crimes<span class="op">$</span>Poverty, crimes<span class="op">$</span>Property, 
      <span class="dt">xlab=</span><span class="st">&quot;Poverty rate&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Property crime rate&quot;</span>, 
      <span class="dt">main=</span><span class="st">&quot;scatterplot of poverty rate and property crime&quot;</span>, 
      <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</code></pre>
-<p><img src="_main_files/figure-html/scatter_basic2-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_basic2-1.png" width="500px" height="400px" /></p>
 <p>Sometimes with large datasets, scatterplots can be difficult to read because of the problem of <strong>overplotting</strong>. This happens when many data points overlap, so that its difficult to see how many points are showing. For example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(movies<span class="op">$</span>Runtime, movies<span class="op">$</span>TomatoMeter, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">las=</span><span class="dv">1</span>,
      <span class="dt">xlab=</span><span class="st">&quot;movie runtime&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Tomato Meter&quot;</span>)</code></pre>
-<p><img src="_main_files/figure-html/scatter_overplot-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_overplot-1.png" width="500px" height="400px" /></p>
 <p>Because so many movies are in that 90-120 minute range it is difficult to distinguish them and thus a little tricky to summarize the relationship. There are more advanced ways we can address this issue, but these are beyond our introductory class.</p>
 <p>Overplotting can also be a problem with discrete variables because these variables can only take on certain values which will then exactly overlap with one another. For example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(sex<span class="op">$</span>educ, sex<span class="op">$</span>sexf,
      <span class="dt">xlab=</span><span class="st">&quot;years of education&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;sexual frequency&quot;</span>)</code></pre>
-<p><img src="_main_files/figure-html/scatter_overplot2-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_overplot2-1.png" width="500px" height="400px" /></p>
 <p>Both of these variables are discrete and thus only take certain values, so all we see on the graph is more or less every possible point based on the possible values of education and sexual frequency. Multiple points are plotted directly on top of each other. We can fix this issue more easily by applying the <code>jitter</code> command which just adds a random amount to each observation so they don’t exactly overlap. You often have to experiment with <code>jitter</code> to find just how much randomness (the second option) you have to apply.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">jitter</span>(sex<span class="op">$</span>educ,<span class="dv">5</span>), <span class="kw">jitter</span>(sex<span class="op">$</span>sexf,<span class="dv">50</span>), 
      <span class="dt">xlab=</span><span class="st">&quot;years of education&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;sexual frequency&quot;</span>,
      <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</code></pre>
-<p><img src="_main_files/figure-html/scatter_jitter-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_jitter-1.png" width="500px" height="400px" /></p>
 <p>In this case, because of the large number of observations we still have a lot of overplotting.</p>
 </div>
 </div>
@@ -345,7 +345,7 @@ diffy.sd &lt;-<span class="st"> </span>diffy<span class="op">/</span><span class
 <p>The third step is to to multiply each converted value of x by each converted value of y.</p>
 <pre class="sourceCode r"><code class="sourceCode r">product &lt;-<span class="st"> </span>diffx.sd<span class="op">*</span>diffy.sd</code></pre>
 <p>Why do we do this? First consider this scatterplot of our standardized x and y:</p>
-<p><img src="_main_files/figure-html/scatter_r_standardized-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_r_standardized-1.png" width="500px" height="400px" /></p>
 <p>Points shown in blue have either both positive or both negative x and y values. When you take the product of these two numbers, you will get a positive product. This is evidence of a positive relationship. Points shown in red have one positive and one negative x and y value. When you take the product of these two numbers, you will get a negative product. This is evidence of a negative relationship.</p>
 <p>The final step is to add up all this evidence of a positive and negative relationship and divide by the number of observations (minus one).</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(product)<span class="op">/</span>(<span class="kw">length</span>(product)<span class="op">-</span><span class="dv">1</span>)</code></pre>
@@ -355,7 +355,7 @@ diffy.sd &lt;-<span class="st"> </span>diffy<span class="op">/</span><span class
 <pre><code>## [1] -0.3015232</code></pre>
 <p>How do we interpret this correlation coefficient? It turns out the correlation coefficient <em>r</em> has some really nice properties. First, the <strong>sign</strong> of <em>r</em> indicates the direction of the relationship. If <em>r</em> is positive, the association is positive. If <em>r</em> is negative, the association is negative. if <em>r</em> is zero, there is no association.</p>
 <p>Second, <em>r</em> has a <strong>maximum</strong> value of 1 and a <strong>minimum</strong> value of -1. These cases will only happen if the points line up exactly on a straight line, which never happens with social science data. However, it gives us some benchmark to measure the strength of our relationship. Here are some simulated scatterplots with different <em>r</em> in order to help you get a sense of the strength of association for different values of <em>r</em>.</p>
-<p><img src="_main_files/figure-html/correlations_stength-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/correlations_stength-1.png" width="500px" height="400px" /></p>
 <p>Third, <em>r</em> is a <strong>unitless</strong> measure of association. It can be compared across different variables and different datasets in order to make a comparison of the strength of association. For example, the correlation coefficient between unemployment and violent crimes is 0.45. Thus, violent crimes are more strongly correlated with unemployment than with median age (0.44&gt;0.30). The association between median age and property crimes is -0.36, so median age is more strongly related to property crimes than violent crimes (0.36&gt;0.30).</p>
 <p>There are some important cautions when using the correlation coefficient. First, the correlation coefficient will only give a proper measure of association when the underlying relationship is <strong>linear</strong>. if there is a non-linear (curved) relationship, then <em>r</em> will not correctly estimate the association. Second, the correlation coefficient can be affected by <strong>outliers</strong>. We will explore this issue of outliers and influential points more in later sections.</p>
 <hr />

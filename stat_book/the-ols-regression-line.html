@@ -288,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-ols-regression-line" class="section level2">
 <h2>The OLS Regression Line</h2>
 <p>Lets take another look at the scatterplot we constructed in the previous section that showed the relationship between median age and violent crime rates:</p>
-<p><img src="_main_files/figure-html/scatter_age_violent2-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_age_violent2-1.png" width="500px" height="400px" /></p>
 <p>Notice that I now have a line plotted through those points. When you were trying to determine the direction of the relationship many of you were probably imagining a line going through the points already. Of course, if we just tried to “eyeball” the best line, we would get many different results. The line I have graphed above, however, is the best fitting line, at least according to some reasonable criteria. It is the best-fitting line because it minimizes the total distance from all of the points collectively to the line. This line is called the <strong>ordinary least squares regression line</strong> ( or OLS regression line, for short) and it is the basis for the most used statistical technique in the social sciences. This fairly simply concept of fitting the best line to a set of points on a scatterplot is the workhorse of social science statistics.</p>
 <div id="the-formula-for-a-line" class="section level3">
 <h3>The Formula for a Line</h3>
@@ -310,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A <strong>residual</strong> is the vertical distance between an actual value of y for an observation and its predicted value:</p>
 <p><span class="math display">\[residual_i=y_i-\hat{y}_i\]</span></p>
 <p>These residuals are also sometimes called <strong>error terms</strong>, because the larger they are in absolute value, the worse is our prediction. Take a look at the same scatterplot as above but this time with the residuals drawn in red:</p>
-<p><img src="_main_files/figure-html/scatter_reside-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_reside-1.png" width="500px" height="400px" /></p>
 <p>Unless the points all fall along an exact straight line, there is no way for me to eliminate these residuals altogether, but some lines will produce higher residuals than others. What I am aiming to do is minimize the sum of squared residuals which is given by:</p>
 <p><span class="math display">\[SSR = \sum_{i=1}^n(y_i-\hat{y}_i)^2\]</span></p>
 <p>I square each residual and then sum them up. By squaring, I eliminate the problem of some residuals being negative and some positive.</p>
@@ -367,7 +367,7 @@ slope</code></pre>
      <span class="dt">xlab=</span><span class="st">&quot;Median Age&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Violent crime rate per 100,000&quot;</span>, 
      <span class="dt">main=</span><span class="st">&quot;scatterplot of median age</span><span class="ch">\n</span><span class="st">and violent crime rates&quot;</span>, <span class="dt">las=</span><span class="dv">1</span>)
 <span class="kw">abline</span>(model1)</code></pre>
-<p><img src="_main_files/figure-html/scatter_abline-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_abline-1.png" width="500px" height="400px" /></p>
 </div>
 <div id="the-ols-regression-line-as-a-model" class="section level3">
 <h3>The OLS regression line as a model</h3>
@@ -429,7 +429,7 @@ The zero value on our new variable <span class="math inline">\(x^*\)</span> will
 <pre><code>##   (Intercept) MedianAge.ctr 
 ##      448.6533      -25.5795</code></pre>
 <p>The intercept now gives me the predicted violent crime rate in a state with a median age of 35. In effect, I have moved my y-intercept from zero to thirty-five as is shown in the figure below.</p>
-<p><img src="_main_files/figure-html/ols_move_intercept-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/ols_move_intercept-1.png" width="500px" height="400px" /></p>
 <p>Its also possible to re-center an independent variable in the <code>lm</code> command without creating a whole new variable. If you surround the re-centering in the <code>I()</code> function within the formula, R will interpret the result of whatever is inside the <code>I()</code> function as a new variable. Here is an example based on the previous example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(<span class="kw">lm</span>(Violent<span class="op">~</span><span class="kw">I</span>(MedianAge<span class="dv">-35</span>), <span class="dt">data=</span>crimes))</code></pre>
 <pre><code>##       (Intercept) I(MedianAge - 35) 
@@ -442,7 +442,7 @@ The zero value on our new variable <span class="math inline">\(x^*\)</span> will
 <p>Now, lets say instead of making you guess randomly I first told you the value of another variable <span class="math inline">\(x\)</span> and gave you the slope and intercept predicting <span class="math inline">\(y\)</span> from <span class="math inline">\(x\)</span>. What is your best guess now? You should guess the predicted value of <span class="math inline">\(\hat{y}_i\)</span> from the regression line because now you have some additional information. There is no way that having this information could make your guess worse than just guessing the mean. The question is how much better do you do than guessing the mean. Answering this question will give us some idea of how good <span class="math inline">\(x\)</span> is as a predictor of <span class="math inline">\(y\)</span>.</p>
 <p>We can do this by separating, or <em>partitioning</em> the total possible error in our first case when we guessed the mean, into the part accounted for by <span class="math inline">\(x\)</span> and the part that is unaccounted for by <span class="math inline">\(x\)</span>.</p>
 <p>I can demonstrate this partitioning for one observation in our crime data (the state of Vermont) with this scatterplot:</p>
-<p><img src="_main_files/figure-html/scatter_partition_variance-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/scatter_partition_variance-1.png" width="500px" height="400px" /></p>
 <p>The distance in red is the total distance between the observed property violent rate in the state of Vermont and the mean violent crime rate across all states (given by the dotted line). If I were instead to use the regression line predicting the violent crime rate by median age, I would predict a lower violent crime rate than average for Vermont because of its relatively high median age, but I would still predict a value that is too high. This red line is then partitioned into th green line which is the improvement in my estimate and the blue line which is the error that remains in my prediction from the regression line. If I could then repeat this process for all of the states, I could calculate the percentage of the total red lines that the green lines cover. This would give me an estimate of how much I reduce the error in my prediction by using the regression line rather than the mean to predict Vermont’s violent crime rate.</p>
 <p>In practice, we actually need to square those vertical distances because some are negative and some are positive and then we can sum them up over all the observations. So we get the following formulas:</p>
 <ul>
@@ -500,10 +500,10 @@ The zero value on our new variable <span class="math inline">\(x^*\)</span> will
 <h4>Linearity</h4>
 <p>By definition, an OLS regression line is a straight line. If the underlying relationship between x and y is non-linear, then the OLS regression line will do a poor job of measuring that relationship.</p>
 <p>One common case of non-linearity is the case of diminishing returns in which the slope gets weaker at higher values of x. That is the case with this data:</p>
-<p><img src="_main_files/figure-html/nonlinearity-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/nonlinearity-1.png" width="500px" height="400px" /></p>
 <p>The data here plot the GDP per capita of countries in 2007 to the life expectancy of countries in 2007 The relationship is clearly a strongly positive one, but also one of diminishing returns where the positive effect seems to plateau at higher levels of national income and life expectancy. This makes sense because the same absolute increase in national income at low levels of life expectancy can be used to reduce the incidence of well-understood infectious and parasitic diseases, whereas the same absolute increase in national income at high levels of life expectancy must try to reduce the risk of less understood and treatable diseases like cancer. You get more bang for your buck when life expectancy is low.</p>
 <p>If we try to fit a line to this data, we will get this:</p>
-<p><img src="_main_files/figure-html/nonlinearity2-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/nonlinearity2-1.png" width="500px" height="400px" /></p>
 <p>Clearly a straight line is a poor fit. We systematically overestimate life expectancy at low and high GDP and underestimate life expectancy in the middle.</p>
 <p>Its possible, in some circumstances, to correct for this problem of non-linearity but we will not explore those options in this class. For now, its just important to be aware of the problem and if you see clear non-linearity then you should question the use of an OLS regression line.</p>
 </div>

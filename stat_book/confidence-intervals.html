@@ -288,13 +288,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="confidence-intervals" class="section level2">
 <h2>Confidence Intervals</h2>
 <p>Remember from the previous section that 95% of all the possible sample means will be within 1.96 standard errors of the true population mean <span class="math inline">\(\mu\)</span>. Therefore:</p>
-<p><img src="_main_files/figure-html/normaldist_ci-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/normaldist_ci-1.png" width="500px" height="400px" /></p>
 <p>There is a 95% probability that we will draw a sample mean within 1.96 standard errors of the true population mean.</p>
 <p>Lets say I were to construct the following interval for every possible sample:</p>
 <p><span class="math display">\[\bar{x}\pm1.96(\sigma/\sqrt{n})\]</span></p>
 <p>t follows from the probability statement above that for 95% of all samples, this interval would contain the true population mean, <span class="math inline">\(\mu\)</span>.</p>
 <p>To see how this works graphically, imagine constructing this interval for twenty different samples from the same population.</p>
-<p><img src="_main_files/figure-html/conf_intervals-1.png" width="500px" height="400px" /></p>
+<p><img src="stat_book_files/figure-html/conf_intervals-1.png" width="500px" height="400px" /></p>
 <p>The blue line gives the true population mean. The dots represent the sample means for each of the twenty samples. You can see that these sample means fluctuate around the true population mean due to random sampling error. The lines give the interval outlined above. In 19 out of the 20 cases, this interval contains the true population mean (as you can see by the fact that the interval crosses the blue line). The one sample where this is not true is shown in red. On average, 95% of samples will contain the true population mean in the interval, so 5% or 1 in 20 will not.</p>
 <p>We refer to this interval as the <strong>95% confidence interval</strong>. Of course, in practice, we only construct one interval on the sample that we have. We use this interval to give a range of values that we feel “confident” will contain the true population mean.</p>
 <div id="what-do-we-mean-by-confident" class="section level3">
