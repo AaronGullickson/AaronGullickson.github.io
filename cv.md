@@ -6,11 +6,11 @@ output: pdf_document
 
 # Aaron Gullickson
 
-|			|	            |
-|--------------|--------------------------|
-|719 PLC    | 541-346-5061           |
+|                     |                                                |
+|---------------------|------------------------------------------------|
+|767 PLC              | 541-346-5061                                   |
 |University of Oregon | [aarong@uoregon.edu](mailto:aarong.uoregon.edu)|
-|Eugene, OR 97403 | [https://aarongullickson.github.io](https://aarongullickson.github.io) |
+|Eugene, OR 97403     | [https://aarongullickson.github.io](https://aarongullickson.github.io) |
 
 ## Employment
 
@@ -180,6 +180,9 @@ TBD
 TBD
 : Nathan Biemiller. *Title to Be Determined.* Economics, University of Oregon. (outside member)
 
+TBD
+: Drew McNichols. *Title to be Determined.* Economics, University of Oregon. (outside member)
+
 2018
 : Tongyu Wu. *Coding Productivity: Negotiation of Ethnicized Masculine Boundaries in High-Tech Corporations.* Sociology, University of Oregon.
 
@@ -325,5 +328,4 @@ TBD
 2011-2013
 : Advisory Editor, Social Problems
 
-Manuscript reviewer for: *American Journal of Sociology*, *American Sociological Review*, *Demography*, *Social Forces*, *Social Problems*, *Social Science Research*, *Social Science Quarterly*,
-*Journal of Marriage and Family*, *Sociological Perspectives*
+Manuscript reviewer for: *American Journal of Sociology*, *American Sociological Review*, *Annals of the American Academy of Political and Social Sciences*, *Demographic Research*, *Demography*, *Historical Methods*, *Journal of Marriage and Family*, *Population Research and Policy Review*, *Social Forces*, *Social Problems*, *Social Science Quarterly*, *Social Science Research*, *Sociological Perspectives*
