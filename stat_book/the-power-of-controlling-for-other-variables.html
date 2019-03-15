@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>The Power of Controlling for Other Variables | Statistical Analysis in Sociology</title>
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="The Power of Controlling for Other Variables | Statistical Analysis in Sociology />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="The Power of Controlling for Other Variables | Statistical Analysis in Sociology />
+  
+  <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  
+
+<meta name="author" content="Aaron Gullickson">
+
+
+<meta name="date" content="2019-03-15">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="the-ols-regression-line.html">
+<link rel="next" href="including-categorical-variables-as-predictors.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="understanding-data.html"><a href="understanding-data.html"><i class="fa fa-check"></i>Understanding Data</a><ul>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html"><i class="fa fa-check"></i>What Does Data Look Like?</a><ul>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html#the-observations"><i class="fa fa-check"></i>The observations</a></li>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html#the-variables"><i class="fa fa-check"></i>The variables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html"><i class="fa fa-check"></i>What Can We Do With Data?</a><ul>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#how-is-a-variable-distributed"><i class="fa fa-check"></i>How is a variable distributed?</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#measuring-association"><i class="fa fa-check"></i>Measuring association</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#making-statistical-inferences"><i class="fa fa-check"></i>Making statistical inferences</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#building-models"><i class="fa fa-check"></i>Building Models</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#observational-data-experimental-thinking"><i class="fa fa-check"></i>Observational Data, Experimental Thinking</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-distribution-of-a-variable.html"><a href="the-distribution-of-a-variable.html"><i class="fa fa-check"></i>The Distribution of a Variable</a><ul>
+<li class="chapter" data-level="" data-path="what-is-a-distribution.html"><a href="what-is-a-distribution.html"><i class="fa fa-check"></i>What is a Distribution?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-a-distribution.html"><a href="what-is-a-distribution.html#looking-at-the-distribution-of-a-categorical-variable"><i class="fa fa-check"></i>Looking at the distribution of a categorical variable</a></li>
+<li class="chapter" data-level="" data-path="what-is-a-distribution.html"><a href="what-is-a-distribution.html#looking-at-the-distribution-of-a-quantitative-variable"><i class="fa fa-check"></i>Looking at the distribution of a quantitative variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html"><i class="fa fa-check"></i>Measuring the Center of a Distribution</a><ul>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-mean"><i class="fa fa-check"></i>The mean</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-median"><i class="fa fa-check"></i>The median</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-mode"><i class="fa fa-check"></i>The mode</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#comparing-the-mean-and-median"><i class="fa fa-check"></i>Comparing the mean and median</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html"><i class="fa fa-check"></i>Percentiles and the Five Number Summary</a><ul>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#percentiles"><i class="fa fa-check"></i>Percentiles</a></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#the-five-number-summary"><i class="fa fa-check"></i>The five number summary</a></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html"><i class="fa fa-check"></i>Measuring the Spread of a Distribution</a><ul>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html#range-and-interquartile-range"><i class="fa fa-check"></i>Range and interquartile range</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html#variance-and-standard-deviation"><i class="fa fa-check"></i>Variance and standard deviation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-association-1.html"><a href="measuring-association-1.html"><i class="fa fa-check"></i>Measuring Association</a><ul>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html"><i class="fa fa-check"></i>The Two-Way Table</a><ul>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#conditional-distributions"><i class="fa fa-check"></i>Conditional distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="odds-ratio-advanced.html"><a href="odds-ratio-advanced.html"><i class="fa fa-check"></i>Odds ratio (Advanced)</a></li>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html"><i class="fa fa-check"></i>Mean Differences</a><ul>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#graphically-examining-differences-in-distributions"><i class="fa fa-check"></i>Graphically examining differences in distributions</a></li>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#comparing-differences-in-the-mean"><i class="fa fa-check"></i>Comparing differences in the mean</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html"><i class="fa fa-check"></i>Scatterplot and Correlation Coefficient</a><ul>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html#the-scatterplot"><i class="fa fa-check"></i>The scatterplot</a></li>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html#the-correlation-coefficient"><i class="fa fa-check"></i>The correlation coefficient</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i>Statistical Inference</a><ul>
+<li class="chapter" data-level="" data-path="the-problem-of-statistical-inference.html"><a href="the-problem-of-statistical-inference.html"><i class="fa fa-check"></i>The Problem of Statistical Inference</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html"><i class="fa fa-check"></i>The Concept of the Sampling Distribution</a><ul>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#example-class-height"><i class="fa fa-check"></i>Example: class height</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#central-limit-theorem-and-the-normal-distribution"><i class="fa fa-check"></i>Central limit theorem and the normal distribution</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#what-can-we-do-with-the-sampling-distribution"><i class="fa fa-check"></i>What can we do with the sampling distribution?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i>Confidence Intervals</a><ul>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-do-we-mean-by-confident"><i class="fa fa-check"></i>What do we mean by “confident?”</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-the-confidence-interval-for-the-sample-mean"><i class="fa fa-check"></i>Calculating the confidence interval for the sample mean</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-the-confidence-interval-for-other-sample-statistics"><i class="fa fa-check"></i>Calculating the confidence interval for other sample statistics</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-proportions"><i class="fa fa-check"></i>Example with proportions</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-mean-differences"><i class="fa fa-check"></i>Example with mean differences</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-proportion-differences"><i class="fa fa-check"></i>Example with proportion differences</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-correlation-coefficient"><i class="fa fa-check"></i>Example with correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i>Hypothesis Tests</a><ul>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#example-coke-winners"><i class="fa fa-check"></i>Example: Coke winners</a></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#the-general-procedure-of-hypothesis-testing"><i class="fa fa-check"></i>The general procedure of hypothesis testing</a></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-of-relationships"><i class="fa fa-check"></i>Hypothesis tests of relationships</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="building-models-1.html"><a href="building-models-1.html"><i class="fa fa-check"></i>Building Models</a><ul>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html"><i class="fa fa-check"></i>The OLS Regression Line</a><ul>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-formula-for-a-line"><i class="fa fa-check"></i>The Formula for a Line</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#calculating-the-best-fitting-line"><i class="fa fa-check"></i>Calculating the Best-Fitting Line</a></li>
+<li><a href="the-ols-regression-line.html#using-the-lm-command-to-calculate-ols-regression-lines-in-r">Using the <code>lm</code> command to calculate OLS regression lines in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-ols-regression-line-as-a-model"><i class="fa fa-check"></i>The OLS regression line as a model</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#interpeting-slopes-and-intercepts"><i class="fa fa-check"></i>Interpeting Slopes and Intercepts</a></li>
+<li><a href="the-ols-regression-line.html#how-good-is-x-as-a-predictor-of-y">How good is <span class="math inline">\(x\)</span> as a predictor of <span class="math inline">\(y\)</span>?</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#inference-for-ols-regression-models"><i class="fa fa-check"></i>Inference for OLS Regression models</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#regression-line-cautions"><i class="fa fa-check"></i>Regression Line Cautions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html"><i class="fa fa-check"></i>The Power of Controlling for Other Variables</a><ul>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#interpreting-results-in-a-multivariate-ols-regression-models"><i class="fa fa-check"></i>Interpreting results in a multivariate OLS regression models</a></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#including-more-than-two-independent-variables"><i class="fa fa-check"></i>Including more than two independent variables</a></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#how-to-read-a-table-of-regression-results"><i class="fa fa-check"></i>How to read a table of regression results</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html"><i class="fa fa-check"></i>Including Categorical Variables as Predictors</a><ul>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#indicator-variables"><i class="fa fa-check"></i>Indicator variables</a></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#categorical-variables-with-more-than-two-categories"><i class="fa fa-check"></i>Categorical variables with more than two categories</a></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#categorical-and-quantitative-variables-combined-in-a-single-model"><i class="fa fa-check"></i>Categorical and quantitative variables combined in a single model</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html"><i class="fa fa-check"></i>Interaction Terms</a><ul>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#the-nature-of-additive-models"><i class="fa fa-check"></i>The nature of additive models</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#the-interaction-term"><i class="fa fa-check"></i>The interaction term</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interpreting-interaction-terms"><i class="fa fa-check"></i>Interpreting interaction terms</a></li>
+<li><a href="interaction-terms.html#interaction-terms-in-r">Interaction terms in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-multiple-categories"><i class="fa fa-check"></i>Interaction terms with multiple categories</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-two-categorical-variables"><i class="fa fa-check"></i>Interaction terms with two categorical variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html"><i class="fa fa-check"></i>Using Scripts</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-scripts.html"><a href="getting-started-with-scripts.html"><i class="fa fa-check"></i>Getting Started with Scripts</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-scripts.html"><a href="getting-started-with-scripts.html#not-everything-goes-into-your-script"><i class="fa fa-check"></i>Not Everything Goes Into Your Script</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-scripts.html"><a href="getting-started-with-scripts.html#commenting-for-sanity"><i class="fa fa-check"></i>Commenting for Sanity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html"><i class="fa fa-check"></i>Object Types</a><ul>
+<li class="chapter" data-level="" data-path="atomic-modes.html"><a href="atomic-modes.html"><i class="fa fa-check"></i>Atomic Modes</a></li>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html"><i class="fa fa-check"></i>Vectors and Matrices</a><ul>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#vectors"><i class="fa fa-check"></i>Vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#indexing-vectors-and-matrices"><i class="fa fa-check"></i>Indexing Vectors and Matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="factors.html"><a href="factors.html"><i class="fa fa-check"></i>Factors</a><ul>
+<li class="chapter" data-level="" data-path="factors.html"><a href="factors.html#re-ordering-categories-in-factors"><i class="fa fa-check"></i>Re-ordering categories in factors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="logical-values-and-boolean-statements.html"><a href="logical-values-and-boolean-statements.html"><i class="fa fa-check"></i>Logical Values and Boolean Statements</a></li>
+<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a></li>
+<li class="chapter" data-level="" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i>Lists</a><ul>
+<li class="chapter" data-level="" data-path="lists.html"><a href="lists.html#accessing-elements-of-the-list"><i class="fa fa-check"></i>Accessing elements of the list</a></li>
+<li><a href="lists.html#the-lapply-command-is-awesome">The <code>lapply</code> command is awesome</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i>Data Frames</a><ul>
+<li><a href="data-frames.html#renaming-variables-in-a-data.frame">Renaming Variables in a <code>data.frame</code></a></li>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#subsetting-data-frames"><i class="fa fa-check"></i>Subsetting Data Frames</a></li>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#subsetting-by-variables"><i class="fa fa-check"></i>Subsetting by variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html"><i class="fa fa-check"></i>Pretty Pictures</a><ul>
+<li class="chapter" data-level="" data-path="base-plot.html"><a href="base-plot.html"><i class="fa fa-check"></i>Base Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i>ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="data-formats.html"><a href="data-formats.html"><i class="fa fa-check"></i>Data Formats</a></li>
+<li class="chapter" data-level="" data-path="plain-text-files.html"><a href="plain-text-files.html"><i class="fa fa-check"></i>plain text files</a><ul>
+<li class="chapter" data-level="" data-path="plain-text-files.html"><a href="plain-text-files.html#working-with-csv-files"><i class="fa fa-check"></i>Working with CSV files</a></li>
+<li class="chapter" data-level="" data-path="plain-text-files.html"><a href="plain-text-files.html#working-with-fixed-width-text-files"><i class="fa fa-check"></i>Working with fixed-width text files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-in-binary-format.html"><a href="data-in-binary-format.html"><i class="fa fa-check"></i>Data in binary format</a></li>
+<li class="chapter" data-level="" data-path="saving-data.html"><a href="saving-data.html"><i class="fa fa-check"></i>Saving data</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Analysis in Sociology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-power-of-controlling-for-other-variables" class="section level2">
+<h2>The Power of Controlling for Other Variables</h2>
+<p>In the previous module, I showed that the OLS regression line predicting sexual frequency by years of education was 0.03. So in my dataset, there is a very small positive association between sexual frequency and years of education.</p>
+<p>Its possible that this is a causal effect. We could even spin stories about why we think such a positive association (a very small one) might exist. Maybe more educated people appear sexier to the opposite sex. Maybe more educated people take better care of themselves and thus are healthier and more able to have sex. Maybe more educated people are just more sexually liberated.</p>
+<p>Before we get carried away however its important to consider whether our results might be <strong>spurious</strong>. Its possible that the positive association between years of education and sexual frequency is driven by a third variable that we haven’t accounted for. This is a common problem in research using observational data. Association does not necessarily mean causation because of the potential for other variables to account for our observed association (and because of the possibility of reverse causation). We refer to such variables as <strong>lurking</strong> or <strong>confounding</strong> variables.</p>
+<p>In this case, the potentially confounding variable that we need to consider is age. Lets look at the association between age and each of our other variables (sexual frequency and education).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(sex<span class="op">$</span>sexf,sex<span class="op">$</span>age)</code></pre>
+<pre><code>## [1] -0.3974668</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(sex<span class="op">$</span>educ,sex<span class="op">$</span>age)</code></pre>
+<pre><code>## [1] -0.06018569</code></pre>
+<p>Age is negatively correlated with sexual frequency. We have observed this relationship before and it is not terribly surprising. Older people have less sex, on average. The negative correlation between age and years of education is perhaps a little more surprising. Older people have less education than younger people, on average. This may seem surprising to you because as you get older you have more opportunity to complete more education. However, you have to remember that the data we have are a snapshot in time. We are not tracking individuals over time as they age, but rather looking at differences between older and younger people at a single point in time. This kind of data is often called a <strong>cross-sectional</strong> dataset. Because we are looking at a single point in time, the age differences really reflect differences in <strong>birth cohorts</strong> or what people often loosely call “generations.” Remember that this dataset is from 2004. The difference between a 20 year old and a 60 year old is that the 20 year old was born in 1984 and the 60 year old was born in 1944.</p>
+<p>Because we are comparing birth cohorts, the differences in educational attainment reflect history more than life cycle. Older cohorts were less educated than younger birth cohorts. On average, you will be more educated than your parents and your parents were more educated than your grandparents. Thus, the correlation between age and education is negative.</p>
+<p>These two negative correlations suggest a <strong>spurious</strong> reason why we might observe a positive association between sexual frequency and education. Younger people have more education and younger people have more sex. Thus, when we look at the relationship between sexual frequency and education, we see a positive association but that positive association is indirectly driven by youth and the association of youth with both education and sex.</p>
+<p>How can we examine whether this potential spurious explanation is accurate? It turns out that we can add more than one independent variable to an OLS regression model at the same time. The mathematical structure of such a model would be:</p>
+<p><span class="math display">\[\hat{frequency}_i=b_0+b_1(education_i)+b_2(age_i)\]</span></p>
+<p>We now have two different “slopes”, <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span>. These two slopes give the association of education and age, respectively, on sexual frequency, while <strong>controlling for the other independent variable</strong>. We now have what is called a <strong>multivariate</strong> OLS regression model.</p>
+<p>This “controlling” concept is a key point that I will return to below, but first I want to try to think graphically about what this model is doing. In the case of bivariate regression, we thought of fitting a line to a scatterplot in two-dimensional space. We are doing something similar here, but since we now have three variables, our scatterplot is in three dimensions.</p>
+<p><img src="_main_files/figure-html/scatter_3d-1.png" width="500px" height="400px" /></p>
+<p>The dependent variable is shown on the vertical (z) axis and the two independent variables are shown on the “width” and “depth” axes (x and y). The red dashes show a flat plane across the data. The OLS regression model equation above defines this plane, rather than a single line. So, rather than fitting a straight line through the data, I am fitting a plane. Note however that if I could rotate the 3d scatterplot to hide the age “depth” dimension and in that case it would look like a two-dimensional scatterplot and the edge of the plane would look like a line that describes the relationship between education and sexual frequency. Similarly, I could rotate it the other way to look at the relationship between age and sexual frequency.</p>
+<p>How do I know what are the best values for b0, b1, and b2 that define my plane? The logic is the same as for bivariate OLS regression: I choose values that minimize the sum of squared residuals (SSR):</p>
+<p><span class="math display">\[SSR=\sum_{i=1}^n (\hat{y}_i-y_i)^2\]</span></p>
+<p>SSR is a measure of how far the predicted values of the dependent variable are from the actual values, so we want the intercept and slopes that minimizes this error. Unlike the bivariate case, however, there is no simple formula that I can give you for the slope and intercept, without some knowledge of matrix algebra. However, R can calculate the correct numbers for you easily. I am not concerned with your technical ability to calculate these numbers by hand, but I do want you to understand why those are the “best” numbers. <strong>They are the best numbers because they minimize the sum of the squared residuals for the model</strong>.</p>
+<p>We can calculate this model in <em>R</em> just by adding another variable to our model in the <code>lm</code> command:</p>
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(sexf<span class="op">~</span>educ<span class="op">+</span><span class="kw">I</span>(age<span class="dv">-18</span>), <span class="dt">data=</span>sex)
+<span class="kw">coef</span>(model)</code></pre>
+<pre><code>## (Intercept)        educ I(age - 18) 
+##   91.062080   -0.427747   -1.303385</code></pre>
+<p>Note that as I did in the previous module, I am re-centering age on 18 years so that I have reasonable value for the interpretation of the intercept. In equation form, our model will look like:</p>
+<p><span class="math display">\[\hat{frequency}_i=91.06-0.43(education_i)-1.30(age_i-18)\]</span></p>
+<div id="interpreting-results-in-a-multivariate-ols-regression-models" class="section level3">
+<h3>Interpreting results in a multivariate OLS regression models</h3>
+<p>How do we interpret the results?</p>
+<ul>
+<li><strong>Intercept</strong>: The model predicts that <strong>18-year old individuals</strong> at <strong>with no education</strong> will have 91.06 sexual encounters per year, on average.</li>
+<li><strong>Education Slope</strong>: The model predicts that, <strong>holding age constant</strong>, an additional year of education is associated with 0.43 fewer sexual encounters per year, on average.</li>
+<li><strong>Age Slope</strong>: The model predicts that, <strong>holding education constant</strong>, an additional year of age is associated with 1.3 fewer sexual encounters per year, on average.</li>
+</ul>
+<p>The intercept is now the predicted value <strong>when all independent variables are zero</strong>. My interpretation of the slopes is almost identical to the bivariate case, except for one very important addition. I am now estimating the effect of each independent variable on the dependent variable while <strong>holding constant all other independent variables</strong>. You could also say “controlling for all other independent variables.”</p>
+<p>What does it mean to “hold other variables constant?” It means that when we look at the effect of one independent variable, we are looking at how the predicted value of the dependent variable changes while keeping all the other variables the same. For instance, the education effect above is the effect of a one year increase in education <em>among individuals of the same age</em>. Because we are looking at the effect of education among individuals of the same age, age should no longer have a confounding effect on our estimate of the effect of education. Thus holding constant/controlling for other variables helps to remove the potential spurious effect of those variables as confounders.</p>
+<p>Note how the effect of education on sexual frequency changed once I included age as a control variable. Before controls, I estimated a slightly positive slope (0.03) but now I am estimating a substantial negative slope (-0.43). So my understanding of the relationship between education and sexual frequency is completely reversed. <em>When you compare individuals of the same age</em>, more educated individuals have less sex, on average, than less educated individuals.</p>
+<div id="crime-example" class="section level4">
+<h4>Crime example</h4>
+<p>Lets build a regression model where we predict the property crime rate in a state by the percent of adults in the state without a high school diploma and the median age of the state’s residents.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(Property<span class="op">~</span>PctLessHS<span class="op">+</span>MedianAge, <span class="dt">data=</span>crimes))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Property ~ PctLessHS + MedianAge, data = crimes)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1080.38  -376.78    12.19   346.82  1600.56 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5136.66    1411.21   3.640 0.000666 ***
+## PctLessHS      69.47      24.79   2.803 0.007286 ** 
+## MedianAge     -83.31      35.30  -2.360 0.022368 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 567.2 on 48 degrees of freedom
+## Multiple R-squared:  0.2495, Adjusted R-squared:  0.2182 
+## F-statistic: 7.977 on 2 and 48 DF,  p-value: 0.001021</code></pre>
+<p>Note that I am giving you the full output of summary now, but we can find the slopes and intercept by looking at the Estimate column of the “Coefficients” table. “Coefficients” is another term for slopes and intercepts because that it the technical term for these values in the regression model equation.</p>
+<p>The model is:</p>
+<p><span class="math display">\[\hat{crime}_i=5137+69(pctlesshs_i)-83(medianage_i)\]</span></p>
+<p>The model predicts that, comparing two states with the same median age of residents, a one percent increase in the percent of the state with less than a high school diploma is associated with an increase of 69 property crimes per 100,000, on average. The model predicts that, comparing two states with the same percentage of adults without a high school diploma, a one year increase in the median age of a state’s residents is associated with a decrease of 83 property crimes per 100,000, on average.</p>
+<p>Note that we also get the <span class="math inline">\(R^2\)</span> value from the summary command. In multivariate models, the <span class="math inline">\(R^2\)</span> value always tells you what proportion of the variation in the dependent variable is accountable for by variation in all of the independent variables combined. In this case <span class="math inline">\(R^2\)</span> is 0.2495. About 25% of the variation in property crime rates across states is accountable for by variation in the percent of adults without a high school diploma and the median age of residents across states.</p>
+</div>
+</div>
+<div id="including-more-than-two-independent-variables" class="section level3">
+<h3>Including more than two independent variables</h3>
+<p>If we can include two independent variables in a regression model, why stop there? Why not include three or four or more? The number of independent variables you can include is only limited by the sample size (you can never have more independent variables than the sample size minus one), although in practice we generally stop well short of this limit for pragmatic reasons.</p>
+<p>Lets take the model above predicting property crime rates by percent of adults with less than a high school diploma and the median age of residents. Lets add the poverty rate as another predictor:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(Property<span class="op">~</span>PctLessHS<span class="op">+</span>MedianAge<span class="op">+</span>Poverty, <span class="dt">data=</span>crimes))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Property ~ PctLessHS + MedianAge + Poverty, data = crimes)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1174.43  -236.69   -30.96   286.41  1218.77 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept) 4240.38487 1383.49276   3.065   0.0036 **
+## PctLessHS      0.04504   36.07642   0.001   0.9990   
+## MedianAge    -73.27098   33.68882  -2.175   0.0347 * 
+## Poverty       97.67933   38.52145   2.536   0.0146 * 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 537.6 on 47 degrees of freedom
+## Multiple R-squared:  0.3398, Adjusted R-squared:  0.2976 
+## F-statistic: 8.063 on 3 and 47 DF,  p-value: 0.0001947</code></pre>
+<p>The model predicts:</p>
+<ul>
+<li>A one percent increase in the percent of adults in a state without a high school diploma is associated with 0.05 more property crimes per 100,000, on average, <strong>holding constant the median age of residents and the poverty rate in a state</strong>. This result is about as close to zero as you will find.<br />
+</li>
+<li>A one year increase in the median age of a state’s residents is associated with 73 fewer property crimes per 100,000, on average, <strong>holding constant the percent of adults without a high school diploma and the poverty rate in a state</strong>.</li>
+<li>A one percent increase in a state’s poverty rate is associated with 98 more crimes per 100,000, on average, <strong>holding constant the percent of adults without a high school diploma and the median age of residents in a state</strong>.</li>
+<li>34% of the variation in property crime rates across states can be accounted for by variation in the percent of adults without a high school diploma, residents’ median age, and the poverty rates across states.</li>
+</ul>
+<p>When I interpret the models now, I am holding constant the other two variables when I estimate the effect of each. Note that controlling for the poverty rate has a huge effect on the education variable whose effect goes from a substantial positive effect to basically zero effect. What does this tell us? Poverty rates and high school dropout rates are positively correlated and so when you don’t control for poverty rates, it looks like the high school dropout rate predicts crime because states with high high school dropout rates have high poverty rates and high poverty rates predict property crime rates. Once you control for the poverty rate, you see that it is economic deprivation not educational deprivation that is driving the crime rate.</p>
+<p>In general, the form of the multivariate regression model is:</p>
+<p><span class="math display">\[\hat{y}_i=b_0+b_1x_{i1}+b_2x_{i2}+b_3x_{i3}+\ldots+b_px_{ip}\]</span></p>
+<p>The intercept is given by <span class="math inline">\(b_0\)</span>. This is the predicted value of <span class="math inline">\(y\)</span> when all of the independent variables are zero. The remaining <span class="math inline">\(b\)</span>’s give the slopes for all of the variables up through the <span class="math inline">\(p\)</span>th variable. Each of these gives the predicted change in <span class="math inline">\(y\)</span> for a unit increase in that independent variable, <strong>holding all other independent variables constant</strong>.</p>
+</div>
+<div id="how-to-read-a-table-of-regression-results" class="section level3">
+<h3>How to read a table of regression results</h3>
+<p>In academic journal articles and books, the results of OLS regression models are represented in a fairly standard way. In order to understand how to read these articles, you need to understand this presentation style. Its not immediately intuitive for everyone. The table below shows the typical style. In this table, I am reporting three regression models with the property crime rates as the dependent variable and three different independent variables.</p>
+<table style="text-align:center">
+<caption>
+<strong>OLS regression models predicting violent crime rates for US states</strong>
+</caption>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Percent Less than HS
+</td>
+<td>
+78.83<sup>***</sup>
+</td>
+<td>
+69.47<sup>***</sup>
+</td>
+<td>
+0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(25.58)
+</td>
+<td>
+(24.79)
+</td>
+<td>
+(36.08)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Median Age
+</td>
+<td>
+</td>
+<td>
+-83.31<sup>**</sup>
+</td>
+<td>
+-73.27<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(35.30)
+</td>
+<td>
+(33.69)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Poverty Rate
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+97.68<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(38.52)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+1,892.85<sup>***</sup>
+</td>
+<td>
+5,136.66<sup>***</sup>
+</td>
+<td>
+4,240.38<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(335.33)
+</td>
+<td>
+(1,411.21)
+</td>
+<td>
+(1,383.49)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+51
+</td>
+<td>
+51
+</td>
+<td>
+51
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.16
+</td>
+<td>
+0.25
+</td>
+<td>
+0.34
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="3" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="3" style="text-align:right">
+Standard errors in parenthesis
+</td>
+</tr>
+</table>
+<p>When reading this table and others like it, keep the following issues in mind:</p>
+<ol style="list-style-type: decimal">
+<li>The first question you should ask is “what is the dependent variable?” This is the outcome that we are trying to predict. Typically, the dependent variable will be listed in the title of the table. In this case, the title tells you that the dependent variable is property crime rates and the unit of analysis is US states.</li>
+<li>The independent variables are listed on the rows of the table. In this case, I have independent variables of percent less than HS, median age, and the poverty rate. As I will explain below, just because an independent variable is listed here does not mean that it is actually included in all models.</li>
+<li>The term “constant” is a synonym for “intercept.”</li>
+<li>Models are listed in each column of the table. If numbers are listed for the row of a particular independent variable then that variable is included in that particular model. In this case, I have three different models. The first model only has numbers listed for Percent less than HS, so that is the only independent variable in the first model. The second model has numbers listed for Percent less than HS and Median Age, so both of these variables are included in the model. The third model includes all three variables in the model. Remember that in each case the dependent variable is the property crime rate.</li>
+<li>Within each cell with numbers listed there is a lot going on. We are primarily interested in the main number listed at the top. This number is the slope (or intercept in the case of the “Constant” row). The number in parenthesis is the standard error for each slope in the model. You could use this standard error and the slope estimate above it to calculate t-statistics and p-values exactly. However, the asterisks give you an easy visual short cut to determine the rough size of the p-value. These asterisks indicate if the p-value is below a certain level, as shown in the notes at the bottom. The cut-offs of 0.05, 0.01, and 0.001 used here are pretty standard for the discipline. So an asterisks generally means that the result is “statistically significant.” However, its important to keep in mind as noted above that these cut-offs are ultimately arbitrary and should never be confused with the substantive size of the effect itself.</li>
+<li>At the bottom, you typically get a number of summary measures of the model. The only two we care about are the number of observations and the <span class="math inline">\(R^2\)</span> of the model.</li>
+</ol>
+<hr />
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-ols-regression-line.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="including-categorical-variables-as-predictors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

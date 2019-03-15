@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>The Two-Way Table | Statistical Analysis in Sociology</title>
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="The Two-Way Table | Statistical Analysis in Sociology />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="The Two-Way Table | Statistical Analysis in Sociology />
+  
+  <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  
+
+<meta name="author" content="Aaron Gullickson">
+
+
+<meta name="date" content="2019-03-15">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="measuring-association-1.html">
+<link rel="next" href="odds-ratio-advanced.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="understanding-data.html"><a href="understanding-data.html"><i class="fa fa-check"></i>Understanding Data</a><ul>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html"><i class="fa fa-check"></i>What Does Data Look Like?</a><ul>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html#the-observations"><i class="fa fa-check"></i>The observations</a></li>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html#the-variables"><i class="fa fa-check"></i>The variables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html"><i class="fa fa-check"></i>What Can We Do With Data?</a><ul>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#how-is-a-variable-distributed"><i class="fa fa-check"></i>How is a variable distributed?</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#measuring-association"><i class="fa fa-check"></i>Measuring association</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#making-statistical-inferences"><i class="fa fa-check"></i>Making statistical inferences</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#building-models"><i class="fa fa-check"></i>Building Models</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#observational-data-experimental-thinking"><i class="fa fa-check"></i>Observational Data, Experimental Thinking</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-distribution-of-a-variable.html"><a href="the-distribution-of-a-variable.html"><i class="fa fa-check"></i>The Distribution of a Variable</a><ul>
+<li class="chapter" data-level="" data-path="what-is-a-distribution.html"><a href="what-is-a-distribution.html"><i class="fa fa-check"></i>What is a Distribution?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-a-distribution.html"><a href="what-is-a-distribution.html#looking-at-the-distribution-of-a-categorical-variable"><i class="fa fa-check"></i>Looking at the distribution of a categorical variable</a></li>
+<li class="chapter" data-level="" data-path="what-is-a-distribution.html"><a href="what-is-a-distribution.html#looking-at-the-distribution-of-a-quantitative-variable"><i class="fa fa-check"></i>Looking at the distribution of a quantitative variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html"><i class="fa fa-check"></i>Measuring the Center of a Distribution</a><ul>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-mean"><i class="fa fa-check"></i>The mean</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-median"><i class="fa fa-check"></i>The median</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-mode"><i class="fa fa-check"></i>The mode</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#comparing-the-mean-and-median"><i class="fa fa-check"></i>Comparing the mean and median</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html"><i class="fa fa-check"></i>Percentiles and the Five Number Summary</a><ul>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#percentiles"><i class="fa fa-check"></i>Percentiles</a></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#the-five-number-summary"><i class="fa fa-check"></i>The five number summary</a></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html"><i class="fa fa-check"></i>Measuring the Spread of a Distribution</a><ul>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html#range-and-interquartile-range"><i class="fa fa-check"></i>Range and interquartile range</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html#variance-and-standard-deviation"><i class="fa fa-check"></i>Variance and standard deviation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-association-1.html"><a href="measuring-association-1.html"><i class="fa fa-check"></i>Measuring Association</a><ul>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html"><i class="fa fa-check"></i>The Two-Way Table</a><ul>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#conditional-distributions"><i class="fa fa-check"></i>Conditional distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="odds-ratio-advanced.html"><a href="odds-ratio-advanced.html"><i class="fa fa-check"></i>Odds ratio (Advanced)</a></li>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html"><i class="fa fa-check"></i>Mean Differences</a><ul>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#graphically-examining-differences-in-distributions"><i class="fa fa-check"></i>Graphically examining differences in distributions</a></li>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#comparing-differences-in-the-mean"><i class="fa fa-check"></i>Comparing differences in the mean</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html"><i class="fa fa-check"></i>Scatterplot and Correlation Coefficient</a><ul>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html#the-scatterplot"><i class="fa fa-check"></i>The scatterplot</a></li>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html#the-correlation-coefficient"><i class="fa fa-check"></i>The correlation coefficient</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i>Statistical Inference</a><ul>
+<li class="chapter" data-level="" data-path="the-problem-of-statistical-inference.html"><a href="the-problem-of-statistical-inference.html"><i class="fa fa-check"></i>The Problem of Statistical Inference</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html"><i class="fa fa-check"></i>The Concept of the Sampling Distribution</a><ul>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#example-class-height"><i class="fa fa-check"></i>Example: class height</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#central-limit-theorem-and-the-normal-distribution"><i class="fa fa-check"></i>Central limit theorem and the normal distribution</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#what-can-we-do-with-the-sampling-distribution"><i class="fa fa-check"></i>What can we do with the sampling distribution?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i>Confidence Intervals</a><ul>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-do-we-mean-by-confident"><i class="fa fa-check"></i>What do we mean by “confident?”</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-the-confidence-interval-for-the-sample-mean"><i class="fa fa-check"></i>Calculating the confidence interval for the sample mean</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-the-confidence-interval-for-other-sample-statistics"><i class="fa fa-check"></i>Calculating the confidence interval for other sample statistics</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-proportions"><i class="fa fa-check"></i>Example with proportions</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-mean-differences"><i class="fa fa-check"></i>Example with mean differences</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-proportion-differences"><i class="fa fa-check"></i>Example with proportion differences</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-correlation-coefficient"><i class="fa fa-check"></i>Example with correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i>Hypothesis Tests</a><ul>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#example-coke-winners"><i class="fa fa-check"></i>Example: Coke winners</a></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#the-general-procedure-of-hypothesis-testing"><i class="fa fa-check"></i>The general procedure of hypothesis testing</a></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-of-relationships"><i class="fa fa-check"></i>Hypothesis tests of relationships</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="building-models-1.html"><a href="building-models-1.html"><i class="fa fa-check"></i>Building Models</a><ul>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html"><i class="fa fa-check"></i>The OLS Regression Line</a><ul>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-formula-for-a-line"><i class="fa fa-check"></i>The Formula for a Line</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#calculating-the-best-fitting-line"><i class="fa fa-check"></i>Calculating the Best-Fitting Line</a></li>
+<li><a href="the-ols-regression-line.html#using-the-lm-command-to-calculate-ols-regression-lines-in-r">Using the <code>lm</code> command to calculate OLS regression lines in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-ols-regression-line-as-a-model"><i class="fa fa-check"></i>The OLS regression line as a model</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#interpeting-slopes-and-intercepts"><i class="fa fa-check"></i>Interpeting Slopes and Intercepts</a></li>
+<li><a href="the-ols-regression-line.html#how-good-is-x-as-a-predictor-of-y">How good is <span class="math inline">\(x\)</span> as a predictor of <span class="math inline">\(y\)</span>?</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#inference-for-ols-regression-models"><i class="fa fa-check"></i>Inference for OLS Regression models</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#regression-line-cautions"><i class="fa fa-check"></i>Regression Line Cautions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html"><i class="fa fa-check"></i>The Power of Controlling for Other Variables</a><ul>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#interpreting-results-in-a-multivariate-ols-regression-models"><i class="fa fa-check"></i>Interpreting results in a multivariate OLS regression models</a></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#including-more-than-two-independent-variables"><i class="fa fa-check"></i>Including more than two independent variables</a></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#how-to-read-a-table-of-regression-results"><i class="fa fa-check"></i>How to read a table of regression results</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html"><i class="fa fa-check"></i>Including Categorical Variables as Predictors</a><ul>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#indicator-variables"><i class="fa fa-check"></i>Indicator variables</a></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#categorical-variables-with-more-than-two-categories"><i class="fa fa-check"></i>Categorical variables with more than two categories</a></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#categorical-and-quantitative-variables-combined-in-a-single-model"><i class="fa fa-check"></i>Categorical and quantitative variables combined in a single model</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html"><i class="fa fa-check"></i>Interaction Terms</a><ul>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#the-nature-of-additive-models"><i class="fa fa-check"></i>The nature of additive models</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#the-interaction-term"><i class="fa fa-check"></i>The interaction term</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interpreting-interaction-terms"><i class="fa fa-check"></i>Interpreting interaction terms</a></li>
+<li><a href="interaction-terms.html#interaction-terms-in-r">Interaction terms in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-multiple-categories"><i class="fa fa-check"></i>Interaction terms with multiple categories</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-two-categorical-variables"><i class="fa fa-check"></i>Interaction terms with two categorical variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html"><i class="fa fa-check"></i>Using Scripts</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-scripts.html"><a href="getting-started-with-scripts.html"><i class="fa fa-check"></i>Getting Started with Scripts</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-scripts.html"><a href="getting-started-with-scripts.html#not-everything-goes-into-your-script"><i class="fa fa-check"></i>Not Everything Goes Into Your Script</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-scripts.html"><a href="getting-started-with-scripts.html#commenting-for-sanity"><i class="fa fa-check"></i>Commenting for Sanity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html"><i class="fa fa-check"></i>Object Types</a><ul>
+<li class="chapter" data-level="" data-path="atomic-modes.html"><a href="atomic-modes.html"><i class="fa fa-check"></i>Atomic Modes</a></li>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html"><i class="fa fa-check"></i>Vectors and Matrices</a><ul>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#vectors"><i class="fa fa-check"></i>Vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#indexing-vectors-and-matrices"><i class="fa fa-check"></i>Indexing Vectors and Matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="factors.html"><a href="factors.html"><i class="fa fa-check"></i>Factors</a><ul>
+<li class="chapter" data-level="" data-path="factors.html"><a href="factors.html#re-ordering-categories-in-factors"><i class="fa fa-check"></i>Re-ordering categories in factors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="logical-values-and-boolean-statements.html"><a href="logical-values-and-boolean-statements.html"><i class="fa fa-check"></i>Logical Values and Boolean Statements</a></li>
+<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a></li>
+<li class="chapter" data-level="" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i>Lists</a><ul>
+<li class="chapter" data-level="" data-path="lists.html"><a href="lists.html#accessing-elements-of-the-list"><i class="fa fa-check"></i>Accessing elements of the list</a></li>
+<li><a href="lists.html#the-lapply-command-is-awesome">The <code>lapply</code> command is awesome</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i>Data Frames</a><ul>
+<li><a href="data-frames.html#renaming-variables-in-a-data.frame">Renaming Variables in a <code>data.frame</code></a></li>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#subsetting-data-frames"><i class="fa fa-check"></i>Subsetting Data Frames</a></li>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#subsetting-by-variables"><i class="fa fa-check"></i>Subsetting by variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html"><i class="fa fa-check"></i>Pretty Pictures</a><ul>
+<li class="chapter" data-level="" data-path="base-plot.html"><a href="base-plot.html"><i class="fa fa-check"></i>Base Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i>ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="data-formats.html"><a href="data-formats.html"><i class="fa fa-check"></i>Data Formats</a></li>
+<li class="chapter" data-level="" data-path="plain-text-files.html"><a href="plain-text-files.html"><i class="fa fa-check"></i>plain text files</a><ul>
+<li class="chapter" data-level="" data-path="plain-text-files.html"><a href="plain-text-files.html#working-with-csv-files"><i class="fa fa-check"></i>Working with CSV files</a></li>
+<li class="chapter" data-level="" data-path="plain-text-files.html"><a href="plain-text-files.html#working-with-fixed-width-text-files"><i class="fa fa-check"></i>Working with fixed-width text files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-in-binary-format.html"><a href="data-in-binary-format.html"><i class="fa fa-check"></i>Data in binary format</a></li>
+<li class="chapter" data-level="" data-path="saving-data.html"><a href="saving-data.html"><i class="fa fa-check"></i>Saving data</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Analysis in Sociology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-two-way-table" class="section level2">
+<h2>The Two-Way Table</h2>
+<p>The <strong>two-way table</strong> (also known as a <strong>cross-tabulation</strong> or <strong>crosstab</strong>) gives the joint distribution of two categorical variables. Lets use our politics dataset to construct a two-way table of belief in anthropogenic climate change by political party:</p>
+<pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>party, politics<span class="op">$</span>globalwarm)
+tab</code></pre>
+<pre><code>##              
+##                 No  Yes
+##   Democrat     230 1235
+##   Republican   577  664
+##   Independent  326 1055
+##   Other         47  104</code></pre>
+<p>The two-way table gives us the <strong>joint distribution</strong> of the two variables, which is the number of respondents who fell into both categories. For example, we can see that 234 democrats did not believe in anthropogenic climate change while 1230 did.</p>
+<p>From this table, we can also calculate the <strong>marginal distribution</strong> of each of the variables, which are just the distributions of each of the variables separately. We can do that by adding up across the rows and down the columns:</p>
+<table style="width:96%;">
+<caption>Table continues below</caption>
+<colgroup>
+<col width="25%" />
+<col width="33%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="right">Deniers</th>
+<th align="right">Believers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Democrat</strong></td>
+<td align="right">230</td>
+<td align="right">1235</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Republican</strong></td>
+<td align="right">577</td>
+<td align="right">664</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Independent</strong></td>
+<td align="right">326</td>
+<td align="right">1055</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Other</strong></td>
+<td align="right">47</td>
+<td align="right">104</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="right"><em>230+577+326+47=1180</em></td>
+<td align="right"><em>1235+664+1055+104=3058</em></td>
+</tr>
+</tbody>
+</table>
+<table style="width:50%;">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Democrat</strong></td>
+<td align="right"><em>230+1235=1465</em></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Republican</strong></td>
+<td align="right"><em>577+664=1241</em></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Independent</strong></td>
+<td align="right"><em>326+1055=1381</em></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Other</strong></td>
+<td align="right"><em>47+104=151</em></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="right"><em>4238</em></td>
+</tr>
+</tbody>
+</table>
+<p>The marginal distribution of party affiliation is given by the Total column on the right and the marginal distribution of climate change belief is given by the Total row at the bottom. Looking at the column marginal, we can see that there were a total of 1464 Democrats, 1239 Republicans, and so on. Looking at the row marginal, we can see that there were 1181 anthropogenic climate change deniers and 3057 anthropogenic climate change believers. The final number (4238) in the far right corner is the total number of respondents altogether. You can get this number by summing up the column marginals (1181+3057) or row marginals (1464+1239+1383+152).</p>
+<p>The <code>margin.table</code> command in <em>R</em> will also calculate marginals for us. I can use the <code>margin.table</code> command on the table I created and saved above as <em>tab</em> to calculate the same marginals as above. Note that you need to indicate which marginal you want by a number, where 1=row and 2=column, as the second option to <code>margin.table</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">margin.table</span>(tab,<span class="dv">1</span>)</code></pre>
+<pre><code>## 
+##    Democrat  Republican Independent       Other 
+##        1465        1241        1381         151</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">margin.table</span>(tab,<span class="dv">2</span>)</code></pre>
+<pre><code>## 
+##   No  Yes 
+## 1180 3058</code></pre>
+<p>The two-way table provides us with evidence about the association between two categorical variables. To understand what the association looks like, we will learn how to calculate <strong>conditional distributions</strong>.</p>
+<div id="conditional-distributions" class="section level3">
+<h3>Conditional distributions</h3>
+<p>To this point, we have learned about the <strong>joint</strong> and <strong>marginal</strong> distributions in a two-way table. In order to look at the relationship between two categorical variables, we need to understand a third kind of distribution: the <strong>conditional distribution</strong>. The conditional distribution is the distribution of one variable conditional on being in a certain category of the other variable. In a two-way table, there are always two ways to calculate a conditional distribution. In our case, we could look at the distribution of climate change belief conditional on party affiliation, or we could look at the distribution of party affiliation conditional on climate change belief. Both of these distributions really give us the same information about the association, but sometimes one way is more intuitive to understand. In this case, I am going to start with the former case and calculate the distribution of climate change belief conditional on party affiliation.</p>
+<p>This conditional distribution is basically given by the rows of our two-way table, which give the number of individuals of a given party who fall into each belief category. For example, the distribution of denial/belief among Democrats is 429 and 1932, while among Republicans, this distribution is 708 and 681. However, these two rows are not directly comparable as they are because Republicans are a much smaller group than Democrats. Thus, even if the shares were very different between the two groups, the absolute numbers for Republicans would probably be smaller for both categories. In order to make these rows comparable, we need the proportion of each party that falls into each belief category. In order to do that, we need to divide our rows through by the marginal distribution of party affiliation, like so:</p>
+<table style="width:68%;">
+<colgroup>
+<col width="25%" />
+<col width="15%" />
+<col width="16%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="right">Deniers</th>
+<th align="right">Believers</th>
+<th align="right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Democrat</strong></td>
+<td align="right">230/1465</td>
+<td align="right">1235/1465</td>
+<td align="right">1465</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Republican</strong></td>
+<td align="right">577/1241</td>
+<td align="right">664/1241</td>
+<td align="right">1241</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Independent</strong></td>
+<td align="right">326/1381</td>
+<td align="right">1055/1381</td>
+<td align="right">1381</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Other</strong></td>
+<td align="right">47/151</td>
+<td align="right">104/151</td>
+<td align="right">151</td>
+</tr>
+</tbody>
+</table>
+<p>Note that each row gets divided by its row marginal. If we do the math here, we will come out with the following proportions:</p>
+<table style="width:67%;">
+<colgroup>
+<col width="25%" />
+<col width="13%" />
+<col width="16%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="right">Deniers</th>
+<th align="right">Believers</th>
+<th align="right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Democrat</strong></td>
+<td align="right">0.157</td>
+<td align="right">0.843</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Republican</strong></td>
+<td align="right">0.4649</td>
+<td align="right">0.5351</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Independent</strong></td>
+<td align="right">0.2361</td>
+<td align="right">0.7639</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Other</strong></td>
+<td align="right">0.3113</td>
+<td align="right">0.6887</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>Note that the proportions should add up to 1 within each row because we are basically calculating the share of each row that belongs to each column category. <strong>To understand these conditional distributions, you need to look at the numbers within each row.</strong> For example, the first row tells us that 16% of Democrats are deniers and 84% of Democrats are believers. The second row tells us that 46% of Republicans are deniers and 54% of Republicans are believers.</p>
+<p>We can tell if there is an association between the row and column variable if these conditional distributions are different across rows. In this case, they are clearly very different. About 84% of Democrats are believers while only about half (54%) of Republicans are believers. About 76% of Independents are believers, while about 68% of members of other parties are believers.</p>
+<p>We can use the <code>prop.table</code> command we saw in the last module to estimate these conditional distributions. In order to do that we feed in the crosstab we calculated with tab and one additional argument that indicates which dimension (row or column ) we want to condition across. Like <code>margin.table</code> a value of <code>1</code> will condition on rows (rows sum to 1) and a value of <code>2</code> will condition on columns (columns sum to 1). If we condition on rows here, we will get the same table as above.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(tab,<span class="dv">1</span>)</code></pre>
+<pre><code>##              
+##                      No       Yes
+##   Democrat    0.1569966 0.8430034
+##   Republican  0.4649476 0.5350524
+##   Independent 0.2360608 0.7639392
+##   Other       0.3112583 0.6887417</code></pre>
+<p>Its important to remember which way you did the conditional distribution and get the interpretation correct. If you are not sure, just note which way the proportions add up to one - this is the direction you should be looking (i.e. within row or column). In this case, I am looking at the distribution of variables within rows, so the proportions refer to the proportion of respondents from a given political party who hold a given belief. But, I could have done my conditional distribution the other way:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(tab,<span class="dv">2</span>)</code></pre>
+<pre><code>##              
+##                       No        Yes
+##   Democrat    0.19491525 0.40385873
+##   Republican  0.48898305 0.21713538
+##   Independent 0.27627119 0.34499673
+##   Other       0.03983051 0.03400916</code></pre>
+<p>Note that this table looks deceptively similar to the table above. But look again. The numbers now don’t add up to one within each row. They do however add up to one within each column. In order to read this table properly, we have to understand that it is giving us the distribution within each column: the proportion of respondents who have a given belief who belong to a given political party. So we can see in the first number that 19.8% of deniers are Democrats, 48.2% are Republicans, 27.9% are Independents, and 4.1% belong to other parties. This distribution is very different from the party affiliation distribution of believers in the second column which tells us that there is an association. However, the large party cleavages on the issue are not as immediately obvious here as they were with the previous conditional distribution. Always think carefully about which conditional distribution is more sensible to interpret and always make sure that you are interpreting them in the correct way.</p>
+<p>It is also possible to graph the conditional distribution as a set of barplots. First, lets save the output of our prop.table into a new object.</p>
+<pre class="sourceCode r"><code class="sourceCode r">distBeliefByParty &lt;-<span class="st"> </span><span class="kw">prop.table</span>(tab,<span class="dv">1</span>)</code></pre>
+<p>We can then use the <code>barplot</code> command to graph these distributions. However, there is one “gotcha” that we need to be aware of when running this command. When looking at conditional distributions across rows, barplot will misinterpret our data because it expects it to be oriented so things sum to one down the columns. We can however easily fix this with the <code>t</code> command (“t”" for “transpose”") which rotates our results:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(<span class="kw">t</span>(distBeliefByParty), <span class="dt">legend.text=</span><span class="kw">c</span>(<span class="st">&quot;Denial&quot;</span>, <span class="st">&quot;Belief&quot;</span>), <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">cex.names=</span><span class="fl">0.8</span>)</code></pre>
+<p><img src="_main_files/figure-html/barplot_climatebelief-1.png" width="500px" height="400px" /></p>
+<p>Note that when we use barplot like this, it gives us each party in one bar and then shades the bar to show the share of each response. I have used the legend.text option here to indicate which shading belongs to which category.</p>
+<p>Another option is to graph the bars for each category next to each other and grouped by party. You can do this with the <code>beside</code> option which you set to TRUE:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(<span class="kw">t</span>(distBeliefByParty), <span class="dt">beside=</span><span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;darkgreen&quot;</span>,<span class="st">&quot;yellow&quot;</span>), <span class="dt">cex.names=</span><span class="fl">0.8</span>)
+<span class="kw">legend</span>(<span class="dv">4</span>, <span class="fl">0.8</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;Denial&quot;</span>,<span class="st">&quot;Belief&quot;</span>), <span class="dt">fill=</span><span class="kw">c</span>(<span class="st">&quot;darkgreen&quot;</span>,<span class="st">&quot;yellow&quot;</span>), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>)</code></pre>
+<p><img src="_main_files/figure-html/braplot_climatebelief_beside-1.png" width="500px" height="400px" /></p>
+<p>In this case, I have also added custom colors for the two categories and designed my own legend that I can place better than the automated one.</p>
+<hr />
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="measuring-association-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="odds-ratio-advanced.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

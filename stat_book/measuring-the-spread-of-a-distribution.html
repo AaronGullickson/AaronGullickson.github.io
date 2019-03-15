@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Measuring the Spread of a Distribution | Statistical Analysis in Sociology</title>
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Measuring the Spread of a Distribution | Statistical Analysis in Sociology />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Measuring the Spread of a Distribution | Statistical Analysis in Sociology />
+  
+  <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  
+
+<meta name="author" content="Aaron Gullickson">
+
+
+<meta name="date" content="2019-03-15">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="percentiles-and-the-five-number-summary.html">
+<link rel="next" href="measuring-association-1.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="understanding-data.html"><a href="understanding-data.html"><i class="fa fa-check"></i>Understanding Data</a><ul>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html"><i class="fa fa-check"></i>What Does Data Look Like?</a><ul>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html#the-observations"><i class="fa fa-check"></i>The observations</a></li>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html#the-variables"><i class="fa fa-check"></i>The variables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html"><i class="fa fa-check"></i>What Can We Do With Data?</a><ul>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#how-is-a-variable-distributed"><i class="fa fa-check"></i>How is a variable distributed?</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#measuring-association"><i class="fa fa-check"></i>Measuring association</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#making-statistical-inferences"><i class="fa fa-check"></i>Making statistical inferences</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#building-models"><i class="fa fa-check"></i>Building Models</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#observational-data-experimental-thinking"><i class="fa fa-check"></i>Observational Data, Experimental Thinking</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-distribution-of-a-variable.html"><a href="the-distribution-of-a-variable.html"><i class="fa fa-check"></i>The Distribution of a Variable</a><ul>
+<li class="chapter" data-level="" data-path="what-is-a-distribution.html"><a href="what-is-a-distribution.html"><i class="fa fa-check"></i>What is a Distribution?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-a-distribution.html"><a href="what-is-a-distribution.html#looking-at-the-distribution-of-a-categorical-variable"><i class="fa fa-check"></i>Looking at the distribution of a categorical variable</a></li>
+<li class="chapter" data-level="" data-path="what-is-a-distribution.html"><a href="what-is-a-distribution.html#looking-at-the-distribution-of-a-quantitative-variable"><i class="fa fa-check"></i>Looking at the distribution of a quantitative variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html"><i class="fa fa-check"></i>Measuring the Center of a Distribution</a><ul>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-mean"><i class="fa fa-check"></i>The mean</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-median"><i class="fa fa-check"></i>The median</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-mode"><i class="fa fa-check"></i>The mode</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#comparing-the-mean-and-median"><i class="fa fa-check"></i>Comparing the mean and median</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html"><i class="fa fa-check"></i>Percentiles and the Five Number Summary</a><ul>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#percentiles"><i class="fa fa-check"></i>Percentiles</a></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#the-five-number-summary"><i class="fa fa-check"></i>The five number summary</a></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html"><i class="fa fa-check"></i>Measuring the Spread of a Distribution</a><ul>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html#range-and-interquartile-range"><i class="fa fa-check"></i>Range and interquartile range</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html#variance-and-standard-deviation"><i class="fa fa-check"></i>Variance and standard deviation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-association-1.html"><a href="measuring-association-1.html"><i class="fa fa-check"></i>Measuring Association</a><ul>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html"><i class="fa fa-check"></i>The Two-Way Table</a><ul>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#conditional-distributions"><i class="fa fa-check"></i>Conditional distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="odds-ratio-advanced.html"><a href="odds-ratio-advanced.html"><i class="fa fa-check"></i>Odds ratio (Advanced)</a></li>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html"><i class="fa fa-check"></i>Mean Differences</a><ul>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#graphically-examining-differences-in-distributions"><i class="fa fa-check"></i>Graphically examining differences in distributions</a></li>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#comparing-differences-in-the-mean"><i class="fa fa-check"></i>Comparing differences in the mean</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html"><i class="fa fa-check"></i>Scatterplot and Correlation Coefficient</a><ul>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html#the-scatterplot"><i class="fa fa-check"></i>The scatterplot</a></li>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html#the-correlation-coefficient"><i class="fa fa-check"></i>The correlation coefficient</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i>Statistical Inference</a><ul>
+<li class="chapter" data-level="" data-path="the-problem-of-statistical-inference.html"><a href="the-problem-of-statistical-inference.html"><i class="fa fa-check"></i>The Problem of Statistical Inference</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html"><i class="fa fa-check"></i>The Concept of the Sampling Distribution</a><ul>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#example-class-height"><i class="fa fa-check"></i>Example: class height</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#central-limit-theorem-and-the-normal-distribution"><i class="fa fa-check"></i>Central limit theorem and the normal distribution</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#what-can-we-do-with-the-sampling-distribution"><i class="fa fa-check"></i>What can we do with the sampling distribution?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i>Confidence Intervals</a><ul>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-do-we-mean-by-confident"><i class="fa fa-check"></i>What do we mean by “confident?”</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-the-confidence-interval-for-the-sample-mean"><i class="fa fa-check"></i>Calculating the confidence interval for the sample mean</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-the-confidence-interval-for-other-sample-statistics"><i class="fa fa-check"></i>Calculating the confidence interval for other sample statistics</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-proportions"><i class="fa fa-check"></i>Example with proportions</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-mean-differences"><i class="fa fa-check"></i>Example with mean differences</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-proportion-differences"><i class="fa fa-check"></i>Example with proportion differences</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-correlation-coefficient"><i class="fa fa-check"></i>Example with correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i>Hypothesis Tests</a><ul>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#example-coke-winners"><i class="fa fa-check"></i>Example: Coke winners</a></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#the-general-procedure-of-hypothesis-testing"><i class="fa fa-check"></i>The general procedure of hypothesis testing</a></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-of-relationships"><i class="fa fa-check"></i>Hypothesis tests of relationships</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="building-models-1.html"><a href="building-models-1.html"><i class="fa fa-check"></i>Building Models</a><ul>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html"><i class="fa fa-check"></i>The OLS Regression Line</a><ul>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-formula-for-a-line"><i class="fa fa-check"></i>The Formula for a Line</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#calculating-the-best-fitting-line"><i class="fa fa-check"></i>Calculating the Best-Fitting Line</a></li>
+<li><a href="the-ols-regression-line.html#using-the-lm-command-to-calculate-ols-regression-lines-in-r">Using the <code>lm</code> command to calculate OLS regression lines in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-ols-regression-line-as-a-model"><i class="fa fa-check"></i>The OLS regression line as a model</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#interpeting-slopes-and-intercepts"><i class="fa fa-check"></i>Interpeting Slopes and Intercepts</a></li>
+<li><a href="the-ols-regression-line.html#how-good-is-x-as-a-predictor-of-y">How good is <span class="math inline">\(x\)</span> as a predictor of <span class="math inline">\(y\)</span>?</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#inference-for-ols-regression-models"><i class="fa fa-check"></i>Inference for OLS Regression models</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#regression-line-cautions"><i class="fa fa-check"></i>Regression Line Cautions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html"><i class="fa fa-check"></i>The Power of Controlling for Other Variables</a><ul>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#interpreting-results-in-a-multivariate-ols-regression-models"><i class="fa fa-check"></i>Interpreting results in a multivariate OLS regression models</a></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#including-more-than-two-independent-variables"><i class="fa fa-check"></i>Including more than two independent variables</a></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#how-to-read-a-table-of-regression-results"><i class="fa fa-check"></i>How to read a table of regression results</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html"><i class="fa fa-check"></i>Including Categorical Variables as Predictors</a><ul>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#indicator-variables"><i class="fa fa-check"></i>Indicator variables</a></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#categorical-variables-with-more-than-two-categories"><i class="fa fa-check"></i>Categorical variables with more than two categories</a></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#categorical-and-quantitative-variables-combined-in-a-single-model"><i class="fa fa-check"></i>Categorical and quantitative variables combined in a single model</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html"><i class="fa fa-check"></i>Interaction Terms</a><ul>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#the-nature-of-additive-models"><i class="fa fa-check"></i>The nature of additive models</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#the-interaction-term"><i class="fa fa-check"></i>The interaction term</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interpreting-interaction-terms"><i class="fa fa-check"></i>Interpreting interaction terms</a></li>
+<li><a href="interaction-terms.html#interaction-terms-in-r">Interaction terms in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-multiple-categories"><i class="fa fa-check"></i>Interaction terms with multiple categories</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-two-categorical-variables"><i class="fa fa-check"></i>Interaction terms with two categorical variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html"><i class="fa fa-check"></i>Using Scripts</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-scripts.html"><a href="getting-started-with-scripts.html"><i class="fa fa-check"></i>Getting Started with Scripts</a><ul>
+<li class="chapter" data-level="" data-path="getting-started-with-scripts.html"><a href="getting-started-with-scripts.html#not-everything-goes-into-your-script"><i class="fa fa-check"></i>Not Everything Goes Into Your Script</a></li>
+<li class="chapter" data-level="" data-path="getting-started-with-scripts.html"><a href="getting-started-with-scripts.html#commenting-for-sanity"><i class="fa fa-check"></i>Commenting for Sanity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html"><i class="fa fa-check"></i>Object Types</a><ul>
+<li class="chapter" data-level="" data-path="atomic-modes.html"><a href="atomic-modes.html"><i class="fa fa-check"></i>Atomic Modes</a></li>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html"><i class="fa fa-check"></i>Vectors and Matrices</a><ul>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#vectors"><i class="fa fa-check"></i>Vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#indexing-vectors-and-matrices"><i class="fa fa-check"></i>Indexing Vectors and Matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="factors.html"><a href="factors.html"><i class="fa fa-check"></i>Factors</a><ul>
+<li class="chapter" data-level="" data-path="factors.html"><a href="factors.html#re-ordering-categories-in-factors"><i class="fa fa-check"></i>Re-ordering categories in factors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="logical-values-and-boolean-statements.html"><a href="logical-values-and-boolean-statements.html"><i class="fa fa-check"></i>Logical Values and Boolean Statements</a></li>
+<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a></li>
+<li class="chapter" data-level="" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i>Lists</a><ul>
+<li class="chapter" data-level="" data-path="lists.html"><a href="lists.html#accessing-elements-of-the-list"><i class="fa fa-check"></i>Accessing elements of the list</a></li>
+<li><a href="lists.html#the-lapply-command-is-awesome">The <code>lapply</code> command is awesome</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i>Data Frames</a><ul>
+<li><a href="data-frames.html#renaming-variables-in-a-data.frame">Renaming Variables in a <code>data.frame</code></a></li>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#subsetting-data-frames"><i class="fa fa-check"></i>Subsetting Data Frames</a></li>
+<li class="chapter" data-level="" data-path="data-frames.html"><a href="data-frames.html#subsetting-by-variables"><i class="fa fa-check"></i>Subsetting by variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html"><i class="fa fa-check"></i>Pretty Pictures</a><ul>
+<li class="chapter" data-level="" data-path="base-plot.html"><a href="base-plot.html"><i class="fa fa-check"></i>Base Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i>ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="data-formats.html"><a href="data-formats.html"><i class="fa fa-check"></i>Data Formats</a></li>
+<li class="chapter" data-level="" data-path="plain-text-files.html"><a href="plain-text-files.html"><i class="fa fa-check"></i>plain text files</a><ul>
+<li class="chapter" data-level="" data-path="plain-text-files.html"><a href="plain-text-files.html#working-with-csv-files"><i class="fa fa-check"></i>Working with CSV files</a></li>
+<li class="chapter" data-level="" data-path="plain-text-files.html"><a href="plain-text-files.html#working-with-fixed-width-text-files"><i class="fa fa-check"></i>Working with fixed-width text files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-in-binary-format.html"><a href="data-in-binary-format.html"><i class="fa fa-check"></i>Data in binary format</a></li>
+<li class="chapter" data-level="" data-path="saving-data.html"><a href="saving-data.html"><i class="fa fa-check"></i>Saving data</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Analysis in Sociology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="measuring-the-spread-of-a-distribution" class="section level2">
+<h2>Measuring the Spread of a Distribution</h2>
+<p>The second most important measure of a distribution is its spread. Spread indicates how far individual values tend to fall from the center of the distribution. As the figure below shows, two distributions can have the same center and general shape (in this case, a bell curve) but have very different spreads.</p>
+<p><img src="_main_files/figure-html/spread_compare-1.png" width="500px" height="200px" /></p>
+<div id="range-and-interquartile-range" class="section level3">
+<h3>Range and interquartile range</h3>
+<p>One of the simplest measures of spread is to calculate the <strong>range</strong>. The range is the distance between the highest and lowest value. Lets take a look at the range in the fare paid (in British pounds) for tickets on the Titanic. The <code>summary</code> command, will give us the information we need:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(titanic<span class="op">$</span>fare)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   7.896  14.454  33.276  31.275 512.329</code></pre>
+<p>Note that at least one person made it on the Titanic for free. The highest fare paid was 512.3 pounds. So the range is easy to calculate 512.3 - 0 = 512.3. The difference between the highest and lowest paying passenger was about 512 pounds.</p>
+<p>This example also reveals the shortcoming of the range as a measure of spread. If there are any outliers in the data, they are going to show up in the range and so the range may give you a misleading idea of how spread out the values are. Note that the 75th percentile here is only 31.28 pounds, which would suggest that the 512.3 maximum is a pretty high outlier. We can check this by graphing a boxplot:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(titanic<span class="op">$</span>fare, <span class="dt">col=</span><span class="st">&quot;seagreen&quot;</span>,
+        <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">ylab=</span><span class="st">&quot;British pounds&quot;</span>, 
+        <span class="dt">main=</span><span class="st">&quot;Boxplot of fare paid&quot;</span>)</code></pre>
+<p><img src="_main_files/figure-html/boxplot_fare-1.png" width="500px" height="400px" /></p>
+<p>The maximum value is such an outlier that the rest of the boxplot has to be “scrunched” in order to fit it all into the graph. Clearly this is not a good indicator of spread. However, we have already seen a better measure of spread using a similar idea: the <strong>interquartile range</strong> or <strong>IQR</strong>. The IQR is just the range between the 25th and 75th percentile. We already have these numbers from the output above, so the IQR = 31.28-7.90=23.38. So, the difference in fare between the 25th and 75th percentile (the middle 50% of the data) was 23.4 pounds. That result suggests a much smaller spread of fares.</p>
+<p>You can also use the <code>IQR</code> command in <em>R</em> to directly calculate the IQR.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IQR</span>(titanic<span class="op">$</span>fare)</code></pre>
+<pre><code>## [1] 23.3792</code></pre>
+</div>
+<div id="variance-and-standard-deviation" class="section level3">
+<h3>Variance and standard deviation</h3>
+<p>The most common measure of spread is the <strong>variance</strong> and its derivative measurement, the <strong>standard deviation</strong>. Its so common in fact, that most people simply refer to the concept of “spread” as “variance.” The variance can be defined as the “average squared distance to the mean.” Of course, “squared distance” is a bit hard to think about, so we more commonly take the square root of the variance to get the standard deviation which gives us the “average distance to the mean.” Imagine if you were to randomly pick one observation from your dataset and guess how far it would be from the mean. Your best guess would be the standard deviation.</p>
+<p>The calculation for the variance and standard deviation is a bit intimidating but we will break it down into steps to show it is not that hard. At the same time, I will show you to calculate the parts in R using the fare variable from the Titanic data.</p>
+<p>The overall formula for the variance (which is represented as <span class="math inline">\(s^2\)</span>) is:</p>
+<p><span class="math display">\[s^2=\frac{\sum_{i=1}^n (x_i-\bar{x})^2}{n-1}\]</span></p>
+<p>That looks tough, but lets break it down. The first step is this:</p>
+<p><span class="math display">\[(x_i-\bar{x})\]</span></p>
+<p>You take each value of your variable <span class="math inline">\(x\)</span> and subtract the mean from it. This can be done in <em>R</em> easily:</p>
+<pre class="sourceCode r"><code class="sourceCode r">diffx &lt;-<span class="st"> </span>titanic<span class="op">$</span>fare<span class="op">-</span><span class="kw">mean</span>(titanic<span class="op">$</span>fare)</code></pre>
+<p>This measure gives us a description of how far each observation is from the mean which is already kind of a measure of spread, but we can’t do much with it yet because some differences are positive (higher than the mean) and some are negative (lower than the mean). In fact, if we take the mean of these differences, it will be zero by definition because this is what it means for the mean to be the balancing point of the distribution.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">mean</span>(diffx),<span class="dv">5</span>)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>The next step is:</p>
+<p><span class="math display">\[(x_i-\bar{x})^2\]</span></p>
+<p>We just need to square the differences. This will get rid of our negative/positive problem, because the squared values will all be positive.</p>
+<pre class="sourceCode r"><code class="sourceCode r">diffx.squared &lt;-<span class="st"> </span>diffx<span class="op">^</span><span class="dv">2</span></code></pre>
+<p>The next step is:</p>
+<p><span class="math display">\[\sum_{i=1}^n (x_i-\bar{x})^2\]</span></p>
+<p>We need to sum up all of our values. This value is sometimes called the <strong>sum of squared X</strong> or <strong>SSX</strong> for short. It is already pretty close to a measure of variance already.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ssx &lt;-<span class="st"> </span><span class="kw">sum</span>(diffx.squared)</code></pre>
+<p>The more distance there is from the mean on average, the larger this value will be. However, it also gets larger when we have more values because we are just taking a sum. To get a number that is comparable across different number of observations, we need to do the final step:</p>
+<p><span class="math display">\[s^2=\frac{\sum_{i=1}^n (x_i-\bar{x})^2}{n-1}\]</span></p>
+<p>We are going to divide our SSX value by the number of observations minus one. The “minus one” thing is a bit tricky and I don’t want to get into the details of why we do it here. When n is large, this will have little effect and basically you are taking an average of the squared distance from the mean.</p>
+<pre class="sourceCode r"><code class="sourceCode r">variance &lt;-<span class="st"> </span>ssx<span class="op">/</span>(<span class="kw">length</span>(diffx)<span class="op">-</span><span class="dv">1</span>)
+variance</code></pre>
+<pre><code>## [1] 2677.398</code></pre>
+<p>So the average squared distance from the mean fare is 2677.39 pounds squared. Of course, this isn’t a very interpretable number, so its probably better to square root it and get the standard deviation:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(variance)</code></pre>
+<pre><code>## [1] 51.74358</code></pre>
+<p>So, the average distance from the mean fare is 51.74 pounds.</p>
+<p>Note that I could have used the power of <em>R</em> to do this entire calculation in one line:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">sum</span>((titanic<span class="op">$</span>fare<span class="op">-</span><span class="kw">mean</span>(titanic<span class="op">$</span>fare))<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(<span class="kw">length</span>(titanic<span class="op">$</span>fare)<span class="op">-</span><span class="dv">1</span>))</code></pre>
+<pre><code>## [1] 51.74358</code></pre>
+<p>Alternatively, I could have just used the <code>sd</code> command to have <em>R</em> do all the heavy lifting:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(titanic<span class="op">$</span>fare)</code></pre>
+<pre><code>## [1] 51.74358</code></pre>
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="percentiles-and-the-five-number-summary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="measuring-association-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
