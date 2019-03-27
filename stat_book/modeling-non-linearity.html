@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Modeling Non-Linearity | Statistical Analysis in Sociology</title>
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Modeling Non-Linearity | Statistical Analysis in Sociology />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Modeling Non-Linearity | Statistical Analysis in Sociology />
+  
+  <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  
+
+<meta name="author" content="Aaron Gullickson">
+
+
+<meta name="date" content="2019-03-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="violation-of-model-assumptions.html">
+<link rel="next" href="sample-design-and-weighting.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="understanding-data.html"><a href="understanding-data.html"><i class="fa fa-check"></i>Understanding Data</a><ul>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html"><i class="fa fa-check"></i>What Does Data Look Like?</a><ul>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html#the-observations"><i class="fa fa-check"></i>The observations</a></li>
+<li class="chapter" data-level="" data-path="what-does-data-look-like.html"><a href="what-does-data-look-like.html#the-variables"><i class="fa fa-check"></i>The variables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html"><i class="fa fa-check"></i>What Can We Do With Data?</a><ul>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#how-is-a-variable-distributed"><i class="fa fa-check"></i>How is a variable distributed?</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#measuring-association"><i class="fa fa-check"></i>Measuring association</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#making-statistical-inferences"><i class="fa fa-check"></i>Making statistical inferences</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#building-models"><i class="fa fa-check"></i>Building Models</a></li>
+<li class="chapter" data-level="" data-path="what-can-we-do-with-data.html"><a href="what-can-we-do-with-data.html#observational-data-experimental-thinking"><i class="fa fa-check"></i>Observational Data, Experimental Thinking</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-distribution-of-a-variable.html"><a href="the-distribution-of-a-variable.html"><i class="fa fa-check"></i>The Distribution of a Variable</a><ul>
+<li class="chapter" data-level="" data-path="looking-at-distributions.html"><a href="looking-at-distributions.html"><i class="fa fa-check"></i>Looking at Distributions</a><ul>
+<li class="chapter" data-level="" data-path="looking-at-distributions.html"><a href="looking-at-distributions.html#looking-at-the-distribution-of-a-categorical-variable"><i class="fa fa-check"></i>Looking at the distribution of a categorical variable</a></li>
+<li class="chapter" data-level="" data-path="looking-at-distributions.html"><a href="looking-at-distributions.html#looking-at-the-distribution-of-a-quantitative-variable"><i class="fa fa-check"></i>Looking at the distribution of a quantitative variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html"><i class="fa fa-check"></i>Measuring the Center of a Distribution</a><ul>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-mean"><i class="fa fa-check"></i>The mean</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-median"><i class="fa fa-check"></i>The median</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#the-mode"><i class="fa fa-check"></i>The mode</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-center-of-a-distribution.html"><a href="measuring-the-center-of-a-distribution.html#comparing-the-mean-and-median"><i class="fa fa-check"></i>Comparing the mean and median</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html"><i class="fa fa-check"></i>Percentiles and the Five Number Summary</a><ul>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#percentiles"><i class="fa fa-check"></i>Percentiles</a></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#the-five-number-summary"><i class="fa fa-check"></i>The five number summary</a></li>
+<li class="chapter" data-level="" data-path="percentiles-and-the-five-number-summary.html"><a href="percentiles-and-the-five-number-summary.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html"><i class="fa fa-check"></i>Measuring the Spread of a Distribution</a><ul>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html#range-and-interquartile-range"><i class="fa fa-check"></i>Range and interquartile range</a></li>
+<li class="chapter" data-level="" data-path="measuring-the-spread-of-a-distribution.html"><a href="measuring-the-spread-of-a-distribution.html#variance-and-standard-deviation"><i class="fa fa-check"></i>Variance and standard deviation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measuring-association-1.html"><a href="measuring-association-1.html"><i class="fa fa-check"></i>Measuring Association</a><ul>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html"><i class="fa fa-check"></i>The Two-Way Table</a><ul>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#conditional-distributions"><i class="fa fa-check"></i>Conditional distributions</a></li>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio-advanced"><i class="fa fa-check"></i>Odds ratio (Advanced)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html"><i class="fa fa-check"></i>Mean Differences</a><ul>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#graphically-examining-differences-in-distributions"><i class="fa fa-check"></i>Graphically examining differences in distributions</a></li>
+<li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#comparing-differences-in-the-mean"><i class="fa fa-check"></i>Comparing differences in the mean</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html"><i class="fa fa-check"></i>Scatterplot and Correlation Coefficient</a><ul>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html#the-scatterplot"><i class="fa fa-check"></i>The scatterplot</a></li>
+<li class="chapter" data-level="" data-path="scatterplot-and-correlation-coefficient.html"><a href="scatterplot-and-correlation-coefficient.html#the-correlation-coefficient"><i class="fa fa-check"></i>The correlation coefficient</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i>Statistical Inference</a><ul>
+<li class="chapter" data-level="" data-path="the-problem-of-statistical-inference.html"><a href="the-problem-of-statistical-inference.html"><i class="fa fa-check"></i>The Problem of Statistical Inference</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html"><i class="fa fa-check"></i>The Concept of the Sampling Distribution</a><ul>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#example-class-height"><i class="fa fa-check"></i>Example: class height</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#central-limit-theorem-and-the-normal-distribution"><i class="fa fa-check"></i>Central limit theorem and the normal distribution</a></li>
+<li class="chapter" data-level="" data-path="the-concept-of-the-sampling-distribution.html"><a href="the-concept-of-the-sampling-distribution.html#what-can-we-do-with-the-sampling-distribution"><i class="fa fa-check"></i>What can we do with the sampling distribution?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i>Confidence Intervals</a><ul>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-do-we-mean-by-confident"><i class="fa fa-check"></i>What do we mean by “confident?”</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-the-confidence-interval-for-the-sample-mean"><i class="fa fa-check"></i>Calculating the confidence interval for the sample mean</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-the-confidence-interval-for-other-sample-statistics"><i class="fa fa-check"></i>Calculating the confidence interval for other sample statistics</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-proportions"><i class="fa fa-check"></i>Example with proportions</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-mean-differences"><i class="fa fa-check"></i>Example with mean differences</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-proportion-differences"><i class="fa fa-check"></i>Example with proportion differences</a></li>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#example-with-correlation-coefficient"><i class="fa fa-check"></i>Example with correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i>Hypothesis Tests</a><ul>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#example-coke-winners"><i class="fa fa-check"></i>Example: Coke winners</a></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#the-general-procedure-of-hypothesis-testing"><i class="fa fa-check"></i>The general procedure of hypothesis testing</a></li>
+<li class="chapter" data-level="" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-of-relationships"><i class="fa fa-check"></i>Hypothesis tests of relationships</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="building-models-1.html"><a href="building-models-1.html"><i class="fa fa-check"></i>Building Models</a><ul>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html"><i class="fa fa-check"></i>The OLS Regression Line</a><ul>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-formula-for-a-line"><i class="fa fa-check"></i>The Formula for a Line</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#calculating-the-best-fitting-line"><i class="fa fa-check"></i>Calculating the Best-Fitting Line</a></li>
+<li><a href="the-ols-regression-line.html#using-the-lm-command-to-calculate-ols-regression-lines-in-r">Using the <code>lm</code> command to calculate OLS regression lines in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-ols-regression-line-as-a-model"><i class="fa fa-check"></i>The OLS regression line as a model</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#interpeting-slopes-and-intercepts"><i class="fa fa-check"></i>Interpeting Slopes and Intercepts</a></li>
+<li><a href="the-ols-regression-line.html#how-good-is-x-as-a-predictor-of-y">How good is <span class="math inline">\(x\)</span> as a predictor of <span class="math inline">\(y\)</span>?</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#inference-for-ols-regression-models"><i class="fa fa-check"></i>Inference for OLS Regression models</a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#regression-line-cautions"><i class="fa fa-check"></i>Regression Line Cautions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html"><i class="fa fa-check"></i>The Power of Controlling for Other Variables</a><ul>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#interpreting-results-in-a-multivariate-ols-regression-models"><i class="fa fa-check"></i>Interpreting results in a multivariate OLS regression models</a></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#including-more-than-two-independent-variables"><i class="fa fa-check"></i>Including more than two independent variables</a></li>
+<li class="chapter" data-level="" data-path="the-power-of-controlling-for-other-variables.html"><a href="the-power-of-controlling-for-other-variables.html#how-to-read-a-table-of-regression-results"><i class="fa fa-check"></i>How to read a table of regression results</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html"><i class="fa fa-check"></i>Including Categorical Variables as Predictors</a><ul>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#indicator-variables"><i class="fa fa-check"></i>Indicator variables</a></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#categorical-variables-with-more-than-two-categories"><i class="fa fa-check"></i>Categorical variables with more than two categories</a></li>
+<li class="chapter" data-level="" data-path="including-categorical-variables-as-predictors.html"><a href="including-categorical-variables-as-predictors.html#categorical-and-quantitative-variables-combined-in-a-single-model"><i class="fa fa-check"></i>Categorical and quantitative variables combined in a single model</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html"><i class="fa fa-check"></i>Interaction Terms</a><ul>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#the-nature-of-additive-models"><i class="fa fa-check"></i>The nature of additive models</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#the-interaction-term"><i class="fa fa-check"></i>The interaction term</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interpreting-interaction-terms"><i class="fa fa-check"></i>Interpreting interaction terms</a></li>
+<li><a href="interaction-terms.html#interaction-terms-in-r">Interaction terms in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-multiple-categories"><i class="fa fa-check"></i>Interaction terms with multiple categories</a></li>
+<li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-two-categorical-variables"><i class="fa fa-check"></i>Interaction terms with two categorical variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
+<li class="chapter" data-level="" data-path="violation-of-model-assumptions.html"><a href="violation-of-model-assumptions.html"><i class="fa fa-check"></i>Violation of Model Assumptions</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#the-natural-log-transformation"><i class="fa fa-check"></i>The natural log transformation</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#log-transformations-allow-us-to-estimate-multiplicative-models"><i class="fa fa-check"></i>Log-transformations allow us to estimate multiplicative models</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#general-form-and-interpretation"><i class="fa fa-check"></i>General form and interpretation</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#logging-the-independent-variable"><i class="fa fa-check"></i>Logging the independent variable</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#logging-both-independent-and-dependent-variables-the-elasticity-model"><i class="fa fa-check"></i>Logging both independent and dependent variables: The elasticity model</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#the-square-root-transformation"><i class="fa fa-check"></i>The square root transformation</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#other-methods-to-deal-with-non-linearity"><i class="fa fa-check"></i>Other methods to deal with non-linearity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
+<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a></li>
+<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html"><i class="fa fa-check"></i>Multicollinearity and Scale Creation</a></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="modeling-categorical-outcomes.html"><a href="modeling-categorical-outcomes.html"><i class="fa fa-check"></i>Modeling Categorical Outcomes</a><ul>
+<li class="chapter" data-level="" data-path="dichotomous-outcomes-and-the-binomial-distribution.html"><a href="dichotomous-outcomes-and-the-binomial-distribution.html"><i class="fa fa-check"></i>Dichotomous Outcomes and The Binomial Distribution</a></li>
+<li class="chapter" data-level="" data-path="linear-probability-model.html"><a href="linear-probability-model.html"><i class="fa fa-check"></i>Linear Probability Model</a></li>
+<li class="chapter" data-level="" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i>Generalized Linear Model</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="" data-path="logistic-regression-model.html"><a href="logistic-regression-model.html"><i class="fa fa-check"></i>Logistic Regression Model</a></li>
+<li class="chapter" data-level="" data-path="models-for-nominal-polytomous-outcomes.html"><a href="models-for-nominal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Nominal Polytomous Outcomes</a></li>
+<li class="chapter" data-level="" data-path="models-for-ordinal-polytomous-outcomes.html"><a href="models-for-ordinal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Ordinal Polytomous Outcomes</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="" data-path="r-stat-lab-advanced.html"><a href="r-stat-lab-advanced.html"><i class="fa fa-check"></i>R Stat Lab (Advanced)</a><ul>
+<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html"><i class="fa fa-check"></i>Using Scripts</a><ul>
+<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#getting-started-with-scripts"><i class="fa fa-check"></i>Getting Started with Scripts</a></li>
+<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#not-everything-goes-into-your-script"><i class="fa fa-check"></i>Not Everything Goes Into Your Script</a></li>
+<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#commenting-for-sanity"><i class="fa fa-check"></i>Commenting for Sanity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html"><i class="fa fa-check"></i>Object Types</a><ul>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#atomic-modes"><i class="fa fa-check"></i>Atomic Modes</a></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#vectors-and-matrices"><i class="fa fa-check"></i>Vectors and Matrices</a></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#factors"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#logical-values-and-boolean-statements"><i class="fa fa-check"></i>Logical Values and Boolean Statements</a></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#missing-values-1"><i class="fa fa-check"></i>Missing Values</a></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html"><i class="fa fa-check"></i>Pretty Pictures</a><ul>
+<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
+<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-formats"><i class="fa fa-check"></i>Data Formats</a></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#plain-text-files"><i class="fa fa-check"></i>plain text files</a></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-in-binary-format"><i class="fa fa-check"></i>Data in binary format</a></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#saving-data"><i class="fa fa-check"></i>Saving data</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Analysis in Sociology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modeling-non-linearity" class="section level2">
+<h2>Modeling Non-Linearity</h2>
+<p>You <strong>transform</strong> your data when you apply a mathematical function to a variable to transform its values into different values. There are a variety of different transformations that are commonly used in statistics, but for this class we will focus on the one transformation that is most common in the social sciences: the log transformation.</p>
+<p>Why would you want to transform your data? There are two important potential benefits that transformations can provide. First, a transformation can often resolve the problem of non-linear relationships. If the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is non-linear, then by transforming one or both variables, you may be able to recover a linear relationship. Second, transformation can reduce skewness in a variable and will pull in extreme outliers so that they are less influential. For these reasons, transformations can be useful in regression models. However, it is important to also remember that a transformation changes the way in which x and y relate to one another and thus requires us to adjust our interpretation of results.</p>
+<div id="the-natural-log-transformation" class="section level3">
+<h3>The natural log transformation</h3>
+<p>When I talk about the “log” transformation, I am talking about what you probably learned as the “natural log” transformation. This transformation is given to you by the “ln” button on your calculator. For our purposes, this is the only “log” we care about. Just remember that in Eugene, we go natural.</p>
+<p>Any positive number can be logged. For example, I can calculate the log of the number 7:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">7</span>)</code></pre>
+<pre><code>## [1] 1.94591</code></pre>
+<p>OK, the natural log of 7 is 1.9459101. But what does that mean? The natural log of a number is defined as the value you would have to raise the constant <span class="math inline">\(e\)</span> (2.718282) to in order to get back the original number. To raise <span class="math inline">\(e\)</span> by some number, you can use the <code>exp</code> function in R (“exp” for “exponential”):</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">log</span>(<span class="dv">7</span>))</code></pre>
+<pre><code>## [1] 7</code></pre>
+<p>Ta-da! If I raise <span class="math inline">\(e\)</span> to the log of 7, I get back 7. The number <span class="math inline">\(e\)</span> is a very special number like <span class="math inline">\(\pi\)</span> having to do with what happens when you compound interest continually over time, but none of that matters for our purposes. For our purposes, what matters is that by logging a number you can make a multiplicative relationship into an additive relationship. This is because of a basic mathematical relationship where:</p>
+<p><span class="math display">\[e^a*a^b=e^{a+b}\]</span>
+<span class="math display">\[log(x+y) = log(x)+log(y)\]</span>
+You can try this out in R to see that it works:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="dv">2</span>)<span class="op">*</span><span class="kw">exp</span>(<span class="dv">3</span>)</code></pre>
+<pre><code>## [1] 148.4132</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">3</span>)</code></pre>
+<pre><code>## [1] 148.4132</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">5</span><span class="op">*</span><span class="dv">4</span>)</code></pre>
+<pre><code>## [1] 2.995732</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">5</span>)<span class="op">+</span><span class="kw">log</span>(<span class="dv">4</span>)</code></pre>
+<pre><code>## [1] 2.995732</code></pre>
+<p>This is really all you need to know about the log transformation to understand this section.</p>
+</div>
+<div id="log-transformations-allow-us-to-estimate-multiplicative-models" class="section level3">
+<h3>Log-transformations allow us to estimate multiplicative models</h3>
+<p>Take a look at the histogram of the income variable from our politics dataset.</p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<p>This variable is heavily right skewed, with a few very high earners at the top end of the distribution, and the vast majority of individuals making less than $100,000 per year. The heavy skew makes this distribution is an ideal candidate for the log transformation. Lets go ahead and log-transform it and save our log-transformation as another variable called “lincome.”</p>
+<pre class="sourceCode r"><code class="sourceCode r">politics<span class="op">$</span>lincome =<span class="st"> </span><span class="kw">log</span>(politics<span class="op">$</span>income)</code></pre>
+<p>Now lets look at the distribution of this log-transformed income data:</p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p>Now we are getting a slight outlier in the opposite direction, but in general the tail ends of our distribution are pulled in considerably. This suggests that we have to worry less about how outliers might affect our results.</p>
+<p>Now lets try putting this log-transformed income variable in as the dependent variable and lets predict it by the age of the respondent.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(lincome<span class="op">~</span>age, <span class="dt">data=</span>politics))<span class="op">$</span>coef</code></pre>
+<pre><code>##                Estimate   Std. Error    t value  Pr(&gt;|t|)
+## (Intercept) 3.810066210 0.0511743028 74.4527234 0.0000000
+## age         0.000503664 0.0009742089  0.5169979 0.6051846</code></pre>
+<p>OK, so what does that mean? It might be tempting to interpret the results here as you normally would. We can see age has a positive effect. So, a one year increase in age is associated with a 0.005 increase in … what? Remember that our dependent variable here is log-income. We could literally say that it is a 0.005 increase in log-income, but that is not a very helpful or intuitive way to think about the result. Similarly the intercept gives us the predicted log-income when age is zero. Thats not helpful for two reasons: its outside the scope of the data, and we don’t really know how to think about a log-income of 3.29.</p>
+<p>In order to translate this into something meaningful, lets try looking at this in our equation format. Here is what we have:</p>
+<p><span class="math display">\[\log(\hat{y}_i)=3.29+0.005*x_i\]</span></p>
+<p>What we really want is to be able to understand this equation back on the original scale of the dependent variable, which in this case is income. Remember that taking <span class="math inline">\(e^{\log(y)}\)</span> just gives us back <span class="math inline">\(y\)</span>. We can use that logic here. If we “exponentiate” (take <span class="math inline">\(e\)</span> to the power of the values) the left-hand side of the equation, then we can get back to <span class="math inline">\(\hat{y}_i\)</span>. However, remember from algebra, that what we do to one side of the equation, we have to do to both sides. That means:</p>
+<p><span class="math display">\[e^{\log(\hat{y}_i)}=e^{3.29+0.005*x_i}\]</span>
+<span class="math display">\[\hat{y}_i=(e^{3.29})*(e^{0.005})^{x_i}\]</span>
+The good news is that we now just have our predicted income on the left-hand side. The bad news is that the right hand side looks a bit complex. Since <span class="math inline">\(e\)</span> is just a number we can go ahead and calculate the values in those parentheses (called “exponentiating”):</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">3.29</span>)</code></pre>
+<pre><code>## [1] 26.84286</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">0.005</span>)</code></pre>
+<pre><code>## [1] 1.005013</code></pre>
+<p>That means:</p>
+<p><span class="math display">\[\hat{y}_i=(26.8)*(1.005)^{x_i}\]</span>
+What we have here is a <strong>multiplicative</strong> relationship rather than an additive relationship. How does this changes things? Well, to see lets plug in some values for <span class="math inline">\(x_i\)</span> and see how it changes our predicted income value. An age of zero is outside the scope of our data, but lets plug it in for instructional purposes anyway:</p>
+<p><span class="math display">\[\hat{y}_i=(26.8)*(1.005)^{0}=(26.8)(1)=26.8\]</span>
+So, the predicted income when <span class="math inline">\(x\)</span> is zero is just given by exponentiating the intercept. Lets try increasing age by one year:</p>
+<p><span class="math display">\[\hat{y}_i=(26.8)*(1.005)^{1}=(26.8)(1.005)\]</span>
+I could go ahead and finish that multiplication, but I want to leave it here to better show the change. A one year increase increases income by a <strong>multiplicative</strong> factor of 1.005. In other words, a one year increase in age is associated with a 0.5% increase in income, on average. What happens if I add another year?</p>
+<p><span class="math display">\[\hat{y}_i=(26.8)*(1.005)^{2}=(26.8)(1.005)(1.005)\]</span>
+Each additional year leads to a 0.5% increase in predicted income. This is what I mean by a multiplicative increase. We are no longer talking about the predicted change in income in terms of <strong>absolute</strong> numbers of dollars, but rather in <strong>relative</strong> terms of percentage increase.</p>
+</div>
+<div id="general-form-and-interpretation" class="section level3">
+<h3>General form and interpretation</h3>
+<p>In general, you have the following equation when you transform your dependent variable:</p>
+<p><span class="math display">\[\log(\hat{y}_i)=b_0+b_1(x_{i1})+b_2(x_{i2})+\ldots+b_p(x_{ip})\]</span></p>
+<p>In order to properly interpret your results, you must exponentiate all of your slopes and the intercept. Your slopes can be interpreted as:</p>
+<blockquote>
+<p>The model predicts that a one-unit increase in <span class="math inline">\(x_j\)</span> is associated with a <span class="math inline">\(e^{b_j}\)</span> multiplicative increase in <span class="math inline">\(y\)</span>, on average while holding all other independent variables constant.
+The model predicts that <span class="math inline">\(y\)</span> will be <span class="math inline">\(e^{b_0}\)</span> on average when all independent variables are zero.</p>
+</blockquote>
+<p>Of course, just like all of our prior examples, you are responsible for converting this into sensible English.</p>
+<p>Lets try a fuller example where we predict log income by age, education and race at the same time:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">summary</span>(<span class="kw">lm</span>(lincome<span class="op">~</span>age<span class="op">+</span>educ<span class="op">+</span>race, <span class="dt">data=</span>politics))<span class="op">$</span>coef,<span class="dv">3</span>)</code></pre>
+<pre><code>##                            Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)                   3.225      0.081  39.570    0.000
+## age                          -0.001      0.001  -1.363    0.173
+## educHigh school diploma       0.359      0.071   5.036    0.000
+## educSome college              0.640      0.067   9.536    0.000
+## educBachelors degree          1.064      0.071  15.076    0.000
+## educGraduate degree           1.339      0.073  18.275    0.000
+## raceBlack                    -0.585      0.055 -10.659    0.000
+## raceLatino                   -0.203      0.053  -3.839    0.000
+## raceAsian/Pacific Islander    0.093      0.087   1.075    0.282
+## raceAmerican Indian          -0.488      0.198  -2.466    0.014
+## raceOther/Mixed              -0.181      0.079  -2.276    0.023</code></pre>
+<p>Lets start by interpreting the intercept. Two of our variables, education and race, are categorical with reference categories of less than high school and white, respectively and age is a quantitative variable. In order to interpret our intercept of 2.73, we first need to exponentiate it:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">2.73</span>)</code></pre>
+<pre><code>## [1] 15.33289</code></pre>
+<p>So we would say:</p>
+<blockquote>
+<p>The model predicts that a zero-year old white person with less than a high school degree will make $15,333, on average.</p>
+</blockquote>
+<p>Of course, because an age of zero is outside the scope of our data, we don’t put much any stock in this prediction. The more interesting numbers are the various slopes.</p>
+<p>Lets interpret, the age slope of 0.004. First, exponentiate:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">0.004</span>)</code></pre>
+<pre><code>## [1] 1.004008</code></pre>
+<p>So, we would say:</p>
+<blockquote>
+<p>The model predicts that a one year increase in age is associated with a 0.4% increase in income, on average, among individuals of the same race and educational level.</p>
+</blockquote>
+<p>What about the effect for a BA degree? This is a categorical variable with less than high school as the reference, but again we need to exponentiate to get a meaningful number:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">1.19</span>)</code></pre>
+<pre><code>## [1] 3.287081</code></pre>
+<p>This is a pretty big increase! We might say:</p>
+<blockquote>
+<p>The model predicts that the incomes of college graduates are 3.28 times higher than the incomes of those with less than a high school diploma, on average, holding constant race and age.</p>
+</blockquote>
+<p>How would we describe negative effects. Lets look at the effect of -0.23 for Hispanics. First, lets exponentiate it:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="op">-</span><span class="fl">0.23</span>)</code></pre>
+<pre><code>## [1] 0.7945336</code></pre>
+<p>There are two ways we could describe this. Let me try both ways:</p>
+<blockquote>
+<p>The model predicts that the incomes of Hispanics will be 79% as high as the incomes of whites, on average, holding constant age and education.</p>
+</blockquote>
+<p>Keep in mind that 79% as high means you are making less. If your boss comes and offers you to change your salary to 90% of what it is now, don’t be fooled – thats not a good deal. Alternatively, I could have taken 100-79=21 and said:</p>
+<blockquote>
+<p>The model predicts that the income of Hispanics is 21% less than the income of whites, on average, holding constant age and education.</p>
+</blockquote>
+<p>Always keep in mind that regardless of the type of variable involved and the direction of the relationship, we are always talking about a relative, multiplicative change in the dependent variable. In some cases, it may make more sense to describe this as a percentage gain or loss (as in the age and Hispanic case), while in other cases it may make sense to describe it in terms of how many “times more or less” (as in the case of the BA degree).</p>
+<p><em>Note: from here on out, I am throwing together information discussed in class, so the descriptions may be a bit rough. Apologies in advance</em></p>
+</div>
+<div id="logging-the-independent-variable" class="section level3">
+<h3>Logging the independent variable</h3>
+<p>Lets revisit the data from Preston that we looked at earlier in the term.</p>
+<p><img src="stat_book_files/figure-html/preston2-1.png" width="672" />
+These data show a clearly non-linear relationship. More specifically, this is a “diminishing returns” relationship where a positive effect gets smaller in magnitude at higher levels of the independent variable. Logging the dependent variable will not help us make this relationship look more linear, but logging the independent variable will:</p>
+<p><img src="stat_book_files/figure-html/preston3-1.png" width="672" /></p>
+<p>How does this transformation of the independent variable affect how we interpret the results? Lets run the model:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(lifeexp<span class="op">~</span><span class="kw">log</span>(inc), <span class="dt">data=</span>preston))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = lifeexp ~ log(inc), data = preston)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.1628  -2.2207  -0.7619   2.9634  11.5037 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  14.9263     3.7088   4.025 0.000176 ***
+## log(inc)      7.5453     0.5982  12.613  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.268 on 55 degrees of freedom
+## Multiple R-squared:  0.7431, Adjusted R-squared:  0.7384 
+## F-statistic: 159.1 on 1 and 55 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Interpreting the slope here can be tricky. The basic point is that by logging the independent variable, the change in the independent variable is now relative as measured by a 1% increase in the independent variable (national income per capita here). The change in the dependent variable is still in absolute terms (years of life expectancy here), but in order to interpret the slope correctly you must divide it by 100 (i.e. move the decimal place two places to the left). In this case, I would say:</p>
+<blockquote>
+<p>The model predicts that a 1% increase in national income per capita in a country is associated with a 0.075 year increase in life expectancy on average.</p>
+</blockquote>
+<p>Why did I have to move the decimal place two to the left? Lets use the model to compare the predicted values of two cases, where one case has exactly 1% higher national income per capita, to see how this works. I will start the lower country at a national income per capita of $20,000, but the results here apply regardless of what number I choose here. To see the change I subtract one predicted value from the other.</p>
+<p><span class="math display">\[
+\begin{aligned} 
+((14.93+7.54*\log(20200))-(14.93+7.54*\log(20000))&amp;=7.54(\log(20200)-\log(20000))\\
+&amp;=7.54*\log(20200/20000)\\ 
+&amp;=7.54*\log(1.01)
+\end{aligned}
+\]</span></p>
+<p>Now, it turns out that <span class="math inline">\(log(1.01)\)</span> almost exactly equals 0.01, so this is roughly equivalent to <span class="math inline">\(7.54*0.01=0.0754\)</span>. This same math will be true regardless of the starting value of income chosen, so roughly speaking a 1% increase in <span class="math inline">\(x\)</span> is associated with a <span class="math inline">\(b_1/100\)</span> change in <span class="math inline">\(y\)</span>.</p>
+</div>
+<div id="logging-both-independent-and-dependent-variables-the-elasticity-model" class="section level3">
+<h3>Logging both independent and dependent variables: The elasticity model</h3>
+<p>So, now we have seen that logging the dependent variable will make change in the dependent relative, and logging the independent variable will make change in the independent variable relative. It makes sense to think that if you log them both, you would get relative change in <span class="math inline">\(x\)</span> predicting relative change in <span class="math inline">\(y\)</span>. Correct! This is what is called an “elasticity” model because the predicted slopes are equivalent to the concept of elasticity in economics: how much does of a percent change in <span class="math inline">\(y\)</span> results from a 1% increase in <span class="math inline">\(x\)</span>.</p>
+<p>To show you how this works, lets try to predict movie box office returns by tomato ratings where we apply all three types of models.</p>
+<pre class="sourceCode r"><code class="sourceCode r">model.logy &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span>TomatoRating, <span class="dt">data=</span>movies)
+model.logx &lt;-<span class="st"> </span><span class="kw">lm</span>(BoxOffice<span class="op">~</span><span class="kw">log</span>(TomatoRating), <span class="dt">data=</span>movies)
+model.logboth &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span><span class="kw">log</span>(TomatoRating), <span class="dt">data=</span>movies)
+<span class="kw">coef</span>(model.logy)[<span class="dv">2</span>]</code></pre>
+<pre><code>## TomatoRating 
+##    0.2406026</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(model.logx)[<span class="dv">2</span>]</code></pre>
+<pre><code>## log(TomatoRating) 
+##          52.66051</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(model.logboth)[<span class="dv">2</span>]</code></pre>
+<pre><code>## log(TomatoRating) 
+##          1.052966</code></pre>
+<p>In the first model, I am logging <span class="math inline">\(y\)</span> so I nee to exponentiate the result to interpret it.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">0.2012</span>)</code></pre>
+<pre><code>## [1] 1.222869</code></pre>
+<p>So, I would say:</p>
+<blockquote>
+<p>The model predicts that a one point increase in a movie’s tomato rating is associated with a 22% increase in box office returns on average.</p>
+</blockquote>
+<p>In the second model, I need to move over the decimal place to the left and then say:</p>
+<blockquote>
+<p>The model predicts that a 1% increase in a movie’s tomato rating is associated with a $500,000 increase in box office returns.</p>
+</blockquote>
+<p>The third model (the elasticity model) is the easiest to interpret. It turns out that the number can be interpreted directly as the percentage change in <span class="math inline">\(y\)</span> expected for a 1 percent increase in <span class="math inline">\(x\)</span>, so:</p>
+<blockquote>
+<p>The model predicts that a 1% increase in a movie’s tomato rating is associated with a 0.85% increase in box office returns.</p>
+</blockquote>
+<p>Why is this the case? We can work this out from a similar mathematical exercise above. On the independent variable side a 1% increase in <span class="math inline">\(x\)</span> is still associated with a <span class="math inline">\(b_1/100\)</span> increase in the dependent variable, but that independent variable is still the log of <span class="math inline">\(y\)</span>. Thus, technically you should get the result by taking <span class="math inline">\(e^{b_1/100}\)</span>. However, since you are dividing by 100 that number will almost always be small enough that you can use the approximation that <span class="math inline">\(b_1\)</span> itself is the percentage increase in <span class="math inline">\(y\)</span> for the given change in <span class="math inline">\(x\)</span>.</p>
+</div>
+<div id="the-square-root-transformation" class="section level3">
+<h3>The square root transformation</h3>
+<p>The log transformation is very flexible and solves multiple problems at once (non-linearity, outliers, skewness), which explains its popularity. But it breaks down in one important situation: you cannot log a variable that has zero or negative values. The negative case is not as important because generally the log transformation fixes things for variables that only take non-negative values. However, there are numerous cases where a quantitative variable can be zero as well as a positive. Lets run the same elasticity model as above on box office returns, but this time lets predict returns by the Tomato Meter rather than the Tomato Rating.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span><span class="kw">log</span>(TomatoMeter), <span class="dt">data=</span>movies))</code></pre>
+<pre><code>## Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, ...): NA/NaN/Inf in &#39;x&#39;</code></pre>
+<p>Oh no! We got an error. The problem is that the Tomato Meter has a few cases of zero values (when a movie received zero positive reviews). The log of zero is negative infinity and that simply won’t work when fitting a linear model. What can you do?</p>
+<p>Well it turns out that the square root transformation can do much the same work as the natural logarithm. It will pull in skewness and can make non-linear relationships more linear. Since the square root of zero is a real number (zero to be precise), it will also work on variables that have legitimate zeroes. So,</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span><span class="kw">sqrt</span>(TomatoMeter), <span class="dt">data=</span>movies))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(BoxOffice) ~ sqrt(TomatoMeter), data = movies)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.5927 -1.2133  0.8586  1.7827  4.0356 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        1.43769    0.16317   8.811  &lt; 2e-16 ***
+## sqrt(TomatoMeter)  0.12740    0.02361   5.397 7.41e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.547 on 2551 degrees of freedom
+## Multiple R-squared:  0.01129,    Adjusted R-squared:  0.0109 
+## F-statistic: 29.12 on 1 and 2551 DF,  p-value: 7.412e-08</code></pre>
+<p>Now we can get a result. The downside, however, is that there is <a href="http://stats.stackexchange.com/questions/35982/how-to-interpret-regression-coefficients-when-response-was-transformed-by-the-4t">no clear and easy interpretation of how to intepret this effect</a>.</p>
+</div>
+<div id="other-methods-to-deal-with-non-linearity" class="section level3">
+<h3>Other methods to deal with non-linearity</h3>
+<p>Transformations are one way to handle non-linearity in the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. There are other common ways that this non-linearity can also be handled. We will cover the case of smoothing and polynomial regression here. Another case that we will not cover here is the use of splines, although some of the smoothing techniques covered here will use splines implicitly.</p>
+<div id="smoothing" class="section level4">
+<h4>Smoothing</h4>
+<p>Smoothing is primarily a graphical technique that can be used to diagnostically detect non-linearity in a relationship. Lets plot the relationship between movie tomato rating and box office returns.</p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-134-1.png" width="672" />
+There is so much overplotting and box office returns are so skewed here that it is quite difficult to visually see the relationship. Smoothing will help us do that. There are numerous ways that one can smooth data, but the basic idea is that you replace the <span class="math inline">\(y\)</span> value for an observation with a substitute value that incorporates information about the adjacent neighbors (in terms of <span class="math inline">\(x\)</span>) for this observation.</p>
+<p>To see how this works, the figure below picks out one movie that had particularly anomalous box office returns given its tomato rating (shown in red) and the two movies that were most immediately adjacent to this value in terms of their tomato rating. It then takes the mean box office returns between the three movies and plots this as the smoothed mean value for the selected movie in green.</p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p>In practice this kind of mean smoothing (also called a “running average”) or median smoothing only works well for time series values where there is only one unique value of <span class="math inline">\(x\)</span> for each observation, whereas we have many movies with the exact same tomato rating. In practice, a better smoothing approach for data like this is to use more complex methods for smoothing that involve splines and local polynomial regression to get predicted values. Three methods that will do this in R are shown below. For the <code>loess</code> and <code>smooth.spline</code> functions, you have to declare how many adjacent observations you want to consider as a proportion of the total dataset. I have chosen 10% and 75%. The wider you make this span, the smoother the line will get at the cost of potentially losing important spikes and dips. The “supersmoother” function <code>supsmu</code> is simpler and tries to determine the best span internally.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#for loess its important to first order the movies by x</span>
+movies &lt;-<span class="st"> </span>movies[<span class="kw">order</span>(movies<span class="op">$</span>TomatoRating),]
+<span class="kw">plot</span>(movies<span class="op">$</span>TomatoRating, movies<span class="op">$</span>BoxOffice, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;grey90&quot;</span>, <span class="dt">col=</span><span class="ot">NULL</span>,
+     <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">xlab=</span><span class="st">&quot;Tomato Rating&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Box Office Returns (millions)&quot;</span>)
+smooth.loess &lt;-<span class="st"> </span><span class="kw">loess</span>(BoxOffice<span class="op">~</span>TomatoRating, <span class="dt">data=</span>movies, <span class="dt">span=</span><span class="fl">0.1</span>)
+<span class="kw">lines</span>(smooth.loess<span class="op">$</span>x, smooth.loess<span class="op">$</span>fitted, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+smooth.loess &lt;-<span class="st"> </span><span class="kw">loess</span>(BoxOffice<span class="op">~</span>TomatoRating, <span class="dt">data=</span>movies, <span class="dt">span=</span><span class="fl">0.75</span>)
+<span class="kw">lines</span>(smooth.loess<span class="op">$</span>x, smooth.loess<span class="op">$</span>fitted, <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">lines</span>(<span class="kw">smooth.spline</span>(movies<span class="op">$</span>TomatoRating, movies<span class="op">$</span>BoxOffice, <span class="dt">spar=</span><span class="fl">0.1</span>), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">smooth.spline</span>(movies<span class="op">$</span>TomatoRating, movies<span class="op">$</span>BoxOffice, <span class="dt">spar=</span><span class="fl">0.75</span>), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">supsmu</span>(movies<span class="op">$</span>TomatoRating, movies<span class="op">$</span>BoxOffice), <span class="dt">col=</span><span class="st">&quot;yellow&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">legend</span>(<span class="dv">2</span>, <span class="dv">700</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;Lowess, 10% span&quot;</span>, <span class="st">&quot;Lowess, 75% span&quot;</span>, <span class="st">&quot;Spline smoothing, 10%&quot;</span>, 
+                        <span class="st">&quot;Spline smoothing, 75%&quot;</span>, <span class="st">&quot;Supersmoother&quot;</span>),
+       <span class="dt">lwd=</span><span class="dv">1</span>, <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;darkgreen&quot;</span>,<span class="st">&quot;yellow&quot;</span>), <span class="dt">cex=</span><span class="fl">0.6</span>)</code></pre>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p>All the smoothers here indicate an exponential type relationship that would be better fit by logging the dependent variable.</p>
+</div>
+<div id="polynomial-regression" class="section level4">
+<h4>Polynomial Regression</h4>
+<p>A final method that can be used to fit non-linear relationships is to fit <em>polynomial</em> terms. Recall, for example, the formula:</p>
+<p><span class="math display">\[y=a+bx+cx^2\]</span></p>
+<p>This function defines a parabola which fits not a straight line but a curve with one point of inflection. We can fit this sort of curve in an OLS regression model by simply including the square of a variable as an additional term in the model. Before we do this it is usually a good idea to center the variable to be squared somewhere around the mean because this will reduce collinearity between the original term and its square.</p>
+<p>For example, I could fit a polynomial term to a model that predicts tomato meter by movie runtime. like so:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(TomatoMeter<span class="op">~</span><span class="kw">I</span>(Runtime<span class="dv">-90</span>)<span class="op">+</span><span class="kw">I</span>((Runtime<span class="dv">-90</span>)<span class="op">^</span><span class="dv">2</span>), <span class="dt">data=</span>movies))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TomatoMeter ~ I(Runtime - 90) + I((Runtime - 90)^2), 
+##     data = movies)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -76.224 -21.703  -1.702  20.659  61.616 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         41.3413466  0.7302420  56.613  &lt; 2e-16 ***
+## I(Runtime - 90)      0.4543688  0.0584384   7.775 1.08e-14 ***
+## I((Runtime - 90)^2) -0.0009453  0.0009694  -0.975     0.33    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 25.39 on 2550 degrees of freedom
+## Multiple R-squared:  0.06698,    Adjusted R-squared:  0.06624 
+## F-statistic: 91.52 on 2 and 2550 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Interpreting these numbers directly can be quite tricky. The easiest approach is often to simply graph the resulting parabola for reasonable values of <span class="math inline">\(x\)</span>. I can do that here for movies:</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">70</span><span class="op">:</span><span class="dv">620-90</span>
+fitted &lt;-<span class="st"> </span><span class="fl">42.256+0.406</span><span class="op">*</span>x<span class="fl">-0.0004635</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span>
+<span class="kw">plot</span>(x, fitted, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>, <span class="dt">las=</span><span class="dv">1</span>,
+     <span class="dt">xlab=</span><span class="st">&quot;runtime (in minutes)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Predicted tomato meter&quot;</span>)
+ticks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">70</span>, <span class="dt">to=</span><span class="dv">620</span>, <span class="dt">by=</span><span class="dv">50</span>)<span class="op">-</span><span class="dv">90</span>
+<span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at=</span>ticks, <span class="dt">labels=</span>ticks<span class="op">+</span><span class="dv">90</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">528-90</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+<p>Note that we now get a curvilinear relationship where the positive effect of runtime gets smaller at higher values of runtime much like a diminishing returns relationship. In this case, the effect of runtime can even reverse direction and become negative which is not possible with a log transformation on <span class="math inline">\(x\)</span>. However, its worth noting that the effect of runtime doesn’t become negative until we are well outside the range of real movie values.</p>
+<p>You can actually mathematically figure out the exact inflection point based on the two “slopes” for the original term and its square. Given the following model:</p>
+<p><span class="math display">\[y=b_0+b_1*x+b_2*x^2\]</span></p>
+<p>The inflection point is given by:</p>
+<p><span class="math display">\[b_1/(-2 * b_2)\]</span></p>
+<p>In this case, that gives us an inflection point of:</p>
+<p><span class="math display">\[0.4060329/(2*0.0004635)=438\]</span></p>
+<p>However, because we subtracted 90 from each value, the actual runtime minutes for the inflection is equal to <span class="math inline">\(438+90=528\)</span>. Note that this value is show on the graph above.</p>
+<hr />
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="violation-of-model-assumptions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sample-design-and-weighting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
