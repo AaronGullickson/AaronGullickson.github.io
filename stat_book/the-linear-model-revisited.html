@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Violation of Model Assumptions | Statistical Analysis in Sociology</title>
+  <title>The Linear Model, Revisited | Statistical Analysis in Sociology</title>
   <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Violation of Model Assumptions | Statistical Analysis in Sociology />
+  <meta property="og:title" content="The Linear Model, Revisited | Statistical Analysis in Sociology />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Violation of Model Assumptions | Statistical Analysis in Sociology />
+  <meta name="twitter:title" content="The Linear Model, Revisited | Statistical Analysis in Sociology />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
@@ -228,7 +228,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
-<li class="chapter" data-level="" data-path="violation-of-model-assumptions.html"><a href="violation-of-model-assumptions.html"><i class="fa fa-check"></i>Violation of Model Assumptions</a></li>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html"><i class="fa fa-check"></i>The Linear Model, Revisited</a><ul>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#reformulating-the-linear-model"><i class="fa fa-check"></i>Reformulating the linear model</a></li>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#the-natural-log-transformation"><i class="fa fa-check"></i>The natural log transformation</a></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#log-transformations-allow-us-to-estimate-multiplicative-models"><i class="fa fa-check"></i>Log-transformations allow us to estimate multiplicative models</a></li>
@@ -238,6 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#the-square-root-transformation"><i class="fa fa-check"></i>The square root transformation</a></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#other-methods-to-deal-with-non-linearity"><i class="fa fa-check"></i>Other methods to deal with non-linearity</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
 <li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a></li>
 <li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html"><i class="fa fa-check"></i>Multicollinearity and Scale Creation</a></li>
@@ -296,9 +301,236 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="violation-of-model-assumptions" class="section level2">
-<h2>Violation of Model Assumptions</h2>
+<div id="the-linear-model-revisited" class="section level2">
+<h2>The Linear Model, Revisited</h2>
+<div id="reformulating-the-linear-model" class="section level3">
+<h3>Reformulating the linear model</h3>
+<p>Up until now, we have used the following equation to describe the linear model mathematically:</p>
+<p><span class="math display">\[\hat{y}_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\ldots+\beta_px_{ip}\]</span>
+In this formulation, <span class="math inline">\(\hat{y}_i\)</span> is the predicted value of the dependent variable for the <span class="math inline">\(i\)</span>th observation and <span class="math inline">\(x_{i1}\)</span>, <span class="math inline">\(x_{i2}\)</span>. through <span class="math inline">\(x_{ip}\)</span> are the values of <span class="math inline">\(p\)</span> independent variables that predict <span class="math inline">\(\hat{y}_i\)</span> by a linear function. <span class="math inline">\(\beta_0\)</span> is the y-intercept which is the predicted value of dependent variable when all the independent variables are zero. <span class="math inline">\(\beta_1\)</span> through <span class="math inline">\(\beta_p\)</span> are the slopes giving the predicted change in the dependent variable for a one unit increase in a given independent variable holding all of the other variables constant.</p>
+<p>This formulation is useful, but we can now expand and re-formulate it in a way that will help us understand some of the more advanced topics we will discuss in this and later chapters. The formula is above is only the “structural” part of the full linear model. The full linear model is given by:</p>
+<p><span class="math display">\[y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\ldots+\beta_px_{ip}+\epsilon_i\]</span></p>
+<p>I have changed two things in this new formula. On the left-hand side, we have the actual value of the dependent variable for the <span class="math inline">\(i\)</span>th observation. In order to make things balance on the right-hand side of the equation, I have added <span class="math inline">\(\epsilon_i\)</span> which is simply the residual or error term for the <span class="math inline">\(i\)</span>th observation. We now have a full model that predicts the actual values of <span class="math inline">\(y\)</span> from the actual values of <span class="math inline">\(x\)</span>.</p>
+<p>If we compare this to the first formula, it should become clear that every term except the residual term can be substituted for by <span class="math inline">\(\hat{y}_i\)</span>. So, we can restate our linear model using two separate formulas as follows:</p>
+<p><span class="math display">\[\hat{y}_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\ldots+\beta_px_{ip}\]</span></p>
+<p><span class="math display">\[y_i=\hat{y}_i+\epsilon_i\]</span></p>
+<p>By dividing up the formula into two separate components, we can begin to think of our linear model as containing a structural component and a random (or stochastic) component. The structural component is the linear equation predicting <span class="math inline">\(\hat{y}_i\)</span>. This is the formal relationship we are trying to fit between the dependent and independent variables. The stochastic component on the other hand is given by the <span class="math inline">\(\epsilon_i\)</span> term in the second formula. In order to get back to the actual values of the dependent variable, we have to add in the residual component that is not accounted for by the linear model.</p>
+<p>From this perspective, we can rethink our entire linear model as a partition of the total variation in the dependent variable into the structural component that can be accounted for by our linear model and the residual component that is unnaccounted for by the model. This is exactly as we envisioned things when we learned to calculate <span class="math inline">\(R^2\)</span> in previous chapters.</p>
+</div>
+<div id="estimating-a-linear-model" class="section level3">
+<h3>Estimating a linear model</h3>
+<p>Up until now, we have not discussed how R actually calculates all of the slopes and intercept for a linear model with multiple independent variables. We only know the equations for a linear model with one independent variable.</p>
+<p>Even though we don’t know the math yet behind how linear model parameters are estimated, we do know the rationale for why they are selected. We choose the parameters that minimized the sum of squared residuals given by:</p>
+<p><span class="math display">\[\sum_{i=1}^n (y_i-\hat{y}_i)^2\]</span>
+In this section, we will learn the formal math that underlies how this esimtation occurs, but first a warning: there is a lot of math ahead. In normal everyday practice, you don’t have to do any of this math, because R will do it for you. However, it is useful to know how linear model estimating works “under the hood” and it will help with some of the techniques we will learn later in the book.</p>
+<div id="matrix-algebra-crash-course" class="section level4">
+<h4>Matrix algebra crash course</h4>
+<p>In order to learn how to estimate linear model parameters, we will need to learn a little bit of matrix algebra. In matrix algebra we can collect numbers into <strong>vectors</strong> which are single dimension arrays of numbrers and <strong>matrices</strong> which are two-dimensional arrays of numbers. We can use matrix algebra to represent our linear regression model equation using one-dimensional <strong>vectors</strong> and two-dimensional <strong>matrices</strong>. We can imagine <span class="math inline">\(y\)</span> below as a vector of dimension 3x1 and <span class="math inline">\(\mathbf{X}\)</span> as a matrix of dimension 3x3.</p>
+<p><span class="math display">\[
+\mathbf{y}=\begin{pmatrix}
+4\\
+5\\
+3\\
+\end{pmatrix}
+\mathbf{X}=
+\begin{pmatrix}
+1 &amp; 7 &amp; 4\\
+1 &amp; 3 &amp; 2\\
+1 &amp; 1 &amp; 6\\
+\end{pmatrix}
+\]</span></p>
+<p>We can multiply vectors and matrices together by taking each element in the row of a matrix by the corresponding element in the vector and summing them up:</p>
+<p><span class="math display">\[\begin{pmatrix}
+1 &amp; 7 &amp; 4\\
+1 &amp; 3 &amp; 2\\
+1 &amp; 1 &amp; 6\\
+\end{pmatrix}
+\begin{pmatrix}
+4\\
+5\\
+3\\
+\end{pmatrix}=
+\begin{pmatrix}
+1*4+7*5+3*4\\
+1*4+3*5+2*3\\
+1*4+1*5+6*3\\
+\end{pmatrix}=
+\begin{pmatrix}
+51\\
+25\\
+27\\
+\end{pmatrix}\]</span></p>
+<p>You can also transpose a vector or matrix by flipping its rows and columns. My transposed version of <span class="math inline">\(\mathbf{X}\)</span> is <span class="math inline">\(\mathbf{X}&#39;\)</span> which is:</p>
+<p><span class="math display">\[\mathbf{X}=
+\begin{pmatrix}
+1 &amp; 1 &amp; 1\\
+7 &amp; 3 &amp; 1\\
+4 &amp; 2 &amp; 6\\
+\end{pmatrix}\]</span></p>
+<p>You can also multiple matrices by each other using the same pattern as for multiplying vectors and matrices but now you start a new column each time you move down a row of the first matrix. So to “square” my  matrix:</p>
+<p><span class="math display">\[
+\begin{eqnarray*}
+\mathbf{X}&#39;\mathbf{X}&amp;=&amp;
+\begin{pmatrix}
+1 &amp; 1 &amp; 1\\
+7 &amp; 3 &amp; 1\\
+4 &amp; 2 &amp; 6\\
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 7 &amp; 4\\
+1 &amp; 3 &amp; 2\\
+1 &amp; 1 &amp; 6\\
+\end{pmatrix}&amp;=&amp;
+\begin{pmatrix}
+1*1+1*1+1*1 &amp; 1*7+1*3+1*1 &amp; 1*4+1*2+1*6\\
+7*1+3*1+1*1 &amp; 7*7+3*3+1*1 &amp; 7*4+3*2+1*6\\
+4*1+2*1+6*1 &amp; 4*7+2*3+6*1 &amp; 4*4+2*2+6*6\\
+\end{pmatrix}&amp;=\\
+&amp; &amp; &amp; &amp; \begin{pmatrix}
+3 &amp; 11 &amp; 12\\
+11 &amp; 59 &amp; 40\\
+12 &amp; 40 &amp; 56\\
+\end{pmatrix}
+\end{eqnarray*}
+\]</span></p>
+<p>R can help us with these calculations. the <code>t</code> command will transpose a matrix or vector and the <code>%*%</code> operator will to matrix algebra multiplation.</p>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>)
+X &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">4</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">6</span>))
+X</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    7    4
+## [2,]    1    3    2
+## [3,]    1    1    6</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(X)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    1    1
+## [2,]    7    3    1
+## [3,]    4    2    6</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">X<span class="op">%*%</span>y</code></pre>
+<pre><code>##      [,1]
+## [1,]   51
+## [2,]   25
+## [3,]   27</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(X)<span class="op">%*%</span>X</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    3   11   12
+## [2,]   11   59   40
+## [3,]   12   40   56</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#a shortcut for squaring a matrix</span>
+<span class="kw">crossprod</span>(X)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    3   11   12
+## [2,]   11   59   40
+## [3,]   12   40   56</code></pre>
+<p>We can also calculate the <strong>inverse</strong> of a matrix. The inverse of a matrix (<span class="math inline">\(\mathbf{X}^{-1}\)</span>) is the matrix that when multiplied by the original matrix produces the <strong>identity</strong> matrix which is just a matrix of ones along the diagonal cells and zeroes elsewhere. Anything multiplied by the identity matrix is just itself, so the identity matrix is like 1 at the matrix algebra level. Calculating an inverse is a difficult calculation that I won’t go through here, but R can do it for us easily with the <code>solve</code> command:</p>
+<pre class="sourceCode r"><code class="sourceCode r">inverse.X &lt;-<span class="st"> </span><span class="kw">solve</span>(X)
+inverse.X</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,] -0.8  1.9 -0.1
+## [2,]  0.2 -0.1 -0.1
+## [3,]  0.1 -0.3  0.2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(inverse.X <span class="op">%*%</span><span class="st"> </span>X,<span class="dv">0</span>)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]    0    1    0
+## [3,]    0    0    1</code></pre>
+</div>
+<div id="linear-model-in-matrix-form" class="section level4">
+<h4>Linear model in matrix form</h4>
+<p>We now have enough matrix algebra under our belt that we can re-specify the linear model equation in matrix algebra format:</p>
+<p><span class="math display">\[\mathbf{y}=\mathbf{X\beta+\epsilon}\]</span></p>
+<p><span class="math inline">\(\begin{gather*} \mathbf{y}=\begin{pmatrix} y_{1}\\ y_{2}\\ \vdots\\ y_{n}\\ \end{pmatrix} \end{gather*}\)</span>,
+<span class="math inline">\(\begin{gather*} \mathbf{X}= \begin{pmatrix} 1 &amp; x_{11} &amp; x_{12} &amp; \ldots &amp; x_{1p}\\ 1 &amp; x_{21} &amp; x_{22} &amp; \ldots &amp; x_{2p}\\ \vdots &amp; \vdots &amp; \ldots &amp; \vdots\\ 1 &amp; x_{n1} &amp; x_{n2} &amp; \ldots &amp; x_{np}\\ \end{pmatrix} \end{gather*}\)</span>,
+<span class="math inline">\(\begin{gather*} \mathbf{\epsilon}=\begin{pmatrix} \epsilon_{1}\\ \epsilon_{2}\\ \vdots\\ \epsilon_{n}\\ \end{pmatrix} \end{gather*}\)</span>,
+<span class="math inline">\(\begin{gather*} \mathbf{\beta}=\begin{pmatrix} \beta_{1}\\ \beta_{2}\\ \vdots\\ \beta_{p}\\ \end{pmatrix} \end{gather*}\)</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{y}\)</span> is a vector of known values of the independent variable of length <span class="math inline">\(n\)</span>.</li>
+<li><span class="math inline">\(\mathbf{X}\)</span> is a matrix of known values of the independent variables of dimensions <span class="math inline">\(n\)</span> by <span class="math inline">\(p+1\)</span>. This matrix is sometimes referred to as the <strong>design matrix</strong>.</li>
+<li><span class="math inline">\(\mathbf{\beta}\)</span> is a vector of to-be-estimated values of intercepts and slopes of length <span class="math inline">\(p+1\)</span>.</li>
+<li><span class="math inline">\(\mathbf{\epsilon}\)</span> is a vector of residuals of length <span class="math inline">\(n\)</span> that will be equal to <span class="math inline">\(\mathbf{y-X\beta}\)</span>.</li>
+</ul>
+<p>Note that we only know <span class="math inline">\(\mathbf{y}\)</span> and <span class="math inline">\(\mathbf{X}\)</span>. We need to estimate a <span class="math inline">\(\mathbf{\beta}\)</span> vector from these known quantities. Once we know the <span class="math inline">\(\mathbf{\beta}\)</span> vector, we can calculate <span class="math inline">\(\mathbf{\epsilon}\)</span> by just taking <span class="math inline">\(\mathbf{y-X\beta}\)</span>.</p>
+<p>We want to esimate <span class="math inline">\(\mathbf{\beta}\)</span> in order to minimize the sum of squared residuals. We can represent this sum of squared residuals in matrix algebra format as a function of <span class="math inline">\(\mathbf{\beta}\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+SSR(\beta)&amp;=&amp;(\mathbf{y}-\mathbf{X\beta})&#39;(\mathbf{y}-\mathbf{X\beta})\\
+&amp;=&amp;\mathbf{y}&#39;\mathbf{y}-2\mathbf{y}&#39;\mathbf{X\beta}+\mathbf{\beta}&#39;\mathbf{X&#39;X\beta}
+\end{align*}\]</span></p>
+<p>If you remember the old FOIL technique from high school algebra (first, outside, inside, last) that is exactly what we are doing here, in matrix algebra form.</p>
+<p>We now have a function that defines our sum of squared residuals. We want to choose the values of <span class="math inline">\(\mathbf{\beta}\)</span> that minimize the value of this function. In order to do that, I need to introduce a teensy bit of calculus. To find the minimum (or maximum) value of a function, you calculate the derivative of the function with respect to the variable you care about and then solve for zero. Technically, you also need to calculate second derivatives in order to determine if its a minimum or maximum, but since this function has no maximum value, we know that the result has to be a minimum. I don’t expect you to learn calculus for this course, so I will just mathemagically tell you that the derivative of <span class="math inline">\(SSR(\beta)\)</span> with respect to <span class="math inline">\(\mathbf{\beta}\)</span> is given by:</p>
+<p><span class="math display">\[-2\mathbf{X&#39;y}+2\mathbf{X&#39;X\beta}\]</span></p>
+<p>We can now set this to zero and solve for <span class="math inline">\(\mathbf{\beta}\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+0&amp;=&amp;-2\mathbf{X&#39;y}+2\mathbf{X&#39;X\beta}\\
+-2\mathbf{X&#39;X\beta}&amp;=&amp;-2\mathbf{X&#39;y}\\
+(\mathbf{X&#39;X})^{-1}\mathbf{X&#39;X\beta}&amp;=&amp;(\mathbf{X&#39;X})^{-1}\mathbf{X&#39;y}\\
+\mathbf{\beta}&amp;=&amp;(\mathbf{X&#39;X})^{-1}\mathbf{X&#39;y}\\
+\end{align*}\]</span></p>
+<p>Ta-dah! We have arrived at the matrix algebra solution for the best fitting parameters for a linear model with any number of independent variables. Lets try this formula out in R:</p>
+<pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(movies)), movies[,<span class="kw">c</span>(<span class="st">&quot;Runtime&quot;</span>,<span class="st">&quot;BoxOffice&quot;</span>)]))
+<span class="kw">head</span>(X)</code></pre>
+<pre><code>##     rep(1, nrow(movies)) Runtime BoxOffice
+## 164                    1     118      47.1
+## 165                    1     104       3.9
+## 166                    1     122      30.7
+## 167                    1     111      11.4
+## 168                    1     123      39.9
+## 169                    1     116      32.4</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span>movies<span class="op">$</span>TomatoMeter 
+beta &lt;-<span class="st"> </span><span class="kw">solve</span>(<span class="kw">crossprod</span>(X))<span class="op">%*%</span><span class="kw">crossprod</span>(X,y) 
+beta</code></pre>
+<pre><code>##                             [,1]
+## rep(1, nrow(movies)) 11.09207358
+## Runtime               0.32320152
+## BoxOffice             0.05923506</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Runtime<span class="op">+</span>BoxOffice, <span class="dt">data=</span>movies)
+<span class="kw">coef</span>(model)</code></pre>
+<pre><code>## (Intercept)     Runtime   BoxOffice 
+## 11.09207358  0.32320152  0.05923506</code></pre>
+<p>It works!</p>
+<p>We can also estimate standard errors using this matrix algebra format. To get the standard errors, we first need to calculate the <strong>covariance matrix</strong>.</p>
+<p><span class="math display">\[\sigma^{2}(\mathbf{X&#39;X})^{-1}\]</span></p>
+<p>The <span class="math inline">\(\sigma^2\)</span> here is the variance of our residuals. Technically, this is the variance of the residuals in the population but since we usually only have a sample we actually calculate:</p>
+<p><span class="math display">\[s^2=\frac{\sum(y_i-\hat{y}_i)^2}{n-p-1}\]</span></p>
+<p>based on the fitted values of <span class="math inline">\(\hat{y}_i\)</span> from our linear model. <span class="math inline">\(p\)</span> is the number of independent variables in our model.</p>
+<p>The covariance matrix actually provides us with some interesting information about the correlation of our independent variables. For our purposes we just want the square root of the diagonal elements, which gives us the standard error for our model. Continuing with the example estimating tomato meter ratings by run time and box office returns in our movies dataset, lets calculate all the numbers we need for an inference test:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#get the predicted values of y</span>
+y.hat &lt;-<span class="st"> </span>X<span class="op">%*%</span>beta 
+df &lt;-<span class="st"> </span><span class="kw">length</span>(y)<span class="op">-</span><span class="kw">ncol</span>(X) 
+<span class="co">#calculate our sample variance of the residual terms</span>
+s.sq &lt;-<span class="st"> </span><span class="kw">sum</span>((y<span class="op">-</span>y.hat)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>df 
+<span class="co">#calculate the covariance matrix</span>
+covar.matrix &lt;-<span class="st"> </span>s.sq<span class="op">*</span><span class="kw">solve</span>(<span class="kw">crossprod</span>(X)) 
+<span class="co">#extract SEs from the square root of the diagonal</span>
+se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">diag</span>(covar.matrix)) 
+<span class="co">## calculate t-stats from our betas and SEs</span>
+t.stat &lt;-<span class="st"> </span>beta<span class="op">/</span>se 
+<span class="co">#calculate p-values from the t-stat</span>
+p.value &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="kw">abs</span>(t.stat), df) 
+<span class="kw">data.frame</span>(beta,se,t.stat,p.value)</code></pre>
+<pre><code>##                             beta          se    t.stat      p.value
+## rep(1, nrow(movies)) 11.09207358 3.269128357  3.392976 7.019316e-04
+## Runtime               0.32320152 0.031734307 10.184609 6.617535e-24
+## BoxOffice             0.05923506 0.007978845  7.424014 1.540215e-13</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#compare to the lm command</span>
+<span class="kw">summary</span>(model)<span class="op">$</span>coef</code></pre>
+<pre><code>##                Estimate  Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 11.09207358 3.269128357  3.392976 7.019316e-04
+## Runtime      0.32320152 0.031734307 10.184609 6.617535e-24
+## BoxOffice    0.05923506 0.007978845  7.424014 1.540215e-13</code></pre>
+<p>And it all works. As I said at the beginning, this is a lot of math and not something you need to think about every day. I am not expecting all of this will stick the first time around, but I want it to be here for you as a handy reference for the future.</p>
+</div>
+</div>
+<div id="linear-model-assumptions" class="section level3">
+<h3>Linear model assumptions</h3>
+<p>Two important assumptions underlie the linear model. The first assumption is the assumption of <strong>linearity</strong>. In short, we assume that the the relationship between the dependent and independent variables is best described by a linear function. In prior chapters, we have seen examples where this assumption of linearity was clearly violated. When we choose the wrong model for the given relationship, we have made a <em>specification error</em>. Fitting a linear model to a non-linear relationship is one of the most common forms of specification error. However, this assumption is not as deadly as it sounds. Provided that we correctly diagnose the problem, there are a variety of tools that we can use to fit a non-linear relationship within the linear model framework. We will cover this techniques in the next section.</p>
+<p>The second assumption of linear models is that the residual or error terms <span class="math inline">\(\epsilon_i\)</span> are <strong>independent</strong> of one another and <strong>identically distributed</strong>. This is often called the <strong>i.i.d. assumption</strong>, for short. This assumption is a little more subtle. In order to understand, we need to return to this equation from earlier:</p>
+<p><span class="math display">\[y_i=\hat{y}_i+\epsilon_i\]</span></p>
+<p>One way to think about what is going on here is that in order to get an actual value of <span class="math inline">\(y_i\)</span> you feed in all of the independent variables into your linear model equation to get <span class="math inline">\(\hat{y}_i\)</span> and then you reach into some distribution of numbers (or a bag of numbers if you need something more concrete to visualize) to pull out a random value of <span class="math inline">\(\epsilon_i\)</span> which you add to the end of your predicted value to get the actual value. When we think about the equation this way, we are thinking about it as a <strong>data generating process</strong> in which we get <span class="math inline">\(y_i\)</span> values from completing the equation on the right.</p>
+<p>The i.i.d. assumption comes into play when we reach into that distribution (or bag) to draw out our random values. <strong>Independence</strong> assumes that what we drew previously won’t affect what we draw in the future. The most common violation of this assumption is in time series data in which peaks and valleys in the time series tend to come clustered in time, so that when you have a high (or low) error in one year, you are likely to have a similar error in the next year. <strong>Identically distributed</strong> means that you are drawn from the same distribution (or bag) each time you make a draw. One of the most common violation of this assumption is when error terms tend to get larger in absolute size as the predicted value grows in size.</p>
+<p>In later sections of this chapter, we will cover the i.i.d. assumption in more detail including the consequences of violating it, diagnostics for detecting it, and some corrections for when it does occur.</p>
 <hr />
+</div>
 </div>
             </section>
 
