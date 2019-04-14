@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-04-01">
+<meta name="date" content="2019-04-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -234,13 +234,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#the-natural-log-transformation"><i class="fa fa-check"></i>The natural log transformation</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#log-transformations-allow-us-to-estimate-multiplicative-models"><i class="fa fa-check"></i>Log-transformations allow us to estimate multiplicative models</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#general-form-and-interpretation"><i class="fa fa-check"></i>General form and interpretation</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#logging-the-independent-variable"><i class="fa fa-check"></i>Logging the independent variable</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#logging-both-independent-and-dependent-variables-the-elasticity-model"><i class="fa fa-check"></i>Logging both independent and dependent variables: The elasticity model</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#the-square-root-transformation"><i class="fa fa-check"></i>The square root transformation</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#other-methods-to-deal-with-non-linearity"><i class="fa fa-check"></i>Other methods to deal with non-linearity</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#residual-plots"><i class="fa fa-check"></i>Residual Plots</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#transformations"><i class="fa fa-check"></i>Transformations</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
 <li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
@@ -303,20 +301,282 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="modeling-non-linearity" class="section level2">
 <h2>Modeling Non-Linearity</h2>
-<p>You <strong>transform</strong> your data when you apply a mathematical function to a variable to transform its values into different values. There are a variety of different transformations that are commonly used in statistics, but for this class we will focus on the one transformation that is most common in the social sciences: the log transformation.</p>
-<p>Why would you want to transform your data? There are two important potential benefits that transformations can provide. First, a transformation can often resolve the problem of non-linear relationships. If the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is non-linear, then by transforming one or both variables, you may be able to recover a linear relationship. Second, transformation can reduce skewness in a variable and will pull in extreme outliers so that they are less influential. For these reasons, transformations can be useful in regression models. However, it is important to also remember that a transformation changes the way in which x and y relate to one another and thus requires us to adjust our interpretation of results.</p>
-<div id="the-natural-log-transformation" class="section level3">
-<h3>The natural log transformation</h3>
-<p>When I talk about the “log” transformation, I am talking about what you probably learned as the “natural log” transformation. This transformation is given to you by the “ln” button on your calculator. For our purposes, this is the only “log” we care about. Just remember that in Eugene, we go natural.</p>
-<p>Any positive number can be logged. For example, I can calculate the log of the number 7:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">7</span>)</code></pre>
-<pre><code>## [1] 1.94591</code></pre>
-<p>OK, the natural log of 7 is 1.9459101. But what does that mean? The natural log of a number is defined as the value you would have to raise the constant <span class="math inline">\(e\)</span> (2.718282) to in order to get back the original number. To raise <span class="math inline">\(e\)</span> by some number, you can use the <code>exp</code> function in R (“exp” for “exponential”):</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">log</span>(<span class="dv">7</span>))</code></pre>
-<pre><code>## [1] 7</code></pre>
-<p>Ta-da! If I raise <span class="math inline">\(e\)</span> to the log of 7, I get back 7. The number <span class="math inline">\(e\)</span> is a very special number like <span class="math inline">\(\pi\)</span> having to do with what happens when you compound interest continually over time, but none of that matters for our purposes. For our purposes, what matters is that by logging a number you can make a multiplicative relationship into an additive relationship. This is because of a basic mathematical relationship where:</p>
+<p>By definition, a linear model is only appropriate if the underlying relationship being modeled can accurately be described as linear. To begin, lets revisit a very clear example of non-linearity introduced in an earlier chapter. The example is the relationship between GDP per capita in a country and that country’s life expectancy. We use data from Gapminder to show this relationship with 2007 data.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gapminder)
+<span class="kw">library</span>(ggrepel)
+<span class="kw">ggplot</span>(<span class="kw">subset</span>(gapminder, year<span class="op">==</span><span class="dv">2007</span>), <span class="kw">aes</span>(<span class="dt">x=</span>gdpPercap, <span class="dt">y=</span>lifeExp))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data=</span><span class="kw">subset</span>(gapminder, year<span class="op">==</span><span class="dv">2007</span> <span class="op">&amp;</span><span class="st"> </span>gdpPercap<span class="op">&gt;</span><span class="dv">5000</span> <span class="op">&amp;</span><span class="st"> </span>lifeExp<span class="op">&lt;</span><span class="dv">60</span>), 
+                  <span class="kw">aes</span>(<span class="dt">label=</span>country), <span class="dt">size=</span><span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;GDP per capita&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Life expectancy at birth&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;2007 data from Gapminder&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:life-exp-non-linear"></span>
+<img src="stat_book_files/figure-html/life-exp-non-linear-1.png" alt="The scatterplot of life expectancy and GDP per capita from 2007 shows a clear non-linear diminishing returns relationship" width="672" />
+<p class="caption">
+Figure 10: The scatterplot of life expectancy and GDP per capita from 2007 shows a clear non-linear diminishing returns relationship
+</p>
+</div>
+<p>Figure <a href="modeling-non-linearity.html#fig:life-exp-non-linear">10</a> shows a scatterplot of this relationship. The relationship is so strong that its non-linearity is readily apparent. Although GDP per capita is positively related to life expectancy, the strength of this relationship diminishes substantial at higher levels of GDP. This is a particular form of non-linearity that is often called a “diminishing returns” relationship. The greater the level of GDP already, the less return you get on life expectancy for an additional dollar.</p>
+<p>Figure <a href="modeling-non-linearity.html#fig:life-exp-non-linear">10</a> also shows the best fitting line for this scatterplot in blue. This line is added with the <code>geom_smooth(method="lm")</code> argument in <code>ggplot</code>. We can see that this line does not represent the relationship very well. How could it really, given that the underlying relationship clearly curves in a way that a straight line cannot? Even more problematic, the linear fit will produce systematic patterns in the error terms for the linear model. for countries in the middle range of GDP per capita, the line will consistently underestimate life expectancy. At the low and high ends of GDP per capita, the line will consistently overestimate life expectancy. This identifiable pattern in the residuals is an important consequence of fitting a non-linear relationship with a linear model and is in fact one of the ways we will learn to diagnose non-linearity below.</p>
+<p>Non-linearity is not always this obvious. One of the reasons that it is so clear in Figure @(fig:life-exp-non-linear) is that the relationship between GDP per capita and life expectancy is so strong. When the relationship is weaker, then points tend to be more dispersed and non-linearity might not be so easily diagnosed from the scatterplot. Figure <a href="modeling-non-linearity.html#fig:non-linear-movies">11</a> and Figure <a href="modeling-non-linearity.html#fig:non-linear-wages">12</a> show two examples that are a bit more difficult to diagnose.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>TomatoRating, <span class="dt">y=</span>BoxOffice))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Rotten Tomatoes Rating&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Box Office Returns (millions)&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:non-linear-movies"></span>
+<img src="stat_book_files/figure-html/non-linear-movies-1.png" alt="Is this scatterplot of tomato rating by box office returns non-linear?" width="672" />
+<p class="caption">
+Figure 11: Is this scatterplot of tomato rating by box office returns non-linear?
+</p>
+</div>
+<p>Figure <a href="modeling-non-linearity.html#fig:non-linear-movies">11</a> shows a scatterplot of the relationship between tomato rating and box office returns in the movies dataset. I have already made a few additions to this plot to help with the visual display. The tomato rating only comes rounded to the first decimal place, so I use <code>geom_jitter</code> rather than <code>geom_point</code> to perturb the points slightly and reduce overplotting. I also use <code>alpha=0.2</code> to set the planets as semi-transparent. This is also helps with identifying areas of the scatterplot that are dense with points because they turn darker.</p>
+<p>The linearity of this plot is hard to determine. This is partially because of the heavy right-skew of the box office returns. Many of the points are densely packed along the x-axis because the scale of the y-axis is so large to deal with outliers. Nonetheless, visually it appears there might be some evidence of an increasing slope as tomato rating gets higher - this is an exponential relationship which is the inverse of the diminishing returns relationship we saw earlier. Still, its hard to know if we are really seeing it or not with the data in this form.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.01</span>, <span class="dt">width=</span><span class="dv">1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wages&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:non-linear-wages"></span>
+<img src="stat_book_files/figure-html/non-linear-wages-1.png" alt="Is the relationship between age and hourly wage non-linear?" width="672" />
+<p class="caption">
+Figure 12: Is the relationship between age and hourly wage non-linear?
+</p>
+</div>
+<p>Figure <a href="modeling-non-linearity.html#fig:non-linear-wages">12</a> shows the relationship between a respondent’s age and their hourly wages from the earnings data. There are so many observations here that I reduce <code>alpha</code> all the way to 0.01 to address overplotting. We also have a problem of a right-skewed dependent variable here. Nonetheless, you can make out a fairly clear dark band across the plot that seems to show a positive relationship. It also appears that this relationship may be of a diminishing returns type with a lower return to age after age 30 or so. However, with the wide dispersion of the data, it is difficult to feel very confident about the results.</p>
+<p>The kind of uncertainty inherent in Figures <a href="modeling-non-linearity.html#fig:non-linear-movies">11</a> and <a href="modeling-non-linearity.html#fig:non-linear-wages">12</a> is far more common in practice than the clarity in Figure <a href="modeling-non-linearity.html#fig:life-exp-non-linear">10</a>. Scatterplots can be a first step to detecting non-linearity, but usually we need some additional diagnostics. In the next two sections, I will cover two diagnostic approaches to identifying non-linearity: smoothing and residual plots.</p>
+<div id="smoothing" class="section level3">
+<h3>Smoothing</h3>
+<p>Smoothing is a technique for estimating the relationship in a scatterplot without the assumption that this relationship be linear. In order to understand what smoothing does, it will be first helpful to draw a non-smoothed line between all the points in a scatterplot, starting with the smallest value of the independent variable to the largest value. I do that in Figure <a href="modeling-non-linearity.html#fig:connect-dots">13</a>. As you can see this produces a very jagged line that does not give us much sense of the relationship because it bounces around so much.</p>
+<pre class="sourceCode r"><code class="sourceCode r">movies &lt;-<span class="st"> </span>movies[<span class="kw">order</span>(movies<span class="op">$</span>TomatoRating),]
+<span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>TomatoRating, <span class="dt">y=</span>BoxOffice))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.05</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Rotten Tomatoes Rating&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Box Office Returns (millions)&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:connect-dots"></span>
+<img src="stat_book_files/figure-html/connect-dots-1.png" alt="Connecting the dots in our scatterplot leads to a very jagged line" width="672" />
+<p class="caption">
+Figure 13: Connecting the dots in our scatterplot leads to a very jagged line
+</p>
+</div>
+<p>The basic idea of smoothing is to smooth out that jagged line. This is done by replacing each actual value of <span class="math inline">\(y\)</span> with a predicted value <span class="math inline">\(\hat{y}\)</span> that is determined by that point and its nearby neighbors. The simplest kind of smoother is often called a “running average.” In this type of smoother, you simply take <span class="math inline">\(k\)</span> observations above and below the given point and calculate the mean or median. For example, lets say we wanted to smooth the box office return value for the movie <em>Rush Hour 3</em>. We want to do this by reaching out to the two neighbors above and below this movie in terms of the tomato rating. After sorting movies by tomato rating, here are the values for <em>Rush Hour 3</em> and the two movies closest to it:</p>
+<table style="width:60%;">
+<colgroup>
+<col width="22%" />
+<col width="20%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Title</th>
+<th align="center">TomatoRating</th>
+<th align="center">BoxOffice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Awake</td>
+<td align="center">4.2</td>
+<td align="center">14.3</td>
+</tr>
+<tr class="even">
+<td align="center">Ghost Rider</td>
+<td align="center">4.2</td>
+<td align="center">115.8</td>
+</tr>
+<tr class="odd">
+<td align="center">Rush Hour 3</td>
+<td align="center">4.2</td>
+<td align="center">140.1</td>
+</tr>
+<tr class="even">
+<td align="center">Balls of Fury</td>
+<td align="center">4.2</td>
+<td align="center">32.8</td>
+</tr>
+<tr class="odd">
+<td align="center">Nobel Son</td>
+<td align="center">4.2</td>
+<td align="center">0.3</td>
+</tr>
+</tbody>
+</table>
+<p>To smooth the value for Rush Hour 3, we can take either the median or the mean of the box office returns for these five values:</p>
+<pre class="sourceCode r"><code class="sourceCode r">box_office &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">14.3</span>, <span class="fl">115.8</span>, <span class="fl">140.1</span>, <span class="fl">32.8</span>, <span class="fl">0.3</span>)
+<span class="kw">mean</span>(box_office)</code></pre>
+<pre><code>## [1] 60.66</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(box_office)</code></pre>
+<pre><code>## [1] 32.8</code></pre>
+<p>The mean smoother would give us a value of $60.66 million and the median smoother a value of $32.8 million. In either case, the value for <em>Rush Hour 3</em> is pulled far away from its outlier position at $140.1 million, thus smoothing the display.</p>
+<p>To get a smoothed line, we need to repeat this process for every point in the dataset. The <code>runmed</code> command will do this for us once we have the data sorted correctly by the independent variable. Figure <a href="modeling-non-linearity.html#fig:median-smoothing">14</a> shows two different smoothed lines applied to the movie scatterplot, with different windows.</p>
+<pre class="sourceCode r"><code class="sourceCode r">movies<span class="op">$</span>BoxOffice.smooth1 &lt;-<span class="st"> </span><span class="kw">runmed</span>(movies<span class="op">$</span>BoxOffice, <span class="dv">5</span>)
+movies<span class="op">$</span>BoxOffice.smooth2 &lt;-<span class="st"> </span><span class="kw">runmed</span>(movies<span class="op">$</span>BoxOffice, <span class="dv">501</span>)
+<span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>TomatoRating, <span class="dt">y=</span>BoxOffice))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>BoxOffice.smooth1), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>BoxOffice.smooth2), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Rotten Tomatoes Rating&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Box Office Returns (millions)&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:median-smoothing"></span>
+<img src="stat_book_files/figure-html/median-smoothing-1.png" alt="Two different median smoothers are shown. The one in blue uses a window of two neighbors to each side while the one one in red uses a window of 250 neighbors on each side." width="672" />
+<p class="caption">
+Figure 14: Two different median smoothers are shown. The one in blue uses a window of two neighbors to each side while the one one in red uses a window of 250 neighbors on each side.
+</p>
+</div>
+<p>It is clear here that using two neighbors on each side is not sufficient in a dataset of this size. With 250 neighbors on each side, we get something much smoother, but it also reveals a sharp uptick at the high end of the dataset, which suggests some possible non-linearity.</p>
+<p>A more sophisticated smoothing procedure is available via the LOESS (locally estimated scatterplot smoothing) smoother. The LOESS smoother uses a regression model with polynomial terms (discussed below) on a local subset of the data to estimate a predicted value for each observation. The regression model also typically weights values so that observations closer to the index observation count more in the estimation. This technique tends to produce better results than median or mean smoothing.</p>
+<p>You can easily fit a LOESS smoother to a scatterplot in <code>ggplot</code> by specifying <code>method="loess"</code> in the <code>geom_smooth</code> function. In fact, this is the default method for <code>geom_smooth</code> for datasets smaller than a thousand observations. Figure <a href="modeling-non-linearity.html#fig:smooth-movies">15</a> plots this LOESS smoother as well as a linear fit for comparison.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>TomatoRating, <span class="dt">y=</span>BoxOffice))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">method=</span><span class="st">&quot;loess&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Rotten Tomatoes Rating&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Box Office Returns (millions)&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:smooth-movies"></span>
+<img src="stat_book_files/figure-html/smooth-movies-1.png" alt="A LOESS smoother to the data is shown in blue while a linear fit is shown in red." width="672" />
+<p class="caption">
+Figure 15: A LOESS smoother to the data is shown in blue while a linear fit is shown in red.
+</p>
+</div>
+<p>Again we see the exponential relationship in the LOESS smoother. The LOESS smoother is also much smoother than the median smoothers we calculated before.</p>
+<p>By default the LOESS smoother in <code>geom_smooth</code> will use 75% of the full data in its subset for calculating the smoothed value of each point. This may seem like a lot, but remember that it weights values closer to the index point. You can adjust this percentage using the <code>span</code> argument in <code>geom_smooth</code>.</p>
+<p>SHINY APP</p>
+<p>The main disadvantage of the LOESS smoother is that it becomes computationally inefficient as the number of observations increases. If I were to apply the LOESS smoother to the 145,647 observations in the earnings data, it would kill R before producing a result. For larger dataset, another option for smoothing is the general additive model (GAM). This model is complex and I won’t go into the details here, but it provides the same kinds of smoothing as LOESS but is much less computationally expensive. GAM smoothing is the default in <code>geom_smooth</code> for datasets larger than a thousand observations, so you do not need to include a method. Figure <a href="modeling-non-linearity.html#fig:smooth-wages">16</a> shows A GAM smoother applied to the relationship between wages and age. The non-linear diminishing returns relationship is clearly visible in the data.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.01</span>, <span class="dt">width=</span><span class="dv">1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wages&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:smooth-wages"></span>
+<img src="stat_book_files/figure-html/smooth-wages-1.png" alt="A GAM smoother (shown in blue) applied to the relationship between age and wages in the earnings data. A linear fit is shown in red." width="672" />
+<p class="caption">
+Figure 16: A GAM smoother (shown in blue) applied to the relationship between age and wages in the earnings data. A linear fit is shown in red.
+</p>
+</div>
+</div>
+<div id="residual-plots" class="section level3">
+<h3>Residual Plots</h3>
+<p>Another technique for detecting non-linearity is the to plot the fitted values of a model by the residuals. To demonstrate how this works, lets first calculate a model predicting life expectancy by GDP per capita from the gapminder data earlier.</p>
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(lifeExp<span class="op">~</span>gdpPercap, <span class="dt">data=</span><span class="kw">subset</span>(gapminder, year<span class="op">==</span><span class="dv">2007</span>))</code></pre>
+<p>If you type <code>plot(model)</code>, you will get a series of model diagnostic plots in base R. The first of these plots is the residual vs. fitted values plot. We are going to make the same plot, but in <code>ggplot</code>. In order to do that, I need to introduce a new package called <code>broom</code> that has some nice features for summarizing results from your model. It is part of the Tidyverse set of packages. To install it type <code>install.packages("broom")</code>. You can then load it with <code>library(broom)</code>. The broom package has only three commands:</p>
+<ul>
+<li><code>tidy</code> which shows the key results from the model including coefficients, standard errors and the like.</li>
+<li><code>augment</code> which adds a variety of diagnostic information to the original data used to calculate the model. This includes residuals, cooks distance, fitted values, etc.</li>
+<li><code>glance</code> which gives a summary of model level goodness of fit statistics.</li>
+</ul>
+<p>At the moment, we want to use <code>augment</code>. Here is what the it looks like:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
+<span class="kw">augment</span>(model)</code></pre>
+<pre><code>## # A tibble: 142 x 9
+##    lifeExp gdpPercap .fitted .se.fit  .resid    .hat .sigma .cooksd
+##  *   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1    43.8      975.    60.2   0.973 -16.4   0.0120    8.82 2.07e-2
+##  2    76.4     5937.    63.3   0.818  13.1   0.00846   8.86 9.28e-3
+##  3    72.3     6223.    63.5   0.812   8.77  0.00832   8.90 4.11e-3
+##  4    42.7     4797.    62.6   0.848 -19.9   0.00907   8.77 2.31e-2
+##  5    75.3    12779.    67.7   0.750   7.61  0.00709   8.91 2.63e-3
+##  6    81.2    34435.    81.5   1.52   -0.271 0.0292    8.93 1.44e-5
+##  7    79.8    36126.    82.6   1.61   -2.75  0.0327    8.93 1.67e-3
+##  8    75.6    29796.    78.5   1.29   -2.91  0.0211    8.93 1.18e-3
+##  9    64.1     1391.    60.5   0.958   3.61  0.0116    8.93 9.75e-4
+## 10    79.4    33693.    81.0   1.48   -1.59  0.0278    8.93 4.71e-4
+## # ... with 132 more rows, and 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
+<p>We can use the dataset returned here to build a plot of the fitted values (<code>.fitted</code>) by the residuals (<code>.resid</code>) like this:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">augment</span>(model), <span class="kw">aes</span>(<span class="dt">x=</span>.fitted, <span class="dt">y=</span>.resid))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;fitted values of life expectancy&quot;</span>, <span class="dt">y=</span><span class="st">&quot;model residuals&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:resid-fitted"></span>
+<img src="stat_book_files/figure-html/resid-fitted-1.png" alt="A residual vs. fitted values plot for a model predicting life expectancy by GDP per capita. Their is a clear trend here whigh signifies non-linearity." width="672" />
+<p class="caption">
+Figure 17: A residual vs. fitted values plot for a model predicting life expectancy by GDP per capita. Their is a clear trend here whigh signifies non-linearity.
+</p>
+</div>
+<p>If a linear model fitted the data well, then we would expect to see no evidence of a pattern in the scatterplot of <a href="modeling-non-linearity.html#fig:resid-fitted">17</a>. We should just see a cloud of points centered around the value of zero. The smoothing line helps us see patterns, but in this case the non-linearity is so strong that we would be able to detect it even without the smoothing. This clear pattern indicates that we non-linearity in our model and we should probably reconsider our approach.</p>
+<p>Figures <a href="modeling-non-linearity.html#fig:resid-fitted-movies">18</a> and <a href="modeling-non-linearity.html#fig:resid-fitted-wages">19</a> show residual vs fitted value plots for the two other cases of movie box office returns and wages that we have been examining. In these cases, the patterns are somewhat less apparent without the smoothing. The movie case does not appear particularly problematic although there is some argument for exponential increase at very high values of tomato rating. The results for wages suggest a similar diminishing returns type problem.</p>
+<div class="figure" style="text-align: center"><span id="fig:resid-fitted-movies"></span>
+<img src="stat_book_files/figure-html/resid-fitted-movies-1.png" alt="A residual vs. fitted values plot for a model predicting movie box office returns by tomato rating." width="672" />
+<p class="caption">
+Figure 18: A residual vs. fitted values plot for a model predicting movie box office returns by tomato rating.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:resid-fitted-wages"></span>
+<img src="stat_book_files/figure-html/resid-fitted-wages-1.png" alt="A residual vs. fitted values plot for a model predicting movie box office returns by tomato rating." width="672" />
+<p class="caption">
+Figure 19: A residual vs. fitted values plot for a model predicting movie box office returns by tomato rating.
+</p>
+</div>
+<p>Both of these figures also reveal an additional problem unrelated to non-linearity. Both figures show something of a cone shape to the scatterplot in which the variance of the residuals gets larger at higher fitted values. This is the problem of heteroskedasticity that we will return to in the next section.</p>
+<p>Now that we have diagnosed the problem of non-linearity, what can we do about it? There are several ways that we can make adjustments to our models to allow for non-linearity. The most common technique is to use <strong>transformations</strong> to change the relationship between independent and dependent variables. Another approach is to include <strong>polynomial terms</strong> into the model that can simulate a parabola. A third, less common, option is to create a <em>spline</em> term that allows for non-linearity at specific points. I cover each of these techniques below.</p>
+</div>
+<div id="transformations" class="section level3">
+<h3>Transformations</h3>
+<p>You <strong>transform</strong> your data when you apply a mathematical function to a variable to transform its values into different values. There are a variety of different transformations that are commonly used in statistics, but we will focus on the one transformation that is most common in the social sciences: the log transformation.</p>
+<p>Transformations can directly address issues of non-linearity. By definition if you transform the independent variable, the dependent variable, or both variables in your model, then the linear relationship assumed by the model between the transformed variables. On the original scale of the variables, the relationship is non-linear.</p>
+<p>Transformations can also have additional side benefits besides fitting non-linear relationships. The log transformation, for example, will pull in extreme values and skewness in a distribution, reducing the potential for outliers to exert a strong influence on results. Take Figure <a href="modeling-non-linearity.html#fig:wages-skew">20</a> for example. This figure shows the distribution of hourly wages in the earnings data. This distribution is heavily right-skewed, despite the fact that wages have been top-coded at $100. Any model of wages is likely to be influenced considerably by the relatively small but still numerically substantial number of respondents with high wages.</p>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:wages-skew"></span>
+<img src="stat_book_files/figure-html/wages-skew-1.png" alt="Hourly wages are heavily right skewed even after top-coding the data at a wage of $100." width="672" />
+<p class="caption">
+Figure 20: Hourly wages are heavily right skewed even after top-coding the data at a wage of $100.
+</p>
+</div>
+<p>Lets look at that distribution again, but this time on the log-scale. We will cover in more detail below what the mathematical log means, but for now you can just think of the log-scale as converting from an additive scale to a multiplicative scale. On the absolute scale, we want to have equally spaced intervals on the axes of our graph to represent a constant absolute amount difference. You can see in Figure <a href="modeling-non-linearity.html#fig:wages-skew">20</a> that the tick-marks for wages are at evenly spaced intervals of $25. On the log-scale we want evenly-spaced intervals on the axes of our graph to correspond to multiplicative changes. So on a log base 10 scale, we would want the numbers 1, 10, and 100, to be evenly spaced because each one represents a 10 fold increase multiplicative increase. In <code>ggplot</code>, you can change the axis to a log-scale with the argument <code>scale_x_log10</code>. Figure <a href="modeling-non-linearity.html#fig:wages-skew-log">21</a> shows the same distribution of hourly wages, but this time using the log-scale.</p>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:wages-skew-log"></span>
+<img src="stat_book_files/figure-html/wages-skew-log-1.png" alt="On the log-scale, hourly wages is less skewed, although now we have a slight problem of a left-skew" width="672" />
+<p class="caption">
+Figure 21: On the log-scale, hourly wages is less skewed, although now we have a slight problem of a left-skew
+</p>
+</div>
+<p>You can clearly see in Figure <a href="modeling-non-linearity.html#fig:wages-skew-log">21</a> that we have pulled in the extreme right tail of the distribution and have a somewhat more symmetric distribution. The transformation here hasn’t perfectly solved things, because now we have a slight left-skew for very low hourly wages. Nonetheless, even these values are closer in absolute value after the transformation and so will be less likely to substantially influence our model. This transformation can also help us with the cone-shaped residual issue we saw earlier (i.e. heteroskedasticity), but we will discuss that more in the next section.</p>
+<p>Because transformations can often solve multiple problems at once, they are very popular. In fact, for some common analysis like estimating wages or CO2 emissions, log transformations are virtually universal. The difficult part about transformations is understanding exactly what kind of non-linear relationship you are estimating by transforming and how to interpret the results from models with transformed variables. We will develop this understanding using the natural log transformation on the examples we have been looking at in this section.</p>
+<div id="the-log-transformation" class="section level4">
+<h4>The log transformation</h4>
+<p>Before getting into the mathematical details of the log transformation, lets first demonstrate its power. Figure <a href="modeling-non-linearity.html#fig:log-scale-movies">22</a> shows the relationship between Rotten Tomatoes rating and box office returns in our movies data. However, this time I have applied a log-scale to box office returns. Although we still see some evidence of non-linearity in the LOESS estimator, the relationship looks much more clearly linear than before. But the big question is how do we interpret the slope and intercept for the linear model fit to this log-transformed data?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>TomatoRating, <span class="dt">y=</span>BoxOffice))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">method=</span><span class="st">&quot;loess&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Rotten Tomatoes Rating&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Box Office Returns (millions)&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:log-scale-movies"></span>
+<img src="stat_book_files/figure-html/log-scale-movies-1.png" alt="Scatterplot of the relationship between rotten tomatoes rating and box office returns, with a log-scale applied to box office returns." width="672" />
+<p class="caption">
+Figure 22: Scatterplot of the relationship between rotten tomatoes rating and box office returns, with a log-scale applied to box office returns.
+</p>
+</div>
+<p>In order to understand the model implied by this scatterplot, we need to delve a little more deeply into the math of the log transformation. In general, the log equation means converting some number into the exponential value of some base multiplier. So, if we wanted to know what the log base 10 value of 27 is, we need to know what exponential value applied to 10 would produce 27:</p>
+<p><span class="math display">\[27=10^x\]</span></p>
+<p>We can calculate this number easily in R:</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="dv">27</span>, <span class="dt">base=</span><span class="dv">10</span>)
+x</code></pre>
+<pre><code>## [1] 1.431364</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span><span class="op">^</span>x</code></pre>
+<pre><code>## [1] 27</code></pre>
+<p>Log base 10 and log base 2 are both common values used in teaching log transformations, but the standard base we use in statistics is the mathematical constant <span class="math inline">\(e\)</span> (2.718282). This number is of similar importance in mathematics as <span class="math inline">\(\pi\)</span> and is based on the idea of what happens to compound interest as the period of interest accumulation approaches zero. This has a variety of applications from finance to population growth, but none of this concerns us directly. We are interested in <span class="math inline">\(e\)</span> as a base for our log function because of certain other useful properties discussed further below that ease interpretation.</p>
+<p>When we use <span class="math inline">\(e\)</span> as the base for our log function, then we are using what is often called the “natural log.” We can ask the same question about 27 as before but now with the natural log:</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="dv">27</span>)
+x</code></pre>
+<pre><code>## [1] 3.295837</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(x)</code></pre>
+<pre><code>## [1] 27</code></pre>
+<p>I didn’t have to specify a base here because R defaults to the natural log. The <code>exp</code> function calculates <span class="math inline">\(e^x\)</span>.</p>
+<p>For our purposes, the most important characteristic of the log transformation is that it converts multiplicative relationships into additive relationships.This is because of a basic mathematical relationship where:</p>
 <p><span class="math display">\[e^a*a^b=e^{a+b}\]</span>
-<span class="math display">\[log(x+y) = log(x)+log(y)\]</span>
+<span class="math display">\[log(x*y) = log(x)+log(y)\]</span>
 You can try this out in R to see that it works:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="dv">2</span>)<span class="op">*</span><span class="kw">exp</span>(<span class="dv">3</span>)</code></pre>
 <pre><code>## [1] 148.4132</code></pre>
@@ -326,278 +586,302 @@ You can try this out in R to see that it works:</p>
 <pre><code>## [1] 2.995732</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">5</span>)<span class="op">+</span><span class="kw">log</span>(<span class="dv">4</span>)</code></pre>
 <pre><code>## [1] 2.995732</code></pre>
-<p>This is really all you need to know about the log transformation to understand this section.</p>
-</div>
-<div id="log-transformations-allow-us-to-estimate-multiplicative-models" class="section level3">
-<h3>Log-transformations allow us to estimate multiplicative models</h3>
-<p>Take a look at the histogram of the income variable from our politics dataset.</p>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
-<p>This variable is heavily right skewed, with a few very high earners at the top end of the distribution, and the vast majority of individuals making less than $100,000 per year. The heavy skew makes this distribution is an ideal candidate for the log transformation. Lets go ahead and log-transform it and save our log-transformation as another variable called “lincome.”</p>
-<pre class="sourceCode r"><code class="sourceCode r">politics<span class="op">$</span>lincome =<span class="st"> </span><span class="kw">log</span>(politics<span class="op">$</span>income)</code></pre>
-<p>Now lets look at the distribution of this log-transformed income data:</p>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
-<p>Now we are getting a slight outlier in the opposite direction, but in general the tail ends of our distribution are pulled in considerably. This suggests that we have to worry less about how outliers might affect our results.</p>
-<p>Now lets try putting this log-transformed income variable in as the dependent variable and lets predict it by the age of the respondent.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(lincome<span class="op">~</span>age, <span class="dt">data=</span>politics))<span class="op">$</span>coef</code></pre>
-<pre><code>##                Estimate   Std. Error    t value  Pr(&gt;|t|)
-## (Intercept) 3.810066210 0.0511743028 74.4527234 0.0000000
-## age         0.000503664 0.0009742089  0.5169979 0.6051846</code></pre>
-<p>OK, so what does that mean? It might be tempting to interpret the results here as you normally would. We can see age has a positive effect. So, a one year increase in age is associated with a 0.005 increase in … what? Remember that our dependent variable here is log-income. We could literally say that it is a 0.005 increase in log-income, but that is not a very helpful or intuitive way to think about the result. Similarly the intercept gives us the predicted log-income when age is zero. Thats not helpful for two reasons: its outside the scope of the data, and we don’t really know how to think about a log-income of 3.29.</p>
-<p>In order to translate this into something meaningful, lets try looking at this in our equation format. Here is what we have:</p>
-<p><span class="math display">\[\log(\hat{y}_i)=3.29+0.005*x_i\]</span></p>
-<p>What we really want is to be able to understand this equation back on the original scale of the dependent variable, which in this case is income. Remember that taking <span class="math inline">\(e^{\log(y)}\)</span> just gives us back <span class="math inline">\(y\)</span>. We can use that logic here. If we “exponentiate” (take <span class="math inline">\(e\)</span> to the power of the values) the left-hand side of the equation, then we can get back to <span class="math inline">\(\hat{y}_i\)</span>. However, remember from algebra, that what we do to one side of the equation, we have to do to both sides. That means:</p>
-<p><span class="math display">\[e^{\log(\hat{y}_i)}=e^{3.29+0.005*x_i}\]</span>
-<span class="math display">\[\hat{y}_i=(e^{3.29})*(e^{0.005})^{x_i}\]</span>
-The good news is that we now just have our predicted income on the left-hand side. The bad news is that the right hand side looks a bit complex. Since <span class="math inline">\(e\)</span> is just a number we can go ahead and calculate the values in those parentheses (called “exponentiating”):</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">3.29</span>)</code></pre>
-<pre><code>## [1] 26.84286</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">0.005</span>)</code></pre>
-<pre><code>## [1] 1.005013</code></pre>
+<p>We can use these mathematical relationships to help understand a model with log-transformed variables. First lets calculate the model implied by the scatterplot above. We can just use the <code>log</code> command to directly transform box office returns in the <code>lm</code> formula:</p>
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span>TomatoRating, <span class="dt">data=</span>movies)
+<span class="kw">coef</span>(model)</code></pre>
+<pre><code>##  (Intercept) TomatoRating 
+##    0.9727622    0.2406026</code></pre>
+<p>OK, so what does that mean? It might be tempting to interpret the results here as you normally would. We can see that tomato rating has a positive effect on box office returns. So, a one point increase in tomato rating is associated with a 0.241 increase in … what? Remember that our dependent variable here is now the natural log of box office returns, not box office returns itself. We could literally say that it is a 0.241 increase in log box office returns, but that is not a very helpful or intuitive way to think about the result. Similarly the intercept gives us the predicted log box office returns when tomato rating is zero. That is not helpful for two reasons: its outside the scope of the data, and we don’t really know how to think about a log box office returns of 0.973.</p>
+<p>In order to translate this into something meaningful, lets try looking at this in equation format. Here is what we have:</p>
+<p><span class="math display">\[\hat{\log(y_i)}=0.973+0.241*x_i\]</span></p>
+<p>What we really want is to be able to understand this equation back on the original scale of the dependent variable, which in this case is box office returns in millions of dollars. Keep in mind that taking <span class="math inline">\(e^{\log(y)}\)</span> just gives us back <span class="math inline">\(y\)</span>. We can use that logic here. If we “exponentiate” (take <span class="math inline">\(e\)</span> to the power of the values) the left-hand side of the equation, then we can get back to <span class="math inline">\(\hat{y}_i\)</span>. However, remember from algebra, that what we do to one side of the equation, we have to do to both sides. That means:</p>
+<p><span class="math display">\[e^{\hat{\log(y_i)}}=e^{0.973+0.241*x_i}\]</span>
+<span class="math display">\[\hat{y}_i=(e^{0.971})*(e^{0.241})^{x_i}\]</span>
+We now have quite a different looking equation for predicting box office returns. The good news is that we now just have our predicted box office returns back on the left-hand side of the equation. The bad news is that the right hand side looks a bit complex. Since <span class="math inline">\(e\)</span> is just a constant value, we can go ahead and calculate the values in those parentheses (called “exponentiating”):</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">0.971</span>)</code></pre>
+<pre><code>## [1] 2.640584</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">0.241</span>)</code></pre>
+<pre><code>## [1] 1.272521</code></pre>
 <p>That means:</p>
-<p><span class="math display">\[\hat{y}_i=(26.8)*(1.005)^{x_i}\]</span>
-What we have here is a <strong>multiplicative</strong> relationship rather than an additive relationship. How does this changes things? Well, to see lets plug in some values for <span class="math inline">\(x_i\)</span> and see how it changes our predicted income value. An age of zero is outside the scope of our data, but lets plug it in for instructional purposes anyway:</p>
-<p><span class="math display">\[\hat{y}_i=(26.8)*(1.005)^{0}=(26.8)(1)=26.8\]</span>
-So, the predicted income when <span class="math inline">\(x\)</span> is zero is just given by exponentiating the intercept. Lets try increasing age by one year:</p>
-<p><span class="math display">\[\hat{y}_i=(26.8)*(1.005)^{1}=(26.8)(1.005)\]</span>
-I could go ahead and finish that multiplication, but I want to leave it here to better show the change. A one year increase increases income by a <strong>multiplicative</strong> factor of 1.005. In other words, a one year increase in age is associated with a 0.5% increase in income, on average. What happens if I add another year?</p>
-<p><span class="math display">\[\hat{y}_i=(26.8)*(1.005)^{2}=(26.8)(1.005)(1.005)\]</span>
-Each additional year leads to a 0.5% increase in predicted income. This is what I mean by a multiplicative increase. We are no longer talking about the predicted change in income in terms of <strong>absolute</strong> numbers of dollars, but rather in <strong>relative</strong> terms of percentage increase.</p>
-</div>
-<div id="general-form-and-interpretation" class="section level3">
-<h3>General form and interpretation</h3>
-<p>In general, you have the following equation when you transform your dependent variable:</p>
-<p><span class="math display">\[\log(\hat{y}_i)=b_0+b_1(x_{i1})+b_2(x_{i2})+\ldots+b_p(x_{ip})\]</span></p>
-<p>In order to properly interpret your results, you must exponentiate all of your slopes and the intercept. Your slopes can be interpreted as:</p>
+<p><span class="math display">\[\hat{y}_i=(2.64)*(1.27)^{x_i}\]</span>
+We now have a <strong>multiplicative</strong> relationship rather than an additive relationship. How does this changes our understanding of the results? To see, lets plug in some values for <span class="math inline">\(x_i\)</span> and see how it changes our predicted income value. A tomato rating of zero is outside the scope of our data, but lets plug it in for instructional purposes anyway:</p>
+<p><span class="math display">\[\hat{y}_i=(2.64)*(1,27)^{0}=(2.64)(1)=2.64\]</span>
+So, the predicted box office returns when <span class="math inline">\(x\)</span> is zero is just given by exponentiating the intercept. Lets try increasing tomato rating by one point:</p>
+<p><span class="math display">\[\hat{y}_i=(2.64)*(1.27)^{1}=(2.64)(1.27)\]</span>
+I could go ahead and finish that multiplication, but I want to leave it here to better show how to think about the change. A one point increase in tomato rating is associated with an increase in box office returns by a <strong>multiplicative</strong> factor of 1.27. In other words, a one point increase in tomato rating is associated with a 27% increase in income, on average. What happens if I add another point?</p>
+<p><span class="math display">\[\hat{y}_i=(2.64)*(1.27)^{2}=(2.64)(1.27)(1.27)\]</span>
+Each additional point leads to a 27% increase in predicted box office returns. This is what I mean by a multiplicative increase. We are no longer talking about the predicted change in box office returns in terms of <strong>absolute</strong> numbers of dollars, but rather in <strong>relative</strong> terms of percentage increase.</p>
+<p>In general, in order to properly interpret your results when you log the dependent variable, you must exponentiate all of your slopes and the intercept. You can then interpret them as:</p>
 <blockquote>
 <p>The model predicts that a one-unit increase in <span class="math inline">\(x_j\)</span> is associated with a <span class="math inline">\(e^{b_j}\)</span> multiplicative increase in <span class="math inline">\(y\)</span>, on average while holding all other independent variables constant.
 The model predicts that <span class="math inline">\(y\)</span> will be <span class="math inline">\(e^{b_0}\)</span> on average when all independent variables are zero.</p>
 </blockquote>
 <p>Of course, just like all of our prior examples, you are responsible for converting this into sensible English.</p>
-<p>Lets try a fuller example where we predict log income by age, education and race at the same time:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">summary</span>(<span class="kw">lm</span>(lincome<span class="op">~</span>age<span class="op">+</span>educ<span class="op">+</span>race, <span class="dt">data=</span>politics))<span class="op">$</span>coef,<span class="dv">3</span>)</code></pre>
-<pre><code>##                            Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)                   3.225      0.081  39.570    0.000
-## age                          -0.001      0.001  -1.363    0.173
-## educHigh school diploma       0.359      0.071   5.036    0.000
-## educSome college              0.640      0.067   9.536    0.000
-## educBachelors degree          1.064      0.071  15.076    0.000
-## educGraduate degree           1.339      0.073  18.275    0.000
-## raceBlack                    -0.585      0.055 -10.659    0.000
-## raceLatino                   -0.203      0.053  -3.839    0.000
-## raceAsian/Pacific Islander    0.093      0.087   1.075    0.282
-## raceAmerican Indian          -0.488      0.198  -2.466    0.014
-## raceOther/Mixed              -0.181      0.079  -2.276    0.023</code></pre>
-<p>Lets start by interpreting the intercept. Two of our variables, education and race, are categorical with reference categories of less than high school and white, respectively and age is a quantitative variable. In order to interpret our intercept of 2.73, we first need to exponentiate it:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">2.73</span>)</code></pre>
-<pre><code>## [1] 15.33289</code></pre>
-<p>So we would say:</p>
+<p>Lets try a more complex model in which we predict log box office returns by tomato rating, runtime and movie maturity rating:</p>
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span>TomatoRating<span class="op">+</span>Runtime<span class="op">+</span>Rating, <span class="dt">data=</span>movies)
+<span class="kw">coef</span>(model)</code></pre>
+<pre><code>##  (Intercept) TomatoRating      Runtime     RatingPG  RatingPG-13 
+##  -0.81318674   0.17783703   0.03863665  -0.75833147  -1.29892956 
+##      RatingR 
+##  -2.96580424</code></pre>
+<p>We have a couple of added complexities here. We now have results for categorical variables as well as negative numbers to interpret. In all cases, we want to exponentiate to interpret correctly, so lets go ahead and do that:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(model))</code></pre>
+<pre><code>##  (Intercept) TomatoRating      Runtime     RatingPG  RatingPG-13 
+##   0.44344268   1.19463061   1.03939275   0.46844739   0.27282368 
+##      RatingR 
+##   0.05151902</code></pre>
+<p>The tomato rating effect can be interpreted as before but now with control variables:</p>
 <blockquote>
-<p>The model predicts that a zero-year old white person with less than a high school degree will make $15,333, on average.</p>
+<p>The model predicts that a one point increase in the tomato rating is associated with a 19% increase in box office returns, on average, holding constant movie runtime and maturity rating.</p>
 </blockquote>
-<p>Of course, because an age of zero is outside the scope of our data, we don’t put much any stock in this prediction. The more interesting numbers are the various slopes.</p>
-<p>Lets interpret, the age slope of 0.004. First, exponentiate:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">0.004</span>)</code></pre>
-<pre><code>## [1] 1.004008</code></pre>
-<p>So, we would say:</p>
+<p>The runtime effect can be interpreted in a similar way.</p>
 <blockquote>
-<p>The model predicts that a one year increase in age is associated with a 0.4% increase in income, on average, among individuals of the same race and educational level.</p>
+<p>The model predicts that a one minute increase in movie runtime is associated with a 3.9% increase in box office returns, on average, holding constant movie tomato rating and maturity rating.</p>
 </blockquote>
-<p>What about the effect for a BA degree? This is a categorical variable with less than high school as the reference, but again we need to exponentiate to get a meaningful number:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">1.19</span>)</code></pre>
-<pre><code>## [1] 3.287081</code></pre>
-<p>This is a pretty big increase! We might say:</p>
+<p>In both of these cases, it makes sense to take the multiplicative effect and convert that into a percentage increase. If I multiply the predicted box office returns by 1.039, then I am increasing it by 3.9%. When effects get large, however, it sometimes makes more sense to just interpret it as a multiplicative factor. For example, if the exponentiated coefficient was 3, I could interpret this as a 200% increase. However, it probably makes more sense in this case to just say something along the lines of the “predicted value of <span class="math inline">\(y\)</span> triples in size for a one point increase in <span class="math inline">\(x\)</span>.”</p>
+<p>The categorical variables can be interpreted as we normally do in terms of the average difference between the indicated category and the reference category. However, now it is the multiplicative difference. So, taking the PG effect of 0.468, we could just say:</p>
 <blockquote>
-<p>The model predicts that the incomes of college graduates are 3.28 times higher than the incomes of those with less than a high school diploma, on average, holding constant race and age.</p>
+<p>The model predicts that, controlling for tomato rating and runtime, PG-rated movies make 46.8% as much as G-rated movies at the box office, on average.</p>
 </blockquote>
-<p>How would we describe negative effects. Lets look at the effect of -0.23 for Hispanics. First, lets exponentiate it:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="op">-</span><span class="fl">0.23</span>)</code></pre>
-<pre><code>## [1] 0.7945336</code></pre>
-<p>There are two ways we could describe this. Let me try both ways:</p>
+<p>However, its also possible to talk about how much less a PG-rated movie makes than a G-rated movie. If a PG movie makes 46.8% as much, then it equivalently makes 52.2% less. We get this number by just subtracting the original percentage from 100. So I could have said:</p>
 <blockquote>
-<p>The model predicts that the incomes of Hispanics will be 79% as high as the incomes of whites, on average, holding constant age and education.</p>
+<p>The model predicts that, controlling for tomato rating and runtime, PG-rated movies make 52.2% less than G-rated movies, on average.</p>
 </blockquote>
-<p>Keep in mind that 79% as high means you are making less. If your boss comes and offers you to change your salary to 90% of what it is now, don’t be fooled – thats not a good deal. Alternatively, I could have taken 100-79=21 and said:</p>
-<blockquote>
-<p>The model predicts that the income of Hispanics is 21% less than the income of whites, on average, holding constant age and education.</p>
-</blockquote>
-<p>Always keep in mind that regardless of the type of variable involved and the direction of the relationship, we are always talking about a relative, multiplicative change in the dependent variable. In some cases, it may make more sense to describe this as a percentage gain or loss (as in the age and Hispanic case), while in other cases it may make sense to describe it in terms of how many “times more or less” (as in the case of the BA degree).</p>
-<p><em>Note: from here on out, I am throwing together information discussed in class, so the descriptions may be a bit rough. Apologies in advance</em></p>
+<p>In general to convert any coefficient <span class="math inline">\(\beta_j\)</span> from a model with a logged dependent variable to a percentage change scale we can follow this formula:</p>
+<p><span class="math display">\[(e^{\beta_j}-1)*100\]</span></p>
+<p>This will give us the percentage change and the correct direction of the relationship.</p>
+<p>You may have noted that the effect of runtime in the model above before exponentiating was 0.0386 and after we exponentiated the result, we concluded that the effect of one minute increase in runtime was 3.9%. If you move over the decimal place two, those numbers are very similar. This is not a coincidence. It follows from what is known as the Taylors series expansion for the exponential:</p>
+<p><span class="math display">\[e^x=1+x-\frac{x^2}{2!}+\frac{x^3}{3!}-\frac{x^4}{4!}+\ldots\]</span>
+Any exponential value <span class="math inline">\(e^x\)</span> can be calculated from this Taylor series expansion which continues indefinitely. However, when <span class="math inline">\(x\)</span> is a small value less than one, note that you are squaring, cubing, and so forth, which results in an even smaller number that is divided by an increasingly large number. So for, small values of <span class="math inline">\(x\)</span> the following approximation works reasonably well:</p>
+<p><span class="math display">\[e^x\approx1+x\]</span></p>
+<p>In the case I just noted where <span class="math inline">\(x=0.0386\)</span>, the actual value of <span class="math inline">\(e^{0.0386}\)</span> is 1.0394 while the approximation gives us 1.0386. That is pretty close. This approximation starts to break down around <span class="math inline">\(x=0.2\)</span>. The actual value of <span class="math inline">\(e^{0.2}\)</span> is 1.221 or about a 22.1% increase, whereas the approximation gives us 1.2 or a straight 20% increase.</p>
+<p>You can use this approximation to get a ballpark estimate of the effect size in percentage change terms for coefficients that are not too large without having to exponentiate. So I can see that the coefficient of 0.177 for tomato rating is going to be roughly a 18-19% increase and the coefficient of 0.0386 is going to be a little under a 4% increase, all without having to exponentiate. Notice that this does not work at all well for the very large coefficients for movie maturity rating.</p>
+<div id="logging-the-independent-variable" class="section level5">
+<h5>Logging the independent variable</h5>
+<p>The previous example showed how to interpret results when you log the dependent variables. Logging the dependent variable will help address exponential type relationships. However in cases of a diminishing returns type relationship, we instead need to log the independent variable. Figure <a href="modeling-non-linearity.html#fig:gapminder-log-scale">23</a> shows the GDP per capita by life expectancy scatterplot from before but now with GDP per capita on a log scale.</p>
+<div class="figure"><span id="fig:gapminder-log-scale"></span>
+<img src="stat_book_files/figure-html/gapminder-log-scale-1.png" alt="Scatterplot of life expectancy by GDP per capita, with a log-scale applied to GDP per capita. Look how much more linear the relationship looks." width="672" />
+<p class="caption">
+Figure 23: Scatterplot of life expectancy by GDP per capita, with a log-scale applied to GDP per capita. Look how much more linear the relationship looks.
+</p>
 </div>
-<div id="logging-the-independent-variable" class="section level3">
-<h3>Logging the independent variable</h3>
-<p>Lets revisit the data from Preston that we looked at earlier in the term.</p>
-<p><img src="stat_book_files/figure-html/preston2-1.png" width="672" />
-These data show a clearly non-linear relationship. More specifically, this is a “diminishing returns” relationship where a positive effect gets smaller in magnitude at higher levels of the independent variable. Logging the dependent variable will not help us make this relationship look more linear, but logging the independent variable will:</p>
-<p><img src="stat_book_files/figure-html/preston3-1.png" width="672" /></p>
-<p>How does this transformation of the independent variable affect how we interpret the results? Lets run the model:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(lifeexp<span class="op">~</span><span class="kw">log</span>(inc), <span class="dt">data=</span>preston))</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = lifeexp ~ log(inc), data = preston)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -16.1628  -2.2207  -0.7619   2.9634  11.5037 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  14.9263     3.7088   4.025 0.000176 ***
-## log(inc)      7.5453     0.5982  12.613  &lt; 2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 5.268 on 55 degrees of freedom
-## Multiple R-squared:  0.7431, Adjusted R-squared:  0.7384 
-## F-statistic: 159.1 on 1 and 55 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Interpreting the slope here can be tricky. The basic point is that by logging the independent variable, the change in the independent variable is now relative as measured by a 1% increase in the independent variable (national income per capita here). The change in the dependent variable is still in absolute terms (years of life expectancy here), but in order to interpret the slope correctly you must divide it by 100 (i.e. move the decimal place two places to the left). In this case, I would say:</p>
+<p>It is really quite impressive how this simple transformation straightened out that very clear diminishing returns type relationship we observed before. This is because on the log-scale a one unit increase means a multiplicative change so, you have to make a much larger absolute change when you are already high in GDP per capita to get the same return in life expectancy.</p>
+<p>Models with logged independent variables are a little trickier to interpret. To understand how it works, lets go ahead and calculate the model:</p>
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(lifeExp<span class="op">~</span><span class="kw">log</span>(gdpPercap), <span class="dt">data=</span>gapminder)
+<span class="kw">round</span>(<span class="kw">coef</span>(model), <span class="dv">5</span>)</code></pre>
+<pre><code>##    (Intercept) log(gdpPercap) 
+##        4.94961        7.20280</code></pre>
+<p>So our model is:</p>
+<p><span class="math display">\[\hat{y}_i=-9.1+8.4\log{x_i}\]</span></p>
+<p>Because the log transformation is on the right hand side we can no longer use the trick of exponentiating its value because that would just give us <span class="math inline">\(e^{\hat{y}_i}\)</span> on the left hand side. It would also be impractical if we added other independent variables to the model.</p>
+<p>Instead, we can interpret our slope by thinking about how a 1% increase in <span class="math inline">\(x\)</span> would change the predicted value of <span class="math inline">\(y\)</span>. For ease of interpretation, lets start with <span class="math inline">\(x=1\)</span>. The log of 1 is always zero, so:</p>
+<p><span class="math display">\[\hat{y}_i=-9.1+8.4\log{1}=-9.1+8.4*0=\beta_0\]</span></p>
+<p>So, the intercept here is actually the predicted value of when GDP per capita is $1. This is not a terribly realistic value for GDP per capita where the lowest value in your dataset is $241, so its not surprising that we get a negative life expectancy value here.</p>
+<p>Now what happens if we raise GDP per capita by 1%. A 1% increase from a value of 1 would give us a value of 1.01. So:</p>
+<p><span class="math display">\[\hat{y}_i=-9.1+8.4\log{1.01}\]</span></p>
+<p>From the Taylor series above, we can deduce that the <span class="math inline">\(\log{1.01}\)</span> is roughly equal to 0.01. So:</p>
+<p><span class="math display">\[\hat{y}_i=-9.1+8.4*0.01=-9.1+0.084\]</span></p>
+<p>This same logic will apply to any 1% increase in GDP per capita. So, the model predicts that a 1% increase in GDP per capita is associated with a 0.084 year increase in the life expectancy.</p>
+<p>In general, you can interpret any coefficient <span class="math inline">\(\beta_j\)</span> with a logged independent variable but not logged dependent variable as:</p>
 <blockquote>
-<p>The model predicts that a 1% increase in national income per capita in a country is associated with a 0.075 year increase in life expectancy on average.</p>
+<p>The model predicts that a a 1% increase in x is associated with a <span class="math inline">\(\beta_j/100\)</span> unit increase in y.</p>
 </blockquote>
-<p>Why did I have to move the decimal place two to the left? Lets use the model to compare the predicted values of two cases, where one case has exactly 1% higher national income per capita, to see how this works. I will start the lower country at a national income per capita of $20,000, but the results here apply regardless of what number I choose here. To see the change I subtract one predicted value from the other.</p>
-<p><span class="math display">\[
-\begin{aligned} 
-((14.93+7.54*\log(20200))-(14.93+7.54*\log(20000))&amp;=7.54(\log(20200)-\log(20000))\\
-&amp;=7.54*\log(20200/20000)\\ 
-&amp;=7.54*\log(1.01)
-\end{aligned}
-\]</span></p>
-<p>Now, it turns out that <span class="math inline">\(log(1.01)\)</span> almost exactly equals 0.01, so this is roughly equivalent to <span class="math inline">\(7.54*0.01=0.0754\)</span>. This same math will be true regardless of the starting value of income chosen, so roughly speaking a 1% increase in <span class="math inline">\(x\)</span> is associated with a <span class="math inline">\(b_1/100\)</span> change in <span class="math inline">\(y\)</span>.</p>
+<p>One easy way to remember what the log transformation does is that it makes your measure of change relative rather than absolute for the variable transformed. When we logged the dependent variable before then our slope could be interpreted as the percentage change in the dependent variable (relative) for a one unit increase (absolute) in the independent variable. When we log the independent variable, the slope can be interpreted as the unit change in the dependent variable (absolute) for a 1% increase (relative) in the independent variable.</p>
 </div>
-<div id="logging-both-independent-and-dependent-variables-the-elasticity-model" class="section level3">
-<h3>Logging both independent and dependent variables: The elasticity model</h3>
-<p>So, now we have seen that logging the dependent variable will make change in the dependent relative, and logging the independent variable will make change in the independent variable relative. It makes sense to think that if you log them both, you would get relative change in <span class="math inline">\(x\)</span> predicting relative change in <span class="math inline">\(y\)</span>. Correct! This is what is called an “elasticity” model because the predicted slopes are equivalent to the concept of elasticity in economics: how much does of a percent change in <span class="math inline">\(y\)</span> results from a 1% increase in <span class="math inline">\(x\)</span>.</p>
-<p>To show you how this works, lets try to predict movie box office returns by tomato ratings where we apply all three types of models.</p>
-<pre class="sourceCode r"><code class="sourceCode r">model.logy &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span>TomatoRating, <span class="dt">data=</span>movies)
-model.logx &lt;-<span class="st"> </span><span class="kw">lm</span>(BoxOffice<span class="op">~</span><span class="kw">log</span>(TomatoRating), <span class="dt">data=</span>movies)
-model.logboth &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span><span class="kw">log</span>(TomatoRating), <span class="dt">data=</span>movies)
-<span class="kw">coef</span>(model.logy)[<span class="dv">2</span>]</code></pre>
-<pre><code>## TomatoRating 
-##    0.2406026</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(model.logx)[<span class="dv">2</span>]</code></pre>
-<pre><code>## log(TomatoRating) 
-##          52.66051</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(model.logboth)[<span class="dv">2</span>]</code></pre>
-<pre><code>## log(TomatoRating) 
-##          1.052966</code></pre>
-<p>In the first model, I am logging <span class="math inline">\(y\)</span> so I nee to exponentiate the result to interpret it.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="fl">0.2012</span>)</code></pre>
-<pre><code>## [1] 1.222869</code></pre>
-<p>So, I would say:</p>
-<blockquote>
-<p>The model predicts that a one point increase in a movie’s tomato rating is associated with a 22% increase in box office returns on average.</p>
-</blockquote>
-<p>In the second model, I need to move over the decimal place to the left and then say:</p>
-<blockquote>
-<p>The model predicts that a 1% increase in a movie’s tomato rating is associated with a $500,000 increase in box office returns.</p>
-</blockquote>
-<p>The third model (the elasticity model) is the easiest to interpret. It turns out that the number can be interpreted directly as the percentage change in <span class="math inline">\(y\)</span> expected for a 1 percent increase in <span class="math inline">\(x\)</span>, so:</p>
-<blockquote>
-<p>The model predicts that a 1% increase in a movie’s tomato rating is associated with a 0.85% increase in box office returns.</p>
-</blockquote>
-<p>Why is this the case? We can work this out from a similar mathematical exercise above. On the independent variable side a 1% increase in <span class="math inline">\(x\)</span> is still associated with a <span class="math inline">\(b_1/100\)</span> increase in the dependent variable, but that independent variable is still the log of <span class="math inline">\(y\)</span>. Thus, technically you should get the result by taking <span class="math inline">\(e^{b_1/100}\)</span>. However, since you are dividing by 100 that number will almost always be small enough that you can use the approximation that <span class="math inline">\(b_1\)</span> itself is the percentage increase in <span class="math inline">\(y\)</span> for the given change in <span class="math inline">\(x\)</span>.</p>
+<div id="logging-both-independent-and-dependent-variables-the-elasticity-model" class="section level5">
+<h5>Logging both independent and dependent variables: The elasticity model</h5>
+<p>If logging the dependent variable will make change in the dependent variable relative, and logging the independent variable will make change in the independent variable relative, then what happens if you log transform both. Then you get a model which predicts relative change by relative change. This model is often called an “elasticity” model because the predicted slopes are equivalent to the concept of elasticity in economics: how much does of a percent change in <span class="math inline">\(y\)</span> results from a 1% increase in <span class="math inline">\(x\)</span>.</p>
+<p>The relationship between age and wages may benefit from logging both variables. We have already seen a diminishing returns type relationship which suggests logging the independent variable. We also know that wages are highly right-skewed and so might also benefit from being logged.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.01</span>, <span class="dt">width=</span><span class="fl">0.1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wages&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:transform-wages"></span>
+<img src="stat_book_files/figure-html/transform-wages-1.png" alt="Is the relationship between age and hourly wage non-linear?" width="672" />
+<p class="caption">
+Figure 24: Is the relationship between age and hourly wage non-linear?
+</p>
 </div>
-<div id="the-square-root-transformation" class="section level3">
-<h3>The square root transformation</h3>
-<p>The log transformation is very flexible and solves multiple problems at once (non-linearity, outliers, skewness), which explains its popularity. But it breaks down in one important situation: you cannot log a variable that has zero or negative values. The negative case is not as important because generally the log transformation fixes things for variables that only take non-negative values. However, there are numerous cases where a quantitative variable can be zero as well as a positive. Lets run the same elasticity model as above on box office returns, but this time lets predict returns by the Tomato Meter rather than the Tomato Rating.</p>
+<p>Figure <a href="modeling-non-linearity.html#fig:transform-wages">24</a> shows the relationship between age and wages when we apply a log scale to both variables. It looks a little better although there is still some evidence of diminishing returns even on this scale. Lets go with it for now though.</p>
+<p>Lets take a look at the coefficients from this model:</p>
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(wages)<span class="op">~</span><span class="kw">log</span>(age), <span class="dt">data=</span>earnings)
+<span class="kw">coef</span>(model)</code></pre>
+<pre><code>## (Intercept)    log(age) 
+##   1.1558386   0.5055849</code></pre>
+<p>One of the advantages of the elasticity model is that slopes can be easily interpreted. We can use the same techniques when logging independent variables to divide our slope by 100 to see that a one percent increase in age is associated with a 0.0051 increase in the dependent variable. However this dependent variable is the log of wages. T interpret the effect on wages, we need to exponentiate this value, subtract 1, and multiply by 100. However since the value is small, we know that this is going to be roughly a 0.51% increase. So:</p>
+<blockquote>
+<p>The model predicts that a one percent increase in age is associated with a 0.51% increase in wages, on average.</p>
+</blockquote>
+<p>In other words, we don’t have to make any changes at all. The slope is already the expected percent change in <span class="math inline">\(y\)</span> for a one percent increase in <span class="math inline">\(x\)</span>.</p>
+<p>The STRIPAT model that Richard York helped to develop is an example of an elasticity model that is popular in environmental sociology. In this model, the dependent variable is some measure of environmental degradation, such as CO2 emissions. The independent variable can be things like GDP per capita, population size and growth, etc. All variables are logged so that model parameters can be interpreted as elasticities.</p>
+</div>
+</div>
+<div id="the-square-root-transformation" class="section level4">
+<h4>The square root transformation</h4>
+<p>The log transformation is very flexible and solves multiple problems at once (non-linearity, outliers, skewness), which explains its popularity. But it breaks down in one important situation: you cannot log a variable that has zero or negative values. The negative case is generally not as important although there are some exceptions (like net worth). On the other hand, there are numerous cases where a quantitative variable can be zero as well as positive. Lets run an elasticity model on box office returns, but this time lets predict returns by the Tomato Meter rather than the Tomato Rating.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span><span class="kw">log</span>(TomatoMeter), <span class="dt">data=</span>movies))</code></pre>
 <pre><code>## Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, ...): NA/NaN/Inf in &#39;x&#39;</code></pre>
 <p>Oh no! We got an error. The problem is that the Tomato Meter has a few cases of zero values (when a movie received zero positive reviews). The log of zero is negative infinity and that simply won’t work when fitting a linear model. What can you do?</p>
-<p>Well it turns out that the square root transformation can do much the same work as the natural logarithm. It will pull in skewness and can make non-linear relationships more linear. Since the square root of zero is a real number (zero to be precise), it will also work on variables that have legitimate zeroes. So,</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span><span class="kw">sqrt</span>(TomatoMeter), <span class="dt">data=</span>movies))</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = log(BoxOffice) ~ sqrt(TomatoMeter), data = movies)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -9.5927 -1.2133  0.8586  1.7827  4.0356 
-## 
-## Coefficients:
-##                   Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)        1.43769    0.16317   8.811  &lt; 2e-16 ***
-## sqrt(TomatoMeter)  0.12740    0.02361   5.397 7.41e-08 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 2.547 on 2551 degrees of freedom
-## Multiple R-squared:  0.01129,    Adjusted R-squared:  0.0109 
-## F-statistic: 29.12 on 1 and 2551 DF,  p-value: 7.412e-08</code></pre>
-<p>Now we can get a result. The downside, however, is that there is <a href="http://stats.stackexchange.com/questions/35982/how-to-interpret-regression-coefficients-when-response-was-transformed-by-the-4t">no clear and easy interpretation of how to intepret this effect</a>.</p>
+<p>It turns out that the square root transformation can do much the same work as the natural logarithm. It will pull in skewness and can make non-linear relationships more linear. Since the square root of zero is a real number (zero to be precise), it will also work on variables that have legitimate zero values. Figure <a href="modeling-non-linearity.html#fig:log-transform-tomato-meter">25</a> shows a scatterplot of tomato meter by box office returns with both variables on the log scale. Movies with a tomato meter of zero have been removed. Figure <a href="modeling-non-linearity.html#fig:sqrt-transform">26</a> shows the same figure but now with Tomato Meter on the square root scale. The figures looks pretty similar and fit a similar trend but the square root transformation can also include the zero values.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">subset</span>(movies, TomatoMeter<span class="op">&gt;</span><span class="dv">0</span>), <span class="kw">aes</span>(<span class="dt">x=</span>TomatoMeter, <span class="dt">y=</span>BoxOffice))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_log10</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Tomato Meter (square root scale)&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Box Office Returns (log scale)&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
+<div class="figure"><span id="fig:log-transform-tomato-meter"></span>
+<img src="stat_book_files/figure-html/log-transform-tomato-meter-1.png" alt="Scatterplot of tomato meter by box office returns, using a log transformation of tomato meter ratings." width="672" />
+<p class="caption">
+Figure 25: Scatterplot of tomato meter by box office returns, using a log transformation of tomato meter ratings.
+</p>
 </div>
-<div id="other-methods-to-deal-with-non-linearity" class="section level3">
-<h3>Other methods to deal with non-linearity</h3>
-<p>Transformations are one way to handle non-linearity in the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. There are other common ways that this non-linearity can also be handled. We will cover the case of smoothing and polynomial regression here. Another case that we will not cover here is the use of splines, although some of the smoothing techniques covered here will use splines implicitly.</p>
-<div id="smoothing" class="section level4">
-<h4>Smoothing</h4>
-<p>Smoothing is primarily a graphical technique that can be used to diagnostically detect non-linearity in a relationship. Lets plot the relationship between movie tomato rating and box office returns.</p>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-134-1.png" width="672" />
-There is so much overplotting and box office returns are so skewed here that it is quite difficult to visually see the relationship. Smoothing will help us do that. There are numerous ways that one can smooth data, but the basic idea is that you replace the <span class="math inline">\(y\)</span> value for an observation with a substitute value that incorporates information about the adjacent neighbors (in terms of <span class="math inline">\(x\)</span>) for this observation.</p>
-<p>To see how this works, the figure below picks out one movie that had particularly anomalous box office returns given its tomato rating (shown in red) and the two movies that were most immediately adjacent to this value in terms of their tomato rating. It then takes the mean box office returns between the three movies and plots this as the smoothed mean value for the selected movie in green.</p>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
-<p>In practice this kind of mean smoothing (also called a “running average”) or median smoothing only works well for time series values where there is only one unique value of <span class="math inline">\(x\)</span> for each observation, whereas we have many movies with the exact same tomato rating. In practice, a better smoothing approach for data like this is to use more complex methods for smoothing that involve splines and local polynomial regression to get predicted values. Three methods that will do this in R are shown below. For the <code>loess</code> and <code>smooth.spline</code> functions, you have to declare how many adjacent observations you want to consider as a proportion of the total dataset. I have chosen 10% and 75%. The wider you make this span, the smoother the line will get at the cost of potentially losing important spikes and dips. The “supersmoother” function <code>supsmu</code> is simpler and tries to determine the best span internally.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#for loess its important to first order the movies by x</span>
-movies &lt;-<span class="st"> </span>movies[<span class="kw">order</span>(movies<span class="op">$</span>TomatoRating),]
-<span class="kw">plot</span>(movies<span class="op">$</span>TomatoRating, movies<span class="op">$</span>BoxOffice, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;grey90&quot;</span>, <span class="dt">col=</span><span class="ot">NULL</span>,
-     <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">xlab=</span><span class="st">&quot;Tomato Rating&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Box Office Returns (millions)&quot;</span>)
-smooth.loess &lt;-<span class="st"> </span><span class="kw">loess</span>(BoxOffice<span class="op">~</span>TomatoRating, <span class="dt">data=</span>movies, <span class="dt">span=</span><span class="fl">0.1</span>)
-<span class="kw">lines</span>(smooth.loess<span class="op">$</span>x, smooth.loess<span class="op">$</span>fitted, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
-smooth.loess &lt;-<span class="st"> </span><span class="kw">loess</span>(BoxOffice<span class="op">~</span>TomatoRating, <span class="dt">data=</span>movies, <span class="dt">span=</span><span class="fl">0.75</span>)
-<span class="kw">lines</span>(smooth.loess<span class="op">$</span>x, smooth.loess<span class="op">$</span>fitted, <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
-<span class="kw">lines</span>(<span class="kw">smooth.spline</span>(movies<span class="op">$</span>TomatoRating, movies<span class="op">$</span>BoxOffice, <span class="dt">spar=</span><span class="fl">0.1</span>), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
-<span class="kw">lines</span>(<span class="kw">smooth.spline</span>(movies<span class="op">$</span>TomatoRating, movies<span class="op">$</span>BoxOffice, <span class="dt">spar=</span><span class="fl">0.75</span>), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>)
-<span class="kw">lines</span>(<span class="kw">supsmu</span>(movies<span class="op">$</span>TomatoRating, movies<span class="op">$</span>BoxOffice), <span class="dt">col=</span><span class="st">&quot;yellow&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
-<span class="kw">legend</span>(<span class="dv">2</span>, <span class="dv">700</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;Lowess, 10% span&quot;</span>, <span class="st">&quot;Lowess, 75% span&quot;</span>, <span class="st">&quot;Spline smoothing, 10%&quot;</span>, 
-                        <span class="st">&quot;Spline smoothing, 75%&quot;</span>, <span class="st">&quot;Supersmoother&quot;</span>),
-       <span class="dt">lwd=</span><span class="dv">1</span>, <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;darkgreen&quot;</span>,<span class="st">&quot;yellow&quot;</span>), <span class="dt">cex=</span><span class="fl">0.6</span>)</code></pre>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
-<p>All the smoothers here indicate an exponential type relationship that would be better fit by logging the dependent variable.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>TomatoMeter, <span class="dt">y=</span>BoxOffice))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_log10</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_sqrt</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Tomato Meter (square root scale)&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Box Office Returns (log scale)&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure"><span id="fig:sqrt-transform"></span>
+<img src="stat_book_files/figure-html/sqrt-transform-1.png" alt="Scatterplot of tomato meter by box office returns, using a square root transformation of tomato meter ratings. The dotted vertical line shows cases with a zero tomato meter." width="672" />
+<p class="caption">
+Figure 26: Scatterplot of tomato meter by box office returns, using a square root transformation of tomato meter ratings. The dotted vertical line shows cases with a zero tomato meter.
+</p>
 </div>
-<div id="polynomial-regression" class="section level4">
-<h4>Polynomial Regression</h4>
-<p>A final method that can be used to fit non-linear relationships is to fit <em>polynomial</em> terms. Recall, for example, the formula:</p>
+<p>We can estimate this model easily enough in R:</p>
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span><span class="kw">sqrt</span>(TomatoMeter), <span class="dt">data=</span>movies)
+<span class="kw">coef</span>(model)</code></pre>
+<pre><code>##       (Intercept) sqrt(TomatoMeter) 
+##         1.4376939         0.1274002</code></pre>
+<p>There is one big downside to this transformation. Unlike log transformations, there is <a href="http://stats.stackexchange.com/questions/35982/how-to-interpret-regression-coefficients-when-response-was-transformed-by-the-4t">no clear and easy interpretation of how to intepret this effect</a>. Since we know that the square root transformation is doing something close to a log transformation, we can think of this result as loosely close to an elasticity in this case, but that is only a loose approximation and may deteriorate as you get larger and larger values of the independent variable.</p>
+</div>
+</div>
+<div id="polynomial-models" class="section level3">
+<h3>Polynomial Models</h3>
+<p>Another method that can be used to fit non-linear relationships is to fit <em>polynomial</em> terms. You may recall the the following formula from basic algebra:</p>
 <p><span class="math display">\[y=a+bx+cx^2\]</span></p>
-<p>This function defines a parabola which fits not a straight line but a curve with one point of inflection. We can fit this sort of curve in an OLS regression model by simply including the square of a variable as an additional term in the model. Before we do this it is usually a good idea to center the variable to be squared somewhere around the mean because this will reduce collinearity between the original term and its square.</p>
-<p>For example, I could fit a polynomial term to a model that predicts tomato meter by movie runtime. like so:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(TomatoMeter<span class="op">~</span><span class="kw">I</span>(Runtime<span class="dv">-90</span>)<span class="op">+</span><span class="kw">I</span>((Runtime<span class="dv">-90</span>)<span class="op">^</span><span class="dv">2</span>), <span class="dt">data=</span>movies))</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = TomatoMeter ~ I(Runtime - 90) + I((Runtime - 90)^2), 
-##     data = movies)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -76.224 -21.703  -1.702  20.659  61.616 
-## 
-## Coefficients:
-##                       Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         41.3413466  0.7302420  56.613  &lt; 2e-16 ***
-## I(Runtime - 90)      0.4543688  0.0584384   7.775 1.08e-14 ***
-## I((Runtime - 90)^2) -0.0009453  0.0009694  -0.975     0.33    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 25.39 on 2550 degrees of freedom
-## Multiple R-squared:  0.06698,    Adjusted R-squared:  0.06624 
-## F-statistic: 91.52 on 2 and 2550 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Interpreting these numbers directly can be quite tricky. The easiest approach is often to simply graph the resulting parabola for reasonable values of <span class="math inline">\(x\)</span>. I can do that here for movies:</p>
-<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">70</span><span class="op">:</span><span class="dv">620-90</span>
-fitted &lt;-<span class="st"> </span><span class="fl">42.256+0.406</span><span class="op">*</span>x<span class="fl">-0.0004635</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span>
-<span class="kw">plot</span>(x, fitted, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>, <span class="dt">las=</span><span class="dv">1</span>,
-     <span class="dt">xlab=</span><span class="st">&quot;runtime (in minutes)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Predicted tomato meter&quot;</span>)
-ticks &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">70</span>, <span class="dt">to=</span><span class="dv">620</span>, <span class="dt">by=</span><span class="dv">50</span>)<span class="op">-</span><span class="dv">90</span>
-<span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at=</span>ticks, <span class="dt">labels=</span>ticks<span class="op">+</span><span class="dv">90</span>)
-<span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">528-90</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
-<p>Note that we now get a curvilinear relationship where the positive effect of runtime gets smaller at higher values of runtime much like a diminishing returns relationship. In this case, the effect of runtime can even reverse direction and become negative which is not possible with a log transformation on <span class="math inline">\(x\)</span>. However, its worth noting that the effect of runtime doesn’t become negative until we are well outside the range of real movie values.</p>
-<p>You can actually mathematically figure out the exact inflection point based on the two “slopes” for the original term and its square. Given the following model:</p>
-<p><span class="math display">\[y=b_0+b_1*x+b_2*x^2\]</span></p>
-<p>The inflection point is given by:</p>
-<p><span class="math display">\[b_1/(-2 * b_2)\]</span></p>
-<p>In this case, that gives us an inflection point of:</p>
-<p><span class="math display">\[0.4060329/(2*0.0004635)=438\]</span></p>
-<p>However, because we subtracted 90 from each value, the actual runtime minutes for the inflection is equal to <span class="math inline">\(438+90=528\)</span>. Note that this value is show on the graph above.</p>
-<hr />
+<p>This formula defines a parabola which fits not a straight line but a curve with one point of inflection. We can fit this curve in a linear model by simply including the square of a given independent variable as an additional variable in the model. Before we do this it is usually a good idea to re-center the original variable somewhere around the mean because this will reduce the correlation between the original term and its square.</p>
+<p>For example, I could fit the relationship between age and wages using polynomial terms:</p>
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(wages<span class="op">~</span><span class="kw">I</span>(age<span class="dv">-40</span>)<span class="op">+</span><span class="kw">I</span>((age<span class="dv">-40</span>)<span class="op">^</span><span class="dv">2</span>), <span class="dt">data=</span>earnings)
+<span class="kw">coef</span>(model)</code></pre>
+<pre><code>##     (Intercept)     I(age - 40) I((age - 40)^2) 
+##     26.92134254      0.31711167     -0.01783204</code></pre>
+<p>The coefficients for such a model are a little hard to interpret directly. In this case, it might be useful to start thinking about the <strong>marginal effect</strong> of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>. The marginal effect is simply how much we expect <span class="math inline">\(y\)</span> to change for a one unit increase in <span class="math inline">\(x\)</span> at a given value of <span class="math inline">\(x\)</span>. We have not had to think much about marginal effects because in a simple linear model the coefficient/slope itself is the marginal effect. But as we move into non-linear relationships, the marginal effect is more complicated. The marginal effect can be calculated by taking the derivative using calculus of the model equation with respect to <span class="math inline">\(x\)</span>. I don’t expect you to know how to do this, so I will just tell how it turns out. In a model with a squared term:</p>
+<p><span class="math display">\[\hat{y}=\beta_0+\beta_1x+\beta_2x^2\]</span></p>
+<p>The marginal effect (or slope) is given by:</p>
+<p><span class="math display">\[\beta_1+2\beta_2x\]</span></p>
+<p>Note that the slope of <span class="math inline">\(x\)</span> is itself partially determined by the value of <span class="math inline">\(x\)</span>. This is what drives the non-linearity. If we plug in the values for the model above, the relationship will be clearer:</p>
+<p><span class="math display">\[0.3171+2(-0.0178)x=0.3171-0.0356x\]</span></p>
+<p>So when <span class="math inline">\(x=0\)</span>, which in this case means age 40, a one year increase in age is associated with a $0.32 increase in hourly wage, on average. For every increase in the year of age past 40, that effect of a one year increase in age on wages decreases in size by $0.035. For every year below age 40, the effect increases by $0.035.</p>
+<p>Because <span class="math inline">\(\beta_1\)</span> is positive and <span class="math inline">\(\beta_2\)</span> is negative in this case it corresponds to a diminishing returns kind of relationship. Unlike the log transformation however, the relationship can ultimately reverse direction from positive to negative. I can figure out the inflection point at which it will transition from a positive to a negative relationship. I won’t delve into the details here, but this point is given by setting the derivative of this equation with respect to age equal to zero and solving for age. In general, this will give me:</p>
+<p><span class="math display">\[\beta_j/(-2*\beta_{sq})\]</span></p>
+<p>Where <span class="math inline">\(\beta_j\)</span> is the coefficient for the linear effect of the variable (in this case, age), and <span class="math inline">\(\beta_{sq}\)</span> is the coefficient for the squared effect. In my case, I get:</p>
+<p><span class="math display">\[0.3171/(-2*-0.0178)=0.3171/0.0356=8.91\]</span></p>
+<p>Remember that we re-centered age at 40, so this means that the model predict that age will switch from a positive to a negative relationship with wages at age 48.91.</p>
+<p>Often, the easiest way to really get a sense of the parabolic relationship we are modeling is to graph it. This can be done easily with <code>ggplot</code> by using the <code>geom_smooth</code> function. In the <code>geom_smooth</code> function you specify <code>lm</code> as the method, but also specify a <code>formula</code> argument that specifies this linear model should be fit as a parabola rather than a straight line.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.01</span>, <span class="dt">width=</span><span class="dv">1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wages&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">formula=</span>y<span class="op">~</span>x<span class="op">+</span><span class="kw">I</span>(x<span class="op">^</span><span class="dv">2</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">48.91</span>, <span class="dt">linetype=</span><span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:parabola-wages"></span>
+<img src="stat_book_files/figure-html/parabola-wages-1.png" alt="A parabolic model fit to the relationship between age and wages. The dotted red line shows the maximum value of the curve where the relationship between wages and age goes from positive to negative" width="672" />
+<p class="caption">
+Figure 27: A parabolic model fit to the relationship between age and wages. The dotted red line shows the maximum value of the curve where the relationship between wages and age goes from positive to negative
+</p>
 </div>
+<p>Figure <a href="modeling-non-linearity.html#fig:parabola-wages">27</a> shows the relationship between age and wages after adding a squared term to our linear model. I have also added a dashed line to indicate the inflection point at which the relationship shifts from positive to negative.</p>
+<p>Polynomial models do not need to stop at a squared term. You can also add a cubic term and so on. The more polynomial terms you add, the more inflection points you are allowing for in the data, but also the more complex it will be to interpret. Figure <a href="modeling-non-linearity.html#fig:cubic-gapminder">28</a> shows the predicted relationship between GDP per capita and life expectancy in the gapminder data when using a squared and cubic term in the model. You can see two different inflection points in the data that allow for more complex curves than one could get using transformations.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">subset</span>(gapminder, year<span class="op">==</span><span class="dv">2007</span>), <span class="kw">aes</span>(<span class="dt">x=</span>gdpPercap, <span class="dt">y=</span>lifeExp))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;GDP per capita&quot;</span>, <span class="dt">y=</span><span class="st">&quot;life expectancy&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">formula=</span>y<span class="op">~</span>x<span class="op">+</span><span class="kw">I</span>(x<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span><span class="kw">I</span>(x<span class="op">^</span><span class="dv">3</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:cubic-gapminder"></span>
+<img src="stat_book_files/figure-html/cubic-gapminder-1.png" alt="A model predicting life expectancy from GDP per capita with squared and cubic terms." width="672" />
+<p class="caption">
+Figure 28: A model predicting life expectancy from GDP per capita with squared and cubic terms.
+</p>
+</div>
+</div>
+<div id="splines" class="section level3">
+<h3>Splines</h3>
+<p>Another approach to fitting non-linearity is to fit a <strong>spline</strong>. Splines can become quite complex, but I will focus here on a very simple spline. In a basic spline model, you allow the slope of a variable to have a different linear effect at some specific “hinge” value. Looking at the diminishing returns to wages from age in the earnings data, it might be reasonable to fit this effect with a spline model. It looks like age 35 might be a reasonable value for the hinge.</p>
+<p>In order to fit the spline model, we need to add a spline term. This spline term will be equal to zero for all values where age is equal to or below 35 and will be equal to age minus 35 for all values where age is greater than 35. We then add this variable to the model. I fit this model below.</p>
+<pre class="sourceCode r"><code class="sourceCode r">earnings<span class="op">$</span>age.spline &lt;-<span class="st"> </span><span class="kw">ifelse</span>(earnings<span class="op">$</span>age<span class="op">&lt;</span><span class="dv">35</span>, <span class="dv">0</span>, earnings<span class="op">$</span>age<span class="dv">-35</span>)
+model &lt;-<span class="st"> </span><span class="kw">lm</span>(wages<span class="op">~</span>age<span class="op">+</span>age.spline, <span class="dt">data=</span>earnings)
+<span class="kw">pander</span>(<span class="kw">tidy</span>(model))</code></pre>
+<table style="width:85%;">
+<colgroup>
+<col width="19%" />
+<col width="15%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">term</th>
+<th align="center">estimate</th>
+<th align="center">std.error</th>
+<th align="center">statistic</th>
+<th align="center">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">(Intercept)</td>
+<td align="center">-6.039</td>
+<td align="center">0.3107</td>
+<td align="center">-19.44</td>
+<td align="center">4.723e-84</td>
+</tr>
+<tr class="even">
+<td align="center">age</td>
+<td align="center">0.9472</td>
+<td align="center">0.01035</td>
+<td align="center">91.52</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">age.spline</td>
+<td align="center">-0.9549</td>
+<td align="center">0.01405</td>
+<td align="center">-67.98</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<p>This spline will produce two different slopes. For individuals 35 years of age or younger, the predicted change in wages for a one year increase will be given by the main effect of age, because the spline term will be zero. For individuals over 35 years of age, a one year increase in age will produce both the main age effect <em>and</em> the spline effect, so the total effect is given by adding the two together. So in this case, I would say the following:</p>
+<blockquote>
+<p>The model predicts that for individuals 35 years of age and younger, a one year increase in age is associated with a $0.95 increase in wages on average. The model predicts that for individuals over 35 years of age, a one year increase in age is associated with a $0.0077 (0.9742-0.9549).</p>
+</blockquote>
+<p>We can also graph this spline model, but we cannot do it simply through the <code>formula</code> argument in <code>geom_smooth</code>. In order to do that, you will need to learn a new command. The <code>predict</code> command can be used to get predicted values from a model for a different dataset. The <code>predict</code> command needs at least two arguments: (1) the model object for the model you want to predict, and (2) a data.frame that has the same variables as those used in the model. In this case, we can create a simple “toy” dataset that just has one person of every age from 18 to 65, with only the variables of <code>age</code> and <code>age.spline</code>. We can then use the <code>predict</code> command to get predicted wages for these individuals and add that as a variable to our new dataset. We can than plot these predicted values as a line in <code>ggplot</code> by feeding in the new data into the <code>geom_line</code> command. The r code chunk below does all of this to produce Figure <a href="modeling-non-linearity.html#fig:spline-wages">29</a>. The spline model seems to fit pretty well here and is quite close to the smoothed line. This kind of model is sometimes called a “broken arrow” model because the two different slopes produce a visual effect much like an arrow broken at the hinge point.</p>
+<pre class="sourceCode r"><code class="sourceCode r">predict_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">age=</span><span class="dv">18</span><span class="op">:</span><span class="dv">65</span>)
+predict_df<span class="op">$</span>age.spline &lt;-<span class="st"> </span><span class="kw">ifelse</span>(predict_df<span class="op">$</span>age<span class="op">&lt;</span><span class="dv">35</span>, <span class="dv">0</span>, predict_df<span class="op">$</span>age<span class="dv">-35</span>)
+predict_df<span class="op">$</span>wages &lt;-<span class="st"> </span><span class="kw">predict</span>(model, <span class="dt">newdata=</span>predict_df)
+<span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.01</span>, <span class="dt">width =</span> <span class="dv">1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data=</span>predict_df, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">size=</span><span class="fl">1.5</span>, <span class="dt">alpha=</span><span class="fl">0.75</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:spline-wages"></span>
+<img src="stat_book_files/figure-html/spline-wages-1.png" alt="Scatterplot of age and hourly wages, with a spline fit hinged on age 35 shown in red. A smoothing line is also shown in blue." width="672" />
+<p class="caption">
+Figure 29: Scatterplot of age and hourly wages, with a spline fit hinged on age 35 shown in red. A smoothing line is also shown in blue.
+</p>
+</div>
+<hr />
 </div>
 </div>
             </section>

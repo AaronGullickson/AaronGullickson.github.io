@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-04-01">
+<meta name="date" content="2019-04-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -234,13 +234,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#the-natural-log-transformation"><i class="fa fa-check"></i>The natural log transformation</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#log-transformations-allow-us-to-estimate-multiplicative-models"><i class="fa fa-check"></i>Log-transformations allow us to estimate multiplicative models</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#general-form-and-interpretation"><i class="fa fa-check"></i>General form and interpretation</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#logging-the-independent-variable"><i class="fa fa-check"></i>Logging the independent variable</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#logging-both-independent-and-dependent-variables-the-elasticity-model"><i class="fa fa-check"></i>Logging both independent and dependent variables: The elasticity model</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#the-square-root-transformation"><i class="fa fa-check"></i>The square root transformation</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#other-methods-to-deal-with-non-linearity"><i class="fa fa-check"></i>Other methods to deal with non-linearity</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#residual-plots"><i class="fa fa-check"></i>Residual Plots</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#transformations"><i class="fa fa-check"></i>Transformations</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
+<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
 <li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
@@ -426,7 +424,7 @@ se</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">tapply</span>(addhealth<span class="op">$</span>indegree, addhealth<span class="op">$</span>smoker, mean)
 tab</code></pre>
 <pre><code>## Non-smoker     Smoker 
-##   4.510445   4.776772</code></pre>
+##   4.514471   4.772382</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">mean_diff &lt;-<span class="st"> </span><span class="fl">4.782148</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.509636</span>
 mean_diff</code></pre>
 <pre><code>## [1] 0.272512</code></pre>
@@ -434,7 +432,7 @@ mean_diff</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(addhealth<span class="op">$</span>smoker)</code></pre>
 <pre><code>## 
 ## Non-smoker     Smoker 
-##       3734        663</code></pre>
+##       3697        659</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">n1 &lt;-<span class="st"> </span><span class="dv">3736</span>
 n2 &lt;-<span class="st"> </span><span class="dv">661</span>
 t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, n2<span class="dv">-1</span>)
@@ -445,7 +443,7 @@ t_stat</code></pre>
 We already have <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, so we just need to get the standard deviation of friend nominations for the two groups to get <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span>. We can do this with another tapply command, but changing from <code>mean</code> to <code>sd</code> in the third argument.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(addhealth<span class="op">$</span>indegree, addhealth<span class="op">$</span>smoker, sd)</code></pre>
 <pre><code>## Non-smoker     Smoker 
-##   3.659316   3.865754</code></pre>
+##   3.655093   3.865099</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">s1 &lt;-<span class="st"> </span><span class="fl">3.65865</span>
 s2 &lt;-<span class="st"> </span><span class="fl">3.869584</span>
 se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(s1<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n1<span class="op">+</span>s2<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n2)
@@ -464,8 +462,8 @@ se</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(<span class="kw">table</span>(addhealth<span class="op">$</span>smoker, addhealth<span class="op">$</span>sex), <span class="dv">2</span>)</code></pre>
 <pre><code>##             
 ##                 Female      Male
-##   Non-smoker 0.8539228 0.8440191
-##   Smoker     0.1460772 0.1559809</code></pre>
+##   Non-smoker 0.8534031 0.8435078
+##   Smoker     0.1465969 0.1564922</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">p_hat_f &lt;-<span class="st"> </span><span class="fl">0.1456</span>
 p_hat_m &lt;-<span class="st"> </span><span class="fl">0.1555</span>
 p_hat_diff &lt;-<span class="st"> </span>p_hat_m<span class="op">-</span>p_hat_f
@@ -500,7 +498,7 @@ se</code></pre>
 <p>Lets stick with the Add Health data. What is the correlation between GPA and the number of friend nominations that a student receives?</p>
 <pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span><span class="kw">cor</span>(addhealth<span class="op">$</span>pseudoGPA, addhealth<span class="op">$</span>indegree)
 r</code></pre>
-<pre><code>## [1] 0.1680932</code></pre>
+<pre><code>## [1] NA</code></pre>
 <p>In our sample, there is a moderately positive correlation between a student’s GPA and the number of friend nominations that a student receives. What is our confidence interval for the population?</p>
 <p>For the t-statistic, we use <span class="math inline">\(n-2\)</span> for the degrees of freedom:</p>
 <pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(addhealth)
@@ -510,12 +508,12 @@ t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv
 This is straightforward to calculate in R:</p>
 <pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>((<span class="dv">1</span><span class="op">-</span>r<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(n<span class="dv">-2</span>))
 se</code></pre>
-<pre><code>## [1] 0.01486951</code></pre>
+<pre><code>## [1] NA</code></pre>
 <p>Now we have all the parts we need to calculate the confidence interval:</p>
 <pre class="sourceCode r"><code class="sourceCode r">r <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] 0.1389414</code></pre>
+<pre><code>## [1] NA</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">r <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] 0.1972449</code></pre>
+<pre><code>## [1] NA</code></pre>
 <p>We are 95% confident that the true correlation coefficient between GPA and friend nominations in the population of US adolescents is between 0.139 and 0.198. While there is some difference in the strength of that relationship, we are pretty confident that the correlation is moderatly positive.</p>
 <hr />
 </div>
