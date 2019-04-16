@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-04-14">
+<meta name="date" content="2019-04-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -667,21 +667,21 @@ Figure 23: Scatterplot of life expectancy by GDP per capita, with a log-scale ap
 </div>
 <p>It is really quite impressive how this simple transformation straightened out that very clear diminishing returns type relationship we observed before. This is because on the log-scale a one unit increase means a multiplicative change so, you have to make a much larger absolute change when you are already high in GDP per capita to get the same return in life expectancy.</p>
 <p>Models with logged independent variables are a little trickier to interpret. To understand how it works, lets go ahead and calculate the model:</p>
-<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(lifeExp<span class="op">~</span><span class="kw">log</span>(gdpPercap), <span class="dt">data=</span>gapminder)
+<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(lifeExp<span class="op">~</span><span class="kw">log</span>(gdpPercap), <span class="dt">data=</span><span class="kw">subset</span>(gapminder, year<span class="op">==</span><span class="dv">2007</span>))
 <span class="kw">round</span>(<span class="kw">coef</span>(model), <span class="dv">5</span>)</code></pre>
 <pre><code>##    (Intercept) log(gdpPercap) 
 ##        4.94961        7.20280</code></pre>
 <p>So our model is:</p>
-<p><span class="math display">\[\hat{y}_i=-9.1+8.4\log{x_i}\]</span></p>
+<p><span class="math display">\[\hat{y}_i=4.9+7.2\log{x_i}\]</span></p>
 <p>Because the log transformation is on the right hand side we can no longer use the trick of exponentiating its value because that would just give us <span class="math inline">\(e^{\hat{y}_i}\)</span> on the left hand side. It would also be impractical if we added other independent variables to the model.</p>
 <p>Instead, we can interpret our slope by thinking about how a 1% increase in <span class="math inline">\(x\)</span> would change the predicted value of <span class="math inline">\(y\)</span>. For ease of interpretation, lets start with <span class="math inline">\(x=1\)</span>. The log of 1 is always zero, so:</p>
-<p><span class="math display">\[\hat{y}_i=-9.1+8.4\log{1}=-9.1+8.4*0=\beta_0\]</span></p>
-<p>So, the intercept here is actually the predicted value of when GDP per capita is $1. This is not a terribly realistic value for GDP per capita where the lowest value in your dataset is $241, so its not surprising that we get a negative life expectancy value here.</p>
-<p>Now what happens if we raise GDP per capita by 1%. A 1% increase from a value of 1 would give us a value of 1.01. So:</p>
-<p><span class="math display">\[\hat{y}_i=-9.1+8.4\log{1.01}\]</span></p>
+<p><span class="math display">\[\hat{y}_i=4.9+7.2\log{1}=4.9+7.2*0=\beta_0\]</span></p>
+<p>So, the intercept here is actually the predicted value of life expectancy when GDP per capita is $1. This is not a terribly realistic value for GDP per capita where the lowest value in the dataset is $241, so its not surprising that we get an unrealistically low life expectancy value.</p>
+<p>Now what happens if we raise GDP per capita by 1%? A 1% increase from a value of 1 would give us a value of 1.01. So:</p>
+<p><span class="math display">\[\hat{y}_i=4.9+7.2\log{1.01}\]</span></p>
 <p>From the Taylor series above, we can deduce that the <span class="math inline">\(\log{1.01}\)</span> is roughly equal to 0.01. So:</p>
-<p><span class="math display">\[\hat{y}_i=-9.1+8.4*0.01=-9.1+0.084\]</span></p>
-<p>This same logic will apply to any 1% increase in GDP per capita. So, the model predicts that a 1% increase in GDP per capita is associated with a 0.084 year increase in the life expectancy.</p>
+<p><span class="math display">\[\hat{y}_i=4.9+7.2*0.01=4.9+0.072\]</span></p>
+<p>This same logic will apply to any 1% increase in GDP per capita. So, the model predicts that a 1% increase in GDP per capita is associated with a 0.072 year increase in the life expectancy.</p>
 <p>In general, you can interpret any coefficient <span class="math inline">\(\beta_j\)</span> with a logged independent variable but not logged dependent variable as:</p>
 <blockquote>
 <p>The model predicts that a a 1% increase in x is associated with a <span class="math inline">\(\beta_j/100\)</span> unit increase in y.</p>
@@ -816,7 +816,8 @@ Figure 28: A model predicting life expectancy from GDP per capita with squared a
 </div>
 <div id="splines" class="section level3">
 <h3>Splines</h3>
-<p>Another approach to fitting non-linearity is to fit a <strong>spline</strong>. Splines can become quite complex, but I will focus here on a very simple spline. In a basic spline model, you allow the slope of a variable to have a different linear effect at some specific “hinge” value. Looking at the diminishing returns to wages from age in the earnings data, it might be reasonable to fit this effect with a spline model. It looks like age 35 might be a reasonable value for the hinge.</p>
+<p>Another approach to fitting non-linearity is to fit a <strong>spline</strong>. Splines can become quite complex, but I will focus here on a very simple spline. In a basic spline model, you allow the slope of a variable to have a different linear effect at different cutpoints or “hinge” values of <span class="math inline">\(x\)</span>. Within each segment defined by the cutpoints, we simply estimate a linear model (although more complex spline models allow for non-linear effects within segments).</p>
+<p>Looking at the diminishing returns to wages from age in the earnings data, it might be reasonable to fit this effect with a spline model. It looks like age 35 might be a reasonable value for the hinge.</p>
 <p>In order to fit the spline model, we need to add a spline term. This spline term will be equal to zero for all values where age is equal to or below 35 and will be equal to age minus 35 for all values where age is greater than 35. We then add this variable to the model. I fit this model below.</p>
 <pre class="sourceCode r"><code class="sourceCode r">earnings<span class="op">$</span>age.spline &lt;-<span class="st"> </span><span class="kw">ifelse</span>(earnings<span class="op">$</span>age<span class="op">&lt;</span><span class="dv">35</span>, <span class="dv">0</span>, earnings<span class="op">$</span>age<span class="dv">-35</span>)
 model &lt;-<span class="st"> </span><span class="kw">lm</span>(wages<span class="op">~</span>age<span class="op">+</span>age.spline, <span class="dt">data=</span>earnings)
