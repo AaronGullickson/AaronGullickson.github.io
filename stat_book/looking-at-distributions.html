@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-05-17">
+<meta name="date" content="2019-07-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,6 +48,14 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -164,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="measuring-association-1.html"><a href="measuring-association-1.html"><i class="fa fa-check"></i>Measuring Association</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html"><i class="fa fa-check"></i>The Two-Way Table</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#conditional-distributions"><i class="fa fa-check"></i>Conditional distributions</a></li>
-<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio"><i class="fa fa-check"></i>Odds ratio</a></li>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio-advanced"><i class="fa fa-check"></i>Odds ratio (advanced)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html"><i class="fa fa-check"></i>Mean Differences</a><ul>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#graphically-examining-differences-in-distributions"><i class="fa fa-check"></i>Graphically examining differences in distributions</a></li>
@@ -202,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-formula-for-a-line"><i class="fa fa-check"></i>The Formula for a Line</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#calculating-the-best-fitting-line"><i class="fa fa-check"></i>Calculating the Best-Fitting Line</a></li>
 <li><a href="the-ols-regression-line.html#using-the-lm-command-to-calculate-ols-regression-lines-in-r">Using the <code>lm</code> command to calculate OLS regression lines in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#adding-an-ols-regression-line-to-a-plot"><i class="fa fa-check"></i>Adding an OLS regression line to a plot</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-ols-regression-line-as-a-model"><i class="fa fa-check"></i>The OLS regression line as a model</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#interpeting-slopes-and-intercepts"><i class="fa fa-check"></i>Interpeting Slopes and Intercepts</a></li>
 <li><a href="the-ols-regression-line.html#how-good-is-x-as-a-predictor-of-y">How good is <span class="math inline">\(x\)</span> as a predictor of <span class="math inline">\(y\)</span>?</a></li>
@@ -227,72 +236,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-two-categorical-variables"><i class="fa fa-check"></i>Interaction terms with two categorical variables</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html"><i class="fa fa-check"></i>The Linear Model, Revisited</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#reformulating-the-linear-model"><i class="fa fa-check"></i>Reformulating the linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#residual-plots"><i class="fa fa-check"></i>Residual Plots</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#transformations"><i class="fa fa-check"></i>Transformations</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
-<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a><ul>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#identifying-valid-skips"><i class="fa fa-check"></i>Identifying Valid Skips</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#kinds-of-missingness"><i class="fa fa-check"></i>Kinds of Missingness</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#removing-cases"><i class="fa fa-check"></i>Removing Cases</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#imputation"><i class="fa fa-check"></i>Imputation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html"><i class="fa fa-check"></i>Multicollinearity and Scale Creation</a><ul>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#avoid-the-singularity"><i class="fa fa-check"></i>Avoid the Singularity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#detecting-data-based-multicollinearity"><i class="fa fa-check"></i>Detecting Data-Based Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#addressing-multicollinearity"><i class="fa fa-check"></i>Addressing Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#creating-scales"><i class="fa fa-check"></i>Creating Scales</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#factor-analysis"><i class="fa fa-check"></i>Factor Analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model Selection</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-categorical-outcomes.html"><a href="modeling-categorical-outcomes.html"><i class="fa fa-check"></i>Modeling Categorical Outcomes</a><ul>
-<li class="chapter" data-level="" data-path="dichotomous-outcomes-and-the-binomial-distribution.html"><a href="dichotomous-outcomes-and-the-binomial-distribution.html"><i class="fa fa-check"></i>Dichotomous Outcomes and The Binomial Distribution</a></li>
-<li class="chapter" data-level="" data-path="linear-probability-model.html"><a href="linear-probability-model.html"><i class="fa fa-check"></i>Linear Probability Model</a></li>
-<li class="chapter" data-level="" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i>Generalized Linear Model</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum Likelihood Estimation</a></li>
-<li class="chapter" data-level="" data-path="logistic-regression-model.html"><a href="logistic-regression-model.html"><i class="fa fa-check"></i>Logistic Regression Model</a></li>
-<li class="chapter" data-level="" data-path="models-for-nominal-polytomous-outcomes.html"><a href="models-for-nominal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Nominal Polytomous Outcomes</a></li>
-<li class="chapter" data-level="" data-path="models-for-ordinal-polytomous-outcomes.html"><a href="models-for-ordinal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Ordinal Polytomous Outcomes</a></li>
-</ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html"><i class="fa fa-check"></i>Using Scripts</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#getting-started-with-scripts"><i class="fa fa-check"></i>Getting Started with Scripts</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#not-everything-goes-into-your-script"><i class="fa fa-check"></i>Not Everything Goes Into Your Script</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#commenting-for-sanity"><i class="fa fa-check"></i>Commenting for Sanity</a></li>
+<li class="chapter" data-level="" data-path="useful-references.html"><a href="useful-references.html"><i class="fa fa-check"></i>Useful References</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i>Example Datasets</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#crimes"><i class="fa fa-check"></i>Crimes</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#movies"><i class="fa fa-check"></i>Movies</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#politics"><i class="fa fa-check"></i>Politics</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#popularity"><i class="fa fa-check"></i>Popularity</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#sex"><i class="fa fa-check"></i>Sex</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#titanic"><i class="fa fa-check"></i>Titanic</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#wages"><i class="fa fa-check"></i>Wages</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html"><i class="fa fa-check"></i>Object Types</a><ul>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#atomic-modes"><i class="fa fa-check"></i>Atomic Modes</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#vectors-and-matrices"><i class="fa fa-check"></i>Vectors and Matrices</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#factors"><i class="fa fa-check"></i>Factors</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#logical-values-and-boolean-statements"><i class="fa fa-check"></i>Logical Values and Boolean Statements</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#missing-values-1"><i class="fa fa-check"></i>Missing Values</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#lists"><i class="fa fa-check"></i>Lists</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html"><i class="fa fa-check"></i>Common R Commands</a><ul>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#univariate-statistics"><i class="fa fa-check"></i>Univariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#bivariate-statistics"><i class="fa fa-check"></i>Bivariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#statistical-inference-1"><i class="fa fa-check"></i>Statistical Inference</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#ols-regression-models"><i class="fa fa-check"></i>OLS Regression Models</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#utility-functions"><i class="fa fa-check"></i>Utility functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html"><i class="fa fa-check"></i>Pretty Pictures</a><ul>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-formats"><i class="fa fa-check"></i>Data Formats</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#plain-text-files"><i class="fa fa-check"></i>plain text files</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-in-binary-format"><i class="fa fa-check"></i>Data in binary format</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#saving-data"><i class="fa fa-check"></i>Saving data</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html"><i class="fa fa-check"></i>Plotting Cookbook</a><ul>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#histograms"><i class="fa fa-check"></i>Histograms</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-barplots"><i class="fa fa-check"></i>Comparative Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-boxplots"><i class="fa fa-check"></i>Comparative Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a></li>
 </ul>
 
       </nav>
@@ -312,39 +283,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="looking-at-distributions" class="section level2">
 <h2>Looking at Distributions</h2>
+<iframe src="https://www.youtube.com/embed/H_4zOv7_0g0" width="672" height="400px">
+</iframe>
 <p>One of the best ways to understand the distribution of a variable is to visualize that distribution with a graph. However, the technique we use to graph the distribution will depend on whether we have a categorical or a quantitative variable. For categorical variables, we will use a <strong>barplot</strong>, while for quantitative variables, we will use a <strong>histogram</strong>.</p>
 <div id="looking-at-the-distribution-of-a-categorical-variable" class="section level3">
 <h3>Looking at the distribution of a categorical variable</h3>
+<iframe src="https://www.youtube.com/embed/h_MPc89f8wY" width="672" height="400px">
+</iframe>
 <div id="calculating-the-frequency" class="section level4">
 <h4>Calculating the frequency</h4>
 <p>In order to graph the distribution of a categorical variable, we first need to calculate its <strong>frequency</strong>. The frequency is just the number of observations that fall into a given category of a categorical variable. We could, for example, count up the number of passengers who were in the various passenger classes on the Titanic. Doing so would give us the following:</p>
-<table style="width:42%;">
-<colgroup>
-<col width="25%" />
-<col width="16%" />
-</colgroup>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:titanic-pclass-table">Table 2: </span>Passengers on the Titanic by passenger class
+</caption>
 <thead>
-<tr class="header">
-<th align="left">Passenger class</th>
-<th align="right">Frequency</th>
+<tr>
+<th style="text-align:left;">
+Passenger class
+</th>
+<th style="text-align:right;">
+Frequency
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">First</td>
-<td align="right">323</td>
+<tr>
+<td style="text-align:left;">
+First
+</td>
+<td style="text-align:right;">
+323
+</td>
 </tr>
-<tr class="even">
-<td align="left">Second</td>
-<td align="right">277</td>
+<tr>
+<td style="text-align:left;">
+Second
+</td>
+<td style="text-align:right;">
+277
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Third</td>
-<td align="right">709</td>
+<tr>
+<td style="text-align:left;">
+Third
+</td>
+<td style="text-align:right;">
+709
+</td>
 </tr>
-<tr class="even">
-<td align="left"><strong>Total</strong></td>
-<td align="right"><strong>1309</strong></td>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #666 !important;">
+Total
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #666 !important;">
+1309
+</td>
 </tr>
 </tbody>
 </table>
@@ -357,39 +351,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="frequency-proportion-and-percent" class="section level4">
 <h4>Frequency, proportion, and percent</h4>
 <p>The frequency we just calculated is sometimes called the <strong>absolute frequency</strong> because it just counts the raw number of observations. However such raw numbers are not usually very helpful because they will vary by the overall number of observations. Instead, we typically want to calculate the <strong>proportion</strong> of observations that fall within each category. These proportions are sometimes also called the <strong>relative frequency</strong>. We can calculate the proportion by simply dividing our absolute frequency by the total number of observations:</p>
-<table style="width:65%;">
-<colgroup>
-<col width="25%" />
-<col width="16%" />
-<col width="23%" />
-</colgroup>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:pclass-table-props">Table 3: </span>Passengers on the Titanic by passenger class
+</caption>
 <thead>
-<tr class="header">
-<th align="left">Passenger class</th>
-<th align="right">Frequency</th>
-<th align="right">Proportion</th>
+<tr>
+<th style="text-align:left;">
+Passenger class
+</th>
+<th style="text-align:right;">
+Frequency
+</th>
+<th style="text-align:right;">
+Proportion
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">First</td>
-<td align="right">323</td>
-<td align="right">323/1309=0.247</td>
+<tr>
+<td style="text-align:left;">
+First
+</td>
+<td style="text-align:right;">
+323
+</td>
+<td style="text-align:right;">
+323/1309=0.247
+</td>
 </tr>
-<tr class="even">
-<td align="left">Second</td>
-<td align="right">277</td>
-<td align="right">277/1309=0.212</td>
+<tr>
+<td style="text-align:left;">
+Second
+</td>
+<td style="text-align:right;">
+277
+</td>
+<td style="text-align:right;">
+277/1309=0.212
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Third</td>
-<td align="right">709</td>
-<td align="right">709/1309=0.542</td>
+<tr>
+<td style="text-align:left;">
+Third
+</td>
+<td style="text-align:right;">
+709
+</td>
+<td style="text-align:right;">
+709/1309=0.542
+</td>
 </tr>
-<tr class="even">
-<td align="left"><strong>Total</strong></td>
-<td align="right"><strong>1309</strong></td>
-<td align="right"></td>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #666 !important;">
+Total
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #666 !important;">
+1309
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #666 !important;">
+1.0
+</td>
 </tr>
 </tbody>
 </table>
@@ -400,45 +422,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 0.2467532 0.2116119 0.5416348</code></pre>
 <p>Note that I have “wrapped” the <code>prop.table</code> command around the <code>table</code> command here to do this calculation in a single line.</p>
 <p>We often convert proportions to percents which are more familiar to most people. To convert a proportion to a percent, just multiply by 100:</p>
-<table style="width:90%;">
-<colgroup>
-<col width="25%" />
-<col width="16%" />
-<col width="23%" />
-<col width="25%" />
-</colgroup>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:pclass-table-percents">Table 4: </span>Passengers on the Titanic by passenger class
+</caption>
 <thead>
-<tr class="header">
-<th align="left">Passenger class</th>
-<th align="right">Frequency</th>
-<th align="right">Proportion</th>
-<th align="right">Percent</th>
+<tr>
+<th style="text-align:left;">
+Passenger class
+</th>
+<th style="text-align:right;">
+Frequency
+</th>
+<th style="text-align:right;">
+Proportion
+</th>
+<th style="text-align:right;">
+Percent
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">First</td>
-<td align="right">323</td>
-<td align="right">323/1309=0.247</td>
-<td align="right">0.247*100=24.7%</td>
+<tr>
+<td style="text-align:left;">
+First
+</td>
+<td style="text-align:right;">
+323
+</td>
+<td style="text-align:right;">
+323/1309=0.247
+</td>
+<td style="text-align:right;">
+0.247*100=24.7%
+</td>
 </tr>
-<tr class="even">
-<td align="left">Second</td>
-<td align="right">277</td>
-<td align="right">277/1309=0.212</td>
-<td align="right">0.212*100=21.2%</td>
+<tr>
+<td style="text-align:left;">
+Second
+</td>
+<td style="text-align:right;">
+277
+</td>
+<td style="text-align:right;">
+277/1309=0.212
+</td>
+<td style="text-align:right;">
+0.212*100=21.2%
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Third</td>
-<td align="right">709</td>
-<td align="right">709/1309=0.542</td>
-<td align="right">0.542*100=54.2%</td>
+<tr>
+<td style="text-align:left;">
+Third
+</td>
+<td style="text-align:right;">
+709
+</td>
+<td style="text-align:right;">
+709/1309=0.542
+</td>
+<td style="text-align:right;">
+0.542*100=54.2%
+</td>
 </tr>
-<tr class="even">
-<td align="left"><strong>Total</strong></td>
-<td align="right"><strong>1309</strong></td>
-<td align="right"></td>
-<td align="right"></td>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #666 !important;">
+Total
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #666 !important;">
+1309
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #666 !important;">
+1.0
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #666 !important;">
+100%
+</td>
 </tr>
 </tbody>
 </table>
@@ -470,7 +529,7 @@ Figure 1: Piechart of passenger class distribution on Titanic
 Figure 2: Barplot of passenger class distribution on the Titanic
 </p>
 </div>
-<p>Figure <a href="looking-at-distributions.html#fig:barplot-passclass">2</a> is our first code example of the <code>ggplot</code> library that we will use to make figures in <em>R</em>. I will discuss how this code works below, but first I want to focus on the figure itself. Unlike the piechart, our eye only has to work in one dimension (in this case, horizontal). We can clearly see that third class is the largest passenger class with slightly more than 50% of all passengers. We also can see easily determine visually that thrid class passengers are at more than twice as common as either of the other two categories, simply by comparing the height of the bars. We can also see that slightly more passengers were in first class than second class simply by comparing the heights of those two bars.</p>
+<p>Figure <a href="looking-at-distributions.html#fig:barplot-passclass">2</a> is our first code example of the <code>ggplot</code> library that we will use to make figures in <em>R</em>. I will discuss how this code works below, but first I want to focus on the figure itself. Unlike the piechart, our eye only has to work in one dimension (in this case, horizontal). We can clearly see that third class is the largest passenger class with slightly more than 50% of all passengers. We also can see easily determine visually that third class passengers are at more than twice as common as either of the other two categories, simply by comparing the height of the bars. We can also see that slightly more passengers were in first class than second class simply by comparing the heights of those two bars.</p>
 <p>So how did I create this graph? The <code>ggplot</code> syntax is a little different than most of the other R syntax we will look at this term. With <code>ggplot</code>, we add several commands together with the <code>+</code> sign to create our overall plot. Each command adds a “layer” to our plot. These layers are:</p>
 <ol style="list-style-type: decimal">
 <li><code>ggplot(titanic, aes(x=pclass, y=..prop.., group=1))</code>: The first command is always the <code>ggplot</code> command itself which defines the dataset we will use (in this case, <code>titanic</code>) and the “aesthetics” that are listed in the <code>aes</code> argument. In this case, we defined an x (horizontal) variable as the <code>pclass</code> variable itself and the y (vertical) variable as a proportion (which in ggplot-speak is ..prop..). The <code>group=1</code> argument is a trick for barplots that makes sure our proportions add up to 1 across all categories.</li>
@@ -485,59 +544,100 @@ Figure 2: Barplot of passenger class distribution on the Titanic
 </div>
 <div id="looking-at-the-distribution-of-a-quantitative-variable" class="section level3">
 <h3>Looking at the distribution of a quantitative variable</h3>
+<iframe src="https://www.youtube.com/embed/tIALiP-sEV0" width="672" height="400px">
+</iframe>
 <p>Barplots won’t work for quantitative variables because quantitative variables don’t have categories. However, we can do something quite similar with the <strong>histogram</strong>.</p>
-<p>One way to think about the histogram is that we are imposing a set of categories on a quantitative variable by breaking our quantitative variable into a set of equally wide intervals that we call bins. The most important decision with a quantitative variable is how wide to make these bins. As an example, lets take the age variable from our politics dataset. I could break this variable into five-year intervals that go from 0-5, 5-10, 10-15, 15-20, and so on. Alternatively, I could use 10-year intervals from 0-10, 10-20, 20-30, and so on. I could also use any other interval I like such as 1-year, 3-year, and so on. Lets use 10-year intervals for this example. I then just have to count up the number of observations that fall into each 10 year interval.</p>
-<table style="width:28%;">
-<colgroup>
-<col width="11%" />
-<col width="16%" />
-</colgroup>
+<p>One way to think about the histogram is that we are imposing a set of categories on a quantitative variable by breaking our quantitative variable into a set of equally wide intervals that we call bins. The most important decision with a quantitative variable is how wide to make these bins. As an example, lets take the age variable from our politics dataset. I could break this variable into five-year intervals that go from 0-5, 5-10, 10-15, 15-20, and so on. Alternatively, I could use 10-year intervals from 0-9, 10-19, 20-29, and so on. I could also use any other interval I like such as 1-year, 3-year, and so on. Lets use 10-year intervals for this example. I then just have to count up the number of observations that fall into each 10 year interval.</p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:age-dist-table">Table 5: </span>Age distribution in politics datatset in 10 year groups
+</caption>
 <thead>
-<tr class="header">
-<th align="left">Age</th>
-<th align="right">Frequency</th>
+<tr>
+<th style="text-align:left;">
+Age Group
+</th>
+<th style="text-align:right;">
+Frequency
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">0-10</td>
-<td align="right">0</td>
+<tr>
+<td style="text-align:left;">
+0-9
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="left">10-20</td>
-<td align="right">127</td>
+<tr>
+<td style="text-align:left;">
+10-19
+</td>
+<td style="text-align:right;">
+127
+</td>
 </tr>
-<tr class="odd">
-<td align="left">20-30</td>
-<td align="right">616</td>
+<tr>
+<td style="text-align:left;">
+20-29
+</td>
+<td style="text-align:right;">
+616
+</td>
 </tr>
-<tr class="even">
-<td align="left">30-40</td>
-<td align="right">756</td>
+<tr>
+<td style="text-align:left;">
+30-39
+</td>
+<td style="text-align:right;">
+756
+</td>
 </tr>
-<tr class="odd">
-<td align="left">40-50</td>
-<td align="right">650</td>
+<tr>
+<td style="text-align:left;">
+40-49
+</td>
+<td style="text-align:right;">
+650
+</td>
 </tr>
-<tr class="even">
-<td align="left">50-60</td>
-<td align="right">822</td>
+<tr>
+<td style="text-align:left;">
+50-59
+</td>
+<td style="text-align:right;">
+822
+</td>
 </tr>
-<tr class="odd">
-<td align="left">60-70</td>
-<td align="right">745</td>
+<tr>
+<td style="text-align:left;">
+60-69
+</td>
+<td style="text-align:right;">
+745
+</td>
 </tr>
-<tr class="even">
-<td align="left">70-80</td>
-<td align="right">369</td>
+<tr>
+<td style="text-align:left;">
+70-79
+</td>
+<td style="text-align:right;">
+369
+</td>
 </tr>
-<tr class="odd">
-<td align="left">80-90</td>
-<td align="right">153</td>
+<tr>
+<td style="text-align:left;">
+80-89
+</td>
+<td style="text-align:right;">
+153
+</td>
 </tr>
 </tbody>
 </table>
-<p>Because the survey was only administered to adults, I have zero individuals from 0-10 and only a few in the 10-20 age range. Note that I have to make a decision on how to handle “edge” cases that are on the border between two bins. For example, does someone who is age 20 go in the 10-20 bin or the 20-30 bin? In this case, I have assigned all of these cases to the higher bin (e.g. 20-30 in the case of 20-year olds) because this is the default behavior in <em>R</em>.</p>
+<p>Because the survey was only administered to adults, I have zero individuals from 0-9 and only a few in the 10-19 age range.</p>
 <p>Now that we have the frequencies for each bin, we can plot the histogram. The histogram looks much like a barplot except for two important differences. First, on the x-axis we have a numeric scale for the quantitative variable rather than categories. Second, we don’t put any space between our bars.</p>
 <p>Below I show some <em>R</em> code for producing the histogram shown in Figure <a href="looking-at-distributions.html#fig:hist-agepol">3</a> using <code>ggplot</code>. This code is simpler than the barplot code. We only need to define an x aesthetic in our <code>ggplot</code> command. Instead of a <code>geom_bar</code> we use a <code>geom_histogram</code>. I can specify different bin widths in this command with the <code>binwidth</code> argument. Here I have specified a binwidth of ten years. I have also specified two different colors. The <code>col</code> argument is the color of the border for each bar and the <code>fill</code> argument is the color of the bars themselves.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age))<span class="op">+</span>
@@ -550,7 +650,7 @@ Figure 2: Barplot of passenger class distribution on the Titanic
 Figure 3: Histogram of age in the politics data
 </p>
 </div>
-<p>Looking at Figure <a href="looking-at-distributions.html#fig:hist-agepol">3</a>, I can see the peak in the distribution in the 50’s (the baby boomers) with a long fat tail to the right and a steeper drop off at older ages, due to smaller cohorts and old age mortality.I can also sort of see a smaller peack in the 25-35 range which is largely the children of the baby boomers.</p>
+<p>Looking at Figure <a href="looking-at-distributions.html#fig:hist-agepol">3</a>, I can see the peak in the distribution in the 50’s (the baby boomers) with a long fat tail to the right and a steeper drop off at older ages, due to smaller cohorts and old age mortality.I can also sort of see a smaller peak in the 25-34 range which is largely the children of the baby boomers.</p>
 <p>What would this histogram look like if I had used 5-year bin widths instead of 10-year bins? Lets try it:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span>
@@ -568,7 +668,7 @@ Figure 4: Histogram of age in the politics data with five year bins
 <p>What kinds of things should you be looking for in your histogram? There are four general things to be on the lookout for when you examine a histogram.</p>
 <div id="center" class="section level4">
 <h4>Center</h4>
-<p>Where is the center of the distribution? Loosely we can think of the center as the peak in the data, although we will develop some more technical terms for center in the next section. Some distributions might have more than one distinct peak. When a distribution has one peak, we call it a <strong>unimodal</strong> distribution. Figure <a href="looking-at-distributions.html#fig:hist-unimodal">5</a> shows a clear unimodal distribution for the runtime of movies. We can clearly see that the peak is somewhere between 90 and 100 minutes. When a distribution has two distinct peaks, we call it a <strong>bimodal</strong> distribution. Figure <a href="looking-at-distributions.html#fig:hist-bimodal">6</a> shows that the distribution of violent crime rates aross states is bimodal. The first peak is around 2200-2700 crimes per 100,000 and the second is around 3500 crimes per 100,000. This suggests that there are two distinctive clusters of states: in the first cluster are states with a moderate crime rate and in the second cluster, states with high crime rate states. You can probably guess what we call a distribution with three peaks (and so on), but its fairly rare to see more than two distinct peaks in a distribution.</p>
+<p>Where is the center of the distribution? Loosely we can think of the center as the peak in the data, although we will develop some more technical terms for center in the next section. Some distributions might have more than one distinct peak. When a distribution has one peak, we call it a <strong>unimodal</strong> distribution. Figure <a href="looking-at-distributions.html#fig:hist-unimodal">5</a> shows a clear unimodal distribution for the runtime of movies. We can clearly see that the peak is somewhere between 90 and 100 minutes. When a distribution has two distinct peaks, we call it a <strong>bimodal</strong> distribution. Figure <a href="looking-at-distributions.html#fig:hist-bimodal">6</a> shows that the distribution of violent crime rates across states is bimodal. The first peak is around 2200-2700 crimes per 100,000 and the second is around 3500 crimes per 100,000. This suggests that there are two distinctive clusters of states: in the first cluster are states with a moderate crime rate and in the second cluster, states with high crime rate states. You can probably guess what we call a distribution with three peaks (and so on), but its fairly rare to see more than two distinct peaks in a distribution.</p>
 <div class="figure" style="text-align: center"><span id="fig:hist-unimodal"></span>
 <img src="stat_book_files/figure-html/hist-unimodal-1.png" alt="The distribution of movie runtimes is unimodal with one clear peak around 90-100 minutes" width="672" />
 <p class="caption">
@@ -612,7 +712,7 @@ Figure 9: The distribution of movie runtime is much more spread out for sci-fi/f
 <div id="outliers" class="section level4">
 <h4>Outliers</h4>
 <p>Are there extreme values which fall outside the range of the rest of the data? We want to pay attention to these values because they may have a strong influence on the statistics that we will learn to calculate to summarize a distribution. They might also influence some of the measures of association that we will learn later. Finally, extreme outliers may help identify data coding errors.</p>
-<p>In Figure <a href="looking-at-distributions.html#fig:hist-bimodal">6</a> above, we can see a clear outlier in the violent crime rate for Washington DC. Washington DC’s crime rate is such an outlier relative to the other states that we will pay attention to it throughout this term as we conduct our analysis. Figure <a href="looking-at-distributions.html#fig:hist-spread">9</a> above shows that Peter Jackson’s Return of the King was an outlier for the runtime of sci-fi/fantasy movies, although it doesn’t seem quite as exterme as for the case of Washington DC.</p>
+<p>In Figure <a href="looking-at-distributions.html#fig:hist-bimodal">6</a> above, we can see a clear outlier in the violent crime rate for Washington DC. Washington DC’s crime rate is such an outlier relative to the other states that we will pay attention to it throughout this term as we conduct our analysis. Figure <a href="looking-at-distributions.html#fig:hist-spread">9</a> above shows that Peter Jackson’s Return of the King was an outlier for the runtime of sci-fi/fantasy movies, although it doesn’t seem quite as extreme as for the case of Washington DC.</p>
 <p>In large datasets, it can sometimes be very difficult to detect a single outlier on a histogram because the height of its bar will be so small. Later in this chapter, we will learn another graphical technique called the boxplot that can be more useful for detecting outliers in a quantitative variable.</p>
 <hr />
 </div>

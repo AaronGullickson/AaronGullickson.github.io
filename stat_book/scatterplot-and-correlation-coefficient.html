@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-05-17">
+<meta name="date" content="2019-07-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,6 +48,14 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -164,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="measuring-association-1.html"><a href="measuring-association-1.html"><i class="fa fa-check"></i>Measuring Association</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html"><i class="fa fa-check"></i>The Two-Way Table</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#conditional-distributions"><i class="fa fa-check"></i>Conditional distributions</a></li>
-<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio"><i class="fa fa-check"></i>Odds ratio</a></li>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio-advanced"><i class="fa fa-check"></i>Odds ratio (advanced)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html"><i class="fa fa-check"></i>Mean Differences</a><ul>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#graphically-examining-differences-in-distributions"><i class="fa fa-check"></i>Graphically examining differences in distributions</a></li>
@@ -202,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-formula-for-a-line"><i class="fa fa-check"></i>The Formula for a Line</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#calculating-the-best-fitting-line"><i class="fa fa-check"></i>Calculating the Best-Fitting Line</a></li>
 <li><a href="the-ols-regression-line.html#using-the-lm-command-to-calculate-ols-regression-lines-in-r">Using the <code>lm</code> command to calculate OLS regression lines in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#adding-an-ols-regression-line-to-a-plot"><i class="fa fa-check"></i>Adding an OLS regression line to a plot</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-ols-regression-line-as-a-model"><i class="fa fa-check"></i>The OLS regression line as a model</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#interpeting-slopes-and-intercepts"><i class="fa fa-check"></i>Interpeting Slopes and Intercepts</a></li>
 <li><a href="the-ols-regression-line.html#how-good-is-x-as-a-predictor-of-y">How good is <span class="math inline">\(x\)</span> as a predictor of <span class="math inline">\(y\)</span>?</a></li>
@@ -227,72 +236,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-two-categorical-variables"><i class="fa fa-check"></i>Interaction terms with two categorical variables</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html"><i class="fa fa-check"></i>The Linear Model, Revisited</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#reformulating-the-linear-model"><i class="fa fa-check"></i>Reformulating the linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#residual-plots"><i class="fa fa-check"></i>Residual Plots</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#transformations"><i class="fa fa-check"></i>Transformations</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
-<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a><ul>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#identifying-valid-skips"><i class="fa fa-check"></i>Identifying Valid Skips</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#kinds-of-missingness"><i class="fa fa-check"></i>Kinds of Missingness</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#removing-cases"><i class="fa fa-check"></i>Removing Cases</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#imputation"><i class="fa fa-check"></i>Imputation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html"><i class="fa fa-check"></i>Multicollinearity and Scale Creation</a><ul>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#avoid-the-singularity"><i class="fa fa-check"></i>Avoid the Singularity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#detecting-data-based-multicollinearity"><i class="fa fa-check"></i>Detecting Data-Based Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#addressing-multicollinearity"><i class="fa fa-check"></i>Addressing Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#creating-scales"><i class="fa fa-check"></i>Creating Scales</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#factor-analysis"><i class="fa fa-check"></i>Factor Analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model Selection</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-categorical-outcomes.html"><a href="modeling-categorical-outcomes.html"><i class="fa fa-check"></i>Modeling Categorical Outcomes</a><ul>
-<li class="chapter" data-level="" data-path="dichotomous-outcomes-and-the-binomial-distribution.html"><a href="dichotomous-outcomes-and-the-binomial-distribution.html"><i class="fa fa-check"></i>Dichotomous Outcomes and The Binomial Distribution</a></li>
-<li class="chapter" data-level="" data-path="linear-probability-model.html"><a href="linear-probability-model.html"><i class="fa fa-check"></i>Linear Probability Model</a></li>
-<li class="chapter" data-level="" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i>Generalized Linear Model</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum Likelihood Estimation</a></li>
-<li class="chapter" data-level="" data-path="logistic-regression-model.html"><a href="logistic-regression-model.html"><i class="fa fa-check"></i>Logistic Regression Model</a></li>
-<li class="chapter" data-level="" data-path="models-for-nominal-polytomous-outcomes.html"><a href="models-for-nominal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Nominal Polytomous Outcomes</a></li>
-<li class="chapter" data-level="" data-path="models-for-ordinal-polytomous-outcomes.html"><a href="models-for-ordinal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Ordinal Polytomous Outcomes</a></li>
-</ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html"><i class="fa fa-check"></i>Using Scripts</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#getting-started-with-scripts"><i class="fa fa-check"></i>Getting Started with Scripts</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#not-everything-goes-into-your-script"><i class="fa fa-check"></i>Not Everything Goes Into Your Script</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#commenting-for-sanity"><i class="fa fa-check"></i>Commenting for Sanity</a></li>
+<li class="chapter" data-level="" data-path="useful-references.html"><a href="useful-references.html"><i class="fa fa-check"></i>Useful References</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i>Example Datasets</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#crimes"><i class="fa fa-check"></i>Crimes</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#movies"><i class="fa fa-check"></i>Movies</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#politics"><i class="fa fa-check"></i>Politics</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#popularity"><i class="fa fa-check"></i>Popularity</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#sex"><i class="fa fa-check"></i>Sex</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#titanic"><i class="fa fa-check"></i>Titanic</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#wages"><i class="fa fa-check"></i>Wages</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html"><i class="fa fa-check"></i>Object Types</a><ul>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#atomic-modes"><i class="fa fa-check"></i>Atomic Modes</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#vectors-and-matrices"><i class="fa fa-check"></i>Vectors and Matrices</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#factors"><i class="fa fa-check"></i>Factors</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#logical-values-and-boolean-statements"><i class="fa fa-check"></i>Logical Values and Boolean Statements</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#missing-values-1"><i class="fa fa-check"></i>Missing Values</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#lists"><i class="fa fa-check"></i>Lists</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html"><i class="fa fa-check"></i>Common R Commands</a><ul>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#univariate-statistics"><i class="fa fa-check"></i>Univariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#bivariate-statistics"><i class="fa fa-check"></i>Bivariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#statistical-inference-1"><i class="fa fa-check"></i>Statistical Inference</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#ols-regression-models"><i class="fa fa-check"></i>OLS Regression Models</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#utility-functions"><i class="fa fa-check"></i>Utility functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html"><i class="fa fa-check"></i>Pretty Pictures</a><ul>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-formats"><i class="fa fa-check"></i>Data Formats</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#plain-text-files"><i class="fa fa-check"></i>plain text files</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-in-binary-format"><i class="fa fa-check"></i>Data in binary format</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#saving-data"><i class="fa fa-check"></i>Saving data</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html"><i class="fa fa-check"></i>Plotting Cookbook</a><ul>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#histograms"><i class="fa fa-check"></i>Histograms</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-barplots"><i class="fa fa-check"></i>Comparative Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-boxplots"><i class="fa fa-check"></i>Comparative Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a></li>
 </ul>
 
       </nav>
@@ -318,41 +289,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-scatterplot" class="section level3">
 <h3>The scatterplot</h3>
 <p>We can examine the relationship between two quantitative variables by constructing a <strong>scatterplot</strong>. A scatterplot is a two-dimensional graph. We put the independent variable on the x-axis and the dependent variable on the y-axis. For this reason, we often refer generically to the independent variable as x and the dependent variable generically as y.</p>
-<p>To construct the scatterplot, we plot each observation as a point, based on the value of its independent and dependent variable. For example, lets say we are interested in the relationship between the median age of the state population and violent crime in our crime data. Our first observation, Alabama, has a median age of 37.8 and a violent crime rate of 378 crimes per 100,000. We can plot this point on our graph as follows:</p>
-<p><img src="stat_book_files/figure-html/scatter_onepoint-1.png" width="500px" height="400px" /></p>
+<p>To construct the scatterplot, we plot each observation as a point, based on the value of its independent and dependent variable. For example, lets say we are interested in the relationship between the median age of the state population and violent crime in our crime data. Our first observation, Alabama, has a median age of 37.8 and a violent crime rate of 378 crimes per 100,000. this is plotted in <a href="scatterplot-and-correlation-coefficient.html#fig:scatter-onepoint">23</a> below.</p>
+<div class="figure" style="text-align: center"><span id="fig:scatter-onepoint"></span>
+<img src="stat_book_files/figure-html/scatter-onepoint-1.png" alt="Starting a scatterplot by plotting the firest observation" width="672" />
+<p class="caption">
+Figure 23: Starting a scatterplot by plotting the firest observation
+</p>
+</div>
 <p>If I repeat that process for all of my observations, I will get a scatterplot that looks like:</p>
-<p><img src="stat_book_files/figure-html/scatter_age_violent-1.png" width="500px" height="400px" /></p>
-<p>It is not necessary to show the names of states here, but I have done so here in order to identify individual observations.</p>
+<div class="figure" style="text-align: center"><span id="fig:scatter-age-violent"></span>
+<img src="stat_book_files/figure-html/scatter-age-violent-1.png" alt="Scatterplot of median age by the violent crime rate for all US states" width="672" />
+<p class="caption">
+Figure 24: Scatterplot of median age by the violent crime rate for all US states
+</p>
+</div>
 <p>What are we looking for when we look at a scatterplot? There are four important questions we can ask of the scatterplot. First, what is the <strong>direction</strong> of the relationship. We refer to a relationship as <strong>positive</strong> if both variables move in the same direction. if y tends to be higher when x is higher and y tends to be lower when x is lower, then we have a positive relationship. On the other hand, if the variables move in opposite directions, then we have a <strong>negative</strong> relationship. If y tends to be lower when x is higher and y tends to be higher when x is lower, then we have a negative relationship. In the case above, it seems like we have a generally negative relationship. States with higher median age tend to have lower violent crime rates.</p>
 <p>Second, is the relationship <strong>linear</strong>? I don’t mean here that the points fall exactly on a straight line (which is part of the next question) but rather does the general shape of the points appear to have any “curve” to it. If it has a curve to it, then the relationship would be non-linear. This issue will become important later, because our two primary measures of association are based on the assumption of a linear relationship. In this case, there is no evidence that the relationship is non-linear.</p>
 <p>Third, what is the <strong>strength</strong> of the relationship. If all the points fall exactly on a straight line, then we have a very strong relationship. On the other hand, if the points form a broad elliptical cloud, then we have a weak relationship. In practice, in the social sciences, we never expect our data to conform very closely to a straight line. Judging the strength of a relationship often takes practice. I would say the relationship above is of moderate strength.</p>
 <p>Fourth, are there <strong>outliers</strong>? We are particularly concerned about outliers that go against the general trend of the data, because these may exert a strong influence on our later measurements of association. In this case, there are two clear outliers, Washington DC and Utah. Washington DC is an outlier because it has an extremely high level of violent crime relative to the rest of the data. Its median age tends to be on the younger side, so its placement is not inconsistent with the general trend. Utah is an outlier that goes directly against the general trend because it has one of the lowest violent crime rates and the youngest populations. This is, of course, driven by Utah’s heavily Mormon population, who both have high rates of fertility (leading to a young population) and whose church communities are able to exert a remarkable degree of social control over these young populations.</p>
 <div id="constructing-scatterplots-in-r" class="section level4">
 <h4>Constructing scatterplots in <em>R</em></h4>
-<p>You can construct scatterplots in <em>R</em> with the <code>plot</code> command. At a very basic level, you can just feed in the independent and dependent variables:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(crimes<span class="op">$</span>Poverty, crimes<span class="op">$</span>Property)</code></pre>
-<p><img src="stat_book_files/figure-html/scatter_basic1-1.png" width="500px" height="400px" /></p>
-<p>We can improve on this command with our usual bells and whistles to label x and y axes, titles, etc. We can also use the <code>pch</code> option to define different dots for our points. If you pull up the help command <code>?points</code>, it will show a list of codes for all the different points you can use. I like to use <code>pch=21</code> because it will draw circles where you can color in both the center and the border. For example:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(crimes<span class="op">$</span>Poverty, crimes<span class="op">$</span>Property, 
-     <span class="dt">xlab=</span><span class="st">&quot;Poverty rate&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Property crime rate&quot;</span>, 
-     <span class="dt">main=</span><span class="st">&quot;scatterplot of poverty rate and property crime&quot;</span>, 
-     <span class="dt">las=</span><span class="dv">1</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</code></pre>
-<p><img src="stat_book_files/figure-html/scatter_basic2-1.png" width="500px" height="400px" /></p>
+<p>You can construct scatterplots in <code>ggplot</code> by using the <code>geom_point</code> geometry. You just need to define the aesthetics for <code>x</code> (on the x-axis) and <code>y</code> (on the y-axis).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(crimes, <span class="kw">aes</span>(<span class="dt">x=</span>Poverty, <span class="dt">y=</span>Property))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;poverty rate&quot;</span>, <span class="dt">y=</span><span class="st">&quot;property crimes per 100,000 population&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:scatter-basic1"></span>
+<img src="stat_book_files/figure-html/scatter-basic1-1.png" alt="Scatterplot of a state's poverty rate by property crime rate, for all US states" width="672" />
+<p class="caption">
+Figure 25: Scatterplot of a state’s poverty rate by property crime rate, for all US states
+</p>
+</div>
 <p>Sometimes with large datasets, scatterplots can be difficult to read because of the problem of <strong>overplotting</strong>. This happens when many data points overlap, so that its difficult to see how many points are showing. For example:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(movies<span class="op">$</span>Runtime, movies<span class="op">$</span>TomatoMeter, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">las=</span><span class="dv">1</span>,
-     <span class="dt">xlab=</span><span class="st">&quot;movie runtime&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Tomato Meter&quot;</span>)</code></pre>
-<p><img src="stat_book_files/figure-html/scatter_overplot-1.png" width="500px" height="400px" /></p>
-<p>Because so many movies are in that 90-120 minute range it is difficult to distinguish them and thus a little tricky to summarize the relationship. There are more advanced ways we can address this issue, but these are beyond our introductory class.</p>
-<p>Overplotting can also be a problem with discrete variables because these variables can only take on certain values which will then exactly overlap with one another. For example:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(sex<span class="op">$</span>educ, sex<span class="op">$</span>sexf,
-     <span class="dt">xlab=</span><span class="st">&quot;years of education&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;sexual frequency&quot;</span>)</code></pre>
-<p><img src="stat_book_files/figure-html/scatter_overplot2-1.png" width="500px" height="400px" /></p>
-<p>Both of these variables are discrete and thus only take certain values, so all we see on the graph is more or less every possible point based on the possible values of education and sexual frequency. Multiple points are plotted directly on top of each other. We can fix this issue more easily by applying the <code>jitter</code> command which just adds a random amount to each observation so they don’t exactly overlap. You often have to experiment with <code>jitter</code> to find just how much randomness (the second option) you have to apply.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">jitter</span>(sex<span class="op">$</span>educ,<span class="dv">5</span>), <span class="kw">jitter</span>(sex<span class="op">$</span>sexf,<span class="dv">50</span>), 
-     <span class="dt">xlab=</span><span class="st">&quot;years of education&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;sexual frequency&quot;</span>,
-     <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</code></pre>
-<p><img src="stat_book_files/figure-html/scatter_jitter-1.png" width="500px" height="400px" /></p>
-<p>In this case, because of the large number of observations we still have a lot of overplotting.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime, <span class="dt">y=</span>TomatoMeter))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime in minutes&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Percent of reviews that are positive&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:scatter-overplot"></span>
+<img src="stat_book_files/figure-html/scatter-overplot-1.png" alt="An example of the problem of overplotting where points are being plotted on top of each other" width="672" />
+<p class="caption">
+Figure 26: An example of the problem of overplotting where points are being plotted on top of each other
+</p>
+</div>
+<p>Because so many movies are in the 90-120 minute range, it is difficult to see the density of points in this range and thus difficult to understand the relationship.</p>
+<p>One way to address this is to allow the points to be semi-transparent, so that as more and more points are plotted in the same place, the shading will become darker. We can do this in <code>geom_point</code> by setting the <code>alpha</code> argument to something less than one but greater than zero:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime, <span class="dt">y=</span>TomatoMeter))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.3</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime in minutes&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Percent of reviews that are positive&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:scatter-alpha"></span>
+<img src="stat_book_files/figure-html/scatter-alpha-1.png" alt="Using a semi-transparent point will help us see areas where there is a dense tangle of points" width="672" />
+<p class="caption">
+Figure 27: Using a semi-transparent point will help us see areas where there is a dense tangle of points
+</p>
+</div>
+<p>Overplotting can also be a problem with discrete variables because these variables can only take on certain values which will then exactly overlap with one another. This can be seen in Figure <a href="scatterplot-and-correlation-coefficient.html#fig:scatter-overplot-discrete">28</a> which shows the relationship between age and wages in the earnings data.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wage&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:scatter-overplot-discrete"></span>
+<img src="stat_book_files/figure-html/scatter-overplot-discrete-1.png" alt="Age is discrete so the scatterplot looks like a bunch of vertical lines of dots and is very hard to understand" width="672" />
+<p class="caption">
+Figure 28: Age is discrete so the scatterplot looks like a bunch of vertical lines of dots and is very hard to understand
+</p>
+</div>
+<p>Because age is discrete all points are stacked up in vertical bars making it difficult to understand what is going on. One solution for this problem is to “jitter” each point a little bit by adding a small amount of randomness to the x and y values. The randomness added won’t affect our sense of the relationship but will reduce the issue of overplotting. We can do this simply in <code>ggplot</code> by replacing the <code>geom_point</code> command with <code>geom_jitter</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wage&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:scatter-overplot-jitter"></span>
+<img src="stat_book_files/figure-html/scatter-overplot-jitter-1.png" alt="Jittering helps with overplotting but its still difficult to see how dense points are for most of the plot" width="672" />
+<p class="caption">
+Figure 29: Jittering helps with overplotting but its still difficult to see how dense points are for most of the plot
+</p>
+</div>
+<p>Jittering helped get rid of those vertical lines, but there are so many observations that we still have problems of understanding the density of points for most of the plot. If we add an <code>alpha</code> parameter to the <code>geom_jitter</code> command, we should be better able to understand the scatterplot.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.01</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wage&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:scatter-overplot-jitter-alpha"></span>
+<img src="stat_book_files/figure-html/scatter-overplot-jitter-alpha-1.png" alt="Jittering and transparency help us to make sense of the relationship between age and wages" width="672" />
+<p class="caption">
+Figure 30: Jittering and transparency help us to make sense of the relationship between age and wages
+</p>
+</div>
 </div>
 </div>
 <div id="the-correlation-coefficient" class="section level3">
@@ -366,11 +389,16 @@ diffy &lt;-<span class="st"> </span>crimes<span class="op">$</span>Violent<span 
 <p>The second step is to divide these differences from the mean of x and y by the standard deviation of x and y, respectively.</p>
 <pre class="sourceCode r"><code class="sourceCode r">diffx.sd &lt;-<span class="st"> </span>diffx<span class="op">/</span><span class="kw">sd</span>(crimes<span class="op">$</span>MedianAge)
 diffy.sd &lt;-<span class="st"> </span>diffy<span class="op">/</span><span class="kw">sd</span>(crimes<span class="op">$</span>Violent)</code></pre>
-<p>Now each of your x and y values have been converted from their original form into the <strong>number of standard deviations above or below the mean</strong>. This is often called <strong>standarization</strong>. By doing this, we have put both variables on the same scale and have removed whatever original units they were measured in (in our case, years of age and crimes per 100,000).</p>
+<p>Now each of your x and y values have been converted from their original form into the number of standard deviations above or below the mean. This is often called <strong>standarization</strong>. By doing this, we have put both variables on the same scale and have removed whatever original units they were measured in (in our case, years of age and crimes per 100,000).</p>
 <p>The third step is to to multiply each converted value of x by each converted value of y.</p>
 <pre class="sourceCode r"><code class="sourceCode r">product &lt;-<span class="st"> </span>diffx.sd<span class="op">*</span>diffy.sd</code></pre>
 <p>Why do we do this? First consider this scatterplot of our standardized x and y:</p>
-<p><img src="stat_book_files/figure-html/scatter_r_standardized-1.png" width="500px" height="400px" /></p>
+<div class="figure" style="text-align: center"><span id="fig:scatter-r-standardized"></span>
+<img src="stat_book_files/figure-html/scatter-r-standardized-1.png" alt="Where a point falls in the four quadrants of this scatterplot indicate whether it provides evidence for a positive or negative relationship" width="672" />
+<p class="caption">
+Figure 31: Where a point falls in the four quadrants of this scatterplot indicate whether it provides evidence for a positive or negative relationship
+</p>
+</div>
 <p>Points shown in blue have either both positive or both negative x and y values. When you take the product of these two numbers, you will get a positive product. This is evidence of a positive relationship. Points shown in red have one positive and one negative x and y value. When you take the product of these two numbers, you will get a negative product. This is evidence of a negative relationship.</p>
 <p>The final step is to add up all this evidence of a positive and negative relationship and divide by the number of observations (minus one).</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(product)<span class="op">/</span>(<span class="kw">length</span>(product)<span class="op">-</span><span class="dv">1</span>)</code></pre>
@@ -379,8 +407,13 @@ diffy.sd &lt;-<span class="st"> </span>diffy<span class="op">/</span><span class
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(crimes<span class="op">$</span>MedianAge, crimes<span class="op">$</span>Violent)</code></pre>
 <pre><code>## [1] -0.3015232</code></pre>
 <p>How do we interpret this correlation coefficient? It turns out the correlation coefficient <em>r</em> has some really nice properties. First, the <strong>sign</strong> of <em>r</em> indicates the direction of the relationship. If <em>r</em> is positive, the association is positive. If <em>r</em> is negative, the association is negative. if <em>r</em> is zero, there is no association.</p>
-<p>Second, <em>r</em> has a <strong>maximum</strong> value of 1 and a <strong>minimum</strong> value of -1. These cases will only happen if the points line up exactly on a straight line, which never happens with social science data. However, it gives us some benchmark to measure the strength of our relationship. Here are some simulated scatterplots with different <em>r</em> in order to help you get a sense of the strength of association for different values of <em>r</em>.</p>
-<p><img src="stat_book_files/figure-html/correlations_stength-1.png" width="500px" height="400px" /></p>
+<p>Second, <em>r</em> has a <strong>maximum</strong> value of 1 and a <strong>minimum</strong> value of -1. These cases will only happen if the points line up exactly on a straight line, which never happens with social science data. However, it gives us some benchmark to measure the strength of our relationship. Figure <a href="scatterplot-and-correlation-coefficient.html#fig:correlations-strength">32</a> shows simulated scatterplots with different <em>r</em> in order to help you get a sense of the strength of association for different values of <em>r</em>.</p>
+<div class="figure" style="text-align: center"><span id="fig:correlations-strength"></span>
+<img src="stat_book_files/figure-html/correlations-strength-1.png" alt="Strength of association for various values of the correlation coefficient, based on simulated data" width="672" />
+<p class="caption">
+Figure 32: Strength of association for various values of the correlation coefficient, based on simulated data
+</p>
+</div>
 <p>Third, <em>r</em> is a <strong>unitless</strong> measure of association. It can be compared across different variables and different datasets in order to make a comparison of the strength of association. For example, the correlation coefficient between unemployment and violent crimes is 0.45. Thus, violent crimes are more strongly correlated with unemployment than with median age (0.44&gt;0.30). The association between median age and property crimes is -0.36, so median age is more strongly related to property crimes than violent crimes (0.36&gt;0.30).</p>
 <p>There are some important cautions when using the correlation coefficient. First, the correlation coefficient will only give a proper measure of association when the underlying relationship is <strong>linear</strong>. if there is a non-linear (curved) relationship, then <em>r</em> will not correctly estimate the association. Second, the correlation coefficient can be affected by <strong>outliers</strong>. We will explore this issue of outliers and influential points more in later sections.</p>
 <hr />

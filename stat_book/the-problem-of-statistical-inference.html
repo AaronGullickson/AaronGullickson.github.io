@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-05-17">
+<meta name="date" content="2019-07-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,6 +48,14 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -164,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="measuring-association-1.html"><a href="measuring-association-1.html"><i class="fa fa-check"></i>Measuring Association</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html"><i class="fa fa-check"></i>The Two-Way Table</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#conditional-distributions"><i class="fa fa-check"></i>Conditional distributions</a></li>
-<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio"><i class="fa fa-check"></i>Odds ratio</a></li>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio-advanced"><i class="fa fa-check"></i>Odds ratio (advanced)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html"><i class="fa fa-check"></i>Mean Differences</a><ul>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#graphically-examining-differences-in-distributions"><i class="fa fa-check"></i>Graphically examining differences in distributions</a></li>
@@ -202,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-formula-for-a-line"><i class="fa fa-check"></i>The Formula for a Line</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#calculating-the-best-fitting-line"><i class="fa fa-check"></i>Calculating the Best-Fitting Line</a></li>
 <li><a href="the-ols-regression-line.html#using-the-lm-command-to-calculate-ols-regression-lines-in-r">Using the <code>lm</code> command to calculate OLS regression lines in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#adding-an-ols-regression-line-to-a-plot"><i class="fa fa-check"></i>Adding an OLS regression line to a plot</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-ols-regression-line-as-a-model"><i class="fa fa-check"></i>The OLS regression line as a model</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#interpeting-slopes-and-intercepts"><i class="fa fa-check"></i>Interpeting Slopes and Intercepts</a></li>
 <li><a href="the-ols-regression-line.html#how-good-is-x-as-a-predictor-of-y">How good is <span class="math inline">\(x\)</span> as a predictor of <span class="math inline">\(y\)</span>?</a></li>
@@ -227,72 +236,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-two-categorical-variables"><i class="fa fa-check"></i>Interaction terms with two categorical variables</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html"><i class="fa fa-check"></i>The Linear Model, Revisited</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#reformulating-the-linear-model"><i class="fa fa-check"></i>Reformulating the linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#residual-plots"><i class="fa fa-check"></i>Residual Plots</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#transformations"><i class="fa fa-check"></i>Transformations</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
-<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a><ul>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#identifying-valid-skips"><i class="fa fa-check"></i>Identifying Valid Skips</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#kinds-of-missingness"><i class="fa fa-check"></i>Kinds of Missingness</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#removing-cases"><i class="fa fa-check"></i>Removing Cases</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#imputation"><i class="fa fa-check"></i>Imputation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html"><i class="fa fa-check"></i>Multicollinearity and Scale Creation</a><ul>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#avoid-the-singularity"><i class="fa fa-check"></i>Avoid the Singularity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#detecting-data-based-multicollinearity"><i class="fa fa-check"></i>Detecting Data-Based Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#addressing-multicollinearity"><i class="fa fa-check"></i>Addressing Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#creating-scales"><i class="fa fa-check"></i>Creating Scales</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#factor-analysis"><i class="fa fa-check"></i>Factor Analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model Selection</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-categorical-outcomes.html"><a href="modeling-categorical-outcomes.html"><i class="fa fa-check"></i>Modeling Categorical Outcomes</a><ul>
-<li class="chapter" data-level="" data-path="dichotomous-outcomes-and-the-binomial-distribution.html"><a href="dichotomous-outcomes-and-the-binomial-distribution.html"><i class="fa fa-check"></i>Dichotomous Outcomes and The Binomial Distribution</a></li>
-<li class="chapter" data-level="" data-path="linear-probability-model.html"><a href="linear-probability-model.html"><i class="fa fa-check"></i>Linear Probability Model</a></li>
-<li class="chapter" data-level="" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i>Generalized Linear Model</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum Likelihood Estimation</a></li>
-<li class="chapter" data-level="" data-path="logistic-regression-model.html"><a href="logistic-regression-model.html"><i class="fa fa-check"></i>Logistic Regression Model</a></li>
-<li class="chapter" data-level="" data-path="models-for-nominal-polytomous-outcomes.html"><a href="models-for-nominal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Nominal Polytomous Outcomes</a></li>
-<li class="chapter" data-level="" data-path="models-for-ordinal-polytomous-outcomes.html"><a href="models-for-ordinal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Ordinal Polytomous Outcomes</a></li>
-</ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html"><i class="fa fa-check"></i>Using Scripts</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#getting-started-with-scripts"><i class="fa fa-check"></i>Getting Started with Scripts</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#not-everything-goes-into-your-script"><i class="fa fa-check"></i>Not Everything Goes Into Your Script</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#commenting-for-sanity"><i class="fa fa-check"></i>Commenting for Sanity</a></li>
+<li class="chapter" data-level="" data-path="useful-references.html"><a href="useful-references.html"><i class="fa fa-check"></i>Useful References</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i>Example Datasets</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#crimes"><i class="fa fa-check"></i>Crimes</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#movies"><i class="fa fa-check"></i>Movies</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#politics"><i class="fa fa-check"></i>Politics</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#popularity"><i class="fa fa-check"></i>Popularity</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#sex"><i class="fa fa-check"></i>Sex</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#titanic"><i class="fa fa-check"></i>Titanic</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#wages"><i class="fa fa-check"></i>Wages</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html"><i class="fa fa-check"></i>Object Types</a><ul>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#atomic-modes"><i class="fa fa-check"></i>Atomic Modes</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#vectors-and-matrices"><i class="fa fa-check"></i>Vectors and Matrices</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#factors"><i class="fa fa-check"></i>Factors</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#logical-values-and-boolean-statements"><i class="fa fa-check"></i>Logical Values and Boolean Statements</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#missing-values-1"><i class="fa fa-check"></i>Missing Values</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#lists"><i class="fa fa-check"></i>Lists</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html"><i class="fa fa-check"></i>Common R Commands</a><ul>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#univariate-statistics"><i class="fa fa-check"></i>Univariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#bivariate-statistics"><i class="fa fa-check"></i>Bivariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#statistical-inference-1"><i class="fa fa-check"></i>Statistical Inference</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#ols-regression-models"><i class="fa fa-check"></i>OLS Regression Models</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#utility-functions"><i class="fa fa-check"></i>Utility functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html"><i class="fa fa-check"></i>Pretty Pictures</a><ul>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-formats"><i class="fa fa-check"></i>Data Formats</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#plain-text-files"><i class="fa fa-check"></i>plain text files</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-in-binary-format"><i class="fa fa-check"></i>Data in binary format</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#saving-data"><i class="fa fa-check"></i>Saving data</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html"><i class="fa fa-check"></i>Plotting Cookbook</a><ul>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#histograms"><i class="fa fa-check"></i>Histograms</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-barplots"><i class="fa fa-check"></i>Comparative Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-boxplots"><i class="fa fa-check"></i>Comparative Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a></li>
 </ul>
 
       </nav>
@@ -318,14 +289,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(sex<span class="op">$</span>sexf, sex<span class="op">$</span>marital, mean)</code></pre>
 <pre><code>##       Married       Widowed      Divorced     Separated Never married 
 ##     56.094106      9.222628     41.388720     55.652778     53.617704</code></pre>
-<p>Married respondents had sex 2.5 (56.1-53.6) times more per year than never married individuals. We don’t want to draw this conclusion just for our sample. Rather, we want to know what the relationship is between marital status and sexual frequency in the US population as a whole. In other words, we want to <strong>infer</strong> from our sample to the population. The figure below shows this process graphically.</p>
-<p><img src="stat_book_files/figure-html/chart_inference-1.png" width="500px" height="400px" /></p>
-<p>The large blue rectangle is the population that we want to know about. Within this population, there is some value that we want to know. In this case, that value is the mean difference in sexual frequency between married and never married individuals. We refer to this unknown value in the population as a <strong>parameter</strong>. You will also notice that there are some funny-looking greek letters in that box. We always use greek symbols to represent values in the population. In this case, <span class="math inline">\(\mu_1\)</span> is the population mean of sexual frequency for married individuals and <span class="math inline">\(\mu_2\)</span> is the population mean of sexual frequency for never married individuals. Thus, <span class="math inline">\(\mu_1-\mu_2\)</span> is the population mean difference in sexual frequency between married and never married individuals.</p>
+<p>Married respondents had sex 2.5 (56.1-53.6) times more per year than never married individuals. We don’t want to draw this conclusion just for our sample. Rather, we want to know what the relationship is between marital status and sexual frequency in the US population as a whole. In other words, we want to <strong>infer</strong> from our sample to the population. Figure <a href="the-problem-of-statistical-inference.html#fig:chart-inference">33</a> shows this process graphically.</p>
+<div class="figure" style="text-align: center"><span id="fig:chart-inference"></span>
+<img src="stat_book_files/figure-html/chart-inference-1.png" alt="The process of making statistical inferences" width="672" />
+<p class="caption">
+Figure 33: The process of making statistical inferences
+</p>
+</div>
+<p>The large blue rectangle is the population that we want to know about. Within this population, there is some value that we want to know. In this case, that value is the mean difference in sexual frequency between married and never married individuals. We refer to this unknown value in the population as a <strong>parameter</strong>. You will also notice that there are some funny-looking Greek letters in that box. We always use Greek symbols to represent values in the population. In this case, <span class="math inline">\(\mu_1\)</span> is the population mean of sexual frequency for married individuals and <span class="math inline">\(\mu_2\)</span> is the population mean of sexual frequency for never married individuals. Thus, <span class="math inline">\(\mu_1-\mu_2\)</span> is the population mean difference in sexual frequency between married and never married individuals.</p>
 <p>We typically don’t have data on the entire population, which is why we need to draw a sample in the first place. Therefore, these population parameters are unknown. To estimate what they are, we draw a sample as shown by the smaller yellow square. In this sample, we can calculate the sample mean difference in sexual frequency between married and never married individuals, <span class="math inline">\(\bar{x}_1-\bar{x}_2\)</span>. We refer to a measurement in the sample as a <strong>statistic</strong>. We represent these statistics with roman letters to distinguish them from the corresponding value in the population.</p>
 <p><strong>The statistic is always an estimate of the parameter</strong>. In this case, <span class="math inline">\(\bar{x}_1-\bar{x}_2\)</span> is an estimate of <span class="math inline">\(\mu_1-\mu_2\)</span>. We can infer from the sample to the population and conclude that our best guess as to the true mean difference in the population is the value we got in the sample.</p>
 <p>The sample mean difference may be our best guess as to the true value in the population, but how confident are we in that guess? Intuitively, if I only had a sample of 10 people I would be much less confident than if I had a sample of 10,000 people. <strong>Statistical inference</strong> is the technique of <em>quantifying</em> our uncertainty in the estimate. If you have ever read the results of a political poll, you will be familiar with the term “margin of error.” This is a measure of statistical inference.</p>
 <p>Why might our sample produce inaccurate results? There are two sources of <strong>bias</strong> that could result in our sample statistic being different from the true population parameter. The first form of bias is <strong>systematic bias</strong>. Systematic bias occurs when something about the procedure for generating the sample produces a systematic difference between the sample and the population. Sometimes, systematic bias results from the way the sample is drawn. For example, if I sample my friends and colleagues on their voting behavior, I will likely introduce very large systematic bias in my estimate of who will win an election because my friends and colleagues are more likely than the general population to hold similar views to my own. Systematic bias can also result from the way questions are worded, the characteristics of interviewers, the time of day interviews are conducted, etc. Systematic bias can often be minimized in well-designed and executed scientific surveys. Statistical inference cannot do anything to account for systematic bias.</p>
-<p>The second form of bias is <strong>random bias</strong>. Random bias occurs when the sample statistic is different from the population parameter, just by random chance due to the actual sample that was drawn. In other words, even if there is no systematic bias in my survey design, I can get a bad estimate simply due to the bad luck of drawing a really unusual sample. Imagine that I am interested in estimating mean wealth in the United States and I happen to draw Bill Gates in my sample. I am probably going to dramatically overestimate mean wealth. Random bias affects every sample, regardless of how well-designed and executed.</p>
+<p>The second form of bias is <strong>random bias</strong>. Random bias occurs when the sample statistic is different from the population parameter, just by random chance due to the actual sample that was drawn. In other words, even if there is no systematic bias in my survey design, I can get a bad estimate simply due to the bad luck of drawing a really unusual sample. Imagine that I am interested in estimating mean wealth in the United States and I happen to draw Bill Gates in my sample. I will dramatically overestimate mean wealth in the US. Random bias affects every sample, regardless of how well-designed and executed.</p>
 <p>In practice, the sample statistic is extremely unlikely to be <em>exactly</em> equal to the population parameter, so some degree of random bias is always present in every sample. However, this random bias will become less important as the sample size increases. In the previous example, Bill Gates is going to bias my results much more if I draw a sample of 10 people, than if I draw a sample of 100,000 people. Our goal with statistical inference is to more precisely quantify how bad that random bias <em>could</em> be in our sample.</p>
 <p>Notice the word “could” in the previous sentence. The tricky part about statistical inference is that while we know that random bias could be causing our sample statistic to be very different from the population parameter, we never know for sure whether random bias had a big effect or a small effect in our particular sample, because we don’t have the population parameter with which we could compare it. Keep this issue in mind in the next sections, as it plays a key role in how we understand our procedures of statistical inference.</p>
 <p>It is also important to keep in mind that statistical inference only works when you are actually drawing a sample from a larger population that you want to draw conclusions about. In some cases, our data either constitute a unique event, as in the Titanic case, that cannot be properly considered a sample of something larger or the data actually constitute the entire population of interest, as is the case in our dataset on movies. Although you will occasionally still see people use inferential measures on such data, it is technically inappropriate because there is no larger population to make inferences about.</p>

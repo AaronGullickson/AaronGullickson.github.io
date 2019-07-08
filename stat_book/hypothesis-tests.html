@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-05-17">
+<meta name="date" content="2019-07-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,6 +48,14 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -164,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="measuring-association-1.html"><a href="measuring-association-1.html"><i class="fa fa-check"></i>Measuring Association</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html"><i class="fa fa-check"></i>The Two-Way Table</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#conditional-distributions"><i class="fa fa-check"></i>Conditional distributions</a></li>
-<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio"><i class="fa fa-check"></i>Odds ratio</a></li>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio-advanced"><i class="fa fa-check"></i>Odds ratio (advanced)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html"><i class="fa fa-check"></i>Mean Differences</a><ul>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#graphically-examining-differences-in-distributions"><i class="fa fa-check"></i>Graphically examining differences in distributions</a></li>
@@ -202,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-formula-for-a-line"><i class="fa fa-check"></i>The Formula for a Line</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#calculating-the-best-fitting-line"><i class="fa fa-check"></i>Calculating the Best-Fitting Line</a></li>
 <li><a href="the-ols-regression-line.html#using-the-lm-command-to-calculate-ols-regression-lines-in-r">Using the <code>lm</code> command to calculate OLS regression lines in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#adding-an-ols-regression-line-to-a-plot"><i class="fa fa-check"></i>Adding an OLS regression line to a plot</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-ols-regression-line-as-a-model"><i class="fa fa-check"></i>The OLS regression line as a model</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#interpeting-slopes-and-intercepts"><i class="fa fa-check"></i>Interpeting Slopes and Intercepts</a></li>
 <li><a href="the-ols-regression-line.html#how-good-is-x-as-a-predictor-of-y">How good is <span class="math inline">\(x\)</span> as a predictor of <span class="math inline">\(y\)</span>?</a></li>
@@ -227,72 +236,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-two-categorical-variables"><i class="fa fa-check"></i>Interaction terms with two categorical variables</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html"><i class="fa fa-check"></i>The Linear Model, Revisited</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#reformulating-the-linear-model"><i class="fa fa-check"></i>Reformulating the linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#residual-plots"><i class="fa fa-check"></i>Residual Plots</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#transformations"><i class="fa fa-check"></i>Transformations</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
-<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a><ul>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#identifying-valid-skips"><i class="fa fa-check"></i>Identifying Valid Skips</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#kinds-of-missingness"><i class="fa fa-check"></i>Kinds of Missingness</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#removing-cases"><i class="fa fa-check"></i>Removing Cases</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#imputation"><i class="fa fa-check"></i>Imputation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html"><i class="fa fa-check"></i>Multicollinearity and Scale Creation</a><ul>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#avoid-the-singularity"><i class="fa fa-check"></i>Avoid the Singularity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#detecting-data-based-multicollinearity"><i class="fa fa-check"></i>Detecting Data-Based Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#addressing-multicollinearity"><i class="fa fa-check"></i>Addressing Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#creating-scales"><i class="fa fa-check"></i>Creating Scales</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#factor-analysis"><i class="fa fa-check"></i>Factor Analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model Selection</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-categorical-outcomes.html"><a href="modeling-categorical-outcomes.html"><i class="fa fa-check"></i>Modeling Categorical Outcomes</a><ul>
-<li class="chapter" data-level="" data-path="dichotomous-outcomes-and-the-binomial-distribution.html"><a href="dichotomous-outcomes-and-the-binomial-distribution.html"><i class="fa fa-check"></i>Dichotomous Outcomes and The Binomial Distribution</a></li>
-<li class="chapter" data-level="" data-path="linear-probability-model.html"><a href="linear-probability-model.html"><i class="fa fa-check"></i>Linear Probability Model</a></li>
-<li class="chapter" data-level="" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i>Generalized Linear Model</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum Likelihood Estimation</a></li>
-<li class="chapter" data-level="" data-path="logistic-regression-model.html"><a href="logistic-regression-model.html"><i class="fa fa-check"></i>Logistic Regression Model</a></li>
-<li class="chapter" data-level="" data-path="models-for-nominal-polytomous-outcomes.html"><a href="models-for-nominal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Nominal Polytomous Outcomes</a></li>
-<li class="chapter" data-level="" data-path="models-for-ordinal-polytomous-outcomes.html"><a href="models-for-ordinal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Ordinal Polytomous Outcomes</a></li>
-</ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html"><i class="fa fa-check"></i>Using Scripts</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#getting-started-with-scripts"><i class="fa fa-check"></i>Getting Started with Scripts</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#not-everything-goes-into-your-script"><i class="fa fa-check"></i>Not Everything Goes Into Your Script</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#commenting-for-sanity"><i class="fa fa-check"></i>Commenting for Sanity</a></li>
+<li class="chapter" data-level="" data-path="useful-references.html"><a href="useful-references.html"><i class="fa fa-check"></i>Useful References</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i>Example Datasets</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#crimes"><i class="fa fa-check"></i>Crimes</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#movies"><i class="fa fa-check"></i>Movies</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#politics"><i class="fa fa-check"></i>Politics</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#popularity"><i class="fa fa-check"></i>Popularity</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#sex"><i class="fa fa-check"></i>Sex</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#titanic"><i class="fa fa-check"></i>Titanic</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#wages"><i class="fa fa-check"></i>Wages</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html"><i class="fa fa-check"></i>Object Types</a><ul>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#atomic-modes"><i class="fa fa-check"></i>Atomic Modes</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#vectors-and-matrices"><i class="fa fa-check"></i>Vectors and Matrices</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#factors"><i class="fa fa-check"></i>Factors</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#logical-values-and-boolean-statements"><i class="fa fa-check"></i>Logical Values and Boolean Statements</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#missing-values-1"><i class="fa fa-check"></i>Missing Values</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#lists"><i class="fa fa-check"></i>Lists</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html"><i class="fa fa-check"></i>Common R Commands</a><ul>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#univariate-statistics"><i class="fa fa-check"></i>Univariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#bivariate-statistics"><i class="fa fa-check"></i>Bivariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#statistical-inference-1"><i class="fa fa-check"></i>Statistical Inference</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#ols-regression-models"><i class="fa fa-check"></i>OLS Regression Models</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#utility-functions"><i class="fa fa-check"></i>Utility functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html"><i class="fa fa-check"></i>Pretty Pictures</a><ul>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-formats"><i class="fa fa-check"></i>Data Formats</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#plain-text-files"><i class="fa fa-check"></i>plain text files</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-in-binary-format"><i class="fa fa-check"></i>Data in binary format</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#saving-data"><i class="fa fa-check"></i>Saving data</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html"><i class="fa fa-check"></i>Plotting Cookbook</a><ul>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#histograms"><i class="fa fa-check"></i>Histograms</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-barplots"><i class="fa fa-check"></i>Comparative Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-boxplots"><i class="fa fa-check"></i>Comparative Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a></li>
 </ul>
 
       </nav>
@@ -322,13 +293,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The critical question is whether it is likely or unlikely that I would get a winning percentage this different from the claim in a sample of 100 bottle caps. That is what a hypothesis test is all about. We are asking whether the data that we got are likely under some assumption about the true parameter. If they are unlikely, then we reject that assumption. if they are not unlikely, then we do not reject the assumption.</p>
 <p>We call that assumption the <strong>null hypothesis</strong>, <span class="math inline">\(H_0\)</span>. The null hypothesis is a statement about what we think the true value of the parameter is. The null hypothesis is our “working assumption” until we can be proven to be wrong. In this case, the parameter of interest is the true proportion of winners among the population of all Coke bottles in the US. Coke claims that this proportion is 0.083, so this is my null hypothesis. In mathematical terms, we write:</p>
 <p><span class="math display">\[H_0: \rho=0.083\]</span></p>
-<p>I use the greek letter <span class="math inline">\(\rho\)</span> as a symbol for the population proportion. I will use <span class="math inline">\(\hat{p}\)</span> to represent the sample proportion in my sample, which is 0.05.</p>
+<p>I use the Greek letter <span class="math inline">\(\rho\)</span> as a symbol for the population proportion. I will use <span class="math inline">\(\hat{p}\)</span> to represent the sample proportion in my sample, which is 0.05.</p>
 <p>Some standard statistical textbooks will also claim that there is an “alternative hypothesis.” That alternative hypothesis is specified as “anything but the null hypothesis.” In my opinion, this is incorrect because vague statements about “anything else” do not constitute an actual hypothesis about the data. We are testing only whether the data are consistent with the null hypothesis. No other hypothesis is relevant.</p>
 <p>We got a sample proportion of 0.05 on a sample of 100. <strong>Assuming the null hypothesis is true</strong>, what would the sampling distribution look like from which I pulled my 0.05? Note the part in bold above. We are now playing our game of make believe.</p>
 <p>We know that on a sample of 100, the sample proportion should be normally distributed. It should also be centered on the true population proportion. Because we are assuming the null hypothesis is true, it should be centered on the value of 0.083. The standard error of this sampling distribution is given by:</p>
 <p><span class="math display">\[\sqrt{\frac{0.083*(1-0.083)}{100}}=0.028\]</span></p>
 <p>Therefore, we should have a sampling distribution that looks like:</p>
-<p><img src="stat_book_files/figure-html/make_believe1-1.png" width="500px" height="400px" /></p>
+<div class="figure" style="text-align: center"><span id="fig:make-believe1"></span>
+<img src="stat_book_files/figure-html/make-believe1-1.png" alt="A game of make believe, or the sampling distribution for sample proportion of winning Coca-Cola bottle caps assuming the null hypothesis is true" width="672" />
+<p class="caption">
+Figure 40: A game of make believe, or the sampling distribution for sample proportion of winning Coca-Cola bottle caps assuming the null hypothesis is true
+</p>
+</div>
 <p>The blue line shows the true population proportion assumed by the null hypothesis. The red line shows my actual sample proportion. The <strong>key question of hypothesis testing is whether the observed data (or more extreme data) are reasonably likely under the assumption of the null hypothesis</strong>. Practically speaking, I want to know how far my sample proportion is from the true proportion and whether this distance is far enough to consider it unlikely.</p>
 <p>To calculate how far away I am on some standard scale, I divide the distance by the standard error of the sampling distribution to calculate how many standard errors my sample proportion is below the population parameter (assuming the null hypothesis is true).</p>
 <p><span class="math display">\[\frac{0.05-0.083}{0.028}=\frac{-0.033}{0.028}=-1.18\]</span></p>
@@ -338,9 +314,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 0.1204139</code></pre>
 <p>There is one catch with this command. It always gives you the area in the lower tail, so if your sample statistic is above the center, you should still put in a negative value in the first command. We will see an example of this below.</p>
 <p>Our output indicates that 12% of all samples would produce a sample proportion of 0.05 or less when the true population proportion is 0.083. Graphically it looks like this:</p>
-<p><img src="stat_book_files/figure-html/make_believe2-1.png" width="500px" height="400px" /></p>
+<div class="figure" style="text-align: center"><span id="fig:make-believe2"></span>
+<img src="stat_book_files/figure-html/make-believe2-1.png" alt="The proportion of all possible sample proportions that are lower than our sample proportion, assuming the null hypothesis is true" width="672" />
+<p class="caption">
+Figure 41: The proportion of all possible sample proportions that are lower than our sample proportion, assuming the null hypothesis is true
+</p>
+</div>
 <p>The grey area is the area in the lower tail. It would seem that we are almost ready to conclude our hypothesis test. However, there is a catch and its a tricky one. Remember that I was interested in the probability of getting a sample proportion this far or farther from the true population proportion. This is not the same as getting a sample proportion this low or lower. I need to consider the possibility that I would have been equally suspicious if I had got a sample proportion much higher than 8.3%. In mathematically terms, that means I need to take the area in the upper tail as well, where I am .033 above the true population proportion. This is called a <strong>two-tailed test</strong>. Luckily, because the normal distribution is symmetric, this area will be identical to the area in the lower tail and so I can just double this percent.</p>
-<p><img src="stat_book_files/figure-html/make_believe3-1.png" width="500px" height="400px" /></p>
+<div class="figure" style="text-align: center"><span id="fig:make-believe3"></span>
+<img src="stat_book_files/figure-html/make-believe3-1.png" alt="We have to also consider the possibility of getting a sample proportion as far from the population proportion but in the other direction" width="672" />
+<p class="caption">
+Figure 42: We have to also consider the possibility of getting a sample proportion as far from the population proportion but in the other direction
+</p>
+</div>
 <p>Assuming the null hypothesis is true, there is a 24% chance of getting a sample proportion as far from the true population mean or farther, just by random chance. We call this probability the <strong>p-value</strong>. The p-value is the ultimate goal of the hypothesis test. All hypothesis tests produce a p-value and it is the p-value that we will use to make a decision about our test.</p>
 <p>What should that decision be? We have only two choices. If the p-value is low enough, then it is unlikely that we would have gotten this data or data more extreme, assuming the null hypothesis is true. Therefore, we <strong>reject the null hypothesis</strong>. If the p-value is not low enough, then it is reasonable that we would have gotten this data or data more extreme, assuming the null hypothesis is true. Therefore, we <strong>fail to reject the null hypothesis</strong>. Note that we NEVER accept or prove the null hypothesis. It is already our working assumption, so the best we can do for it is to fail to reject it and thus continue to use it as our working assumption.</p>
 <p>How low does the p-value need to be in order to reject it? There is no right answer here, because this is a subjective question. However, there is a generally agreed upon practice in the social sciences that we reject the null hypothesis when the p-value is at or below 0.05 (5%). Note that while there is general consensus around this number, it is an arbitrary cutpoint. The practical difference between a p-value of 0.049 and 0.051 is negligible, but under this arbitrary standard, we would make different decisions in each case. I would rather that you just learn to think about what the p-value represents and reach your own decision.</p>
@@ -374,12 +360,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##               81.83439               58.32606               77.53498 
 ##                 Jewish          Non-religious                  Other 
 ##              120.92958               88.62963               60.75311</code></pre>
-<p>I want to look at the difference between Roman Catholics and “Other Religions.” The mean difference here is:</p>
-<p><span class="math display">\[63.35337-61.74611=1.607\]</span></p>
-<p>Roman Catholics make $1,607 more than members of other religions, in my sample.</p>
+<p>I want to look at the difference between Evangelical Protestants and “Other Religions.” The mean difference here is:</p>
+<p><span class="math display">\[58.32606-60.75311=-2.42705\]</span></p>
+<p>Evangelical Protestants make $2,427 less than members of other religions, in my sample.</p>
 <p>Let me set up a hypothesis test where the null hypothesis is that Roman Catholics and members of other religions have the same income, or in other words, the mean difference in income is zero:</p>
 <p><span class="math display">\[H_0: \mu_c-\mu_o=0\]</span></p>
-<p>Where <span class="math inline">\(\mu_c\)</span> is the population mean income of Catholics and <span class="math inline">\(\mu_o\)</span> is the population mean income of members of other religions. In order to figure out how far my sample mean difference of 0.548 is from 0, I need to find the standard error of the mean difference. The formula for this number is:</p>
+<p>Where <span class="math inline">\(\mu_c\)</span> is the population mean income of evangelical Protestants and <span class="math inline">\(\mu_o\)</span> is the population mean income of members of other religions. In order to figure out how far my sample mean difference of -2.427 is from 0, I need to find the standard error of the mean difference. The formula for this number is:</p>
 <p><span class="math display">\[\sqrt{\frac{s_c^2}{n_c}+\frac{s_o^2}{n_o}}\]</span></p>
 <p>I can calculate this in <em>R</em>:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(politics<span class="op">$</span>income, politics<span class="op">$</span>relig, sd)</code></pre>
@@ -393,80 +379,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                    785                    917                   1015 
 ##                 Jewish          Non-religious                  Other 
 ##                     71                    567                    883</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="fl">55.49944</span><span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">1393</span><span class="fl">+52.78854</span><span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">257</span>)</code></pre>
-<pre><code>## [1] 3.613047</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fl">1.607</span><span class="op">/</span><span class="fl">3.613</span></code></pre>
-<pre><code>## [1] 0.4447827</code></pre>
-<p>The t-statistic of 0.44 here is not very large. I am only 0.44 standard errors above 0 on the sampling distribution, assuming the null hypothesis is true. Lets go ahead and calculate the p-value for this t-statistic. Remember that I need to put in the negative version of this number to the <code>pt</code> command. I also need to use the smaller of the two sample sizes for my degrees of freedom:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">0.44</span>, <span class="dv">257-1</span>)</code></pre>
-<pre><code>## [1] 0.6603084</code></pre>
-<p>In a sample of this size, there is an 66% chance of observing a mean income difference of $1,607 or more between Catholics and members of other religions, just by sampling error, assuming that there is no difference in income in the population. Therefore, I <strong>fail to reject the null hypothesis</strong> that Catholics and members of other religions make the same income.</p>
+<pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="fl">51.23396</span><span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">917</span><span class="fl">+56.37886</span><span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">883</span>)
+<span class="fl">-2.42705</span><span class="op">/</span>se</code></pre>
+<pre><code>## [1] -0.9547436</code></pre>
+<p>The t-statistic of -0.95 here is not very large. I am only 0.44 standard errors below 0 on the sampling distribution, assuming the null hypothesis is true. Lets go ahead and calculate the p-value for this t-statistic. Remember that I need to put in the negative version of this number to the <code>pt</code> command. I also need to use the smaller of the two sample sizes for my degrees of freedom:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">0.95</span>, <span class="dv">883-1</span>)</code></pre>
+<pre><code>## [1] 0.3423725</code></pre>
+<p>In a sample of this size, there is an 34% chance of observing a mean income difference of $2,427 or more between evangelical Protestants and members of other religions, just by sampling error, assuming that there is no difference in income in the population. Therefore, I <strong>fail to reject the null hypothesis</strong> that evangelical Protestants and members of other religions make the same income.</p>
 </div>
 <div id="example-of-proportion-differences" class="section level4">
 <h4>Example of proportion differences</h4>
 <p>Lets look at the difference in smoking behavior between white and black students in the Add Health data. Our null hypothesis is:</p>
 <p><span class="math display">\[H_0: \rho_w-\rho_c=0\]</span>
 In simple terms, our null hypothesis is that the same proportion of white and black adolescents smoke frequently. Lets look at the actual numbers from our sample:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(<span class="kw">table</span>(addhealth<span class="op">$</span>smoker, addhealth<span class="op">$</span>race),<span class="dv">2</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(<span class="kw">table</span>(popularity<span class="op">$</span>smoker, popularity<span class="op">$</span>race),<span class="dv">2</span>)</code></pre>
 <pre><code>##             
 ##                   White  Black/African American     Latino
-##   Non-smoker 0.79633168              0.94764862 0.89141414
-##   Smoker     0.20366832              0.05235138 0.10858586
+##   Non-smoker 0.79560106              0.94847162 0.89000000
+##   Smoker     0.20439894              0.05152838 0.11000000
 ##             
 ##               Asian/Pacific Islander      Other
-##   Non-smoker              0.90062112 0.92592593
-##   Smoker                  0.09937888 0.07407407
+##   Non-smoker              0.90123457 0.92592593
+##   Smoker                  0.09876543 0.07407407
 ##             
 ##               American Indian/Native American
 ##   Non-smoker                       0.80769231
 ##   Smoker                           0.19230769</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">p_w &lt;-<span class="st"> </span><span class="fl">0.203</span>
-p_b &lt;-<span class="st"> </span><span class="fl">0.051</span>
+<pre class="sourceCode r"><code class="sourceCode r">p_w &lt;-<span class="st"> </span><span class="fl">0.20439894</span>
+p_b &lt;-<span class="st"> </span><span class="fl">0.05152838</span>
 p_diff &lt;-<span class="st"> </span>p_w<span class="op">-</span>p_b
 p_diff</code></pre>
-<pre><code>## [1] 0.152</code></pre>
-<p>About 20.3% of white students smoked frequently, compared to only 5.1% of black students. The difference in proportion is a large 15.2% in the sample. This would seem to contradict our null hypothesis. However, we need to confirm that a difference this large in a sample of our size is unlikely to happen by random chance. To do that we need to calculate the standard error, just as we learned to do it for proportion differences in the confidence interval section:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(addhealth<span class="op">$</span>race)</code></pre>
+<pre><code>## [1] 0.1528706</code></pre>
+<p>About 20.4% of white students smoked frequently, compared to only 5.2% of black students. The difference in proportion is a large 15.3% in the sample. This would seem to contradict our null hypothesis. However, we need to confirm that a difference this large in a sample of our size is unlikely to happen by random chance. To do that we need to calculate the standard error, just as we learned to do it for proportion differences in the confidence interval section:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(popularity<span class="op">$</span>race)</code></pre>
 <pre><code>## 
 ##                            White           Black/African American 
-##                             2636                             1145 
+##                             2637                             1145 
 ##                           Latino           Asian/Pacific Islander 
-##                              400                              161 
+##                              400                              162 
 ##                            Other  American Indian/Native American 
 ##                               27                               26</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">n_w &lt;-<span class="st"> </span><span class="dv">2637</span>
-n_b &lt;-<span class="st"> </span><span class="dv">1146</span>
+n_b &lt;-<span class="st"> </span><span class="dv">1145</span>
 se &lt;-<span class="st"> </span><span class="kw">sqrt</span>((p_w<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_w)<span class="op">/</span>n_w)<span class="op">+</span>(p_b<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_b)<span class="op">/</span>n_b))
 se</code></pre>
-<pre><code>## [1] 0.01017778</code></pre>
+<pre><code>## [1] 0.01021531</code></pre>
 <p>Now many standard errors is our observed difference in proportion from zero?</p>
 <pre class="sourceCode r"><code class="sourceCode r">t_stat &lt;-<span class="st"> </span>p_diff<span class="op">/</span>se
 t_stat</code></pre>
-<pre><code>## [1] 14.9345</code></pre>
+<pre><code>## [1] 14.96485</code></pre>
 <p>Wow, thats a lot. We can be pretty confident already without the final step of the p-value, but lets calculate it anyway. Remember ot always take the negative version of the t-statistic you calculated:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">14.9345</span>, n_b<span class="dv">-1</span>)</code></pre>
-<pre><code>## [1] 3.26654e-46</code></pre>
-<p>The p-value is astronomically small. In a sample of this size, the probability of observing a difference in the proportion frequent smokers between whites and blacks of 15.2% or larger if there is no difference in the population is less than 0.0000001%. Therefore, I <strong>reject the null hypothesis</strong> and conclude that white students are more likely to be frequent smokers than are black students.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">14.96485</span>, n_b<span class="dv">-1</span>)</code></pre>
+<pre><code>## [1] 2.247969e-46</code></pre>
+<p>The p-value is astronomically small. In a sample of this size, the probability of observing a difference in the proportion frequent smokers between whites and blacks of 15.3% or larger if there is no difference in the population is less than 0.0000001%. Therefore, I <strong>reject the null hypothesis</strong> and conclude that white students are more likely to be frequent smokers than are black students.</p>
 </div>
 <div id="example-of-correlation-coefficient" class="section level4">
 <h4>Example of correlation coefficient</h4>
-<p>Lets look at the correlation between the parental income of a student and the number of friend nominations they recieve. Our null hypothesis will be that there is no relationship between parental income and student popularity in the population of US adolescents. Lets look at the data in our sample:</p>
-<pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span><span class="kw">cor</span>(addhealth<span class="op">$</span>parentinc, addhealth<span class="op">$</span>indegree)
+<p>Lets look at the correlation between the parental income of a student and the number of friend nominations they receive. Our null hypothesis will be that there is no relationship between parental income and student popularity in the population of US adolescents. Lets look at the data in our sample:</p>
+<pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span><span class="kw">cor</span>(popularity<span class="op">$</span>parentinc, popularity<span class="op">$</span>indegree)
 r</code></pre>
-<pre><code>## [1] NA</code></pre>
+<pre><code>## [1] 0.1247392</code></pre>
 <p>In the sample we observe a moderately positive correlation between a student’s parental income and the number of friend nominations they receive. How confident are we that we wouldn’t observe such a large correlation coefficient in our sample by random chance if the null hypothesis is true?</p>
 <p>First, we need to calculate the standard error:</p>
-<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(addhealth)
+<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(popularity)
 se &lt;-<span class="st"> </span><span class="kw">sqrt</span>((<span class="dv">1</span><span class="op">-</span>r<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(n<span class="dv">-2</span>))
 se</code></pre>
-<pre><code>## [1] NA</code></pre>
+<pre><code>## [1] 0.01496633</code></pre>
 <p>How many standard errors are we away from the assumption of zero correlation?</p>
 <pre class="sourceCode r"><code class="sourceCode r">r<span class="op">/</span>se</code></pre>
-<pre><code>## [1] NA</code></pre>
-<p>What is the probablity of being that far away from zero for a sample of this size?</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">8.461366</span>, n<span class="dv">-2</span>)</code></pre>
-<pre><code>## [1] 3.554616e-17</code></pre>
-<p>The probability is very small. In a sample of this size, the probability is less than 0.00000001% of observing a correlation coefficient between parental income and friend nominations received of an absolute magnitude of 0.127 or higher when the true correlation is zero in the population. Therefore, we <strong>reject the null hypothesis</strong> and conclude that there is a positive correlation between parental income and populatity among US adolescents.</p>
+<pre><code>## [1] 8.334658</code></pre>
+<p>What is the probability of being that far away from zero for a sample of this size?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="fl">8.334658</span>, n<span class="dv">-2</span>)</code></pre>
+<pre><code>## [1] 1.027779e-16</code></pre>
+<p>The probability is very small. In a sample of this size, the probability is less than 0.00000001% of observing a correlation coefficient between parental income and friend nominations received of an absolute magnitude of 0.125 or higher when the true correlation is zero in the population. Therefore, we <strong>reject the null hypothesis</strong> and conclude that there is a positive correlation between parental income and popularity among US adolescents.</p>
 </div>
 <div id="statistical-significance" class="section level4">
 <h4>Statistical Significance</h4>

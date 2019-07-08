@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-05-17">
+<meta name="date" content="2019-07-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,6 +48,14 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -164,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="measuring-association-1.html"><a href="measuring-association-1.html"><i class="fa fa-check"></i>Measuring Association</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html"><i class="fa fa-check"></i>The Two-Way Table</a><ul>
 <li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#conditional-distributions"><i class="fa fa-check"></i>Conditional distributions</a></li>
-<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio"><i class="fa fa-check"></i>Odds ratio</a></li>
+<li class="chapter" data-level="" data-path="the-two-way-table.html"><a href="the-two-way-table.html#odds-ratio-advanced"><i class="fa fa-check"></i>Odds ratio (advanced)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html"><i class="fa fa-check"></i>Mean Differences</a><ul>
 <li class="chapter" data-level="" data-path="mean-differences.html"><a href="mean-differences.html#graphically-examining-differences-in-distributions"><i class="fa fa-check"></i>Graphically examining differences in distributions</a></li>
@@ -202,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-formula-for-a-line"><i class="fa fa-check"></i>The Formula for a Line</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#calculating-the-best-fitting-line"><i class="fa fa-check"></i>Calculating the Best-Fitting Line</a></li>
 <li><a href="the-ols-regression-line.html#using-the-lm-command-to-calculate-ols-regression-lines-in-r">Using the <code>lm</code> command to calculate OLS regression lines in <em>R</em></a></li>
+<li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#adding-an-ols-regression-line-to-a-plot"><i class="fa fa-check"></i>Adding an OLS regression line to a plot</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#the-ols-regression-line-as-a-model"><i class="fa fa-check"></i>The OLS regression line as a model</a></li>
 <li class="chapter" data-level="" data-path="the-ols-regression-line.html"><a href="the-ols-regression-line.html#interpeting-slopes-and-intercepts"><i class="fa fa-check"></i>Interpeting Slopes and Intercepts</a></li>
 <li><a href="the-ols-regression-line.html#how-good-is-x-as-a-predictor-of-y">How good is <span class="math inline">\(x\)</span> as a predictor of <span class="math inline">\(y\)</span>?</a></li>
@@ -227,72 +236,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="interaction-terms.html"><a href="interaction-terms.html#interaction-terms-with-two-categorical-variables"><i class="fa fa-check"></i>Interaction terms with two categorical variables</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html"><i class="fa fa-check"></i>The Linear Model, Revisited</a><ul>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#reformulating-the-linear-model"><i class="fa fa-check"></i>Reformulating the linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#residual-plots"><i class="fa fa-check"></i>Residual Plots</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#transformations"><i class="fa fa-check"></i>Transformations</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
-<li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
-<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a><ul>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#identifying-valid-skips"><i class="fa fa-check"></i>Identifying Valid Skips</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#kinds-of-missingness"><i class="fa fa-check"></i>Kinds of Missingness</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#removing-cases"><i class="fa fa-check"></i>Removing Cases</a></li>
-<li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#imputation"><i class="fa fa-check"></i>Imputation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html"><i class="fa fa-check"></i>Multicollinearity and Scale Creation</a><ul>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#avoid-the-singularity"><i class="fa fa-check"></i>Avoid the Singularity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#detecting-data-based-multicollinearity"><i class="fa fa-check"></i>Detecting Data-Based Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#addressing-multicollinearity"><i class="fa fa-check"></i>Addressing Multicollinearity</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#creating-scales"><i class="fa fa-check"></i>Creating Scales</a></li>
-<li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#factor-analysis"><i class="fa fa-check"></i>Factor Analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model Selection</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modeling-categorical-outcomes.html"><a href="modeling-categorical-outcomes.html"><i class="fa fa-check"></i>Modeling Categorical Outcomes</a><ul>
-<li class="chapter" data-level="" data-path="dichotomous-outcomes-and-the-binomial-distribution.html"><a href="dichotomous-outcomes-and-the-binomial-distribution.html"><i class="fa fa-check"></i>Dichotomous Outcomes and The Binomial Distribution</a></li>
-<li class="chapter" data-level="" data-path="linear-probability-model.html"><a href="linear-probability-model.html"><i class="fa fa-check"></i>Linear Probability Model</a></li>
-<li class="chapter" data-level="" data-path="generalized-linear-model.html"><a href="generalized-linear-model.html"><i class="fa fa-check"></i>Generalized Linear Model</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum Likelihood Estimation</a></li>
-<li class="chapter" data-level="" data-path="logistic-regression-model.html"><a href="logistic-regression-model.html"><i class="fa fa-check"></i>Logistic Regression Model</a></li>
-<li class="chapter" data-level="" data-path="models-for-nominal-polytomous-outcomes.html"><a href="models-for-nominal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Nominal Polytomous Outcomes</a></li>
-<li class="chapter" data-level="" data-path="models-for-ordinal-polytomous-outcomes.html"><a href="models-for-ordinal-polytomous-outcomes.html"><i class="fa fa-check"></i>Models for Ordinal Polytomous Outcomes</a></li>
-</ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html"><i class="fa fa-check"></i>Using Scripts</a><ul>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#getting-started-with-scripts"><i class="fa fa-check"></i>Getting Started with Scripts</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#not-everything-goes-into-your-script"><i class="fa fa-check"></i>Not Everything Goes Into Your Script</a></li>
-<li class="chapter" data-level="" data-path="using-scripts.html"><a href="using-scripts.html#commenting-for-sanity"><i class="fa fa-check"></i>Commenting for Sanity</a></li>
+<li class="chapter" data-level="" data-path="useful-references.html"><a href="useful-references.html"><i class="fa fa-check"></i>Useful References</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i>Example Datasets</a><ul>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#crimes"><i class="fa fa-check"></i>Crimes</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#movies"><i class="fa fa-check"></i>Movies</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#politics"><i class="fa fa-check"></i>Politics</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#popularity"><i class="fa fa-check"></i>Popularity</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#sex"><i class="fa fa-check"></i>Sex</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#titanic"><i class="fa fa-check"></i>Titanic</a></li>
+<li class="chapter" data-level="" data-path="example-datasets.html"><a href="example-datasets.html#wages"><i class="fa fa-check"></i>Wages</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html"><i class="fa fa-check"></i>Object Types</a><ul>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#atomic-modes"><i class="fa fa-check"></i>Atomic Modes</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#vectors-and-matrices"><i class="fa fa-check"></i>Vectors and Matrices</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#factors"><i class="fa fa-check"></i>Factors</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#logical-values-and-boolean-statements"><i class="fa fa-check"></i>Logical Values and Boolean Statements</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#missing-values-1"><i class="fa fa-check"></i>Missing Values</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#lists"><i class="fa fa-check"></i>Lists</a></li>
-<li class="chapter" data-level="" data-path="object-types.html"><a href="object-types.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html"><i class="fa fa-check"></i>Common R Commands</a><ul>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#univariate-statistics"><i class="fa fa-check"></i>Univariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#bivariate-statistics"><i class="fa fa-check"></i>Bivariate Statistics</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#statistical-inference-1"><i class="fa fa-check"></i>Statistical Inference</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#ols-regression-models"><i class="fa fa-check"></i>OLS Regression Models</a></li>
+<li class="chapter" data-level="" data-path="common-r-commands.html"><a href="common-r-commands.html#utility-functions"><i class="fa fa-check"></i>Utility functions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html"><i class="fa fa-check"></i>Pretty Pictures</a><ul>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
-<li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-formats"><i class="fa fa-check"></i>Data Formats</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#plain-text-files"><i class="fa fa-check"></i>plain text files</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-in-binary-format"><i class="fa fa-check"></i>Data in binary format</a></li>
-<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#saving-data"><i class="fa fa-check"></i>Saving data</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html"><i class="fa fa-check"></i>Plotting Cookbook</a><ul>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#histograms"><i class="fa fa-check"></i>Histograms</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-barplots"><i class="fa fa-check"></i>Comparative Barplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#comparative-boxplots"><i class="fa fa-check"></i>Comparative Boxplots</a></li>
+<li class="chapter" data-level="" data-path="plotting-cookbook.html"><a href="plotting-cookbook.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="r-stat-lab.html"><a href="r-stat-lab.html"><i class="fa fa-check"></i>R Stat Lab</a></li>
 </ul>
 
       </nav>
@@ -312,15 +283,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="confidence-intervals" class="section level2">
 <h2>Confidence Intervals</h2>
-<p>Remember from the previous section that 95% of all the possible sample means will be within 1.96 standard errors of the true population mean <span class="math inline">\(\mu\)</span>. Therefore:</p>
-<p><img src="stat_book_files/figure-html/normaldist_ci-1.png" width="500px" height="400px" /></p>
-<p>There is a 95% probability that we will draw a sample mean within 1.96 standard errors of the true population mean.</p>
+<p>As Figure <a href="confidence-intervals.html#fig:normaldist-ci">38</a> shows, 95% of all the possible sample means will be within 1.96 standard errors of the true population mean <span class="math inline">\(\mu\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:normaldist-ci"></span>
+<img src="stat_book_files/figure-html/normaldist-ci-1.png" alt="95% of all sample means will be within 1.96 standard errors of the true population mean." width="672" />
+<p class="caption">
+Figure 38: 95% of all sample means will be within 1.96 standard errors of the true population mean.
+</p>
+</div>
 <p>Lets say I were to construct the following interval for every possible sample:</p>
 <p><span class="math display">\[\bar{x}\pm1.96(\sigma/\sqrt{n})\]</span></p>
-<p>t follows from the probability statement above that for 95% of all samples, this interval would contain the true population mean, <span class="math inline">\(\mu\)</span>.</p>
-<p>To see how this works graphically, imagine constructing this interval for twenty different samples from the same population.</p>
-<p><img src="stat_book_files/figure-html/conf_intervals-1.png" width="500px" height="400px" /></p>
-<p>The blue line gives the true population mean. The dots represent the sample means for each of the twenty samples. You can see that these sample means fluctuate around the true population mean due to random sampling error. The lines give the interval outlined above. In 19 out of the 20 cases, this interval contains the true population mean (as you can see by the fact that the interval crosses the blue line). The one sample where this is not true is shown in red. On average, 95% of samples will contain the true population mean in the interval, so 5% or 1 in 20 will not.</p>
+<p>It follows from the statement above that for 95% of all samples, this interval would contain the true population mean, <span class="math inline">\(\mu\)</span>.</p>
+<p>To see how this works graphically, imagine constructing this interval for twenty different samples from the same population. Figure <a href="confidence-intervals.html#fig:conf-intervals">39</a> shows the mean and interval for each of these twenty samples, relative to the true population mean.</p>
+<div class="figure" style="text-align: center"><span id="fig:conf-intervals"></span>
+<img src="stat_book_files/figure-html/conf-intervals-1.png" alt="Intervals of sample mean plus and minus 1.96 standard errors for 20 different samples, with the true population mean shown by the blue line. Sample means shown by dots." width="672" />
+<p class="caption">
+Figure 39: Intervals of sample mean plus and minus 1.96 standard errors for 20 different samples, with the true population mean shown by the blue line. Sample means shown by dots.
+</p>
+</div>
+<p>You can see that these sample means fluctuate around the true population mean due to random sampling error. The lines give the interval outlined above. In 19 out of the 20 cases, this interval contains the true population mean (as you can see by the fact that the interval crosses the blue line). The one sample where this is not true is shown in red. On average, 95% of samples will contain the true population mean in the interval, so 5% or 1 in 20 will not.</p>
 <p>We refer to this interval as the <strong>95% confidence interval</strong>. Of course, in practice, we only construct one interval on the sample that we have. We use this interval to give a range of values that we feel “confident” will contain the true population mean.</p>
 <div id="what-do-we-mean-by-confident" class="section level3">
 <h3>What do we mean by “confident?”</h3>
@@ -352,14 +332,15 @@ xbar<span class="op">+</span>t<span class="op">*</span>se</code></pre>
 <pre><code>## [1] 50.03165</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">xbar<span class="op">-</span>t<span class="op">*</span>se</code></pre>
 <pre><code>## [1] 48.97307</code></pre>
-<p>We are 95% confident that the mean age among all US adults is between 49.01 and 49.87 years of age. As you can see, the large sample of nearly 6,000 respondents produces a very tight confidence interval.</p>
+<p>We are 95% confident that the mean age among all US adults is between 48.97 and 50.03 years of age. As you can see, the large sample of nearly 6,000 respondents produces a very tight confidence interval.</p>
 </div>
 <div id="calculating-the-confidence-interval-for-other-sample-statistics" class="section level3">
 <h3>Calculating the confidence interval for other sample statistics</h3>
 <p>As noted in the previous section, the sampling distribution of other sample statistics such as proportions, mean differences, and regression slopes is also normally distributed in large enough samples. This means that we can use the same approach to construct confidence intervals for other sample statistics. The general form of the confidence interval is:</p>
-<p><span class="math display">\[(sample statistic) \pm t*(standard error)\]</span></p>
-<p>In order to do this for any of the above sample statistics, we only need to know how to calculate that sample statistic’s standard error and the degrees of freedom used to look up the t-statistic for that sample statistic. Here is a useful cheat sheet of those formulas:</p>
+<p><span class="math display">\[\texttt{(sample statistic)} \pm t*\texttt{(standard error)}\]</span></p>
+<p>In order to do this for any of the above sample statistics, we only need to know how to calculate that sample statistic’s standard error and the degrees of freedom used to look up the t-statistic for that sample statistic. Table <a href="confidence-intervals.html#tab:cheat-sheet">12</a> provides a useful cheat sheet of those formulas:</p>
 <table>
+<caption><span id="tab:cheat-sheet">Table 12: </span> Cheat sheet of equations for calculating standard errors and degrees of freedom</caption>
 <thead>
 <tr class="header">
 <th align="left">Type</th>
@@ -404,85 +385,85 @@ xbar<span class="op">+</span>t<span class="op">*</span>se</code></pre>
 <pre><code>## 
 ##   No  Yes 
 ## 1180 3058</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">1181</span><span class="op">+</span><span class="dv">3057</span>
-p_hat &lt;-<span class="st"> </span><span class="dv">1181</span><span class="op">/</span>n
+<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">1180</span><span class="op">+</span><span class="dv">3058</span>
+p_hat &lt;-<span class="st"> </span><span class="dv">1180</span><span class="op">/</span>n
 n</code></pre>
 <pre><code>## [1] 4238</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">p_hat</code></pre>
-<pre><code>## [1] 0.2786692</code></pre>
-<p>About 27.9% of the respondents in our sample are climate change deniers. What can we conclude about the proportion in the US population? First, lets figure out the t-statistic. We use the same <span class="math inline">\(n-1\)</span> for degrees of freedom:</p>
+<pre><code>## [1] 0.2784332</code></pre>
+<p>About 27.8% of the respondents in our sample are climate change deniers. What can we conclude about the proportion in the US population? First, lets figure out the t-statistic. We use the same <span class="math inline">\(n-1\)</span> for degrees of freedom:</p>
 <pre class="sourceCode r"><code class="sourceCode r">t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>, n<span class="dv">-1</span>)
 t_stat</code></pre>
 <pre><code>## [1] 1.960524</code></pre>
 <p>Our sample is large enough that we are basically using 1.96. Now we need to calculate the standard error. The formula from above is:</p>
 <p><span class="math display">\[\sqrt{\frac{\hat{p}*(1-\hat{p})}{n}}\]</span></p>
 <p>The term <span class="math inline">\(hat{p}\)</span> is the standard way to represent the sample proportion, which in this case is 0.279. So, our formula is:</p>
-<p><span class="math display">\[\sqrt{\frac{0.279*(1-0.279)}{4238}}\]</span></p>
+<p><span class="math display">\[\sqrt{\frac{0.278*(1-0.278)}{4238}}\]</span></p>
 <p>We can calculate this in <em>R</em>:</p>
 <pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(p_hat<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_hat)<span class="op">/</span>n)
 se</code></pre>
-<pre><code>## [1] 0.006887018</code></pre>
+<pre><code>## [1] 0.006885228</code></pre>
 <p>We now have all the pieces to construct the confidence interval:</p>
 <pre class="sourceCode r"><code class="sourceCode r">p_hat<span class="op">+</span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] 0.2921713</code></pre>
+<pre><code>## [1] 0.2919319</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">p_hat<span class="op">-</span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] 0.265167</code></pre>
+<pre><code>## [1] 0.2649346</code></pre>
 <p>We are 95% confident that the true percentage of climate change deniers in the the US population is between 26.5% and 29.2%.</p>
 </div>
 <div id="example-with-mean-differences" class="section level3">
 <h3>Example with mean differences</h3>
 <p>using our Add health data, what is the mean difference in popularity (number of friend nominations) between frequent smokers and those who do not smoke frequently?</p>
-<pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">tapply</span>(addhealth<span class="op">$</span>indegree, addhealth<span class="op">$</span>smoker, mean)
+<pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">tapply</span>(popularity<span class="op">$</span>indegree, popularity<span class="op">$</span>smoker, mean)
 tab</code></pre>
 <pre><code>## Non-smoker     Smoker 
-##   4.514471   4.772382</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">mean_diff &lt;-<span class="st"> </span><span class="fl">4.782148</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.509636</span>
+##   4.506699   4.796992</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">mean_diff &lt;-<span class="st"> </span><span class="fl">4.796992</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.506699</span>
 mean_diff</code></pre>
-<pre><code>## [1] 0.272512</code></pre>
-<p>In our sample data, frequent smokers had 0.273 more friends on average than those who did not smoke frequently. What is the confidence interval for that value in the population? We start by calculating the t-statitic for this confidence interval. We use the size of the smaller group minus one for the degrees of freedom.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(addhealth<span class="op">$</span>smoker)</code></pre>
+<pre><code>## [1] 0.290293</code></pre>
+<p>In our sample data, frequent smokers had 0.290 more friends on average than those who did not smoke frequently. What is the confidence interval for that value in the population? We start by calculating the t-statistic for this confidence interval. We use the size of the smaller group minus one for the degrees of freedom.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(popularity<span class="op">$</span>smoker)</code></pre>
 <pre><code>## 
 ## Non-smoker     Smoker 
-##       3697        659</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">n1 &lt;-<span class="st"> </span><span class="dv">3736</span>
-n2 &lt;-<span class="st"> </span><span class="dv">661</span>
+##       3732        665</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">n1 &lt;-<span class="st"> </span><span class="dv">3732</span>
+n2 &lt;-<span class="st"> </span><span class="dv">665</span>
 t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, n2<span class="dv">-1</span>)
 t_stat</code></pre>
-<pre><code>## [1] 1.963565</code></pre>
+<pre><code>## [1] 1.963543</code></pre>
 <p>The value is pretty close to 1.96 but a little bigger. Now we need to calculate the standard error. The formula is:</p>
 <p><span class="math display">\[\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\]</span>
 We already have <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, so we just need to get the standard deviation of friend nominations for the two groups to get <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span>. We can do this with another tapply command, but changing from <code>mean</code> to <code>sd</code> in the third argument.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(addhealth<span class="op">$</span>indegree, addhealth<span class="op">$</span>smoker, sd)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(popularity<span class="op">$</span>indegree, popularity<span class="op">$</span>smoker, sd)</code></pre>
 <pre><code>## Non-smoker     Smoker 
-##   3.655093   3.865099</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">s1 &lt;-<span class="st"> </span><span class="fl">3.65865</span>
-s2 &lt;-<span class="st"> </span><span class="fl">3.869584</span>
+##   3.652224   3.901188</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">s1 &lt;-<span class="st"> </span><span class="fl">3.652224</span>
+s2 &lt;-<span class="st"> </span><span class="fl">3.901188</span>
 se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(s1<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n1<span class="op">+</span>s2<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n2)
 se</code></pre>
-<pre><code>## [1] 0.1619752</code></pre>
+<pre><code>## [1] 0.1626661</code></pre>
 <p>Now we have all the pieces to put together the confidence interval:</p>
 <pre class="sourceCode r"><code class="sourceCode r">mean_diff <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] -0.04553685</code></pre>
+<pre><code>## [1] -0.02910896</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">mean_diff <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] 0.5905609</code></pre>
-<p>We are 95% confident that in the population of US adolescents, those who smoke frequently have between 0.05 fewer to 0.59 more friend nominations, on average, than those who do not smoke frequently. Note that because our confidence interval contains both negative and positive value, we cannot be confident about whether smoking is truly associated with having more or less friends. The direction of the relationship between the two variables is uncertain.</p>
+<pre><code>## [1] 0.609695</code></pre>
+<p>We are 95% confident that in the population of US adolescents, those who smoke frequently have between 0.03 fewer to 0.61 more friend nominations, on average, than those who do not smoke frequently. Note that because our confidence interval contains both negative and positive value, we cannot be confident about whether smoking is truly associated with having more or less friends. The direction of the relationship between the two variables is uncertain.</p>
 </div>
 <div id="example-with-proportion-differences" class="section level3">
 <h3>Example with proportion differences</h3>
 <p>Lets continue to use the Add Health data. Do we observe a gender difference in smoking behavior in our sample?</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(<span class="kw">table</span>(addhealth<span class="op">$</span>smoker, addhealth<span class="op">$</span>sex), <span class="dv">2</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(<span class="kw">table</span>(popularity<span class="op">$</span>smoker, popularity<span class="op">$</span>sex), <span class="dv">2</span>)</code></pre>
 <pre><code>##             
 ##                 Female      Male
-##   Non-smoker 0.8534031 0.8435078
-##   Smoker     0.1465969 0.1564922</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">p_hat_f &lt;-<span class="st"> </span><span class="fl">0.1456</span>
-p_hat_m &lt;-<span class="st"> </span><span class="fl">0.1555</span>
+##   Non-smoker 0.8534894 0.8435407
+##   Smoker     0.1465106 0.1564593</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_hat_f &lt;-<span class="st"> </span><span class="fl">0.1465106</span>
+p_hat_m &lt;-<span class="st"> </span><span class="fl">0.1564593</span>
 p_hat_diff &lt;-<span class="st"> </span>p_hat_m<span class="op">-</span>p_hat_f
 p_hat_diff</code></pre>
-<pre><code>## [1] 0.0099</code></pre>
-<p>In our sample, about 14.6% of girls were frequent smokers and about 15.6% of boys were frequent smokers. The percentage of boys who smoke is about 1% higher than the percentage of girls. Do we think this moderate difference in the sample is true in the population?</p>
+<pre><code>## [1] 0.0099487</code></pre>
+<p>In our sample, about 14.7% of girls were frequent smokers and about 15.6% of boys were frequent smokers. The percentage of boys who smoke is about 1% higher than the percentage of girls. Do we think this moderate difference in the sample is true in the population?</p>
 <p>Lets start again by calculating the appropriate t-statistic for our confidence interval. We use the same procedure as for mean differences above, choosing the size of the smaller group for the degrees of freedom. However, its important to note that our groups are now boys and girls, not smokers and non-smokers.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(addhealth<span class="op">$</span>sex)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(popularity<span class="op">$</span>sex)</code></pre>
 <pre><code>## 
 ##  Female    Male 
 ##    2307    2090</code></pre>
@@ -493,39 +474,39 @@ t_stat</code></pre>
 <pre><code>## [1] 1.9611</code></pre>
 <p>Now we can calculate the standard error. The formula is:</p>
 <p><span class="math display">\[\sqrt{\frac{\hat{p}_1*(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2*(1-\hat{p}_2)}{n_2}}\]</span></p>
-<p>That looks like a lot, but we just have to focus on pluggin in the right values in R:</p>
+<p>That looks like a lot, but we just have to focus on plugging in the right values in R:</p>
 <pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>((p_hat_f<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_hat_f)<span class="op">/</span>n_f)<span class="op">+</span>(p_hat_m<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_hat_m)<span class="op">/</span>n_m))
 se</code></pre>
-<pre><code>## [1] 0.01080535</code></pre>
+<pre><code>## [1] 0.01083286</code></pre>
 <p>Now we have all the parts to calculate the confidence interval:</p>
 <pre class="sourceCode r"><code class="sourceCode r">p_hat_diff <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] -0.01129037</code></pre>
+<pre><code>## [1] -0.01129562</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">p_hat_diff <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] 0.03109037</code></pre>
+<pre><code>## [1] 0.03119302</code></pre>
 <p>We are 95% confident that in the population of US adolescents, between 1.1% fewer to 3.1% more boys smoke frequently than girls. As above, because our confidence interval includes both negative and positive values, we are not very confident at all about whether boys or girls smoke more frequently.</p>
 </div>
 <div id="example-with-correlation-coefficient" class="section level3">
 <h3>Example with correlation coefficient</h3>
 <p>Lets stick with the Add Health data. What is the correlation between GPA and the number of friend nominations that a student receives?</p>
-<pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span><span class="kw">cor</span>(addhealth<span class="op">$</span>pseudoGPA, addhealth<span class="op">$</span>indegree)
+<pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span><span class="kw">cor</span>(popularity<span class="op">$</span>pseudoGPA, popularity<span class="op">$</span>indegree)
 r</code></pre>
-<pre><code>## [1] NA</code></pre>
+<pre><code>## [1] 0.1680881</code></pre>
 <p>In our sample, there is a moderately positive correlation between a student’s GPA and the number of friend nominations that a student receives. What is our confidence interval for the population?</p>
 <p>For the t-statistic, we use <span class="math inline">\(n-2\)</span> for the degrees of freedom:</p>
-<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(addhealth)
+<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(popularity)
 t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, n<span class="dv">-2</span>)</code></pre>
 <p>For the standard error, the formula is:</p>
 <p><span class="math display">\[\sqrt{\frac{1-r^2}{n-2}}\]</span>
 This is straightforward to calculate in R:</p>
 <pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>((<span class="dv">1</span><span class="op">-</span>r<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(n<span class="dv">-2</span>))
 se</code></pre>
-<pre><code>## [1] NA</code></pre>
+<pre><code>## [1] 0.01486952</code></pre>
 <p>Now we have all the parts we need to calculate the confidence interval:</p>
 <pre class="sourceCode r"><code class="sourceCode r">r <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] NA</code></pre>
+<pre><code>## [1] 0.1389363</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">r <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
-<pre><code>## [1] NA</code></pre>
-<p>We are 95% confident that the true correlation coefficient between GPA and friend nominations in the population of US adolescents is between 0.139 and 0.198. While there is some difference in the strength of that relationship, we are pretty confident that the correlation is moderatly positive.</p>
+<pre><code>## [1] 0.1972398</code></pre>
+<p>We are 95% confident that the true correlation coefficient between GPA and friend nominations in the population of US adolescents is between 0.139 and 0.197. While there is some difference in the strength of that relationship, we are pretty confident that the correlation is moderately positive.</p>
 <hr />
 </div>
 </div>
