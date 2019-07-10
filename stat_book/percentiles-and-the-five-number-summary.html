@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-07-08">
+<meta name="date" content="2019-07-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -286,6 +286,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this section, we will learn about the concept of <strong>percentiles</strong>. Percentiles will allow us to calculate a <strong>five number summary</strong> of a distribution and introduce a new kind of graph for describing a distribution called the <strong>boxplot</strong>.</p>
 <div id="percentiles" class="section level3">
 <h3>Percentiles</h3>
+<iframe src="https://www.youtube.com/embed/8sOWBj0QES0" width="672" height="400px">
+</iframe>
 <p>We have already seen one example of a percentile. The median is the 50th percentile of the distribution. It is the point at which 50% of the observations are lower and 50% are higher. We can actually use this same logic to calculate other percentiles. We could calculate the 25th percentile of the distribution by finding the point where 25% of the observations are below and 75% are above. We could even calculate something like the 43rd percentile if we were so inclined.</p>
 <p>We calculate percentiles in a fashion similar to the median. First, sort the data from lowest to highest. Then, find the exact observation where X% of the observations fall below to find the Xth percentile. In some cases, there might not be an exact observation that fits this description and so you may have to take the mean across the two closest numbers.</p>
 <p>The <code>quantile</code> command in R will calculate percentiles for us in this fashion (quantile is a synonym for percentile). In addition to telling the quantile command which variable we want the percentiles of, we need to tell it which percentiles we want. In the command below, I ask for the 27th and 57th percentile of age in our sexual frequency data.</p>
@@ -308,6 +310,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="boxplots" class="section level3">
 <h3>Boxplots</h3>
+<iframe src="https://www.youtube.com/embed/lp-ZhOr2xCY" width="672" height="400px">
+</iframe>
 <p>We can also use this five number summary to create another graphical representation of the distribution called the boxplot. Figure <a href="percentiles-and-the-five-number-summary.html#fig:boxplot-age-sex">13</a> below shows a boxplot for the age variable from the sexual frequency data.</p>
 <div class="figure" style="text-align: center"><span id="fig:boxplot-age-sex"></span>
 <img src="stat_book_files/figure-html/boxplot-age-sex-1.png" alt="Boxplot of respondent's age in sexual frequency data" width="672" />
