@@ -283,6 +283,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="the-two-way-table" class="section level2">
 <h2>The Two-Way Table</h2>
+<iframe src="https://www.youtube.com/embed/ltyT8BJbGLM" width="672" height="400px">
+</iframe>
 <p>The <strong>two-way table</strong> (also known as a <strong>cross-tabulation</strong> or <strong>crosstab</strong>) gives the joint distribution of two categorical variables. Lets use our politics dataset to construct a two-way table of belief in anthropogenic climate change by political party:</p>
 <pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>party, politics<span class="op">$</span>globalwarm)
 tab</code></pre>
@@ -579,6 +581,8 @@ Other
 ##   Independent 0.27627119 0.34499673
 ##   Other       0.03983051 0.03400916</code></pre>
 <p>Note that this table looks deceptively similar to the table above. But look again. The numbers now don’t add up to one within each row. They do however add up to one within each column. In order to read this table properly, we have to understand that it is giving us the distribution within each column: the proportion of respondents who have a given belief who belong to a given political party. So we can see in the first number that 19.5% of deniers are Democrats, 48.2% are Republicans, 27.9% are Independents, and 4.1% belong to other parties. This distribution is very different from the party affiliation distribution of believers in the second column which tells us that there is an association. However, the large party cleavages on the issue are not as immediately obvious here as they were with the previous conditional distribution. Always think carefully about which conditional distribution is more sensible to interpret and always make sure that you are interpreting them in the correct way.</p>
+<iframe src="https://www.youtube.com/embed/UYsvfTXXs8w" width="672" height="400px">
+</iframe>
 <p>It is also possible to graph the conditional distribution as a set of barplots. To do that, we will learn a new feature of ggplot called <strong>faceting</strong>. Faceting allows us to make the same plot based on subsets of the data in a series of panels. In this case, we can use the code for a univariate barplot but faceted by First, lets save the output of our prop.table into a new object.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>globalwarm, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>

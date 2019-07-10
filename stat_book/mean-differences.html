@@ -286,6 +286,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Measuring association between a quantitative and categorical variable is fairly straightforward. We want to look for differences in the distribution of the quantitative variable at different categories of the categorical variables. For example, if we were interested in the gender wage gap, we would want to compare the distribution of wages for women to the distribution of wages for men. There are two ways we can do this. First, we can graphically examine the distributions using the techniques we have already developed, particularly the boxplot. Second, we can compare summary measures like the mean across categories.</p>
 <div id="graphically-examining-differences-in-distributions" class="section level3">
 <h3>Graphically examining differences in distributions</h3>
+<iframe src="https://www.youtube.com/embed/R_lUPYbWO34" width="672" height="400px">
+</iframe>
 <p>We could compare entire histograms of the quantitative variable across different categories of the categorical variable, but this is often too much information. A cleaner method is to use <strong>comparative boxplots</strong>. Comparative boxplots construct boxplots of the quantitative variable across all categories of the categorical variable and plot them next to each other for easier comparison. We can easily construct a comparative boxplot in ggplot by adding an <code>x</code> aesthetic to our existing boxplot code. Lets try an example looking at differences in the distribution of movie runtime across different movie genres.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Genre, <span class="dt">y=</span>Runtime))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;seagreen&quot;</span>, <span class="dt">outlier.color =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span>
@@ -325,6 +327,8 @@ Figure 20: Boxplots of movie runtime by genre, with coordinates flipped
 </div>
 <div id="comparing-differences-in-the-mean" class="section level3">
 <h3>Comparing differences in the mean</h3>
+<iframe src="https://www.youtube.com/embed/VCLzsa0bbbc" width="672" height="400px">
+</iframe>
 <p>We can also establish a relationship by looking at differences in summary measures. Implicitly, we are already doing this in the comparative boxplot when we look at the median bars across categories. However, in practice it is more common to compare the mean of the quantitative variable across different categories of the categorical variable. In <em>R</em>, you can get the mean of one variable at different levels of a categorical variable using the <code>tapply</code> command like so:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(movies<span class="op">$</span>Runtime, movies<span class="op">$</span>Genre, mean)</code></pre>
 <pre><code>##        Action     Animation        Comedy         Drama        Family 
