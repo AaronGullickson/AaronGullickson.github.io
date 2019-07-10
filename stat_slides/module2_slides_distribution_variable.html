@@ -4,7 +4,7 @@
     <title>Distribution of a Variable</title>
     <meta charset="utf-8" />
     <meta name="author" content="Aaron Gullickson" />
-    <meta name="date" content="2019-07-08" />
+    <meta name="date" content="2019-07-10" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/uo.css" rel="stylesheet" />
     <link href="libs/remark-css/uol-fonts.css" rel="stylesheet" />
@@ -19,7 +19,7 @@ class: center, middle, inverse, title-slide
 ## Sociology 312
 ### Aaron Gullickson
 ### University of Oregon
-### 2019-07-08
+### 2019-07-10
 
 ---
 
@@ -138,14 +138,14 @@ percent
 
 .pull-left[
 ### Do not use a piechart
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-4-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-5-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 --
 
 .pull-right[
 ### Use a barplot
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-5-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-6-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -297,7 +297,7 @@ ggplot(politics,
 ]
 
 .pull-right[
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-12-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-13-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -344,7 +344,7 @@ ggplot(movies, aes(x=Runtime))+
 ]
 
 .pull-right[
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-14-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-15-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -375,7 +375,7 @@ Are there any observations that have relatively very high or low values?
 ]
 
 .pull-right[
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-15-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-16-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -414,7 +414,7 @@ The mode is the **high point** of the distribution, or the peak. It is typically
 
 ## The mean and the median
 
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-16-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-17-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -526,7 +526,7 @@ median(movies$Runtime)
 ## Why are the mean and median different?
 
 .pull-left[
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-22-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-23-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -541,7 +541,7 @@ median(movies$Runtime)
 
 ## Skewness can create large differences
 
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-23-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-24-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -555,7 +555,7 @@ median(movies$Runtime)
 ]
 
 .pull-right[
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-24-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-25-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -624,14 +624,14 @@ quantile(movies$Runtime)
 --
 
 .pull-right[
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-27-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-28-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 ## Anatomy of the boxplot
 
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-28-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-29-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -662,7 +662,7 @@ ggplot(movies, aes(x="", y=Runtime))+
 ]
 
 .pull-right[
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-29-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-30-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -670,11 +670,11 @@ ggplot(movies, aes(x="", y=Runtime))+
 ## Detecting skewness in boxplots
 
 .pull-left[
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-30-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-31-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-31-1.png" width="504" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-32-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -698,7 +698,7 @@ background-size: cover
 
 ## Distributions can vary in their spread
 
-&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-32-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="module2_slides_distribution_variable_files/figure-html/unnamed-chunk-33-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -729,7 +729,7 @@ The 75th percentile of movie runtime is 21 minutes longer than the 25th percenti
 
 ## Calculating the standard deviation
 
-The standard deviation ($s$) is calculated with the following formula:
+The standard deviation `\((s)\)` is calculated with the following formula:
 
 `$$s=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}$$`
 
