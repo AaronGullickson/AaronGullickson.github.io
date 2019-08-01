@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-07-10">
+<meta name="date" content="2019-08-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -483,18 +483,18 @@ By just adding in the borough and pop size as aesthetics, the graph was quickly 
 <p>I also added <code>color="black"</code> to the <code>geom_smooth</code> command. Note that this is not part of an aesthetic call (e.g. <code>aes()</code>). It is not considered an aesthetic because we are just asking for the line to be a single color. Try surrounding that command in an <code>aes</code> and see what happens.</p>
 <p>I also used the <code>se=FALSE</code>. If I don’t do this then the line above will be surrounded by a confidence band, which may be good or bad. For our purposes, I did not want to clutter the graph.</p>
 <p>We are now pretty close to being complete, but I still need to label all of my axes and provide a title. I also want better labeling for the two legends. This can all be done with the <code>labs</code> command which we append to the entire plot:</p>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-165-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-182-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>I did a couple of other things here as well. I added a <code>scale_x_continuous</code> so I could label the x tick mark labels as percents. I also added another <code>theme</code> command that would allow me to change the placement of the legends. I want to keep it on the right, but could have chosen “left”, “right”, “top”, or “bottom.”</p>
 <p>We now have a very nice looking graph. Ggplot can be a little overwhelming at first, but it has quite a few advantages over base plot. It is designed so that we have to fidget around less with things like the size of our labels, the exact placement of our legends, and the margins of our table. All of that just works internally, and we can focus on the “grammar of graphics”, i.e. the logic structure of what we are trying to say with our graph.</p>
 <p>Lets do one more example to show how flexible ggplot is. Lets look at the distribution of popularity by race in the Add Health data. Because we have one categorical and one quantitative variable, we want comparative boxplots. Here is our basic set up:</p>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-166-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-183-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>That works pretty well, However, its often better to display these boxplots horizontally so that we don’t have to worry about category labels overlapping. We can do that with ggplot with the <code>coord_flip</code> command (an example of a coordinate layer):</p>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-167-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-184-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This is already pretty good. Notice that I don’t have to worry about specifying margins to make sure my category labels fit. Ggplot does that for me. I just need to apply labels and maybe a bit of tint to my boxplots.</p>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-168-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-185-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Note that the labels for x and y refer to the logic decision of which value is x and y as defined in the aesthetics not the actual placement, which was reversed due to the <code>coord_flip</code>. Note also that I used <code>NULL</code> for the x label because the category labels and title are self-explanatory.</p>
 <p>There are also some more advanced geoms that do something similar to a boxplot. A popular one is the <code>geom_violin</code> which plots a mirror image of the density distribution. With ggplot, its as simple as swapping out my boxplot with the violin:</p>
-<p><img src="stat_book_files/figure-html/unnamed-chunk-169-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="stat_book_files/figure-html/unnamed-chunk-186-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>I encourage you to explore the online <a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot documentation</a>. I would also highly recommend Kieran Healy’s new book, <a href="https://kieranhealy.org/publications/dataviz/"><em>Data Visualization</em></a> which uses ggplot extensively if you want to learn more about using ggplot most effectively.</p>
 
 </div>
