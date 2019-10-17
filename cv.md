@@ -6,11 +6,12 @@ output: pdf_document
 
 # Aaron Gullickson
 
-|                     |                                                |
-|---------------------|------------------------------------------------|
-|767 PLC              | 541-346-5061                                   |
-|University of Oregon | [aarong@uoregon.edu](mailto:aarong.uoregon.edu)|
-|Eugene, OR 97403     | [https://aarongullickson.github.io](https://aarongullickson.github.io) |
+727 PLC\
+University of Oregon\
+Eugene, OR 97403\
+541-346-5061\
+[aarong@uoregon.edu](mailto:aarong.uoregon.edu)\
+[https://aarongullickson.github.io](https://aarongullickson.github.io)\
 
 ## Employment
 
@@ -116,7 +117,7 @@ output: pdf_document
 : “The Development and Diffusion of Anti-Miscegenation Statutes in the United States, 1800-1967.” 2006. Columbia University Junior Faculty Summer Research Grant. $3000.
 
 
-## Presentations since 2009
+## Recent Presentations
 
 ### Invited Talks
 
@@ -177,11 +178,11 @@ TBD
 TBD
 : Alberto Lioy. *Electoral Revolutions: a comparative study of rapid changes in voter turnout.* Political Science, University of Oregon. (outside member)
 
-TBD
-: Nathan Biemiller. *Title to Be Determined.* Economics, University of Oregon. (outside member)
+2019
+: Drew McNichols. *Essays in Labor Economics.* Economics, University of Oregon. (outside member)
 
-TBD
-: Drew McNichols. *Title to be Determined.* Economics, University of Oregon. (outside member)
+2019
+: Nathan Biemiller. *Essays in Behavioral Economics.* Economics, University of Oregon. (outside member)
 
 2018
 : Tongyu Wu. *Coding Productivity: Negotiation of Ethnicized Masculine Boundaries in High-Tech Corporations.* Sociology, University of Oregon.
@@ -207,6 +208,9 @@ TBD
 
 ### Ph.D. Comprehensive Exam Committees
 
+2018
+: Mirranda Willette, Food and Society, University of Oregon.
+
 2016
 : Kathryn Norton-Smith, Race/Ethnicity, University of Oregon.
 
@@ -230,6 +234,12 @@ TBD
 
 
 ### M.A. Committees
+
+2019:
+: Mauricio Betancourt. "The effect of Cuban agroecology in mitigating the metabolic rift: a quantitative approach to Latin American food production." Sociology, University of Oregon.
+
+2018
+: Erickson, Natasha. "Labeling and Delinquency: Assessing the Relationship between Special Education and Gifted Labels and Post High School Arrests." Sociology, University of Oregon. (chair)
 
 2014
 : Dyer, Shauna. “Late to School: Public Transfers and the Educational Opportunities of Poor Mothers.” Sociology, University of Oregon.
@@ -308,16 +318,31 @@ TBD
 
 ### University Service
 
-2017-2018
-: Communities for Accelerating the Impact of Teaching-Teaching Online, Teaching Engagement Program.
+2019-
+: University Senator, University of Oregon
 
-2016-2018
+2019-2020
+: Social Sciences Academic Continuity Team, College of Arts and Sciences, University of Oregon
+
+2018-2019
+: Excellence Awards Selection Committee, University of Oregon Graduate School
+
+2017-2018
+: Communities for Accelerating the Impact of Teaching-Teaching Online, Teaching Engagement Program, University of Oregon
+
+2016-2019
 : Undergraduate Research Award Committee, University of Oregon Libraries
 
 2010-2011
-: Advisory Committee Member, Social Science Instructional Lab.
+: Advisory Committee Member, Social Science Instructional Lab, University of Oregon
 
 ### Professional Service
+
+2019-
+: Editor, Socius
+
+2018-2019
+: Selection Committee, James E. Blackwell Graduate Student Paper Award from the Section on Racial and Ethnic Minorities, American Sociological Association
 
 2014-2016
 : Consulting Editor, American Journal of Sociology
