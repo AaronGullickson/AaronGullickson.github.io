@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-08-10">
+<meta name="date" content="2020-01-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -345,6 +345,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="getting-started-with-scripts" class="section level3">
 <h3>Getting Started with Scripts</h3>
 <p>Lets put together a simple script in R. In RStudio, you can go to <code>File &gt; New File &gt; R Script</code> to get a new script up and running. This will open a text pane in the upper left corner of RStudio. This is your R script. Lets start by writing a simple “Hello World” script. Type the following command into your script:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;Hello World!&quot;</span>)
+<span class="dv">2</span><span class="op">+</span><span class="dv">2</span></code></pre>
 <p>You can run this script a couple of different ways:</p>
 <ul>
 <li>You could just copy and paste both lines of code to the console in the lower left. This is quick and dirty but is typically not the most efficient way to run code from your script.</li>
@@ -372,6 +374,13 @@ Hello World
 <li>Calculate the odds ratio between the two new variables.</li>
 </ul>
 <p>I don’t expect you to know how all of this code works yet. I just want to show you an example of a script that actually does something interesting.</p>
+<pre class="sourceCode r"><code class="sourceCode r">politics<span class="op">$</span>supportgmar &lt;-<span class="st"> </span>politics<span class="op">$</span>gaymarriage<span class="op">==</span><span class="st">&quot;Support gay marriage&quot;</span>
+politics<span class="op">$</span>evangelical &lt;-<span class="st"> </span>politics<span class="op">$</span>relig<span class="op">==</span><span class="st">&quot;Evangelical Protestant&quot;</span>
+tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>supportgmar, politics<span class="op">$</span>evangelical)
+tab
+<span class="kw">prop.table</span>(tab, <span class="dv">2</span>)
+OR &lt;-<span class="st"> </span>tab[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">/</span>(tab[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">1</span>])
+OR</code></pre>
 <p>If I run this script, I will get:</p>
 <pre><code>## 
 ## &gt; politics$supportgmar &lt;- politics$gaymarriage == &quot;Support gay marriage&quot;
@@ -412,6 +421,35 @@ Hello World
 <h3>Commenting for Sanity</h3>
 <p>There is one big thing missing from the scripts listed above: comments! Comments are crucial for good script writing. Comments are lines in your script that will not be processed by R (or Stata). In R, you can create single line comments by using the pound sign (#). Anything after the pound sign will be ignored by R until a new line. You should use these comments to explain what the code is doing. You can also use them to help visually separate the script into sections for easier readability. Comments help you remember what you were doing when you come back to a project you haven’t worked on for weeks or months. They are also useful for other people who might end up reading your code (co-authors, advisers, etc). Increasingly, academics are being asked to do more “open” research where we make our code available. As you write code, its useful to think of it as something that will eventually be seen by other people and thus needs to be well documented.</p>
 <p>Here is the script from above, but now with some helpful commenting:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#################################################################</span>
+<span class="co"># Aaron Gullickson</span>
+<span class="co"># Program to analyze the differences in support for gay marriage</span>
+<span class="co"># between evangelical christians and all those of other religious</span>
+<span class="co"># affiliations</span>
+<span class="co">#################################################################</span>
+
+<span class="co">#### DATA ORGANIZATION ####</span>
+
+<span class="co">#load the politics dataset. Note that this command will not work if </span>
+<span class="co">#you have the dataset loaded into a different directory. </span>
+<span class="kw">load</span>(<span class="st">&quot;politics.RData&quot;</span>)
+
+<span class="co">#dichotomize both the support for gay marriage and the religious variable</span>
+politics<span class="op">$</span>supportgmar &lt;-<span class="st"> </span>politics<span class="op">$</span>gaymarriage<span class="op">==</span><span class="st">&quot;Support gay marriage&quot;</span>
+politics<span class="op">$</span>evangelical &lt;-<span class="st"> </span>politics<span class="op">$</span>relig<span class="op">==</span><span class="st">&quot;Evangelical Protestant&quot;</span>
+
+<span class="co">#### ANALYSIS ####</span>
+
+<span class="co">#create a crosstab</span>
+tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>supportgmar, politics<span class="op">$</span>evangelical)
+tab
+
+<span class="co">#Distribution of support conditional on religion</span>
+<span class="kw">prop.table</span>(tab, <span class="dv">2</span>)
+
+<span class="co">#Calculate the odds ratio of support</span>
+OR &lt;-<span class="st"> </span>tab[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">/</span>(tab[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">1</span>])
+OR</code></pre>
 <p>Even if you don’t understand what the code here is doing yet, you can at least get a sense of what it is supposed to be doing. Notice that I use multiple pound signs to draw attention to the header and larger sections. For a script this small, the division between DATA ORGANIZATION and ANALYSIS is probably overkill, but for larger scripts, this sectioning can be very useful in helping to easily distinguish different components of the analysis.</p>
 <p>One nice feature of RStudio is that if you surround your comments with at least four pound signs on either side, then the outline of your script will show these sections and you can navigate to them. You can also go to <code>Code &gt; Insert Section</code> to add a section with a somewhat different look.</p>
 <div id="dont-overcomment" class="section level4">

@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2019-08-10">
+<meta name="date" content="2020-01-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1023,10 +1023,10 @@ Valid cases + mean imputed
 Valid cases + random imputed
 </td>
 <td style="text-align:right;">
-0.098
+0.119
 </td>
 <td style="text-align:right;">
-0.0109
+0.0132
 </td>
 <td style="text-align:right;">
 33.3
@@ -1263,7 +1263,7 @@ Figure 79: The relationship between predicted values of imputed parental income 
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(addhealth<span class="op">$</span>parentinc.regi, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## [1] 30.10024</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(addhealth<span class="op">$</span>parentinc.rregi, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
-<pre><code>## [1] 32.89481</code></pre>
+<pre><code>## [1] 32.8185</code></pre>
 </div>
 <div id="chained-equations" class="section level4">
 <h4>Chained equations</h4>
@@ -1311,8 +1311,8 @@ addhealth.complete &lt;-<span class="st"> </span><span class="kw">mice</span>(ad
 <p>In this case, I specified all of the variables that I wanted to go into my multiple imputation. If you want all of the variables in your dataset to be used, you can just feed in the dataset with no list of variable names. You can see that <code>mice</code> went through five iterations of imputation, with a list of the variables imputed and the order in which they were imputed. You can also see that it cycled through something called “imp.” This value corresponds to the <code>m=5</code> argument I specified. This is the number of times that <code>mice</code> performed the entire imputation procedure. In this case, I now have five <em>complete</em> datasets (datasets with no missing values) in the object <code>addhealth.complete</code>. To access any one of them, I need to use the <code>complete</code> function with an id number:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">complete</span>(addhealth.complete, <span class="dv">1</span>))</code></pre>
 <pre><code>##     indegree                                    race     
-##  Min.   : 0.000    White                          :2637  
-##  1st Qu.: 2.000    Black/African American         :1146  
+##  Min.   : 0.000    White                          :2638  
+##  1st Qu.: 2.000    Black/African American         :1145  
 ##  Median : 4.000   Latino                          : 400  
 ##  Mean   : 4.551    Asian/Pacific Islander         : 161  
 ##  3rd Qu.: 6.000    Other                          :  27  
@@ -1321,12 +1321,12 @@ addhealth.complete &lt;-<span class="st"> </span><span class="kw">mice</span>(ad
 ##  Length:4397        Min.   : 7.000   Min.   :1.000   Mode :logical  
 ##  Class :character   1st Qu.: 8.000   1st Qu.:2.250   FALSE:3990     
 ##  Mode  :character   Median :10.000   Median :3.000   TRUE :407      
-##                     Mean   : 9.512   Mean   :2.829                  
+##                     Mean   : 9.511   Mean   :2.831                  
 ##                     3rd Qu.:11.000   3rd Qu.:3.500                  
 ##                     Max.   :12.000   Max.   :4.000                  
 ##        alcoholuse          smoker     bandchoir       academicclub   
-##  Non-drinker:3672   Non-smoker:3731   Mode :logical   Mode :logical  
-##  Drinker    : 725   Smoker    : 666   FALSE:3340      FALSE:3578     
+##  Non-drinker:3674   Non-smoker:3733   Mode :logical   Mode :logical  
+##  Drinker    : 723   Smoker    : 664   FALSE:3340      FALSE:3578     
 ##                                       TRUE :1057      TRUE :819      
 ##                                                                      
 ##                                                                      
@@ -1335,7 +1335,7 @@ addhealth.complete &lt;-<span class="st"> </span><span class="kw">mice</span>(ad
 ##  Min.   :0.000   Min.   :  0.00  
 ##  1st Qu.:0.000   1st Qu.: 23.00  
 ##  Median :1.000   Median : 40.00  
-##  Mean   :1.098   Mean   : 44.71  
+##  Mean   :1.098   Mean   : 45.08  
 ##  3rd Qu.:2.000   3rd Qu.: 60.00  
 ##  Max.   :6.000   Max.   :200.00</code></pre>
 <p>I can run a model on my first complete dataset like so:</p>
@@ -1347,19 +1347,19 @@ addhealth.complete &lt;-<span class="st"> </span><span class="kw">mice</span>(ad
 ##     1))
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -6.1157 -2.6738 -0.7036  1.7869 24.9248 
+##    Min     1Q Median     3Q    Max 
+## -6.149 -2.626 -0.778  1.786 25.070 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 3.886034   0.092949  41.808   &lt;2e-16 ***
-## parentinc   0.014864   0.001673   8.886   &lt;2e-16 ***
+## (Intercept) 3.863905   0.091896  42.046   &lt;2e-16 ***
+## parentinc   0.015234   0.001631   9.341   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 3.66 on 4395 degrees of freedom
-## Multiple R-squared:  0.01765,    Adjusted R-squared:  0.01742 
-## F-statistic: 78.96 on 1 and 4395 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 3.656 on 4395 degrees of freedom
+## Multiple R-squared:  0.01947,    Adjusted R-squared:  0.01924 
+## F-statistic: 87.25 on 1 and 4395 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="addressing-imputation-variability" class="section level4">
 <h4>Addressing imputation variability</h4>
@@ -1371,7 +1371,7 @@ addhealth.complete &lt;-<span class="st"> </span><span class="kw">mice</span>(ad
 }
 coefs</code></pre>
 <pre><code>##  parentinc  parentinc  parentinc  parentinc  parentinc 
-## 0.01486442 0.01438086 0.01580889 0.01493614 0.01510499</code></pre>
+## 0.01523430 0.01393453 0.01516614 0.01426524 0.01488528</code></pre>
 <p>I get different values on each complete imputation. This is because there is an element of randomness in my imputation procedure. That randomness is needed to correctly impute while preserving the variance in the underlying variables, but it adds an additional layer of uncertainty to understanding my results. Which of these values should I use for my results? This additional layer of uncertainty is called <strong>imputation variability</strong>. Imputation variability adds additional uncertainty above and beyond sampling variability when attempting to make statistical inferences.</p>
 <p>To accurately account for imputation variability, we need to use <strong>multiple imputation</strong>. The multiple imputation process is as follows:</p>
 <ol style="list-style-type: decimal">
@@ -1394,11 +1394,11 @@ Where <span class="math inline">\(W\)</span> is the squared average standard err
 <p>The <code>b</code> and <code>se</code> objects are just matrices of the regression coefficients and standard errors across imputations. For example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(b,<span class="dv">3</span>)</code></pre>
 <pre><code>##                    [,1]  [,2]  [,3]  [,4]  [,5]
-## (Intercept)       3.349 3.378 3.315 3.358 3.360
-## parentinc         0.012 0.012 0.013 0.012 0.012
-## smokerSmoker      0.182 0.174 0.186 0.190 0.181
-## alcoholuseDrinker 0.643 0.662 0.648 0.637 0.638
-## nsports           0.470 0.465 0.459 0.462 0.465</code></pre>
+## (Intercept)       3.332 3.418 3.358 3.397 3.365
+## parentinc         0.013 0.011 0.012 0.011 0.012
+## smokerSmoker      0.227 0.163 0.157 0.173 0.236
+## alcoholuseDrinker 0.633 0.637 0.649 0.665 0.623
+## nsports           0.463 0.464 0.459 0.465 0.463</code></pre>
 <p>With the application of the <code>apply</code> command we can estimate averages for these values across imputations as well as the variability in regression coefficients across models.</p>
 <pre class="sourceCode r"><code class="sourceCode r">b.pool &lt;-<span class="st"> </span><span class="kw">apply</span>(b,<span class="dv">1</span>,mean)
 between.var &lt;-<span class="st"> </span><span class="kw">apply</span>(b,<span class="dv">1</span>,var)
@@ -1409,11 +1409,11 @@ pvalue.pool &lt;-<span class="st"> </span>(<span class="dv">1</span><span class=
 results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(b.pool, se.pool, t.pool, pvalue.pool)
 <span class="kw">round</span>(results,<span class="dv">4</span>)</code></pre>
 <pre><code>##                   b.pool se.pool  t.pool pvalue.pool
-## (Intercept)       3.3521  0.1058 31.6891      0.0000
-## parentinc         0.0123  0.0017  7.0900      0.0000
-## smokerSmoker      0.1824  0.1597  1.1422      0.2534
-## alcoholuseDrinker 0.6457  0.1543  4.1858      0.0000
-## nsports           0.4641  0.0432 10.7485      0.0000</code></pre>
+## (Intercept)       3.3738  0.1088 31.0172      0.0000
+## parentinc         0.0119  0.0018  6.5865      0.0000
+## smokerSmoker      0.1911  0.1647  1.1604      0.2459
+## alcoholuseDrinker 0.6415  0.1549  4.1427      0.0000
+## nsports           0.4627  0.0431 10.7399      0.0000</code></pre>
 <p>We now have results that make use of a complete dataset and also adjust for imputation variability. We can also use the results above to estimate the relative share of the between and within variation to our total uncertainty. Figure <a href="missing-values.html#fig:share-impute-var">80</a> shows the relative contribution of between and within variability to our total uncertainty. Because most variables in this model are missing few or no values, the contribution of between sample imputation variability is quite small for most cases. However, for parental income which was missing a quarter of observations, it is a substantial share of around 30% of the total variability.</p>
 <div class="figure" style="text-align: center"><span id="fig:share-impute-var"></span>
 <img src="stat_book_files/figure-html/share-impute-var-1.png" alt="Share of variability for each estimated coefficient that comes from between sample imputation variability vs. within sample sampling variabilty" width="672" />
@@ -1425,11 +1425,11 @@ Figure 80: Share of variability for each estimated coefficient that comes from b
 <pre class="sourceCode r"><code class="sourceCode r">model.mi &lt;-<span class="st"> </span><span class="kw">pool</span>(<span class="kw">with</span>(addhealth.complete, <span class="kw">lm</span>(indegree<span class="op">~</span>parentinc<span class="op">+</span>smoker<span class="op">+</span>alcoholuse<span class="op">+</span>nsports)))
 <span class="kw">summary</span>(model.mi)</code></pre>
 <pre><code>##                     estimate   std.error statistic        df      p.value
-## (Intercept)       3.35205211 0.105779217 31.689137  946.1479 0.000000e+00
-## parentinc         0.01234643 0.001741395  7.089965  316.5307 1.557421e-12
-## smokerSmoker      0.18244696 0.159730189  1.142220 4367.6619 2.534253e-01
-## alcoholuseDrinker 0.64572653 0.154264700  4.185835 4238.5432 2.897113e-05
-## nsports           0.46409031 0.043177368 10.748462 3909.2269 0.000000e+00</code></pre>
+## (Intercept)       3.37383608 0.108773212 31.017160  275.9266 0.000000e+00
+## parentinc         0.01190726 0.001807819  6.586533  121.0911 5.038325e-11
+## smokerSmoker      0.19112996 0.164714531  1.160371  842.6128 2.459616e-01
+## alcoholuseDrinker 0.64154829 0.154862491  4.142696 3646.2662 3.497735e-05
+## nsports           0.46271739 0.043084100 10.739864 4344.1422 0.000000e+00</code></pre>
 <p>As I said earlier, multiple imputation is the gold standard for dealing with missing values. However, it is important to realize that it is not a bulletproof solution to the problem of missing values. It still assumes MAR and if the underlying models used to predict missing values are not good, then it may not produce the best results. Ideally, when doing any imputation procedure you should also perform an analysis of your imputation results to ensure that they are reasonable. These techniques are beyond the scope of this class, but further reading links can be found on Canvas.</p>
 <hr />
 </div>
