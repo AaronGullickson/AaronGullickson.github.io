@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2020-01-09">
+<meta name="date" content="2020-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -362,6 +362,7 @@ Hello World
 &gt; 2+2
 [1] 4</code></pre>
 <p>Now, lets save this script as <code>helloworld.R</code> (“.R” is the expected suffix for R scripts) and source it from the console:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;helloworld.R&quot;</span>, <span class="dt">echo=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## 
 ## &gt; cat(&quot;Hello World&quot;)
 ## Hello World
@@ -382,6 +383,7 @@ tab
 OR &lt;-<span class="st"> </span>tab[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">/</span>(tab[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">1</span>])
 OR</code></pre>
 <p>If I run this script, I will get:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;politics.R&quot;</span>, <span class="dt">echo=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## 
 ## &gt; politics$supportgmar &lt;- politics$gaymarriage == &quot;Support gay marriage&quot;
 ## 
@@ -412,6 +414,7 @@ OR</code></pre>
 <div id="not-everything-goes-into-your-script" class="section level3">
 <h3>Not Everything Goes Into Your Script</h3>
 <p>You don’t need to put every command into your script. The script should provide a narrative of your analysis (the part that you want to be easily reproducible), not a log of every single command you ran. Sometimes you may try out some exploratory commands or may just need to get some basic information about a variable. For example, in the script above, I first had to remember what the names were for the categories of the <code>gaymarriage</code> variable. To figure this out, I typed:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(politics<span class="op">$</span>gaymarriage)</code></pre>
 <pre><code>## 
 ## No legal recognition         Civil unions Support gay marriage 
 ##                  773                  992                 2473</code></pre>

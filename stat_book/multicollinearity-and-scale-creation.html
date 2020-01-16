@@ -25,7 +25,7 @@
 <meta name="author" content="Aaron Gullickson">
 
 
-<meta name="date" content="2020-01-09">
+<meta name="date" content="2020-01-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -773,8 +773,7 @@ nyc<span class="op">$</span>unemployed.z &lt;-<span class="st"> </span><span cla
 <p>Cronbach’s alpha can be easily in R with the <code>alpha</code> function in the <code>psych</code> library. You can feed all the variables that make up the scale into Cronbach’s alpha or just the correlation matrix between these variables. The variables do not need to be re-scaled but we do not to ensure they are all coded in the same direction.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(psych)
 <span class="kw">alpha</span>(<span class="kw">cor</span>(nyc[,<span class="kw">c</span>(<span class="st">&quot;poverty.z&quot;</span>,<span class="st">&quot;unemployed.z&quot;</span>,<span class="st">&quot;lincome.z&quot;</span>)]))</code></pre>
-<pre><code>## [1] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#000000FF&quot; &quot;#FFFFFF00&quot;
-## [7] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#000000FF&quot;</code></pre>
+<pre><code>## [1] NA NA NA NA NA NA NA NA NA</code></pre>
 <p>Cronbach’s alpha ranges from a value of 0 to 1. As a rule of thumb, many people use a value of 0.7 as a benchmark for a good Cronbach’s alpha, although as with all rules of thumb, caution should be taken in interpreting this too literally. In this case, the “raw alpha” of 0.92 is very good and suggests that the internal consistency of this deprivation measure is high. This function also returns a sensitivity analysis telling us how much Cronbach’s alpha would change if we were to remove a given variable from the scale. In this case, the results suggest that we would get even higher internal consistency if we removed the unemployment rate. However, since the alpha on all three was so high, it seems unnecessary to drop it in this case.</p>
 <p>Cronbach’s alpha is often thought of as a test of whether the individual items all measure the same “latent” construct. While, it can be thought of as a test of whether items measure a construct vs no construct at all, it does not directly address another issue which is that items used as a measure of a single scale may instead be related to multiple latent constructs. In order to address that issue, we must move to <strong>factor analysis</strong>.</p>
 </div>
@@ -876,23 +875,10 @@ Figure 82: A correlogram showing the relationship between measures of morality i
 <pre class="sourceCode r"><code class="sourceCode r">morality_r &lt;-<span class="st"> </span><span class="kw">cor</span>(morality, <span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</code></pre>
 <p>Lets look at Cronbach’s alpha before proceeding to full-blown factor analysis.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">alpha</span>(morality_r)</code></pre>
-<pre><code>##  [1] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-##  [6] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [11] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [16] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [21] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [26] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [31] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [36] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [41] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [46] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [51] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [56] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [61] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [66] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [71] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [76] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [81] &quot;#000000FF&quot;</code></pre>
+<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+## [24] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+## [47] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+## [70] NA NA NA NA NA NA NA NA NA NA NA NA</code></pre>
 <p>A Cronbach’s alpha of 0.71 is decent, but the results also suggest that I would improve Cronbach’s alpha by removing either divorce or fertility from my set of measures.</p>
 <p>For the factor analysis, I will try out a one factor, two factor, and a three factor solution.</p>
 <pre class="sourceCode r"><code class="sourceCode r">morality_fa1 &lt;-<span class="st"> </span><span class="kw">fa</span>(morality_r, <span class="dv">1</span>)
@@ -909,16 +895,9 @@ Figure 83: Three different factor solutions for the Pew morality data
 <p>Although the division in the three factor solution is interesting, this level of detail does not necessarily seem warranted and leads to some low factor loadings. What seems clear above all else, is that the fertility limitation and divorce questions do not belong with the others. Therefore, a summated scale that included all variables except for these two is reasonably justified.</p>
 <p>To check this, lets see how Cronbach’s alpha does if we remove the fertility and divorce questions.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">alpha</span>(<span class="kw">cor</span>(morality[,<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>)], <span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>))</code></pre>
-<pre><code>##  [1] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-##  [6] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#000000FF&quot; &quot;#FFFFFF00&quot;
-## [11] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [16] &quot;#FFFFFF00&quot; &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [21] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#000000FF&quot;
-## [26] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [31] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [36] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [41] &quot;#000000FF&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot;
-## [46] &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#FFFFFF00&quot; &quot;#000000FF&quot;</code></pre>
+<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+## [24] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+## [47] NA NA NA</code></pre>
 <p>We now get a stronger alpha of around 0.76 and little evidence that more removals would improve the internal consistency.</p>
 <p>In closing, I should note that factor analysis is a huge area of research and I am only touching on the surface of it here. On the Canvas pages, I provide links for additional information.</p>
 <hr />
