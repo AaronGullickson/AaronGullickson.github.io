@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Interaction Terms | Statistical Analysis in Sociology</title>
-  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Interaction Terms | Statistical Analysis in Sociology />
+  <meta property="og:title" content="Interaction Terms | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Interaction Terms | Statistical Analysis in Sociology />
+  <meta name="twitter:title" content="Interaction Terms | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
 
-<meta name="author" content="Aaron Gullickson">
+<meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-01-16">
+<meta name="date" content="2020-01-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="including-categorical-variables-as-predictors.html">
-<link rel="next" href="model-complications.html">
+<link rel="prev" href="including-categorical-variables-as-predictors.html"/>
+<link rel="next" href="model-complications.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,13 +51,13 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -64,7 +66,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -321,6 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html"><i class="fa fa-check"></i>Version Control for Sanity!</a><ul>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -347,9 +352,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-nature-of-additive-models" class="section level3">
 <h3>The nature of additive models</h3>
 <p>As an example for this section, I am going to look at the relationship between movie genre, runtime, and tomato meter ratings. To simplify things, I am going to only look at these relationships for two genres: action and comedy. I can limit my movies dataset to these two genres with the following command:</p>
-<pre class="sourceCode r"><code class="sourceCode r">movies.short &lt;-<span class="st"> </span><span class="kw">subset</span>(movies, Genre<span class="op">==</span><span class="st">&quot;Comedy&quot;</span> <span class="op">|</span><span class="st"> </span>movies<span class="op">$</span>Genre<span class="op">==</span><span class="st">&quot;Action&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1">movies.short &lt;-<span class="st"> </span><span class="kw">subset</span>(movies, Genre<span class="op">==</span><span class="st">&quot;Comedy&quot;</span> <span class="op">|</span><span class="st"> </span>movies<span class="op">$</span>Genre<span class="op">==</span><span class="st">&quot;Action&quot;</span>)</a></code></pre></div>
 <p>Now lets look at a simple model where genre and runtime both predict Tomato Meter ratings.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">coef</span>(<span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Genre<span class="op">+</span>Runtime, <span class="dt">data=</span>movies.short)),<span class="dv">2</span>)</code></pre>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="kw">round</span>(<span class="kw">coef</span>(<span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Genre<span class="op">+</span>Runtime, <span class="dt">data=</span>movies.short)),<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## (Intercept) GenreComedy     Runtime 
 ##       -1.75        4.43        0.41</code></pre>
 <p>Genre is a categorical variable and action movies are set as the reference category. In equation form, the model looks like:</p>
@@ -377,11 +382,11 @@ Figure 53: Predicted Tomato Meter by runtime for two genres based on an additive
 <div id="the-interaction-term" class="section level3">
 <h3>The interaction term</h3>
 <p>An interaction term is a variable that is constructed from two other variables by multiplying those two variables together. In our case, we can easily construct an interaction term as follows:</p>
-<pre class="sourceCode r"><code class="sourceCode r">movies.short<span class="op">$</span>comedy &lt;-<span class="st"> </span>movies.short<span class="op">$</span>Genre<span class="op">==</span><span class="st">&quot;Comedy&quot;</span>
-movies.short<span class="op">$</span>interaction &lt;-<span class="st"> </span>movies.short<span class="op">$</span>Runtime<span class="op">*</span>movies.short<span class="op">$</span>comedy</code></pre>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1">movies.short<span class="op">$</span>comedy &lt;-<span class="st"> </span>movies.short<span class="op">$</span>Genre<span class="op">==</span><span class="st">&quot;Comedy&quot;</span></a>
+<a class="sourceLine" id="cb228-2" title="2">movies.short<span class="op">$</span>interaction &lt;-<span class="st"> </span>movies.short<span class="op">$</span>Runtime<span class="op">*</span>movies.short<span class="op">$</span>comedy</a></code></pre></div>
 <p>In this case, I had to create a real indicator variable for comedy before I could multiply them, but then I just multiply this indicator variable by movie runtime. Now lets add this interaction term to the model:</p>
-<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Runtime<span class="op">+</span>comedy<span class="op">+</span>interaction, <span class="dt">data=</span>movies.short)
-<span class="kw">round</span>(<span class="kw">coef</span>(model), <span class="dv">2</span>)</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Runtime<span class="op">+</span>comedy<span class="op">+</span>interaction, <span class="dt">data=</span>movies.short)</a>
+<a class="sourceLine" id="cb229-2" title="2"><span class="kw">round</span>(<span class="kw">coef</span>(model), <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## (Intercept)     Runtime  comedyTRUE interaction 
 ##      -14.45        0.52       24.36       -0.19</code></pre>
 <p>We now have an additional “slope” for the interaction term. Lets write this model out in equation form to try to figure out what is going on here.</p>
@@ -422,19 +427,17 @@ Another approach is to actually calculate the slope for the indicated category (
 <div id="interaction-terms-in-r" class="section level3">
 <h3>Interaction terms in <em>R</em></h3>
 <p>In the example above, I created the interaction term manually, but I didn’t actually need to do this. <em>R</em> has a shortcut method for calculating interaction terms:</p>
-<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Runtime<span class="op">*</span>Genre, <span class="dt">data=</span>movies.short) 
-<span class="kw">round</span>(<span class="kw">coef</span>(model),<span class="dv">2</span>)</code></pre>
-<pre><code>##         (Intercept)             Runtime         GenreComedy 
-##              -14.45                0.52               24.36 
-## Runtime:GenreComedy 
-##               -0.19</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Runtime<span class="op">*</span>Genre, <span class="dt">data=</span>movies.short) </a>
+<a class="sourceLine" id="cb231-2" title="2"><span class="kw">round</span>(<span class="kw">coef</span>(model),<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>##         (Intercept)             Runtime         GenreComedy Runtime:GenreComedy 
+##              -14.45                0.52               24.36               -0.19</code></pre>
 <p>The results are exactly the same as before. To include an interaction term between two variables I just have to connect them with a <code>*</code> rather than a <code>+</code> in the <code>lm</code> formula. By default, <em>R</em> will include each variable separately as well as their interaction.</p>
 </div>
 <div id="interaction-terms-with-multiple-categories" class="section level3">
 <h3>Interaction terms with multiple categories</h3>
 <p>In the above example, I only compared comedy and action movies in order to keep the comparison simple, but it is possible to run the same analysis on the full movie dataset to see how runtime varies across all genres.</p>
-<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Runtime<span class="op">*</span>Genre, <span class="dt">data=</span>movies)
-<span class="kw">round</span>(<span class="kw">coef</span>(model),<span class="dv">2</span>)</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Runtime<span class="op">*</span>Genre, <span class="dt">data=</span>movies)</a>
+<a class="sourceLine" id="cb233-2" title="2"><span class="kw">round</span>(<span class="kw">coef</span>(model),<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##                (Intercept)                    Runtime 
 ##                     -14.45                       0.52 
 ##             GenreAnimation                GenreComedy 
@@ -472,10 +475,10 @@ Figure 55: Interaction terms allow each genre to get a different return from inc
 </iframe>
 <p>The examples so far have involved interacting a quantitative variable with a categorical variable which gives you a different line for each category of your categorical variable. However, we can also create an interaction term between two categorical variables.</p>
 <p>As an example, lets look at differences in wages in the earnings dataset by race and education. To simplify things, I am going to dichotimize race into white/non-white and education into less than Bachelor’s degree/Bachelor’s degree or more, as follows:</p>
-<pre class="sourceCode r"><code class="sourceCode r">earnings<span class="op">$</span>nwhite &lt;-<span class="st"> </span>earnings<span class="op">$</span>race<span class="op">!=</span><span class="st">&quot;White&quot;</span>
-earnings<span class="op">$</span>college &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(earnings<span class="op">$</span>educ)<span class="op">&gt;</span><span class="dv">3</span></code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1">earnings<span class="op">$</span>nwhite &lt;-<span class="st"> </span>earnings<span class="op">$</span>race<span class="op">!=</span><span class="st">&quot;White&quot;</span></a>
+<a class="sourceLine" id="cb235-2" title="2">earnings<span class="op">$</span>college &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(earnings<span class="op">$</span>educ)<span class="op">&gt;</span><span class="dv">3</span></a></code></pre></div>
 <p>Lets look at mean wages across these combination of categories:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(earnings<span class="op">$</span>wages, earnings[,<span class="kw">c</span>(<span class="st">&quot;nwhite&quot;</span>,<span class="st">&quot;college&quot;</span>)], mean)</code></pre>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="kw">tapply</span>(earnings<span class="op">$</span>wages, earnings[,<span class="kw">c</span>(<span class="st">&quot;nwhite&quot;</span>,<span class="st">&quot;college&quot;</span>)], mean)</a></code></pre></div>
 <pre><code>##        college
 ## nwhite     FALSE     TRUE
 ##   FALSE 19.99246 33.91417
@@ -549,8 +552,8 @@ Difference
 <p>Now lets look at the difference in the differences. For the racial gap in wages this is given by -3.25-(-2.09)=1.16. For the returns to a college degree this is given by 15.08-13.92=1.16. The difference in the differences is the same! This is because we are looking at the same relationship in two different ways. If non-whites get a better return to college than whites, then the racial gap in wages must get smaller among the college-educated. Similarly, if the racial gap in wages gets smaller at the college level, it tells us that non-whites must get a better return on their college education.</p>
 <p>This 1.16 number is basically an interaction term. We can interpret the number as the difference in returns to wages from a college degree between whites and non-whites. Alternatively, we can interpret the number as the difference in the racial wage gap between those with no degree and those with a college degree. Either way, we have the same information, with the same finding: greater educational attainment reduces racial inequality because minorities get a greater return on their college degrees.</p>
 <p>Lets try modeling this relationship with an OLS regression model. First lets try a model without interaction terms:</p>
-<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(wages<span class="op">~</span>nwhite<span class="op">+</span>college, <span class="dt">data=</span>earnings)
-<span class="kw">coef</span>(model)</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(wages<span class="op">~</span>nwhite<span class="op">+</span>college, <span class="dt">data=</span>earnings)</a>
+<a class="sourceLine" id="cb238-2" title="2"><span class="kw">coef</span>(model)</a></code></pre></div>
 <pre><code>## (Intercept)  nwhiteTRUE collegeTRUE 
 ##   19.850655   -2.866436   14.263698</code></pre>
 <p>Lets put this into an equation framework:</p>
@@ -621,8 +624,8 @@ Difference
 </tbody>
 </table>
 <p>The predicted values do not match the exact values above. More importantly, if you look at the differences, you can see that the returns to education are assumed to be identical for whites and non-whites ($14.26) and the racial gap is assumed to be the same for those with no degree and those with a college degree (-$2.87). This is the limitation of the additive model. We assume that the effects of race and college completion are not affected by each other. If we want to determine whether returns to college are different by race, we need to model the interaction term, as follows:</p>
-<pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(wages<span class="op">~</span>nwhite<span class="op">*</span>college, <span class="dt">data=</span>earnings)
-<span class="kw">coef</span>(model)</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(wages<span class="op">~</span>nwhite<span class="op">*</span>college, <span class="dt">data=</span>earnings)</a>
+<a class="sourceLine" id="cb240-2" title="2"><span class="kw">coef</span>(model)</a></code></pre></div>
 <pre><code>##            (Intercept)             nwhiteTRUE            collegeTRUE 
 ##              19.992457              -3.250648              13.921709 
 ## nwhiteTRUE:collegeTRUE 
@@ -717,11 +720,13 @@ Difference
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -729,12 +734,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -746,6 +750,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -764,8 +772,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

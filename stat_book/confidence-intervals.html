@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Confidence Intervals | Statistical Analysis in Sociology</title>
-  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Confidence Intervals | Statistical Analysis in Sociology />
+  <meta property="og:title" content="Confidence Intervals | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Confidence Intervals | Statistical Analysis in Sociology />
+  <meta name="twitter:title" content="Confidence Intervals | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
 
-<meta name="author" content="Aaron Gullickson">
+<meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-01-16">
+<meta name="date" content="2020-01-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="the-concept-of-the-sampling-distribution.html">
-<link rel="next" href="hypothesis-tests.html">
+<link rel="prev" href="the-concept-of-the-sampling-distribution.html"/>
+<link rel="next" href="hypothesis-tests.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,13 +51,13 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -64,7 +66,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -321,6 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html"><i class="fa fa-check"></i>Version Control for Sanity!</a><ul>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -377,22 +382,22 @@ Figure 39: Intervals of sample mean plus and minus 1.96 standard errors for 20 d
 <p>Oh wait, we can’t do it! We don’t know the value of the population standard deviation <span class="math inline">\(\sigma\)</span>. As I explained in the last section, we are going to have to do a little “fudging” here. Instead of <span class="math inline">\(\sigma\)</span>, we can use our sample standard deviation <span class="math inline">\(s\)</span>. However, doing so will have consequences. Here is our new formula:</p>
 <p><span class="math display">\[\bar{x} \pm t*(s\sqrt{n})\]</span></p>
 <p>As you can see, I have replaced the 1.96 with some number <span class="math inline">\(t\)</span>, referred to as the <strong>t-statistic</strong>. Basically to adjust for the greater uncertainty in using a sample statistic in my calculation of the standard error, I need to increase the number here slightly from 1.96. How much I increase it will depend on the <strong>degrees of freedom</strong> which are given by the sample size minus one (<span class="math inline">\(n-1\)</span>). To figure out the correct t-statistic, I can use the <code>qt</code> command in <em>R</em>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="kw">nrow</span>(politics)<span class="op">-</span><span class="dv">1</span>)</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="kw">nrow</span>(politics)<span class="op">-</span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 1.960524</code></pre>
 <p>The first command to <code>qt</code> is the confidence you want. This is a little bit tricky because for a 95% confidence interval, we actually want to input 0.975. This is because we are basically asking for only the upper tail of that normal distribution shown at the beginning of this section. This area contains only 2.5% of the area outside, with the other 2.5% being in the lower tail. The second number is the degrees of freedom which equals <span class="math inline">\(n-1\)</span>. In this case, we have such a large sample, that the t-statistic we need is very close to 1.96.</p>
 <p>In smaller samples, using the t-statistic rather than 1.96 can make a bigger difference. Its not a proper sample, but lets take the case of the crime data. Here there are only 51 observations, so the t-statistic is:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dv">51-1</span>)</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1"><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dv">51-1</span>)</a></code></pre></div>
 <pre><code>## [1] 2.008559</code></pre>
 <p>The difference from 1.96 is a little more noticeable.</p>
 <p>Lets return to the politics data. We now have all the information we need to calculate the 95% confidence interval:</p>
-<pre class="sourceCode r"><code class="sourceCode r">xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(politics<span class="op">$</span>age)
-sdx &lt;-<span class="st"> </span><span class="kw">sd</span>(politics<span class="op">$</span>age)
-n &lt;-<span class="st"> </span><span class="kw">nrow</span>(politics)
-se &lt;-<span class="st"> </span>sdx<span class="op">/</span><span class="kw">sqrt</span>(n)
-t &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>)
-xbar<span class="op">+</span>t<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1">xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(politics<span class="op">$</span>age)</a>
+<a class="sourceLine" id="cb84-2" title="2">sdx &lt;-<span class="st"> </span><span class="kw">sd</span>(politics<span class="op">$</span>age)</a>
+<a class="sourceLine" id="cb84-3" title="3">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(politics)</a>
+<a class="sourceLine" id="cb84-4" title="4">se &lt;-<span class="st"> </span>sdx<span class="op">/</span><span class="kw">sqrt</span>(n)</a>
+<a class="sourceLine" id="cb84-5" title="5">t &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb84-6" title="6">xbar<span class="op">+</span>t<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] 50.03165</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">xbar<span class="op">-</span>t<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1">xbar<span class="op">-</span>t<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] 48.97307</code></pre>
 <p>We are 95% confident that the mean age among all US adults is between 48.97 and 50.03 years of age. As you can see, the large sample of nearly 6,000 respondents produces a very tight confidence interval.</p>
 </div>
@@ -447,32 +452,32 @@ xbar<span class="op">+</span>t<span class="op">*</span>se</code></pre>
 <iframe src="https://www.youtube.com/embed/yMiCBeqz8L0" width="672" height="400px">
 </iframe>
 <p>As an example, lets use the proportion of respondents who do not believe in anthropogenic climate change. In our politics sample, we get:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(politics<span class="op">$</span>globalwarm)</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="kw">table</span>(politics<span class="op">$</span>globalwarm)</a></code></pre></div>
 <pre><code>## 
 ##   No  Yes 
 ## 1180 3058</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">1180</span><span class="op">+</span><span class="dv">3058</span>
-p_hat &lt;-<span class="st"> </span><span class="dv">1180</span><span class="op">/</span>n
-n</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1">n &lt;-<span class="st"> </span><span class="dv">1180</span><span class="op">+</span><span class="dv">3058</span></a>
+<a class="sourceLine" id="cb90-2" title="2">p_hat &lt;-<span class="st"> </span><span class="dv">1180</span><span class="op">/</span>n</a>
+<a class="sourceLine" id="cb90-3" title="3">n</a></code></pre></div>
 <pre><code>## [1] 4238</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">p_hat</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1">p_hat</a></code></pre></div>
 <pre><code>## [1] 0.2784332</code></pre>
 <p>About 27.8% of the respondents in our sample are climate change deniers. What can we conclude about the proportion in the US population? First, lets figure out the t-statistic. We use the same <span class="math inline">\(n-1\)</span> for degrees of freedom:</p>
-<pre class="sourceCode r"><code class="sourceCode r">t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>, n<span class="dv">-1</span>)
-t_stat</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>, n<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb94-2" title="2">t_stat</a></code></pre></div>
 <pre><code>## [1] 1.960524</code></pre>
 <p>Our sample is large enough that we are basically using 1.96. Now we need to calculate the standard error. The formula from above is:</p>
 <p><span class="math display">\[\sqrt{\frac{\hat{p}*(1-\hat{p})}{n}}\]</span></p>
 <p>The term <span class="math inline">\(hat{p}\)</span> is the standard way to represent the sample proportion, which in this case is 0.279. So, our formula is:</p>
 <p><span class="math display">\[\sqrt{\frac{0.278*(1-0.278)}{4238}}\]</span></p>
 <p>We can calculate this in <em>R</em>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(p_hat<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_hat)<span class="op">/</span>n)
-se</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(p_hat<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_hat)<span class="op">/</span>n)</a>
+<a class="sourceLine" id="cb96-2" title="2">se</a></code></pre></div>
 <pre><code>## [1] 0.006885228</code></pre>
 <p>We now have all the pieces to construct the confidence interval:</p>
-<pre class="sourceCode r"><code class="sourceCode r">p_hat<span class="op">+</span>t_stat<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1">p_hat<span class="op">+</span>t_stat<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] 0.2919319</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">p_hat<span class="op">-</span>t_stat<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1">p_hat<span class="op">-</span>t_stat<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] 0.2649346</code></pre>
 <p>We are 95% confident that the true percentage of climate change deniers in the the US population is between 26.5% and 29.2%.</p>
 </div>
@@ -481,38 +486,38 @@ se</code></pre>
 <iframe src="https://www.youtube.com/embed/T0h-6fsZXG8" width="672" height="400px">
 </iframe>
 <p>using our Add health data, what is the mean difference in popularity (number of friend nominations) between frequent smokers and those who do not smoke frequently?</p>
-<pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">tapply</span>(popularity<span class="op">$</span>indegree, popularity<span class="op">$</span>smoker, mean)
-tab</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">tapply</span>(popularity<span class="op">$</span>indegree, popularity<span class="op">$</span>smoker, mean)</a>
+<a class="sourceLine" id="cb102-2" title="2">tab</a></code></pre></div>
 <pre><code>## Non-smoker     Smoker 
 ##   4.506699   4.796992</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">mean_diff &lt;-<span class="st"> </span><span class="fl">4.796992</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.506699</span>
-mean_diff</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">mean_diff &lt;-<span class="st"> </span><span class="fl">4.796992</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.506699</span></a>
+<a class="sourceLine" id="cb104-2" title="2">mean_diff</a></code></pre></div>
 <pre><code>## [1] 0.290293</code></pre>
 <p>In our sample data, frequent smokers had 0.290 more friends on average than those who did not smoke frequently. What is the confidence interval for that value in the population? We start by calculating the t-statistic for this confidence interval. We use the size of the smaller group minus one for the degrees of freedom.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(popularity<span class="op">$</span>smoker)</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">table</span>(popularity<span class="op">$</span>smoker)</a></code></pre></div>
 <pre><code>## 
 ## Non-smoker     Smoker 
 ##       3732        665</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">n1 &lt;-<span class="st"> </span><span class="dv">3732</span>
-n2 &lt;-<span class="st"> </span><span class="dv">665</span>
-t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, n2<span class="dv">-1</span>)
-t_stat</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">n1 &lt;-<span class="st"> </span><span class="dv">3732</span></a>
+<a class="sourceLine" id="cb108-2" title="2">n2 &lt;-<span class="st"> </span><span class="dv">665</span></a>
+<a class="sourceLine" id="cb108-3" title="3">t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, n2<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb108-4" title="4">t_stat</a></code></pre></div>
 <pre><code>## [1] 1.963543</code></pre>
 <p>The value is pretty close to 1.96 but a little bigger. Now we need to calculate the standard error. The formula is:</p>
 <p><span class="math display">\[\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\]</span>
 We already have <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, so we just need to get the standard deviation of friend nominations for the two groups to get <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span>. We can do this with another tapply command, but changing from <code>mean</code> to <code>sd</code> in the third argument.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(popularity<span class="op">$</span>indegree, popularity<span class="op">$</span>smoker, sd)</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">tapply</span>(popularity<span class="op">$</span>indegree, popularity<span class="op">$</span>smoker, sd)</a></code></pre></div>
 <pre><code>## Non-smoker     Smoker 
 ##   3.652224   3.901188</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">s1 &lt;-<span class="st"> </span><span class="fl">3.652224</span>
-s2 &lt;-<span class="st"> </span><span class="fl">3.901188</span>
-se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(s1<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n1<span class="op">+</span>s2<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n2)
-se</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">s1 &lt;-<span class="st"> </span><span class="fl">3.652224</span></a>
+<a class="sourceLine" id="cb112-2" title="2">s2 &lt;-<span class="st"> </span><span class="fl">3.901188</span></a>
+<a class="sourceLine" id="cb112-3" title="3">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(s1<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n1<span class="op">+</span>s2<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n2)</a>
+<a class="sourceLine" id="cb112-4" title="4">se</a></code></pre></div>
 <pre><code>## [1] 0.1626661</code></pre>
 <p>Now we have all the pieces to put together the confidence interval:</p>
-<pre class="sourceCode r"><code class="sourceCode r">mean_diff <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">mean_diff <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] -0.02910896</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">mean_diff <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1">mean_diff <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] 0.609695</code></pre>
 <p>We are 95% confident that in the population of US adolescents, those who smoke frequently have between 0.03 fewer to 0.61 more friend nominations, on average, than those who do not smoke frequently. Note that because our confidence interval contains both negative and positive value, we cannot be confident about whether smoking is truly associated with having more or less friends. The direction of the relationship between the two variables is uncertain.</p>
 </div>
@@ -521,37 +526,37 @@ se</code></pre>
 <iframe src="https://www.youtube.com/embed/BS5DC752zUQ" width="672" height="400px">
 </iframe>
 <p>Lets continue to use the Add Health data. Do we observe a gender difference in smoking behavior in our sample?</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(<span class="kw">table</span>(popularity<span class="op">$</span>smoker, popularity<span class="op">$</span>sex), <span class="dv">2</span>)</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(popularity<span class="op">$</span>smoker, popularity<span class="op">$</span>sex), <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##             
 ##                 Female      Male
 ##   Non-smoker 0.8534894 0.8435407
 ##   Smoker     0.1465106 0.1564593</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">p_hat_f &lt;-<span class="st"> </span><span class="fl">0.1465106</span>
-p_hat_m &lt;-<span class="st"> </span><span class="fl">0.1564593</span>
-p_hat_diff &lt;-<span class="st"> </span>p_hat_m<span class="op">-</span>p_hat_f
-p_hat_diff</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">p_hat_f &lt;-<span class="st"> </span><span class="fl">0.1465106</span></a>
+<a class="sourceLine" id="cb120-2" title="2">p_hat_m &lt;-<span class="st"> </span><span class="fl">0.1564593</span></a>
+<a class="sourceLine" id="cb120-3" title="3">p_hat_diff &lt;-<span class="st"> </span>p_hat_m<span class="op">-</span>p_hat_f</a>
+<a class="sourceLine" id="cb120-4" title="4">p_hat_diff</a></code></pre></div>
 <pre><code>## [1] 0.0099487</code></pre>
 <p>In our sample, about 14.7% of girls were frequent smokers and about 15.6% of boys were frequent smokers. The percentage of boys who smoke is about 1% higher than the percentage of girls. Do we think this moderate difference in the sample is true in the population?</p>
 <p>Lets start again by calculating the appropriate t-statistic for our confidence interval. We use the same procedure as for mean differences above, choosing the size of the smaller group for the degrees of freedom. However, its important to note that our groups are now boys and girls, not smokers and non-smokers.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(popularity<span class="op">$</span>sex)</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="kw">table</span>(popularity<span class="op">$</span>sex)</a></code></pre></div>
 <pre><code>## 
 ##  Female    Male 
 ##    2307    2090</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">n_f &lt;-<span class="st"> </span><span class="dv">2307</span>
-n_m &lt;-<span class="st"> </span><span class="dv">2090</span>
-t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, n_m<span class="dv">-1</span>)
-t_stat</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1">n_f &lt;-<span class="st"> </span><span class="dv">2307</span></a>
+<a class="sourceLine" id="cb124-2" title="2">n_m &lt;-<span class="st"> </span><span class="dv">2090</span></a>
+<a class="sourceLine" id="cb124-3" title="3">t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, n_m<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb124-4" title="4">t_stat</a></code></pre></div>
 <pre><code>## [1] 1.9611</code></pre>
 <p>Now we can calculate the standard error. The formula is:</p>
 <p><span class="math display">\[\sqrt{\frac{\hat{p}_1*(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2*(1-\hat{p}_2)}{n_2}}\]</span></p>
 <p>That looks like a lot, but we just have to focus on plugging in the right values in R:</p>
-<pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>((p_hat_f<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_hat_f)<span class="op">/</span>n_f)<span class="op">+</span>(p_hat_m<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_hat_m)<span class="op">/</span>n_m))
-se</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>((p_hat_f<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_hat_f)<span class="op">/</span>n_f)<span class="op">+</span>(p_hat_m<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p_hat_m)<span class="op">/</span>n_m))</a>
+<a class="sourceLine" id="cb126-2" title="2">se</a></code></pre></div>
 <pre><code>## [1] 0.01083286</code></pre>
 <p>Now we have all the parts to calculate the confidence interval:</p>
-<pre class="sourceCode r"><code class="sourceCode r">p_hat_diff <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">p_hat_diff <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] -0.01129562</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">p_hat_diff <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">p_hat_diff <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] 0.03119302</code></pre>
 <p>We are 95% confident that in the population of US adolescents, between 1.1% fewer to 3.1% more boys smoke frequently than girls. As above, because our confidence interval includes both negative and positive values, we are not very confident at all about whether boys or girls smoke more frequently.</p>
 </div>
@@ -560,23 +565,23 @@ se</code></pre>
 <iframe src="https://www.youtube.com/embed/YnTTP982LSU" width="672" height="400px">
 </iframe>
 <p>Lets stick with the Add Health data. What is the correlation between GPA and the number of friend nominations that a student receives?</p>
-<pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span><span class="kw">cor</span>(popularity<span class="op">$</span>pseudoGPA, popularity<span class="op">$</span>indegree)
-r</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1">r &lt;-<span class="st"> </span><span class="kw">cor</span>(popularity<span class="op">$</span>pseudoGPA, popularity<span class="op">$</span>indegree)</a>
+<a class="sourceLine" id="cb132-2" title="2">r</a></code></pre></div>
 <pre><code>## [1] 0.1680881</code></pre>
 <p>In our sample, there is a moderately positive correlation between a student’s GPA and the number of friend nominations that a student receives. What is our confidence interval for the population?</p>
 <p>For the t-statistic, we use <span class="math inline">\(n-2\)</span> for the degrees of freedom:</p>
-<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(popularity)
-t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, n<span class="dv">-2</span>)</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(popularity)</a>
+<a class="sourceLine" id="cb134-2" title="2">t_stat &lt;-<span class="st"> </span><span class="kw">qt</span>(.<span class="dv">975</span>, n<span class="dv">-2</span>)</a></code></pre></div>
 <p>For the standard error, the formula is:</p>
 <p><span class="math display">\[\sqrt{\frac{1-r^2}{n-2}}\]</span>
 This is straightforward to calculate in R:</p>
-<pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>((<span class="dv">1</span><span class="op">-</span>r<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(n<span class="dv">-2</span>))
-se</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>((<span class="dv">1</span><span class="op">-</span>r<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(n<span class="dv">-2</span>))</a>
+<a class="sourceLine" id="cb135-2" title="2">se</a></code></pre></div>
 <pre><code>## [1] 0.01486952</code></pre>
 <p>Now we have all the parts we need to calculate the confidence interval:</p>
-<pre class="sourceCode r"><code class="sourceCode r">r <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">r <span class="op">-</span><span class="st"> </span>t_stat<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] 0.1389363</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">r <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1">r <span class="op">+</span><span class="st"> </span>t_stat<span class="op">*</span>se</a></code></pre></div>
 <pre><code>## [1] 0.1972398</code></pre>
 <p>We are 95% confident that the true correlation coefficient between GPA and friend nominations in the population of US adolescents is between 0.139 and 0.197. While there is some difference in the strength of that relationship, we are pretty confident that the correlation is moderately positive.</p>
 <hr />
@@ -593,11 +598,13 @@ se</code></pre>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -605,12 +612,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -622,6 +628,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -640,8 +650,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

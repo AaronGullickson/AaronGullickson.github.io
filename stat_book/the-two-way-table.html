@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>The Two-Way Table | Statistical Analysis in Sociology</title>
-  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="The Two-Way Table | Statistical Analysis in Sociology />
+  <meta property="og:title" content="The Two-Way Table | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="The Two-Way Table | Statistical Analysis in Sociology />
+  <meta name="twitter:title" content="The Two-Way Table | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
 
-<meta name="author" content="Aaron Gullickson">
+<meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-01-16">
+<meta name="date" content="2020-01-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="measuring-association-1.html">
-<link rel="next" href="mean-differences.html">
+<link rel="prev" href="measuring-association-1.html"/>
+<link rel="next" href="mean-differences.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,13 +51,13 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -64,7 +66,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -321,6 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html"><i class="fa fa-check"></i>Version Control for Sanity!</a><ul>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -344,8 +349,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <iframe src="https://www.youtube.com/embed/ltyT8BJbGLM" width="672" height="400px">
 </iframe>
 <p>The <strong>two-way table</strong> (also known as a <strong>cross-tabulation</strong> or <strong>crosstab</strong>) gives the joint distribution of two categorical variables. Lets use our politics dataset to construct a two-way table of belief in anthropogenic climate change by political party:</p>
-<pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>party, politics<span class="op">$</span>globalwarm)
-tab</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>party, politics<span class="op">$</span>globalwarm)</a>
+<a class="sourceLine" id="cb43-2" title="2">tab</a></code></pre></div>
 <pre><code>##              
 ##                 No  Yes
 ##   Democrat     230 1235
@@ -448,11 +453,11 @@ Total
 </table>
 <p>The marginal distribution of party affiliation is given by the Total column on the right and the marginal distribution of climate change belief is given by the Total row at the bottom. Looking at the column marginal, we can see that there were a total of 1465 Democrats, 1241 Republicans, and so on. Looking at the row marginal, we can see that there were 1180 anthropogenic climate change deniers and 3058 anthropogenic climate change believers. The final number (4238) in the far right corner is the total number of respondents altogether. You can get this number by summing up the column marginals (1180+3058) or row marginals (1465+1241+1381+151).</p>
 <p>The <code>margin.table</code> command in <em>R</em> will also calculate marginals for us. I can use the <code>margin.table</code> command on the table I created and saved above as <em>tab</em> to calculate the same marginals as above. Note that you need to indicate which marginal you want by a number, where 1=row and 2=column, as the second option to <code>margin.table</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">margin.table</span>(tab,<span class="dv">1</span>)</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">margin.table</span>(tab,<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## 
 ##    Democrat  Republican Independent       Other 
 ##        1465        1241        1381         151</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">margin.table</span>(tab,<span class="dv">2</span>)</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">margin.table</span>(tab,<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## 
 ##   No  Yes 
 ## 1180 3058</code></pre>
@@ -623,7 +628,7 @@ Other
 <p>Note that the proportions should add up to 1 within each row because we are basically calculating the share of each row that belongs to each column category. <strong>To understand these conditional distributions, you need to look at the numbers within each row.</strong> For example, the first row tells us that 15.7% of Democrats are deniers and 84.3% of Democrats are believers. The second row tells us that 46.5% of Republicans are deniers and 53.5% of Republicans are believers.</p>
 <p>We can tell if there is an association between the row and column variable if these conditional distributions are different across rows. In this case, they are clearly very different. About 84.3% of Democrats are believers while only about half (53.5%) of Republicans are believers. About 76.4% of Independents are believers, while about 68.9% of members of other parties are believers.</p>
 <p>We can use the <code>prop.table</code> command we saw in the last module to estimate these conditional distributions. In order to do that we feed in the crosstab we calculated with tab and one additional argument that indicates which dimension (row or column ) we want to condition across. Like <code>margin.table</code> a value of <code>1</code> will condition on rows (rows sum to 1) and a value of <code>2</code> will condition on columns (columns sum to 1). If we condition on rows here, we will get the same table as above.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(tab,<span class="dv">1</span>)</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">prop.table</span>(tab,<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>##              
 ##                      No       Yes
 ##   Democrat    0.1569966 0.8430034
@@ -631,7 +636,7 @@ Other
 ##   Independent 0.2360608 0.7639392
 ##   Other       0.3112583 0.6887417</code></pre>
 <p>Its important to remember which way you did the conditional distribution and get the interpretation correct. If you are not sure, just note which way the proportions add up to one - this is the direction you should be looking (i.e. within row or column). In this case, I am looking at the distribution of variables within rows, so the proportions refer to the proportion of respondents from a given political party who hold a given belief. But, I could have done my conditional distribution the other way:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(tab,<span class="dv">2</span>)</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">prop.table</span>(tab,<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##              
 ##                       No        Yes
 ##   Democrat    0.19491525 0.40385873
@@ -642,12 +647,12 @@ Other
 <iframe src="https://www.youtube.com/embed/UYsvfTXXs8w" width="672" height="400px">
 </iframe>
 <p>It is also possible to graph the conditional distribution as a set of barplots. To do that, we will learn a new feature of ggplot called <strong>faceting</strong>. Faceting allows us to make the same plot based on subsets of the data in a series of panels. In this case, we can use the code for a univariate barplot but faceted by First, lets save the output of our prop.table into a new object.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>globalwarm, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>party)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)<span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;belief in anthropogenic climate change&quot;</span>, <span class="dt">y=</span><span class="ot">NULL</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>globalwarm, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb54-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb54-3" title="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>party)<span class="op">+</span></a>
+<a class="sourceLine" id="cb54-4" title="4"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb54-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;belief in anthropogenic climate change&quot;</span>, <span class="dt">y=</span><span class="ot">NULL</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb54-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:barplot-climatebelief-party"></span>
 <img src="stat_book_files/figure-html/barplot-climatebelief-party-1.png" alt="Distribution of belief in anthropogenic climate change by party affiliation, ANES 2016" width="672" />
 <p class="caption">
@@ -656,12 +661,12 @@ Figure 16: Distribution of belief in anthropogenic climate change by party affil
 </div>
 <p>Figure <a href="the-two-way-table.html#fig:barplot-climatebelief-party">16</a> is a <strong>comparative barplot</strong>. This is our first example of a graph that looks at a relationship. Each panel shows the distribution of climate change beliefs for respondents with that particular party affiliation. What we are interested in is whether the distribution looks different across each panel. In this case, because there were only two categories of the response variable, we only really need to look at the heights of the bar for one category to see the variation across party affiliation, which is substantial.</p>
 <p>Lets try an example with more than two categories. For this example, I want to know whether there was a difference in passenger class by gender on the Titanic. I start with a comparative barplot:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sex)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)<span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;passenger class&quot;</span>, <span class="dt">y=</span><span class="ot">NULL</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb55-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sex)<span class="op">+</span></a>
+<a class="sourceLine" id="cb55-4" title="4"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb55-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;passenger class&quot;</span>, <span class="dt">y=</span><span class="ot">NULL</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb55-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:comp-bar-pclass-gender"></span>
 <img src="stat_book_files/figure-html/comp-bar-pclass-gender-1.png" alt="Distribution of passenger class by gender" width="672" />
 <p class="caption">
@@ -669,7 +674,7 @@ Figure 17: Distribution of passenger class by gender
 </p>
 </div>
 <p>I can also calculate the conditional distributions by hand using <code>prop.table</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(titanic<span class="op">$</span>sex, titanic<span class="op">$</span>pclass),<span class="dv">1</span>),<span class="dv">3</span>)<span class="op">*</span><span class="dv">100</span></code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(titanic<span class="op">$</span>sex, titanic<span class="op">$</span>pclass),<span class="dv">1</span>),<span class="dv">3</span>)<span class="op">*</span><span class="dv">100</span></a></code></pre></div>
 <pre><code>##         
 ##          First Second Third
 ##   Female  30.9   22.7  46.4
@@ -792,11 +797,13 @@ Republican
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -804,12 +811,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -821,6 +827,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -839,8 +849,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

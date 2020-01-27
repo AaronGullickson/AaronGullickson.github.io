@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Plotting Cookbook | Statistical Analysis in Sociology</title>
-  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Plotting Cookbook | Statistical Analysis in Sociology />
+  <meta property="og:title" content="Plotting Cookbook | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Plotting Cookbook | Statistical Analysis in Sociology />
+  <meta name="twitter:title" content="Plotting Cookbook | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
 
-<meta name="author" content="Aaron Gullickson">
+<meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-01-16">
+<meta name="date" content="2020-01-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="common-r-commands.html">
-<link rel="next" href="r-stat-lab.html">
+<link rel="prev" href="common-r-commands.html"/>
+<link rel="next" href="r-stat-lab.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,13 +51,13 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -64,7 +66,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -321,6 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html"><i class="fa fa-check"></i>Version Control for Sanity!</a><ul>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -346,12 +351,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="barplots" class="section level3">
 <h3>Barplots</h3>
 <p>Oddly, barplots are one of the trickiest graphs in <code>ggplot</code>if you want proportions rather than absolute frequencies for each category. To make proportions, I need to specify <code>y=..prop..</code> in the aesthetics, and then use <code>group=1</code> to ensure that all categories are part of a single group and thus have proportions that sum up to one. In the code below, I am also using the <code>scale_y_continuous</code> command and the <code>scales::percent</code> command to label the tickmarks on the y-axis as percents rather than proportions.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;passenger class&quot;</span>, <span class="dt">y=</span><span class="ot">NULL</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Distribution of passenger class on Titanic&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" title="1"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb455-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb455-3" title="3"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent)<span class="op">+</span></a>
+<a class="sourceLine" id="cb455-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;passenger class&quot;</span>, <span class="dt">y=</span><span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb455-5" title="5">       <span class="dt">title=</span><span class="st">&quot;Distribution of passenger class on Titanic&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb455-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:barplot"></span>
 <img src="stat_book_files/figure-html/barplot-1.png" alt="A barplot" width="672" />
 <p class="caption">
@@ -363,11 +368,11 @@ Figure 84: A barplot
 <div id="histograms" class="section level3">
 <h3>Histograms</h3>
 <p>Histograms are a snap in <code>ggplot</code>. The <code>binwidth</code> argument will allow you to easily resize bin widths without having to provide every break as base plot does.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Histogram of movie runtime&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime))<span class="op">+</span></a>
+<a class="sourceLine" id="cb456-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb456-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, </a>
+<a class="sourceLine" id="cb456-4" title="4">       <span class="dt">title=</span><span class="st">&quot;Histogram of movie runtime&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb456-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:histogram"></span>
 <img src="stat_book_files/figure-html/histogram-1.png" alt="A basic histogram" width="672" />
 <p class="caption">
@@ -376,12 +381,12 @@ Figure 85: A basic histogram
 </div>
 <p>Figure <a href="plotting-cookbook.html#fig:histogram">85</a> shows the basic histogram from the code above. By default, <code>ggplot</code> will not place a border around bars, but I like to make the border a slightly different color (e.g. <code>col="black"</code>) to provide better visual definition.</p>
 <p>You can also calculate density instead of count, if you prefer, by adding the <code>y=..density..</code> option to the aesthetics. Density is the proportion of cases in a bin, divided by bin width. If you plot a histogram with density, you can also overlay this figure with a smoothed line approximating the distribution called a kernel density. These results are shown in Figure <a href="plotting-cookbook.html#fig:histogram-density">86</a>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime, <span class="dt">y=</span>..density..))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Histogram of movie runtime&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime, <span class="dt">y=</span>..density..))<span class="op">+</span></a>
+<a class="sourceLine" id="cb457-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb457-3" title="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb457-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, </a>
+<a class="sourceLine" id="cb457-5" title="5">       <span class="dt">title=</span><span class="st">&quot;Histogram of movie runtime&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb457-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:histogram-density"></span>
 <img src="stat_book_files/figure-html/histogram-density-1.png" alt="A histogram with kernel density smoother" width="672" />
 <p class="caption">
@@ -392,11 +397,11 @@ Figure 86: A histogram with kernel density smoother
 <div id="boxplots-1" class="section level3">
 <h3>Boxplots</h3>
 <p>The only tricky thing to a boxplot in <code>ggplot</code> is to remember that the aesthetic is <code>y</code> not <code>x</code>. Its not required, but setting <code>x=""</code> in the aesthetics and then setting the x label to <code>NULL</code> will also create a cleaner display with no x-axis. I also apply a <code>geom_boxplot</code> only argument here that colors outliers a different color.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span>Runtime))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">outlier.color =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, <span class="dt">x=</span><span class="ot">NULL</span>,
-       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span>Runtime))<span class="op">+</span></a>
+<a class="sourceLine" id="cb458-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">outlier.color =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb458-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, <span class="dt">x=</span><span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb458-4" title="4">       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb458-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:boxplot"></span>
 <img src="stat_book_files/figure-html/boxplot-1.png" alt="A basic boxplot" width="672" />
 <p class="caption">
@@ -404,12 +409,12 @@ Figure 87: A basic boxplot
 </p>
 </div>
 <p>You can also try a <code>geom_violin</code> instead which basically gives you a mirrored kernel density plot. For a single variable, use <code>x=1</code> because <code>geom_violin</code> requires an <code>x</code> aesthetic. Below, I show how you can extend this into a comparative violin plot.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span><span class="dv">1</span>, <span class="dt">y=</span>Runtime))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels=</span><span class="ot">NULL</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Violin plot of movie runtime&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span><span class="dv">1</span>, <span class="dt">y=</span>Runtime))<span class="op">+</span></a>
+<a class="sourceLine" id="cb459-2" title="2"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb459-3" title="3"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels=</span><span class="ot">NULL</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb459-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, </a>
+<a class="sourceLine" id="cb459-5" title="5">       <span class="dt">title=</span><span class="st">&quot;Violin plot of movie runtime&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb459-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:violin"></span>
 <img src="stat_book_files/figure-html/violin-1.png" alt="A violin plot" width="672" />
 <p class="caption">
@@ -420,13 +425,13 @@ Figure 88: A violin plot
 <div id="comparative-barplots" class="section level3">
 <h3>Comparative Barplots</h3>
 <p>Comparative barplots are definitely one of the most difficult cases to graph properly in <code>ggplot</code> because grouping causes all kinds of issues with calculating proportions correctly. The best approach that I have found is to use faceting to separate out the barplots of one variable by the categories of the other variable. The basic code is then identical to that for a single barplot above with the addition of a <code>facet_wrap</code> command to identify the second categorical variable to use for faceting.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>survival, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>pclass)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="ot">NULL</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Survival on the Titanic by class&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" title="1"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>survival, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb460-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb460-3" title="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>pclass)<span class="op">+</span></a>
+<a class="sourceLine" id="cb460-4" title="4"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)<span class="op">+</span></a>
+<a class="sourceLine" id="cb460-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb460-6" title="6">       <span class="dt">title=</span><span class="st">&quot;Survival on the Titanic by class&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb460-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:comp-barplot"></span>
 <img src="stat_book_files/figure-html/comp-barplot-1.png" alt="A comparative barplot made by faceting" width="672" />
 <p class="caption">
@@ -434,18 +439,18 @@ Figure 89: A comparative barplot made by faceting
 </p>
 </div>
 <p>Figure <a href="plotting-cookbook.html#fig:comp-barplot">89</a> shows the result. In this case, since survival and death are mirror images, we could convey the same information, but with much less ink by a simple dotplot of the percent surviving by passenger class. However, this would require some preparatory work to prepare the data in the way we want to display it. For the undergraduate class, you are not required to understand how to prepare this data.</p>
-<pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(titanic<span class="op">$</span>survival, titanic<span class="op">$</span>pclass),<span class="dv">2</span>)
-tab &lt;-<span class="st"> </span><span class="kw">subset</span>(<span class="kw">as.data.frame.table</span>(tab), 
-             Var1<span class="op">==</span><span class="st">&quot;Survived&quot;</span>, 
-             <span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;Var2&quot;</span>,<span class="st">&quot;Freq&quot;</span>))
-<span class="kw">colnames</span>(tab) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;pclass&quot;</span>,<span class="st">&quot;prop_surv&quot;</span>)
-<span class="kw">ggplot</span>(tab, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>prop_surv))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent, <span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.8</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="ot">NULL</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Percent surviving Titanic by class&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(titanic<span class="op">$</span>survival, titanic<span class="op">$</span>pclass),<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb461-2" title="2">tab &lt;-<span class="st"> </span><span class="kw">subset</span>(<span class="kw">as.data.frame.table</span>(tab), </a>
+<a class="sourceLine" id="cb461-3" title="3">             Var1<span class="op">==</span><span class="st">&quot;Survived&quot;</span>, </a>
+<a class="sourceLine" id="cb461-4" title="4">             <span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;Var2&quot;</span>,<span class="st">&quot;Freq&quot;</span>))</a>
+<a class="sourceLine" id="cb461-5" title="5"><span class="kw">colnames</span>(tab) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;pclass&quot;</span>,<span class="st">&quot;prop_surv&quot;</span>)</a>
+<a class="sourceLine" id="cb461-6" title="6"><span class="kw">ggplot</span>(tab, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>prop_surv))<span class="op">+</span></a>
+<a class="sourceLine" id="cb461-7" title="7"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb461-8" title="8"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent, <span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.8</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb461-9" title="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb461-10" title="10">       <span class="dt">title=</span><span class="st">&quot;Percent surviving Titanic by class&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb461-11" title="11"><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb461-12" title="12"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:comp-dotplot"></span>
 <img src="stat_book_files/figure-html/comp-dotplot-1.png" alt="A simple dotplot" width="672" />
 <p class="caption">
@@ -453,13 +458,13 @@ Figure 90: A simple dotplot
 </p>
 </div>
 <p>Figure <a href="plotting-cookbook.html#fig:comp-dotplot">90</a> shows the resulting dotplot. If that is a little too spartan for you, you could try a lollipop graph, shown in Figure <a href="plotting-cookbook.html#fig:lollipop">91</a>. The <code>geom_lollipop</code> is in the <code>ggalt</code> library.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(tab, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>prop_surv))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_lollipop</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent, <span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.7</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="ot">NULL</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Percent surviving Titanic by class&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" title="1"><span class="kw">ggplot</span>(tab, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>prop_surv))<span class="op">+</span></a>
+<a class="sourceLine" id="cb462-2" title="2"><span class="st">  </span><span class="kw">geom_lollipop</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb462-3" title="3"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent, <span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.7</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb462-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb462-5" title="5">       <span class="dt">title=</span><span class="st">&quot;Percent surviving Titanic by class&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb462-6" title="6"><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb462-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:lollipop"></span>
 <img src="stat_book_files/figure-html/lollipop-1.png" alt="A lollipop plot" width="672" />
 <p class="caption">
@@ -470,11 +475,11 @@ Figure 91: A lollipop plot
 <div id="comparative-boxplots" class="section level3">
 <h3>Comparative Boxplots</h3>
 <p>To construct comparative boxplots, we just need to add an <code>x</code> to the aesthetic of a boxplot.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Genre, <span class="dt">y=</span>Runtime))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">outlier.color =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime by genre&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Genre, <span class="dt">y=</span>Runtime))<span class="op">+</span></a>
+<a class="sourceLine" id="cb463-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">outlier.color =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb463-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, </a>
+<a class="sourceLine" id="cb463-4" title="4">       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime by genre&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb463-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:comp-boxplot"></span>
 <img src="stat_book_files/figure-html/comp-boxplot-1.png" alt="A basic comparative boxplot" width="672" />
 <p class="caption">
@@ -482,13 +487,13 @@ Figure 92: A basic comparative boxplot
 </p>
 </div>
 <p>The mediocre results are shown in Figure <a href="plotting-cookbook.html#fig:comp-boxplot">92</a>. The labels on the x-axis often run into one another, so <code>coord_flip</code> is a good option to avoid that. In addition, I can also use the <code>varwidth</code> argument in <code>geom_boxplot</code> to scale the width of boxplots relative to the number of observations.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Genre, <span class="dt">y=</span>Runtime))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">outlier.color =</span> <span class="st">&quot;red&quot;</span>, 
-               <span class="dt">varwidth=</span><span class="ot">TRUE</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime by genre&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Genre, <span class="dt">y=</span>Runtime))<span class="op">+</span></a>
+<a class="sourceLine" id="cb464-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">outlier.color =</span> <span class="st">&quot;red&quot;</span>, </a>
+<a class="sourceLine" id="cb464-3" title="3">               <span class="dt">varwidth=</span><span class="ot">TRUE</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb464-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, </a>
+<a class="sourceLine" id="cb464-5" title="5">       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime by genre&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb464-6" title="6"><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb464-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:comp-boxplot2"></span>
 <img src="stat_book_files/figure-html/comp-boxplot2-1.png" alt="Flipping coordinates for better display" width="672" />
 <p class="caption">
@@ -496,13 +501,13 @@ Figure 93: Flipping coordinates for better display
 </p>
 </div>
 <p>My improved comparative boxplot is shown in Figure <a href="plotting-cookbook.html#fig:comp-boxplot2">93</a>. However, Its also often useful to re-order the categories by the mean or median of the quantitative variable. We can do this with the <code>reorder</code> command:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">reorder</span>(Genre, Runtime, median), <span class="dt">y=</span>Runtime))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">outlier.color =</span> <span class="st">&quot;red&quot;</span>, 
-               <span class="dt">varwidth=</span><span class="ot">TRUE</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, <span class="dt">x=</span><span class="ot">NULL</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime by genre&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">reorder</span>(Genre, Runtime, median), <span class="dt">y=</span>Runtime))<span class="op">+</span></a>
+<a class="sourceLine" id="cb465-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">outlier.color =</span> <span class="st">&quot;red&quot;</span>, </a>
+<a class="sourceLine" id="cb465-3" title="3">               <span class="dt">varwidth=</span><span class="ot">TRUE</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb465-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, <span class="dt">x=</span><span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb465-5" title="5">       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime by genre&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb465-6" title="6"><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb465-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:comp-boxplot3"></span>
 <img src="stat_book_files/figure-html/comp-boxplot3-1.png" alt="Re-order categories by median" width="672" />
 <p class="caption">
@@ -511,12 +516,12 @@ Figure 94: Re-order categories by median
 </div>
 <p>The results are shown in Figure <a href="plotting-cookbook.html#fig:comp-boxplot3">94</a>. In this case, we used the <code>reorder</code> command to reorder the categories of <code>Genre</code> by the median value of <code>Runtime</code>.</p>
 <p>We could also try a comparative violin plot as shown in Figure <a href="plotting-cookbook.html#fig:comp-violin">95</a>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">reorder</span>(Genre, Runtime, median), <span class="dt">y=</span>Runtime))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, <span class="dt">x=</span><span class="ot">NULL</span>, 
-       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime by genre&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">reorder</span>(Genre, Runtime, median), <span class="dt">y=</span>Runtime))<span class="op">+</span></a>
+<a class="sourceLine" id="cb466-2" title="2"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb466-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;movie runtime (minutes)&quot;</span>, <span class="dt">x=</span><span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb466-4" title="4">       <span class="dt">title=</span><span class="st">&quot;Boxplot of movie runtime by genre&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb466-5" title="5"><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb466-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:comp-violin"></span>
 <img src="stat_book_files/figure-html/comp-violin-1.png" alt="A comparative violin plot" width="672" />
 <p class="caption">
@@ -527,14 +532,14 @@ Figure 95: A comparative violin plot
 <div id="scatterplots" class="section level3">
 <h3>Scatterplots</h3>
 <p>The <code>geom_point</code> command gives us the the geom we want for scatterplots. We can also use <code>geom_smooth</code> to graph a variety of lines to our data. Setting an <code>alpha</code> value can help with overplotting as well by providing semi-transparency.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,
-       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, 
-       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb467-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span></a>
+<a class="sourceLine" id="cb467-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb467-3" title="3"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb467-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,</a>
+<a class="sourceLine" id="cb467-5" title="5">       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,</a>
+<a class="sourceLine" id="cb467-6" title="6">       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, </a>
+<a class="sourceLine" id="cb467-7" title="7">       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb467-8" title="8"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter"></span>
 <img src="stat_book_files/figure-html/scatter-1.png" alt="Basic Scatterplot" width="672" />
 <p class="caption">
@@ -542,14 +547,14 @@ Figure 96: Basic Scatterplot
 </p>
 </div>
 <p>The results are shown in Figure <a href="plotting-cookbook.html#fig:scatter">96</a>. As more points are plotted in the same position, the overall plot darkens. However, there is still a lot of overplotting because age is only recorded in whole numbers. In cases like this, we can use <code>geom_jitter</code> rather than <code>geom_point</code> to randomly perturb each value pair a little bit, as shown in Figure 14.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,
-       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, 
-       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span></a>
+<a class="sourceLine" id="cb468-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb468-3" title="3"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb468-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,</a>
+<a class="sourceLine" id="cb468-5" title="5">       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,</a>
+<a class="sourceLine" id="cb468-6" title="6">       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, </a>
+<a class="sourceLine" id="cb468-7" title="7">       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb468-8" title="8"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-jitter"></span>
 <img src="stat_book_files/figure-html/scatter-jitter-1.png" alt="Jittering points to deal with overplotting" width="672" />
 <p class="caption">
@@ -557,15 +562,15 @@ Figure 97: Jittering points to deal with overplotting
 </p>
 </div>
 <p>It is often useful to apply some model to the data to draw a best-fitting line through the points. The <code>geom_smooth</code> function will do this for us and we can use the <code>method</code> argument to specify what kind of model we want to fit. You an apply non-parametric smoothers like LOESS as well as an OLS regression line. Lets first try a LOESS smoother.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;loess&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,
-       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, 
-       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span></a>
+<a class="sourceLine" id="cb469-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb469-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;loess&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb469-4" title="4"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb469-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,</a>
+<a class="sourceLine" id="cb469-6" title="6">       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,</a>
+<a class="sourceLine" id="cb469-7" title="7">       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, </a>
+<a class="sourceLine" id="cb469-8" title="8">       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb469-9" title="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-loess"></span>
 <img src="stat_book_files/figure-html/scatter-loess-1.png" alt="Plotting loess smoother to data" width="672" />
 <p class="caption">
@@ -573,15 +578,15 @@ Figure 98: Plotting loess smoother to data
 </p>
 </div>
 <p>Figure <a href="plotting-cookbook.html#fig:scatter-loess">98</a> shows us the smoothed line. It looks like an inverted U-shaped distribution. Family income is also highly right skewed. Lets try <code>scale_y_log10</code> to put income on a log-scale (advanced).</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;loess&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,
-       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, 
-       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span></a>
+<a class="sourceLine" id="cb470-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb470-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;loess&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb470-4" title="4"><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb470-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,</a>
+<a class="sourceLine" id="cb470-6" title="6">       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,</a>
+<a class="sourceLine" id="cb470-7" title="7">       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, </a>
+<a class="sourceLine" id="cb470-8" title="8">       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb470-9" title="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-log"></span>
 <img src="stat_book_files/figure-html/scatter-log-1.png" alt="Changing scale of y-axis to logarithmic" width="672" />
 <p class="caption">
@@ -590,15 +595,15 @@ Figure 99: Changing scale of y-axis to logarithmic
 </div>
 <p>Figure <a href="plotting-cookbook.html#fig:scatter-log">99</a> shows the scatterplot with an exponential scale for the y-axis. Note how the values go from $1K to $10K to $100K at even intervals.</p>
 <p>Now lets try switch the smoothing to a linear model, by simply changing the method in <code>geom_smooth</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,
-       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, 
-       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb471-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span></a>
+<a class="sourceLine" id="cb471-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb471-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb471-4" title="4"><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb471-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,</a>
+<a class="sourceLine" id="cb471-6" title="6">       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,</a>
+<a class="sourceLine" id="cb471-7" title="7">       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, </a>
+<a class="sourceLine" id="cb471-8" title="8">       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb471-9" title="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-lm"></span>
 <img src="stat_book_files/figure-html/scatter-lm-1.png" alt="Fitting an OLS regression line" width="672" />
 <p class="caption">
@@ -607,17 +612,17 @@ Figure 100: Fitting an OLS regression line
 </div>
 <p>Figure <a href="plotting-cookbook.html#fig:scatter-lm">100</a> shows the OLS line predicting income. Its pretty flat which to some extent hides the underlying curvilinear relationship. In practice, I would probably want to apply a quadratic term on age to any regression model.</p>
 <p>Finally, we can add add in an aesthetic for a third categorical variable by applying color to the plots. In this case, I will color the plots by highest degree received.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="kw">aes</span>(<span class="dt">color=</span>educ))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;YlOrRd&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,
-       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, 
-       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>,
-       <span class="dt">color=</span><span class="st">&quot;Highest degree&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span></a>
+<a class="sourceLine" id="cb472-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="kw">aes</span>(<span class="dt">color=</span>educ))<span class="op">+</span></a>
+<a class="sourceLine" id="cb472-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb472-4" title="4"><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;YlOrRd&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb472-5" title="5"><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb472-6" title="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,</a>
+<a class="sourceLine" id="cb472-7" title="7">       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,</a>
+<a class="sourceLine" id="cb472-8" title="8">       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, </a>
+<a class="sourceLine" id="cb472-9" title="9">       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>,</a>
+<a class="sourceLine" id="cb472-10" title="10">       <span class="dt">color=</span><span class="st">&quot;Highest degree&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb472-11" title="11"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-color"></span>
 <img src="stat_book_files/figure-html/scatter-color-1.png" alt="Adding color aesthetic" width="672" />
 <p class="caption">
@@ -625,17 +630,17 @@ Figure 101: Adding color aesthetic
 </p>
 </div>
 <p>Figure <a href="plotting-cookbook.html#fig:scatter-color">101</a> shows the result. Because I defined the color aesthetic in <code>geom_jitter</code> rather than the base <code>ggplot</code> command, I still only get one smoothed OLS regression line for the whole dataset. If I wanted separate lines by educational level, I could add the color aesthetic to <code>ggplot</code> instead.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income, <span class="dt">color=</span>educ))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;YlOrRd&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,
-       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, 
-       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>,
-       <span class="dt">color=</span><span class="st">&quot;Highest degree&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb473-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income, <span class="dt">color=</span>educ))<span class="op">+</span></a>
+<a class="sourceLine" id="cb473-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb473-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb473-4" title="4"><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;YlOrRd&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb473-5" title="5"><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb473-6" title="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,</a>
+<a class="sourceLine" id="cb473-7" title="7">       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,</a>
+<a class="sourceLine" id="cb473-8" title="8">       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, </a>
+<a class="sourceLine" id="cb473-9" title="9">       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>,</a>
+<a class="sourceLine" id="cb473-10" title="10">       <span class="dt">color=</span><span class="st">&quot;Highest degree&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb473-11" title="11"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-color2"></span>
 <img src="stat_book_files/figure-html/scatter-color2-1.png" alt="Separate OLS lines by color aesthetic" width="672" />
 <p class="caption">
@@ -644,17 +649,17 @@ Figure 102: Separate OLS lines by color aesthetic
 </div>
 <p>Figure <a href="plotting-cookbook.html#fig:scatter-color2">102</a> shows the same plot but now with separate lines for each educational level. We are basically plotting interaction terms here between age and educational level.</p>
 <p>Instead of coloration, I could have used faceting to try to separate out differences by education. Figure <a href="plotting-cookbook.html#fig:scatter-facet">103</a> shows the results using this approach. For this graph, I use two separate <code>geom_smooth</code> commands to get the LOESS and linear fit for each panel.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.3</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;loess&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>educ)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,
-       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, 
-       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>income))<span class="op">+</span></a>
+<a class="sourceLine" id="cb474-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.3</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb474-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb474-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;loess&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb474-5" title="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>educ)<span class="op">+</span></a>
+<a class="sourceLine" id="cb474-6" title="6"><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb474-7" title="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>,</a>
+<a class="sourceLine" id="cb474-8" title="8">       <span class="dt">y=</span><span class="st">&quot;family income (in thousands USD)&quot;</span>,</a>
+<a class="sourceLine" id="cb474-9" title="9">       <span class="dt">title=</span><span class="st">&quot;Scatterplot between age and family income&quot;</span>, </a>
+<a class="sourceLine" id="cb474-10" title="10">       <span class="dt">caption=</span><span class="st">&quot;ANES 2016&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb474-11" title="11"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-facet"></span>
 <img src="stat_book_files/figure-html/scatter-facet-1.png" alt="facet by education instead of color" width="672" />
 <p class="caption">
@@ -662,14 +667,14 @@ Figure 103: facet by education instead of color
 </p>
 </div>
 <p>If you have a small number of cases, it might make sense to label your values. You can label values with <code>geom_text</code> but you can often run into problems with labels being truncated or overlapping.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(crimes, <span class="kw">aes</span>(<span class="dt">x=</span>Unemployment, <span class="dt">y=</span>Property))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>State), <span class="dt">size=</span><span class="dv">2</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Unemployment rate&quot;</span>, 
-       <span class="dt">y=</span><span class="st">&quot;Property crimes per 100,000 population&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot of unemployment and property crime&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" title="1"><span class="kw">ggplot</span>(crimes, <span class="kw">aes</span>(<span class="dt">x=</span>Unemployment, <span class="dt">y=</span>Property))<span class="op">+</span></a>
+<a class="sourceLine" id="cb475-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb475-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb475-4" title="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>State), <span class="dt">size=</span><span class="dv">2</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb475-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Unemployment rate&quot;</span>, </a>
+<a class="sourceLine" id="cb475-6" title="6">       <span class="dt">y=</span><span class="st">&quot;Property crimes per 100,000 population&quot;</span>,</a>
+<a class="sourceLine" id="cb475-7" title="7">       <span class="dt">title=</span><span class="st">&quot;Scatterplot of unemployment and property crime&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb475-8" title="8"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-label"></span>
 <img src="stat_book_files/figure-html/scatter-label-1.png" alt="labeling points can look really bad" width="672" />
 <p class="caption">
@@ -677,13 +682,13 @@ Figure 104: labeling points can look really bad
 </p>
 </div>
 <p>Figure <a href="plotting-cookbook.html#fig:scatter-label">104</a> shows labeling with the default <code>geom_text</code> approach. You can fiddle with a variety of arguments here that let you offset the labels but it rarely produces clean labels. The library <code>ggrepel</code> has a function <code>geom_text_repel</code> that will work harder to place labels in a readable position:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(crimes, <span class="kw">aes</span>(<span class="dt">x=</span>Unemployment, <span class="dt">y=</span>Property))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label=</span>State), <span class="dt">size=</span><span class="dv">2</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Unemployment rate&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Property crimes per 100,000 population&quot;</span>,
-       <span class="dt">title=</span><span class="st">&quot;Scatterplot of unemployment rate and property crime rate&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" title="1"><span class="kw">ggplot</span>(crimes, <span class="kw">aes</span>(<span class="dt">x=</span>Unemployment, <span class="dt">y=</span>Property))<span class="op">+</span></a>
+<a class="sourceLine" id="cb476-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb476-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb476-4" title="4"><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label=</span>State), <span class="dt">size=</span><span class="dv">2</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb476-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Unemployment rate&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Property crimes per 100,000 population&quot;</span>,</a>
+<a class="sourceLine" id="cb476-6" title="6">       <span class="dt">title=</span><span class="st">&quot;Scatterplot of unemployment rate and property crime rate&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb476-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-repel"></span>
 <img src="stat_book_files/figure-html/scatter-repel-1.png" alt="repel works better for labeling points, but still can get too busy" width="672" />
 <p class="caption">
@@ -704,11 +709,13 @@ Figure 105: repel works better for labeling points, but still can get too busy
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -716,12 +723,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -733,6 +739,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -751,8 +761,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

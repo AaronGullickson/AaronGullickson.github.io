@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Measuring the Center of a Distribution | Statistical Analysis in Sociology</title>
-  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Measuring the Center of a Distribution | Statistical Analysis in Sociology />
+  <meta property="og:title" content="Measuring the Center of a Distribution | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Measuring the Center of a Distribution | Statistical Analysis in Sociology />
+  <meta name="twitter:title" content="Measuring the Center of a Distribution | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
 
-<meta name="author" content="Aaron Gullickson">
+<meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-01-16">
+<meta name="date" content="2020-01-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="looking-at-distributions.html">
-<link rel="next" href="percentiles-and-the-five-number-summary.html">
+<link rel="prev" href="looking-at-distributions.html"/>
+<link rel="next" href="percentiles-and-the-five-number-summary.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,13 +51,13 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -64,7 +66,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -321,6 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html"><i class="fa fa-check"></i>Version Control for Sanity!</a><ul>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -462,14 +467,14 @@ Sum
 <p>In English, this just means “sum up all the values of <span class="math inline">\(x\)</span>, starting at <span class="math inline">\(x_1\)</span> and ending at <span class="math inline">\(x_n\)</span>.” That gives us our sum, which we just need to divide by the number of observations, <span class="math inline">\(n\)</span>.</p>
 <p><span class="math display">\[\bar{x}=\frac{\sum_{i=1}^n x_i}{n}\]</span></p>
 <p>In <em>R</em>, the mean is very straightforward to calculate. Lets calculate the mean of the Tomato Meter rating for all movies in our dataset:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(movies<span class="op">$</span>TomatoMeter)<span class="op">/</span><span class="kw">nrow</span>(movies)</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">sum</span>(movies<span class="op">$</span>TomatoMeter)<span class="op">/</span><span class="kw">nrow</span>(movies)</a></code></pre></div>
 <pre><code>## [1] 47.77595</code></pre>
 <p>The <code>sum</code> command calculates the sum and the <code>nrow</code> command calculates the number of rows of our dataset, which is equivalent to the number of observations. Or we could go even simpler and just use the <code>mean</code> command:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(movies<span class="op">$</span>TomatoMeter)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">mean</span>(movies<span class="op">$</span>TomatoMeter)</a></code></pre></div>
 <pre><code>## [1] 47.77595</code></pre>
 <p>We can see that the mean Tomato Meter of romantic movies in 2013 (51.1) were slightly above the mean for all the movies in our dataset (47.8), but not by much.</p>
 <p>One last thing to note is that it only makes sense to calculate the mean of quantitative variables. You cannot add up the values for categorical variables because categorical values don’t have numeric values. Rather, they have categories. Notice that you will get an “NA” value and a warning if you try to do this using the <code>mean</code> command:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(movies<span class="op">$</span>Rating)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">mean</span>(movies<span class="op">$</span>Rating)</a></code></pre></div>
 <pre><code>## Warning in mean.default(movies$Rating): argument is not numeric or logical:
 ## returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
@@ -602,7 +607,7 @@ Before Midnight
 <p>To find the median, we have to find the observation right in the middle. When we have an odd number of observations, finding the exact middle is easy. In this case, it is given by the 5th observation because it has four observations lower than it and four observations higher than it. So the median Tomato Meter rating for romantic movies in 2013 was 49.</p>
 <p>When you have an even number of observations, then finding the median is slightly more tricky because you have no single observation that is exactly in the middle. In this case, you find the two observations that are closest to the middle and calculate their mean (sum them up and divide by two). For example, if we had ten observations, we would take the mean of the 5th and 6th observations to calculate the median.</p>
 <p>The <code>median</code> command in <em>R</em> will calculate the median for you.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(movies<span class="op">$</span>TomatoMeter)</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">median</span>(movies<span class="op">$</span>TomatoMeter)</a></code></pre></div>
 <pre><code>## [1] 47</code></pre>
 <p>In this particular case, the mean (47.8) and median (47) of the Tomato Meter produced very similar measures of center, but this isn’t always the case as I will demonstrate below.</p>
 <p>As for the mean, it makes no sense to calculate the median of a categorical variable.</p>
@@ -611,11 +616,11 @@ Before Midnight
 <h3>The mode</h3>
 <p>The mode is the least used of the three measures of center. In fact, it is so infrequently used that R does not even have a built-in function to calculate it. The mode is the <strong>high point</strong> or <strong>peak</strong> of the distribution. When you look at a distribution graphically, the mode is what your eye is drawn to as a measure of center. Calculating the mode however is much trickier. Simply speaking, the mode is the most common value in the data. However, when data are recorded down to very precise decimal levels, this can be a misleading number. Furthermore, there may be multiple “peaks” in the data and so speaking of a single mode can be misleading. In the sample of 2013 romance movies, no value was repeated and so there is no legitimate value for the mode.</p>
 <p>In the case of the tomato meter distribution for the movies dataset, we have a tie for the most common value. 41 movies had Tomato Meter ratings of 29, 33, and 51, respectively. Figure <a href="measuring-the-center-of-a-distribution.html#fig:hist-tomato-meter">10</a> shows that the distribution of tomato meter ratings lacks any real peak, with a relatively even distribution across most values.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>TomatoMeter))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">c</span>(<span class="dv">29</span>,<span class="dv">33</span>,<span class="dv">51</span>), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>TomatoMeter))<span class="op">+</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb17-4" title="4"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">c</span>(<span class="dv">29</span>,<span class="dv">33</span>,<span class="dv">51</span>), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:hist-tomato-meter"></span>
 <img src="stat_book_files/figure-html/hist-tomato-meter-1.png" alt="Histogram of Tomato Meter ratings from politics dataset with three candidates for the mode drawn in red" width="672" />
 <p class="caption">
@@ -623,7 +628,7 @@ Figure 10: Histogram of Tomato Meter ratings from politics dataset with three ca
 </p>
 </div>
 <p>Interestingly, while it does not make sense to think about a mean or a median for quantitative variables, we can use the idea of the mode for categorical variables. The most common category is often referred to as the <strong>modal category</strong>. If you want to quickly identify the modal category for a categorical variable, you can wrap a <code>table</code> command inside a <code>sort</code> command with the <code>decreasing=TRUE</code> argument to see the top category at the right.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(<span class="kw">table</span>(movies<span class="op">$</span>Rating), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">sort</span>(<span class="kw">table</span>(movies<span class="op">$</span>Rating), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ##     R PG-13    PG     G 
 ##  1143   991   363    56</code></pre>
@@ -666,11 +671,13 @@ Figure 12: Distribution of movie box office returns with mean (45.2) and median 
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -678,12 +685,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -695,6 +701,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -713,8 +723,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

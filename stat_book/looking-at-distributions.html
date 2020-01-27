@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Looking at Distributions | Statistical Analysis in Sociology</title>
-  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Looking at Distributions | Statistical Analysis in Sociology />
+  <meta property="og:title" content="Looking at Distributions | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Looking at Distributions | Statistical Analysis in Sociology />
+  <meta name="twitter:title" content="Looking at Distributions | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
 
-<meta name="author" content="Aaron Gullickson">
+<meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-01-16">
+<meta name="date" content="2020-01-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="the-distribution-of-a-variable.html">
-<link rel="next" href="measuring-the-center-of-a-distribution.html">
+<link rel="prev" href="the-distribution-of-a-variable.html"/>
+<link rel="next" href="measuring-the-center-of-a-distribution.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,13 +51,13 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -64,7 +66,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -321,6 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html"><i class="fa fa-check"></i>Version Control for Sanity!</a><ul>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -401,7 +406,7 @@ Total
 </tbody>
 </table>
 <p>There were 323 first class passengers, 277 second class passengers, and 709 third class passengers. Adding those numbers up gives us 1,309 total passengers. <em>R</em> will calculate these numbers for us easily using the <code>table</code> command:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(titanic<span class="op">$</span>pclass)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">table</span>(titanic<span class="op">$</span>pclass)</a></code></pre></div>
 <pre><code>## 
 ##  First Second  Third 
 ##    323    277    709</code></pre>
@@ -474,7 +479,7 @@ Total
 </tbody>
 </table>
 <p><em>R</em> provides a nice shorthand function titled <code>prop.table</code> to conduct this operation. The <code>prop.table</code> command should be run on the output from a <code>table</code> command.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(<span class="kw">table</span>(titanic<span class="op">$</span>pclass))</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(titanic<span class="op">$</span>pclass))</a></code></pre></div>
 <pre><code>## 
 ##     First    Second     Third 
 ## 0.2467532 0.2116119 0.5416348</code></pre>
@@ -575,12 +580,12 @@ Figure 1: Piechart of passenger class distribution on Titanic
 <div id="make-a-barplot" class="section level4">
 <h4>Make a barplot</h4>
 <p>A better way to display the distribution is by using a <strong>barplot</strong> in which vertical or horizontal bars give the proportion or percent. Figure <a href="looking-at-distributions.html#fig:barplot-passclass">2</a> shows a barplot for the distribution of passengers on the Titanic.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;passenger class&quot;</span>, <span class="dt">y=</span><span class="st">&quot;percent&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent)<span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>pclass, <span class="dt">y=</span>..prop.., <span class="dt">group=</span><span class="dv">1</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;passenger class&quot;</span>, <span class="dt">y=</span><span class="st">&quot;percent&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent)<span class="op">+</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:barplot-passclass"></span>
 <img src="stat_book_files/figure-html/barplot-passclass-1.png" alt="Barplot of passenger class distribution on the Titanic" width="672" />
 <p class="caption">
@@ -698,10 +703,10 @@ Frequency
 <p>Because the survey was only administered to adults, I have zero individuals from 0-9 and only a few in the 10-19 age range.</p>
 <p>Now that we have the frequencies for each bin, we can plot the histogram. The histogram looks much like a barplot except for two important differences. First, on the x-axis we have a numeric scale for the quantitative variable rather than categories. Second, we don’t put any space between our bars.</p>
 <p>Below I show some <em>R</em> code for producing the histogram shown in Figure <a href="looking-at-distributions.html#fig:hist-agepol">3</a> using <code>ggplot</code>. This code is simpler than the barplot code. We only need to define an x aesthetic in our <code>ggplot</code> command. Instead of a <code>geom_bar</code> we use a <code>geom_histogram</code>. I can specify different bin widths in this command with the <code>binwidth</code> argument. Here I have specified a binwidth of ten years. I have also specified two different colors. The <code>col</code> argument is the color of the border for each bar and the <code>fill</code> argument is the color of the bars themselves.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">10</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age))<span class="op">+</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">10</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:hist-agepol"></span>
 <img src="stat_book_files/figure-html/hist-agepol-1.png" alt="Histogram of age in the politics data" width="672" />
 <p class="caption">
@@ -710,10 +715,10 @@ Figure 3: Histogram of age in the politics data
 </div>
 <p>Looking at Figure <a href="looking-at-distributions.html#fig:hist-agepol">3</a>, I can see the peak in the distribution in the 50’s (the baby boomers) with a long fat tail to the right and a steeper drop off at older ages, due to smaller cohorts and old age mortality.I can also sort of see a smaller peak in the 25-34 range which is largely the children of the baby boomers.</p>
 <p>What would this histogram look like if I had used 5-year bin widths instead of 10-year bins? Lets try it:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">ggplot</span>(politics, <span class="kw">aes</span>(<span class="dt">x=</span>age))<span class="op">+</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:hist-agepol-bin5"></span>
 <img src="stat_book_files/figure-html/hist-agepol-bin5-1.png" alt="Histogram of age in the politics data with five year bins" width="672" />
 <p class="caption">
@@ -787,11 +792,13 @@ Figure 9: The distribution of movie runtime is much more spread out for sci-fi/f
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -799,12 +806,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -816,6 +822,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -834,8 +844,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

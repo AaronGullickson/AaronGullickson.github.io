@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Percentiles and the Five Number Summary | Statistical Analysis in Sociology</title>
-  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Percentiles and the Five Number Summary | Statistical Analysis in Sociology />
+  <meta property="og:title" content="Percentiles and the Five Number Summary | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Percentiles and the Five Number Summary | Statistical Analysis in Sociology />
+  <meta name="twitter:title" content="Percentiles and the Five Number Summary | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
 
-<meta name="author" content="Aaron Gullickson">
+<meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-01-16">
+<meta name="date" content="2020-01-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="measuring-the-center-of-a-distribution.html">
-<link rel="next" href="measuring-the-spread-of-a-distribution.html">
+<link rel="prev" href="measuring-the-center-of-a-distribution.html"/>
+<link rel="next" href="measuring-the-spread-of-a-distribution.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,13 +51,13 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -64,7 +66,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -321,6 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html"><i class="fa fa-check"></i>Version Control for Sanity!</a><ul>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -349,7 +354,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have already seen one example of a percentile. The median is the 50th percentile of the distribution. It is the point at which 50% of the observations are lower and 50% are higher. We can actually use this same logic to calculate other percentiles. We could calculate the 25th percentile of the distribution by finding the point where 25% of the observations are below and 75% are above. We could even calculate something like the 43rd percentile if we were so inclined.</p>
 <p>We calculate percentiles in a fashion similar to the median. First, sort the data from lowest to highest. Then, find the exact observation where X% of the observations fall below to find the Xth percentile. In some cases, there might not be an exact observation that fits this description and so you may have to take the mean across the two closest numbers.</p>
 <p>The <code>quantile</code> command in R will calculate percentiles for us in this fashion (quantile is a synonym for percentile). In addition to telling the quantile command which variable we want the percentiles of, we need to tell it which percentiles we want. In the command below, I ask for the 27th and 57th percentile of age in our sexual frequency data.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(sex<span class="op">$</span>age, <span class="dt">p=</span><span class="kw">c</span>(.<span class="dv">27</span>,.<span class="dv">57</span>))</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">quantile</span>(sex<span class="op">$</span>age, <span class="dt">p=</span><span class="kw">c</span>(.<span class="dv">27</span>,.<span class="dv">57</span>))</a></code></pre></div>
 <pre><code>## 27% 57% 
 ##  32  46</code></pre>
 <p>27% of the sample were younger than 32 years of age and 57% of the sample were younger than 46 years of age.</p>
@@ -358,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>The five number summary</h3>
 <p>We can split our distribution into quarters by calculating the minimum(0th percentile), the 25th percentile, the 50th percentile (the median), the 75th percentile, and the maximum (100th percentile). Collectively, these percentiles are known at the <strong>quartiles</strong> of the distribution (not to be confused with quantile) and are also described as the <strong>five number summary</strong> of the distribution.</p>
 <p>We can calculate these quartiles with the <code>quantile</code> command. If I don’t enter in specific percentiles, the <code>quantile</code> command will give me the quartiles by default:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(sex<span class="op">$</span>age)</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">quantile</span>(sex<span class="op">$</span>age)</a></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ##   18   31   43   56   89</code></pre>
 <p>The bottom 25% of respondents are between the ages of 18-31. The next 25% are between the ages of 31-43. The next 25% are between the ages of 43-56. The top 25% are between the ages of 56-89.</p>
@@ -380,10 +385,10 @@ Figure 13: Boxplot of respondent’s age in sexual frequency data
 <p>The “box” in the boxplot is drawn from the 25th to the 75th percentile. The height of this box is equal to the interquartile range. The median is drawn as a thick bar within the box. Finally, “whiskers” are then drawn to the minimum and maximum of the data. Sometimes, the whiskers are drawn to less than the minimum and maximum if these values are very extreme and instead the whiskers are drawn out to 1.5xIQR in length and then individual points are plotted. In this case there were no extreme values, so the whiskers were drawn all the way out to the actual maximum and minimum.</p>
 <p>The boxplot provides many pieces of information. It shows the center of the distribution as measured by the median. It also gives a sense of the spread of the distribution and extreme values by the height of the box and whiskers. It can also show skewness in the distribution depending on where the median is drawn within the box and the size of the whiskers. If the median is in the center of the box, then that indicates a symmetric distribution. If the median is towards the bottom of the box, then the distribution is right-skewed. If the median is towards the top of the box, then the distribution is left-skewed.</p>
 <p>I have not yet shown you how to make a boxplot using ggplot. The code for Figure <a href="percentiles-and-the-five-number-summary.html#fig:boxplot-age-sex">13</a> is shown below.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(sex, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span>age))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;skyblue&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">ggplot</span>(sex, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span>age))<span class="op">+</span></a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;skyblue&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb24-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p>Most of this code is straightforward. We use the <code>y</code> aesthetic to indicate the variable we want the boxplot for and we use the <code>geom_boxplot</code> command to graph the boxplot (in this case the <code>fill</code> argument can be used to specify a color choice for the box of the boxplot). The only unusual thing here is the use of <code>x=""</code> in the top-level aesthetics and the use of <code>x=NULL</code> in the <code>labs</code> command. These additions are not strictly necessary but they do cause the horizontal x-scale on the graph to be suppressed. Otherwise we would see some non-intuitive numbers here.</p>
 <p>The exercise below allows you to adjust a slider to see different percentiles on both a histogram and a boxplot.</p>
 <iframe src="https://aarongullickson.shinyapps.io/percentiles/?showcase=0" width="672" height="800px">
@@ -403,11 +408,13 @@ Figure 13: Boxplot of respondent’s age in sexual frequency data
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -415,12 +422,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -432,6 +438,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -450,8 +460,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

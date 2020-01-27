@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Scatterplot and Correlation Coefficient | Statistical Analysis in Sociology</title>
-  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Scatterplot and Correlation Coefficient | Statistical Analysis in Sociology />
+  <meta property="og:title" content="Scatterplot and Correlation Coefficient | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Scatterplot and Correlation Coefficient | Statistical Analysis in Sociology />
+  <meta name="twitter:title" content="Scatterplot and Correlation Coefficient | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
 
-<meta name="author" content="Aaron Gullickson">
+<meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-01-16">
+<meta name="date" content="2020-01-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="mean-differences.html">
-<link rel="next" href="statistical-inference.html">
+<link rel="prev" href="mean-differences.html"/>
+<link rel="next" href="statistical-inference.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,13 +51,13 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -64,7 +66,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -321,6 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html"><i class="fa fa-check"></i>Version Control for Sanity!</a><ul>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
+<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -370,10 +375,10 @@ Figure 24: Scatterplot of median age by the violent crime rate for all US states
 <div id="constructing-scatterplots-in-r" class="section level4">
 <h4>Constructing scatterplots in <em>R</em></h4>
 <p>You can construct scatterplots in <code>ggplot</code> by using the <code>geom_point</code> geometry. You just need to define the aesthetics for <code>x</code> (on the x-axis) and <code>y</code> (on the y-axis).</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(crimes, <span class="kw">aes</span>(<span class="dt">x=</span>Poverty, <span class="dt">y=</span>Property))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;poverty rate&quot;</span>, <span class="dt">y=</span><span class="st">&quot;property crimes per 100,000 population&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">ggplot</span>(crimes, <span class="kw">aes</span>(<span class="dt">x=</span>Poverty, <span class="dt">y=</span>Property))<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;poverty rate&quot;</span>, <span class="dt">y=</span><span class="st">&quot;property crimes per 100,000 population&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-basic1"></span>
 <img src="stat_book_files/figure-html/scatter-basic1-1.png" alt="Scatterplot of a state's poverty rate by property crime rate, for all US states" width="672" />
 <p class="caption">
@@ -381,10 +386,10 @@ Figure 25: Scatterplot of a state’s poverty rate by property crime rate, for a
 </p>
 </div>
 <p>Sometimes with large datasets, scatterplots can be difficult to read because of the problem of <strong>overplotting</strong>. This happens when many data points overlap, so that its difficult to see how many points are showing. For example:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime, <span class="dt">y=</span>TomatoMeter))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime in minutes&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Percent of reviews that are positive&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime, <span class="dt">y=</span>TomatoMeter))<span class="op">+</span></a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime in minutes&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Percent of reviews that are positive&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb66-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-overplot"></span>
 <img src="stat_book_files/figure-html/scatter-overplot-1.png" alt="An example of the problem of overplotting where points are being plotted on top of each other" width="672" />
 <p class="caption">
@@ -393,10 +398,10 @@ Figure 26: An example of the problem of overplotting where points are being plot
 </div>
 <p>Because so many movies are in the 90-120 minute range, it is difficult to see the density of points in this range and thus difficult to understand the relationship.</p>
 <p>One way to address this is to allow the points to be semi-transparent, so that as more and more points are plotted in the same place, the shading will become darker. We can do this in <code>geom_point</code> by setting the <code>alpha</code> argument to something less than one but greater than zero:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime, <span class="dt">y=</span>TomatoMeter))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.3</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime in minutes&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Percent of reviews that are positive&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>Runtime, <span class="dt">y=</span>TomatoMeter))<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.3</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;movie runtime in minutes&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Percent of reviews that are positive&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-alpha"></span>
 <img src="stat_book_files/figure-html/scatter-alpha-1.png" alt="Using a semi-transparent point will help us see areas where there is a dense tangle of points" width="672" />
 <p class="caption">
@@ -404,10 +409,10 @@ Figure 27: Using a semi-transparent point will help us see areas where there is 
 </p>
 </div>
 <p>Overplotting can also be a problem with discrete variables because these variables can only take on certain values which will then exactly overlap with one another. This can be seen in Figure <a href="scatterplot-and-correlation-coefficient.html#fig:scatter-overplot-discrete">28</a> which shows the relationship between age and wages in the earnings data.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wage&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span></a>
+<a class="sourceLine" id="cb68-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb68-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wage&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb68-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-overplot-discrete"></span>
 <img src="stat_book_files/figure-html/scatter-overplot-discrete-1.png" alt="Age is discrete so the scatterplot looks like a bunch of vertical lines of dots and is very hard to understand" width="672" />
 <p class="caption">
@@ -415,10 +420,10 @@ Figure 28: Age is discrete so the scatterplot looks like a bunch of vertical lin
 </p>
 </div>
 <p>Because age is discrete all points are stacked up in vertical bars making it difficult to understand what is going on. One solution for this problem is to “jitter” each point a little bit by adding a small amount of randomness to the x and y values. The randomness added won’t affect our sense of the relationship but will reduce the issue of overplotting. We can do this simply in <code>ggplot</code> by replacing the <code>geom_point</code> command with <code>geom_jitter</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wage&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wage&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-overplot-jitter"></span>
 <img src="stat_book_files/figure-html/scatter-overplot-jitter-1.png" alt="Jittering helps with overplotting but its still difficult to see how dense points are for most of the plot" width="672" />
 <p class="caption">
@@ -426,10 +431,10 @@ Figure 29: Jittering helps with overplotting but its still difficult to see how 
 </p>
 </div>
 <p>Jittering helped get rid of those vertical lines, but there are so many observations that we still have problems of understanding the density of points for most of the plot. If we add an <code>alpha</code> parameter to the <code>geom_jitter</code> command, we should be better able to understand the scatterplot.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.01</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wage&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="kw">ggplot</span>(earnings, <span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y=</span>wages))<span class="op">+</span></a>
+<a class="sourceLine" id="cb70-2" title="2"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.01</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;hourly wage&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb70-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:scatter-overplot-jitter-alpha"></span>
 <img src="stat_book_files/figure-html/scatter-overplot-jitter-alpha-1.png" alt="Jittering and transparency help us to make sense of the relationship between age and wages" width="672" />
 <p class="caption">
@@ -446,14 +451,14 @@ Figure 30: Jittering and transparency help us to make sense of the relationship 
 <p><span class="math display">\[r=\frac{1}{n-1}\sum_{i=1}^n (\frac{x_i-\bar{x}}{s_x}*\frac{y_i-\bar{y}}{s_y})\]</span></p>
 <p>That looks complicated, but lets break it down step by step. We will use the association between median age and violent crimes as our example.</p>
 <p>The first step is to subtract the means from each of our x and y variables. This will give us the distance above or below the mean for each variable.</p>
-<pre class="sourceCode r"><code class="sourceCode r">diffx &lt;-<span class="st"> </span>crimes<span class="op">$</span>MedianAge<span class="op">-</span><span class="kw">mean</span>(crimes<span class="op">$</span>MedianAge)
-diffy &lt;-<span class="st"> </span>crimes<span class="op">$</span>Violent<span class="op">-</span><span class="kw">mean</span>(crimes<span class="op">$</span>Violent)</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">diffx &lt;-<span class="st"> </span>crimes<span class="op">$</span>MedianAge<span class="op">-</span><span class="kw">mean</span>(crimes<span class="op">$</span>MedianAge)</a>
+<a class="sourceLine" id="cb71-2" title="2">diffy &lt;-<span class="st"> </span>crimes<span class="op">$</span>Violent<span class="op">-</span><span class="kw">mean</span>(crimes<span class="op">$</span>Violent)</a></code></pre></div>
 <p>The second step is to divide these differences from the mean of x and y by the standard deviation of x and y, respectively.</p>
-<pre class="sourceCode r"><code class="sourceCode r">diffx.sd &lt;-<span class="st"> </span>diffx<span class="op">/</span><span class="kw">sd</span>(crimes<span class="op">$</span>MedianAge)
-diffy.sd &lt;-<span class="st"> </span>diffy<span class="op">/</span><span class="kw">sd</span>(crimes<span class="op">$</span>Violent)</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">diffx.sd &lt;-<span class="st"> </span>diffx<span class="op">/</span><span class="kw">sd</span>(crimes<span class="op">$</span>MedianAge)</a>
+<a class="sourceLine" id="cb72-2" title="2">diffy.sd &lt;-<span class="st"> </span>diffy<span class="op">/</span><span class="kw">sd</span>(crimes<span class="op">$</span>Violent)</a></code></pre></div>
 <p>Now each of your x and y values have been converted from their original form into the number of standard deviations above or below the mean. This is often called <strong>standarization</strong>. By doing this, we have put both variables on the same scale and have removed whatever original units they were measured in (in our case, years of age and crimes per 100,000).</p>
 <p>The third step is to to multiply each converted value of x by each converted value of y.</p>
-<pre class="sourceCode r"><code class="sourceCode r">product &lt;-<span class="st"> </span>diffx.sd<span class="op">*</span>diffy.sd</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">product &lt;-<span class="st"> </span>diffx.sd<span class="op">*</span>diffy.sd</a></code></pre></div>
 <p>Why do we do this? First consider this scatterplot of our standardized x and y:</p>
 <div class="figure" style="text-align: center"><span id="fig:scatter-r-standardized"></span>
 <img src="stat_book_files/figure-html/scatter-r-standardized-1.png" alt="Where a point falls in the four quadrants of this scatterplot indicate whether it provides evidence for a positive or negative relationship" width="672" />
@@ -463,10 +468,10 @@ Figure 31: Where a point falls in the four quadrants of this scatterplot indicat
 </div>
 <p>Points shown in blue have either both positive or both negative x and y values. When you take the product of these two numbers, you will get a positive product. This is evidence of a positive relationship. Points shown in red have one positive and one negative x and y value. When you take the product of these two numbers, you will get a negative product. This is evidence of a negative relationship.</p>
 <p>The final step is to add up all this evidence of a positive and negative relationship and divide by the number of observations (minus one).</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(product)<span class="op">/</span>(<span class="kw">length</span>(product)<span class="op">-</span><span class="dv">1</span>)</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">sum</span>(product)<span class="op">/</span>(<span class="kw">length</span>(product)<span class="op">-</span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] -0.3015232</code></pre>
 <p>This final value is our correlation coefficient. We could have also calculated it by using the <code>cor</code> command:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(crimes<span class="op">$</span>MedianAge, crimes<span class="op">$</span>Violent)</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="kw">cor</span>(crimes<span class="op">$</span>MedianAge, crimes<span class="op">$</span>Violent)</a></code></pre></div>
 <pre><code>## [1] -0.3015232</code></pre>
 <p>How do we interpret this correlation coefficient? It turns out the correlation coefficient <em>r</em> has some really nice properties. First, the <strong>sign</strong> of <em>r</em> indicates the direction of the relationship. If <em>r</em> is positive, the association is positive. If <em>r</em> is negative, the association is negative. if <em>r</em> is zero, there is no association.</p>
 <p>Second, <em>r</em> has a <strong>maximum</strong> value of 1 and a <strong>minimum</strong> value of -1. These cases will only happen if the points line up exactly on a straight line, which never happens with social science data. However, it gives us some benchmark to measure the strength of our relationship. Figure <a href="scatterplot-and-correlation-coefficient.html#fig:correlations-strength">32</a> shows simulated scatterplots with different <em>r</em> in order to help you get a sense of the strength of association for different values of <em>r</em>.</p>
@@ -494,11 +499,13 @@ Figure 32: Strength of association for various values of the correlation coeffic
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -506,12 +513,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -523,6 +529,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -541,8 +551,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
