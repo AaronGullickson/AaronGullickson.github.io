@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Version Control for Sanity! | Statistical Analysis in Sociology</title>
+  <title>Using Git | Statistical Analysis in Sociology</title>
   <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Version Control for Sanity! | Statistical Analysis in Sociology" />
+  <meta property="og:title" content="Using Git | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Version Control for Sanity! | Statistical Analysis in Sociology" />
+  <meta name="twitter:title" content="Using Git | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-01-27" />
+<meta name="date" content="2020-02-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="pretty-pictures.html"/>
-
+<link rel="next" href="reshaping-and-merging-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -322,9 +322,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#base-plot"><i class="fa fa-check"></i>Base Plot</a></li>
 <li class="chapter" data-level="" data-path="pretty-pictures.html"><a href="pretty-pictures.html#ggplot"><i class="fa fa-check"></i>ggplot</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html"><i class="fa fa-check"></i>Version Control for Sanity!</a><ul>
-<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
-<li class="chapter" data-level="" data-path="version-control-for-sanity.html"><a href="version-control-for-sanity.html#git"><i class="fa fa-check"></i>Git</a></li>
+<li class="chapter" data-level="" data-path="using-git.html"><a href="using-git.html"><i class="fa fa-check"></i>Using Git</a><ul>
+<li class="chapter" data-level="" data-path="using-git.html"><a href="using-git.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
+<li class="chapter" data-level="" data-path="using-git.html"><a href="using-git.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reshaping-and-merging-data.html"><a href="reshaping-and-merging-data.html"><i class="fa fa-check"></i>Reshaping and Merging Data</a><ul>
+<li class="chapter" data-level="" data-path="reshaping-and-merging-data.html"><a href="reshaping-and-merging-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
+<li class="chapter" data-level="" data-path="reshaping-and-merging-data.html"><a href="reshaping-and-merging-data.html#merging-data"><i class="fa fa-check"></i>Merging data</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -344,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="version-control-for-sanity" class="section level2">
-<h2>Version Control for Sanity!</h2>
+<div id="using-git" class="section level2">
+<h2>Using Git</h2>
 <p>Git is an example of a version control system. Version control systems allow you to track changes to files within a directory and to distribute changes to files to other collaborators. They also allow you to revert changes and to merge any changes made by different collaborators. Version control systems have been used by developers for decades to manage collaborative projects and to keep track of changes.</p>
 <p>For academics, version control systems have a lot to offer. This is particularly true for academics doing quantitative work, because much of the daily work flow of quantitative work resembles that of developers. Briefly here are some of the benefits of implementing version control for your projects.</p>
 <ol style="list-style-type: decimal">
@@ -552,18 +556,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb697-9" title="9"><span class="ex">Branch</span> <span class="st">&#39;master&#39;</span> set up to track remote branch <span class="st">&#39;master&#39;</span> from <span class="st">&#39;origin&#39;</span>.</a></code></pre></div>
 <p>It looks like everything worked. The first time I do this I need to specify the names of the repositories involved (“origin master”), but I also include the “-u” command which will tell git to treat the origin remote repository as my default “upstream” repository in the future. In the future, I will then just need to type “git push” to do the same operation.</p>
 <p>If someone else were to make changes to the remote repository, I could then use the <em>git pull</em> command to integrate them into my local repository.</p>
-
 </div>
 </div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="pretty-pictures.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="pretty-pictures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reshaping-and-merging-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
