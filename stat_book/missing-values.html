@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-02-19" />
+<meta name="date" content="2020-02-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1032,13 +1032,13 @@ Valid cases + mean imputed
 Valid cases + random imputed
 </td>
 <td style="text-align:right;">
-0.110
+0.102
 </td>
 <td style="text-align:right;">
-0.0120
+0.0110
 </td>
 <td style="text-align:right;">
-33.7
+34.4
 </td>
 </tr>
 </tbody>
@@ -1272,7 +1272,7 @@ Figure 79: The relationship between predicted values of imputed parental income 
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" title="1"><span class="kw">sd</span>(addhealth<span class="op">$</span>parentinc.regi, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 30.10024</code></pre>
 <div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="kw">sd</span>(addhealth<span class="op">$</span>parentinc.rregi, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [1] 33.17534</code></pre>
+<pre><code>## [1] 32.73421</code></pre>
 </div>
 <div id="chained-equations" class="section level4">
 <h4>Chained equations</h4>
@@ -1321,21 +1321,21 @@ Figure 79: The relationship between predicted values of imputed parental income 
 <div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1"><span class="kw">summary</span>(<span class="kw">complete</span>(addhealth.complete, <span class="dv">1</span>))</a></code></pre></div>
 <pre><code>##     indegree                                    race          sex           
 ##  Min.   : 0.000    White                          :2636   Length:4397       
-##  1st Qu.: 2.000    Black/African American         :1146   Class :character  
+##  1st Qu.: 2.000    Black/African American         :1145   Class :character  
 ##  Median : 4.000   Latino                          : 401   Mode  :character  
-##  Mean   : 4.551    Asian/Pacific Islander         : 161                     
+##  Mean   : 4.551    Asian/Pacific Islander         : 162                     
 ##  3rd Qu.: 6.000    Other                          :  27                     
 ##  Max.   :30.000    American Indian/Native American:  26                     
 ##      grade          pseudoGPA     honorsociety          alcoholuse  
-##  Min.   : 7.000   Min.   :1.000   Mode :logical   Non-drinker:3669  
-##  1st Qu.: 8.000   1st Qu.:2.250   FALSE:3990      Drinker    : 728  
+##  Min.   : 7.000   Min.   :1.000   Mode :logical   Non-drinker:3677  
+##  1st Qu.: 8.000   1st Qu.:2.250   FALSE:3990      Drinker    : 720  
 ##  Median :10.000   Median :3.000   TRUE :407                         
-##  Mean   : 9.514   Mean   :2.831                                     
+##  Mean   : 9.512   Mean   :2.827                                     
 ##  3rd Qu.:11.000   3rd Qu.:3.500                                     
 ##  Max.   :12.000   Max.   :4.000                                     
 ##         smoker     bandchoir       academicclub       nsports     
-##  Non-smoker:3733   Mode :logical   Mode :logical   Min.   :0.000  
-##  Smoker    : 664   FALSE:3340      FALSE:3578      1st Qu.:0.000  
+##  Non-smoker:3731   Mode :logical   Mode :logical   Min.   :0.000  
+##  Smoker    : 666   FALSE:3340      FALSE:3578      1st Qu.:0.000  
 ##                    TRUE :1057      TRUE :819       Median :1.000  
 ##                                                    Mean   :1.098  
 ##                                                    3rd Qu.:2.000  
@@ -1344,7 +1344,7 @@ Figure 79: The relationship between predicted values of imputed parental income 
 ##  Min.   :  0.00  
 ##  1st Qu.: 23.00  
 ##  Median : 40.00  
-##  Mean   : 44.74  
+##  Mean   : 45.24  
 ##  3rd Qu.: 60.00  
 ##  Max.   :200.00</code></pre>
 <p>I can run a model on my first complete dataset like so:</p>
@@ -1357,18 +1357,18 @@ Figure 79: The relationship between predicted values of imputed parental income 
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -6.0638 -2.6550 -0.7269  1.7763 25.3737 
+## -6.1825 -2.6247 -0.7493  1.7959 23.0385 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  3.90747    0.09327  41.895   &lt;2e-16 ***
-## parentinc    0.01438    0.00168   8.557   &lt;2e-16 ***
+## (Intercept) 3.845747   0.092600  41.531   &lt;2e-16 ***
+## parentinc   0.015579   0.001645   9.473   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 3.662 on 4395 degrees of freedom
-## Multiple R-squared:  0.01639,    Adjusted R-squared:  0.01616 
-## F-statistic: 73.22 on 1 and 4395 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 3.655 on 4395 degrees of freedom
+## Multiple R-squared:  0.02001,    Adjusted R-squared:  0.01979 
+## F-statistic: 89.74 on 1 and 4395 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="addressing-imputation-variability" class="section level4">
 <h4>Addressing imputation variability</h4>
@@ -1380,7 +1380,7 @@ Figure 79: The relationship between predicted values of imputed parental income 
 <a class="sourceLine" id="cb367-5" title="5">}</a>
 <a class="sourceLine" id="cb367-6" title="6">coefs</a></code></pre></div>
 <pre><code>##  parentinc  parentinc  parentinc  parentinc  parentinc 
-## 0.01437585 0.01421935 0.01518659 0.01433127 0.01445404</code></pre>
+## 0.01557866 0.01475276 0.01330458 0.01571584 0.01606474</code></pre>
 <p>I get different values on each complete imputation. This is because there is an element of randomness in my imputation procedure. That randomness is needed to correctly impute while preserving the variance in the underlying variables, but it adds an additional layer of uncertainty to understanding my results. Which of these values should I use for my results? This additional layer of uncertainty is called <strong>imputation variability</strong>. Imputation variability adds additional uncertainty above and beyond sampling variability when attempting to make statistical inferences.</p>
 <p>To accurately account for imputation variability, we need to use <strong>multiple imputation</strong>. The multiple imputation process is as follows:</p>
 <ol style="list-style-type: decimal">
@@ -1403,11 +1403,11 @@ Where <span class="math inline">\(W\)</span> is the squared average standard err
 <p>The <code>b</code> and <code>se</code> objects are just matrices of the regression coefficients and standard errors across imputations. For example:</p>
 <div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1"><span class="kw">round</span>(b,<span class="dv">3</span>)</a></code></pre></div>
 <pre><code>##                    [,1]  [,2]  [,3]  [,4]  [,5]
-## (Intercept)       3.379 3.371 3.351 3.386 3.363
-## parentinc         0.012 0.012 0.012 0.012 0.012
-## smokerSmoker      0.209 0.222 0.195 0.189 0.219
-## alcoholuseDrinker 0.611 0.642 0.635 0.660 0.637
-## nsports           0.470 0.468 0.463 0.467 0.469</code></pre>
+## (Intercept)       3.339 3.379 3.401 3.320 3.322
+## parentinc         0.013 0.012 0.011 0.013 0.013
+## smokerSmoker      0.174 0.193 0.189 0.194 0.208
+## alcoholuseDrinker 0.651 0.630 0.652 0.642 0.629
+## nsports           0.459 0.462 0.472 0.460 0.459</code></pre>
 <p>With the application of the <code>apply</code> command we can estimate averages for these values across imputations as well as the variability in regression coefficients across models.</p>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1">b.pool &lt;-<span class="st"> </span><span class="kw">apply</span>(b,<span class="dv">1</span>,mean)</a>
 <a class="sourceLine" id="cb372-2" title="2">between.var &lt;-<span class="st"> </span><span class="kw">apply</span>(b,<span class="dv">1</span>,var)</a>
@@ -1418,11 +1418,11 @@ Where <span class="math inline">\(W\)</span> is the squared average standard err
 <a class="sourceLine" id="cb372-7" title="7">results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(b.pool, se.pool, t.pool, pvalue.pool)</a>
 <a class="sourceLine" id="cb372-8" title="8"><span class="kw">round</span>(results,<span class="dv">4</span>)</a></code></pre></div>
 <pre><code>##                   b.pool se.pool  t.pool pvalue.pool
-## (Intercept)       3.3700  0.1039 32.4275      0.0000
-## parentinc         0.0119  0.0017  7.0164      0.0000
-## smokerSmoker      0.2067  0.1602  1.2898      0.1971
-## alcoholuseDrinker 0.6372  0.1551  4.1075      0.0000
-## nsports           0.4673  0.0431 10.8502      0.0000</code></pre>
+## (Intercept)       3.3523  0.1097 30.5469      0.0000
+## parentinc         0.0124  0.0019  6.4153      0.0000
+## smokerSmoker      0.1918  0.1601  1.1976      0.2311
+## alcoholuseDrinker 0.6409  0.1543  4.1525      0.0000
+## nsports           0.4624  0.0434 10.6491      0.0000</code></pre>
 <p>We now have results that make use of a complete dataset and also adjust for imputation variability. We can also use the results above to estimate the relative share of the between and within variation to our total uncertainty. Figure <a href="missing-values.html#fig:share-impute-var">80</a> shows the relative contribution of between and within variability to our total uncertainty. Because most variables in this model are missing few or no values, the contribution of between sample imputation variability is quite small for most cases. However, for parental income which was missing a quarter of observations, it is a substantial share of around 30% of the total variability.</p>
 <div class="figure" style="text-align: center"><span id="fig:share-impute-var"></span>
 <img src="stat_book_files/figure-html/share-impute-var-1.png" alt="Share of variability for each estimated coefficient that comes from between sample imputation variability vs. within sample sampling variabilty" width="672" />
@@ -1433,12 +1433,12 @@ Figure 80: Share of variability for each estimated coefficient that comes from b
 <p>The for-loop approach above is an effective method for pooling results for multiple imputation and is flexible enough that you can utilize a wide variety of techniques within the for-loop, such as adjustments for sample design. However, if you are just running vanilla <code>lm</code> commands, then the <code>mice</code> library also has an easier approach:</p>
 <div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1">model.mi &lt;-<span class="st"> </span><span class="kw">pool</span>(<span class="kw">with</span>(addhealth.complete, <span class="kw">lm</span>(indegree<span class="op">~</span>parentinc<span class="op">+</span>smoker<span class="op">+</span>alcoholuse<span class="op">+</span>nsports)))</a>
 <a class="sourceLine" id="cb374-2" title="2"><span class="kw">summary</span>(model.mi)</a></code></pre></div>
-<pre><code>##                     estimate   std.error statistic       df      p.value
-## (Intercept)       3.37002413 0.103924788 32.427530 2967.294 0.000000e+00
-## parentinc         0.01185798 0.001690039  7.016396 1219.893 3.765876e-12
-## smokerSmoker      0.20666157 0.160233805  1.289750 3917.766 1.972136e-01
-## alcoholuseDrinker 0.63724606 0.155141339  4.107519 3437.714 4.092495e-05
-## nsports           0.46731763 0.043070025 10.850182 4259.218 0.000000e+00</code></pre>
+<pre><code>##                     estimate   std.error statistic         df      p.value
+## (Intercept)       3.35228362 0.109742195 30.546898  221.49291 0.000000e+00
+## parentinc         0.01235613 0.001926046  6.415285   49.74841 5.030579e-08
+## smokerSmoker      0.19177145 0.160134786  1.197563 4147.56408 2.311557e-01
+## alcoholuseDrinker 0.64087623 0.154334714  4.152509 4190.06086 3.353946e-05
+## nsports           0.46240004 0.043421345 10.649141 2986.95907 0.000000e+00</code></pre>
 <p>As I said earlier, multiple imputation is the gold standard for dealing with missing values. However, it is important to realize that it is not a bulletproof solution to the problem of missing values. It still assumes MAR and if the underlying models used to predict missing values are not good, then it may not produce the best results. Ideally, when doing any imputation procedure you should also perform an analysis of your imputation results to ensure that they are reasonable. These techniques are beyond the scope of this class, but further reading links can be found on Canvas.</p>
 <hr />
 </div>
