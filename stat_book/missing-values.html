@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-02-20" />
+<meta name="date" content="2020-02-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -325,6 +325,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="using-git.html"><a href="using-git.html"><i class="fa fa-check"></i>Using Git</a><ul>
 <li class="chapter" data-level="" data-path="using-git.html"><a href="using-git.html#plain-text-is-better"><i class="fa fa-check"></i>Plain Text is Better</a></li>
 <li class="chapter" data-level="" data-path="using-git.html"><a href="using-git.html#git"><i class="fa fa-check"></i>Git</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html"><i class="fa fa-check"></i>Reading and Writing Data</a><ul>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-formats"><i class="fa fa-check"></i>Data Formats</a></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#plain-text-files"><i class="fa fa-check"></i>Plain text files</a></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#data-in-binary-format"><i class="fa fa-check"></i>Data in binary format</a></li>
+<li class="chapter" data-level="" data-path="reading-and-writing-data.html"><a href="reading-and-writing-data.html#saving-data"><i class="fa fa-check"></i>Saving data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="cleaning-data.html"><a href="cleaning-data.html"><i class="fa fa-check"></i>Cleaning Data</a><ul>
+<li><a href="cleaning-data.html#the-most-important-rule-check-yourself-before-you-wreck-yourself">The Most Important Rule: <span>Check yourself before you wreck yourself</span></a></li>
+<li class="chapter" data-level="" data-path="cleaning-data.html"><a href="cleaning-data.html#assigning-missing-values"><i class="fa fa-check"></i>Assigning missing values</a></li>
+<li class="chapter" data-level="" data-path="cleaning-data.html"><a href="cleaning-data.html#recoding"><i class="fa fa-check"></i>Recoding</a></li>
+<li class="chapter" data-level="" data-path="cleaning-data.html"><a href="cleaning-data.html#collapsing-categorical-variables"><i class="fa fa-check"></i>Collapsing Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="cleaning-data.html"><a href="cleaning-data.html#transforming-quantitative-variables"><i class="fa fa-check"></i>Transforming Quantitative Variables</a></li>
+<li class="chapter" data-level="" data-path="cleaning-data.html"><a href="cleaning-data.html#after-cleaning-you-still-need-to-tidy"><i class="fa fa-check"></i>After Cleaning You Still Need to Tidy</a></li>
+<li class="chapter" data-level="" data-path="cleaning-data.html"><a href="cleaning-data.html#aggregating-data"><i class="fa fa-check"></i>Aggregating Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="reshaping-and-merging-data.html"><a href="reshaping-and-merging-data.html"><i class="fa fa-check"></i>Reshaping and Merging Data</a><ul>
 <li class="chapter" data-level="" data-path="reshaping-and-merging-data.html"><a href="reshaping-and-merging-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
@@ -1032,13 +1047,13 @@ Valid cases + mean imputed
 Valid cases + random imputed
 </td>
 <td style="text-align:right;">
-0.102
+0.105
 </td>
 <td style="text-align:right;">
-0.0110
+0.0115
 </td>
 <td style="text-align:right;">
-34.4
+33.5
 </td>
 </tr>
 </tbody>
@@ -1272,7 +1287,7 @@ Figure 79: The relationship between predicted values of imputed parental income 
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" title="1"><span class="kw">sd</span>(addhealth<span class="op">$</span>parentinc.regi, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 30.10024</code></pre>
 <div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="kw">sd</span>(addhealth<span class="op">$</span>parentinc.rregi, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [1] 32.73421</code></pre>
+<pre><code>## [1] 32.65652</code></pre>
 </div>
 <div id="chained-equations" class="section level4">
 <h4>Chained equations</h4>
@@ -1320,17 +1335,17 @@ Figure 79: The relationship between predicted values of imputed parental income 
 <p>In this case, I specified all of the variables that I wanted to go into my multiple imputation. If you want all of the variables in your dataset to be used, you can just feed in the dataset with no list of variable names. You can see that <code>mice</code> went through five iterations of imputation, with a list of the variables imputed and the order in which they were imputed. You can also see that it cycled through something called “imp.” This value corresponds to the <code>m=5</code> argument I specified. This is the number of times that <code>mice</code> performed the entire imputation procedure. In this case, I now have five <em>complete</em> datasets (datasets with no missing values) in the object <code>addhealth.complete</code>. To access any one of them, I need to use the <code>complete</code> function with an id number:</p>
 <div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1"><span class="kw">summary</span>(<span class="kw">complete</span>(addhealth.complete, <span class="dv">1</span>))</a></code></pre></div>
 <pre><code>##     indegree                                    race          sex           
-##  Min.   : 0.000    White                          :2636   Length:4397       
-##  1st Qu.: 2.000    Black/African American         :1145   Class :character  
-##  Median : 4.000   Latino                          : 401   Mode  :character  
-##  Mean   : 4.551    Asian/Pacific Islander         : 162                     
+##  Min.   : 0.000    White                          :2637   Length:4397       
+##  1st Qu.: 2.000    Black/African American         :1146   Class :character  
+##  Median : 4.000   Latino                          : 400   Mode  :character  
+##  Mean   : 4.551    Asian/Pacific Islander         : 161                     
 ##  3rd Qu.: 6.000    Other                          :  27                     
 ##  Max.   :30.000    American Indian/Native American:  26                     
 ##      grade          pseudoGPA     honorsociety          alcoholuse  
-##  Min.   : 7.000   Min.   :1.000   Mode :logical   Non-drinker:3677  
-##  1st Qu.: 8.000   1st Qu.:2.250   FALSE:3990      Drinker    : 720  
+##  Min.   : 7.000   Min.   :1.000   Mode :logical   Non-drinker:3675  
+##  1st Qu.: 8.000   1st Qu.:2.250   FALSE:3990      Drinker    : 722  
 ##  Median :10.000   Median :3.000   TRUE :407                         
-##  Mean   : 9.512   Mean   :2.827                                     
+##  Mean   : 9.508   Mean   :2.829                                     
 ##  3rd Qu.:11.000   3rd Qu.:3.500                                     
 ##  Max.   :12.000   Max.   :4.000                                     
 ##         smoker     bandchoir       academicclub       nsports     
@@ -1344,7 +1359,7 @@ Figure 79: The relationship between predicted values of imputed parental income 
 ##  Min.   :  0.00  
 ##  1st Qu.: 23.00  
 ##  Median : 40.00  
-##  Mean   : 45.24  
+##  Mean   : 44.93  
 ##  3rd Qu.: 60.00  
 ##  Max.   :200.00</code></pre>
 <p>I can run a model on my first complete dataset like so:</p>
@@ -1357,18 +1372,18 @@ Figure 79: The relationship between predicted values of imputed parental income 
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -6.1825 -2.6247 -0.7493  1.7959 23.0385 
+## -6.9690 -2.6297 -0.7388  1.7914 25.3703 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 3.845747   0.092600  41.531   &lt;2e-16 ***
-## parentinc   0.015579   0.001645   9.473   &lt;2e-16 ***
+## (Intercept) 3.849892   0.092306  41.708   &lt;2e-16 ***
+## parentinc   0.015595   0.001648   9.464   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 3.655 on 4395 degrees of freedom
-## Multiple R-squared:  0.02001,    Adjusted R-squared:  0.01979 
-## F-statistic: 89.74 on 1 and 4395 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Multiple R-squared:  0.01997,    Adjusted R-squared:  0.01975 
+## F-statistic: 89.57 on 1 and 4395 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="addressing-imputation-variability" class="section level4">
 <h4>Addressing imputation variability</h4>
@@ -1380,7 +1395,7 @@ Figure 79: The relationship between predicted values of imputed parental income 
 <a class="sourceLine" id="cb367-5" title="5">}</a>
 <a class="sourceLine" id="cb367-6" title="6">coefs</a></code></pre></div>
 <pre><code>##  parentinc  parentinc  parentinc  parentinc  parentinc 
-## 0.01557866 0.01475276 0.01330458 0.01571584 0.01606474</code></pre>
+## 0.01559546 0.01531798 0.01487461 0.01519817 0.01585070</code></pre>
 <p>I get different values on each complete imputation. This is because there is an element of randomness in my imputation procedure. That randomness is needed to correctly impute while preserving the variance in the underlying variables, but it adds an additional layer of uncertainty to understanding my results. Which of these values should I use for my results? This additional layer of uncertainty is called <strong>imputation variability</strong>. Imputation variability adds additional uncertainty above and beyond sampling variability when attempting to make statistical inferences.</p>
 <p>To accurately account for imputation variability, we need to use <strong>multiple imputation</strong>. The multiple imputation process is as follows:</p>
 <ol style="list-style-type: decimal">
@@ -1403,11 +1418,11 @@ Where <span class="math inline">\(W\)</span> is the squared average standard err
 <p>The <code>b</code> and <code>se</code> objects are just matrices of the regression coefficients and standard errors across imputations. For example:</p>
 <div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1"><span class="kw">round</span>(b,<span class="dv">3</span>)</a></code></pre></div>
 <pre><code>##                    [,1]  [,2]  [,3]  [,4]  [,5]
-## (Intercept)       3.339 3.379 3.401 3.320 3.322
-## parentinc         0.013 0.012 0.011 0.013 0.013
-## smokerSmoker      0.174 0.193 0.189 0.194 0.208
-## alcoholuseDrinker 0.651 0.630 0.652 0.642 0.629
-## nsports           0.459 0.462 0.472 0.460 0.459</code></pre>
+## (Intercept)       3.339 3.334 3.363 3.336 3.312
+## parentinc         0.013 0.013 0.012 0.013 0.013
+## smokerSmoker      0.181 0.235 0.197 0.229 0.243
+## alcoholuseDrinker 0.637 0.633 0.633 0.632 0.634
+## nsports           0.461 0.466 0.465 0.462 0.463</code></pre>
 <p>With the application of the <code>apply</code> command we can estimate averages for these values across imputations as well as the variability in regression coefficients across models.</p>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1">b.pool &lt;-<span class="st"> </span><span class="kw">apply</span>(b,<span class="dv">1</span>,mean)</a>
 <a class="sourceLine" id="cb372-2" title="2">between.var &lt;-<span class="st"> </span><span class="kw">apply</span>(b,<span class="dv">1</span>,var)</a>
@@ -1418,11 +1433,11 @@ Where <span class="math inline">\(W\)</span> is the squared average standard err
 <a class="sourceLine" id="cb372-7" title="7">results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(b.pool, se.pool, t.pool, pvalue.pool)</a>
 <a class="sourceLine" id="cb372-8" title="8"><span class="kw">round</span>(results,<span class="dv">4</span>)</a></code></pre></div>
 <pre><code>##                   b.pool se.pool  t.pool pvalue.pool
-## (Intercept)       3.3523  0.1097 30.5469      0.0000
-## parentinc         0.0124  0.0019  6.4153      0.0000
-## smokerSmoker      0.1918  0.1601  1.1976      0.2311
-## alcoholuseDrinker 0.6409  0.1543  4.1525      0.0000
-## nsports           0.4624  0.0434 10.6491      0.0000</code></pre>
+## (Intercept)       3.3367  0.1044 31.9471      0.0000
+## parentinc         0.0127  0.0017  7.4384      0.0000
+## smokerSmoker      0.2169  0.1620  1.3394      0.1804
+## alcoholuseDrinker 0.6339  0.1539  4.1192      0.0000
+## nsports           0.4635  0.0430 10.7769      0.0000</code></pre>
 <p>We now have results that make use of a complete dataset and also adjust for imputation variability. We can also use the results above to estimate the relative share of the between and within variation to our total uncertainty. Figure <a href="missing-values.html#fig:share-impute-var">80</a> shows the relative contribution of between and within variability to our total uncertainty. Because most variables in this model are missing few or no values, the contribution of between sample imputation variability is quite small for most cases. However, for parental income which was missing a quarter of observations, it is a substantial share of around 30% of the total variability.</p>
 <div class="figure" style="text-align: center"><span id="fig:share-impute-var"></span>
 <img src="stat_book_files/figure-html/share-impute-var-1.png" alt="Share of variability for each estimated coefficient that comes from between sample imputation variability vs. within sample sampling variabilty" width="672" />
@@ -1433,12 +1448,12 @@ Figure 80: Share of variability for each estimated coefficient that comes from b
 <p>The for-loop approach above is an effective method for pooling results for multiple imputation and is flexible enough that you can utilize a wide variety of techniques within the for-loop, such as adjustments for sample design. However, if you are just running vanilla <code>lm</code> commands, then the <code>mice</code> library also has an easier approach:</p>
 <div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1">model.mi &lt;-<span class="st"> </span><span class="kw">pool</span>(<span class="kw">with</span>(addhealth.complete, <span class="kw">lm</span>(indegree<span class="op">~</span>parentinc<span class="op">+</span>smoker<span class="op">+</span>alcoholuse<span class="op">+</span>nsports)))</a>
 <a class="sourceLine" id="cb374-2" title="2"><span class="kw">summary</span>(model.mi)</a></code></pre></div>
-<pre><code>##                     estimate   std.error statistic         df      p.value
-## (Intercept)       3.35228362 0.109742195 30.546898  221.49291 0.000000e+00
-## parentinc         0.01235613 0.001926046  6.415285   49.74841 5.030579e-08
-## smokerSmoker      0.19177145 0.160134786  1.197563 4147.56408 2.311557e-01
-## alcoholuseDrinker 0.64087623 0.154334714  4.152509 4190.06086 3.353946e-05
-## nsports           0.46240004 0.043421345 10.649141 2986.95907 0.000000e+00</code></pre>
+<pre><code>##                    estimate   std.error statistic        df      p.value
+## (Intercept)       3.3366690 0.104443674 31.947066 1818.3412 0.000000e+00
+## parentinc         0.0126596 0.001701921  7.438415  736.5027 2.842171e-13
+## smokerSmoker      0.2169441 0.161970025  1.339409 1998.3722 1.805900e-01
+## alcoholuseDrinker 0.6339278 0.153894487  4.119237 4388.8458 3.871303e-05
+## nsports           0.4634594 0.043004966 10.776880 4346.7071 0.000000e+00</code></pre>
 <p>As I said earlier, multiple imputation is the gold standard for dealing with missing values. However, it is important to realize that it is not a bulletproof solution to the problem of missing values. It still assumes MAR and if the underlying models used to predict missing values are not good, then it may not produce the best results. Ideally, when doing any imputation procedure you should also perform an analysis of your imputation results to ensure that they are reasonable. These techniques are beyond the scope of this class, but further reading links can be found on Canvas.</p>
 <hr />
 </div>

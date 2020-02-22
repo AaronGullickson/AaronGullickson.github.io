@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Using Git | Statistical Analysis in Sociology</title>
+  <title>Cleaning Data | Statistical Analysis in Sociology</title>
   <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Using Git | Statistical Analysis in Sociology" />
+  <meta property="og:title" content="Cleaning Data | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Using Git | Statistical Analysis in Sociology" />
+  <meta name="twitter:title" content="Cleaning Data | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pretty-pictures.html"/>
-<link rel="next" href="reading-and-writing-data.html"/>
+<link rel="prev" href="reading-and-writing-data.html"/>
+<link rel="next" href="reshaping-and-merging-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -363,215 +363,315 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="using-git" class="section level2">
-<h2>Using Git</h2>
-<p>Git is an example of a version control system. Version control systems allow you to track changes to files within a directory and to distribute changes to files to other collaborators. They also allow you to revert changes and to merge any changes made by different collaborators. Version control systems have been used by developers for decades to manage collaborative projects and to keep track of changes.</p>
-<p>For academics, version control systems have a lot to offer. This is particularly true for academics doing quantitative work, because much of the daily work flow of quantitative work resembles that of developers. Briefly here are some of the benefits of implementing version control for your projects.</p>
+<div id="cleaning-data" class="section level2">
+<h2>Cleaning Data</h2>
+<p>Cleaning data is a major component of any quantitative project. Rarely will data come to you in exactly the form that you want for your research question. In this section, we will focus on three of the most important components of data cleaning: (1) assigning and handling missing values, (2) recoding variables, and (3) aggregating data.</p>
+<p>For this analysis, we will use the same data extract from the <a href="https://www.census.gov/programs-surveys/acs">American Community Survey</a> that we used for the reading and writing data lab. I downloaded this extract from <a href="https://usa.ipums.org/usa/">IPUMS</a>. You can download the file <a href="https://aarongullickson.github.io/stat_book/resources/usa_00084.data.gz">here</a>. You can also <a href="https://aarongullickson.github.io/stat_book/resources/usa_00084.cbk.txt">view the codebook</a> that IPUMS provides</p>
+<p>The data is a sample of individuals in the US. In the <code>read_fwf</code> command below, I am only going to read in a few variables that we will use for our data cleaning examples.</p>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb722-1" title="1">acs &lt;-<span class="st"> </span><span class="kw">read_fwf</span>(<span class="st">&quot;resources/usa_00084.dat.gz&quot;</span>, </a>
+<a class="sourceLine" id="cb722-2" title="2">                <span class="dt">col_positions =</span> <span class="kw">fwf_positions</span>(<span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">55</span>,<span class="dv">84</span>,<span class="dv">85</span>,<span class="dv">88</span>,<span class="dv">94</span>),</a>
+<a class="sourceLine" id="cb722-3" title="3">                                              <span class="dt">end   =</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">56</span>,<span class="dv">84</span>,<span class="dv">87</span>,<span class="dv">91</span>,<span class="dv">96</span>),</a>
+<a class="sourceLine" id="cb722-4" title="4">                                              <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;statefip&quot;</span>,<span class="st">&quot;sex&quot;</span>,</a>
+<a class="sourceLine" id="cb722-5" title="5">                                                            <span class="st">&quot;age&quot;</span>,<span class="st">&quot;yrmarr&quot;</span>,<span class="st">&quot;educd&quot;</span>)),</a>
+<a class="sourceLine" id="cb722-6" title="6">                <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">.default =</span> <span class="st">&quot;i&quot;</span>), </a>
+<a class="sourceLine" id="cb722-7" title="7">                <span class="dt">progress =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb722-8" title="8">acs</a></code></pre></div>
+<pre><code>## # A tibble: 3,214,539 x 6
+##     year statefip   sex   age yrmarr educd
+##    &lt;int&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;
+##  1  2018        1     2    19      0    65
+##  2  2018        1     2    18      0    65
+##  3  2018        1     1    53      0    64
+##  4  2018        1     1    28      0    71
+##  5  2018        1     2    25      0    30
+##  6  2018        1     2    30      0    63
+##  7  2018        1     2    66   1992    71
+##  8  2018        1     1    38      0    30
+##  9  2018        1     1    41      0    63
+## 10  2018        1     2    18      0    65
+## # … with 3,214,529 more rows</code></pre>
+<p>All of the variables shown here use integer values to record data, even in cases where the variable is categorical in nature. This is a common approach with many datasets, because it makes datasets smaller and more portable. Part of the cleaning process will be to use information in the codebook to convert from integer values to proper categorical variables.</p>
+<div id="the-most-important-rule-check-yourself-before-you-wreck-yourself" class="section level3">
+<h3>The Most Important Rule: <a href="https://www.youtube.com/watch?v=5aAbOgdbTbM">Check yourself before you wreck yourself</a></h3>
+<p>The number one rule of cleaning and processing data is to always check your code to make sure it is producing what you think it should be producing. In the examples below, I run several diagnostic checks to ensure that what I am producing looks correct. There are a variety of ways you can check your code, but its important to take your time here and be extra scrupulous. If you don’t properly clean your data, then everything you produce in the later analysis will be questionable at best. You don’t want <a href="http://journals.sagepub.com/doi/abs/10.1177/0003122417714422">this</a> to happen to you.</p>
+</div>
+<div id="assigning-missing-values" class="section level3">
+<h3>Assigning missing values</h3>
+<p>One of the first things you should check in your data is how missing values are coded. In many cases, missing values will be coded with a numeric value rather than a proper missing value. If you don’t correct this, then all of your statistics will be incorrect. Codebooks that are provided with the data will normally identify the codes used for missing values. Usually, missing values are coded with numeric values that are impossible or well outside the range of the data, so that they can easily be identified. For example, the missing value for the year of marriage variable <code>yrmarr</code> in our dataset is zero. Since <code>yrmarr</code> is the calendar year of marriage, zero is a non-sensical value. However, 1,332,999 individuals have a value of zero. These are all individuals who should be <code>NA</code> on <code>yrmarr</code> because they have never been married. If you leave the zeros in, then you will drastically change any calculation you make with this variable.</p>
+<div id="bracket-and-boolean-approach" class="section level4">
+<h4>Bracket and Boolean Approach</h4>
+<p>In R, we can easily code in missing values by identifying a subset of the variable with a boolean statement and then assigning the special <code>NA</code> value to that subset. I refer to this approach to replacing values in a variabl as the <strong>bracket-and-boolean</strong> approach.</p>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb724-1" title="1"><span class="kw">summary</span>(acs<span class="op">$</span>yrmarr)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0       0    1971    1166    1997    2018</code></pre>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb726-1" title="1">acs<span class="op">$</span>yrmarr[acs<span class="op">$</span>yrmarr<span class="op">==</span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb726-2" title="2"><span class="kw">summary</span>(acs<span class="op">$</span>yrmarr)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    1937    1979    1993    1992    2006    2018 1332999</code></pre>
+<p>The mean and median change dramatically once I code in all of the missing values because I had a lot of never-married individuals without a proper value for <code>yrmarr</code> who were being reported as zero.</p>
+</div>
+<div id="ifelse-approach" class="section level4">
+<h4>Ifelse approach</h4>
+<p>The bracket-and-boolean approach is one of the standard ways to re-code certain values for a variable in R, but another approach that I prefer for its greater flexibility is the <code>ifelse</code> command. An <code>ifelse</code> command takes three arguments. The first argument is a boolean statement. The second argument is what value should be returned if the first argument evaluates to TRUE and the third argument is what value should be returned if the first argument evaluates to FALSE. Here is how I can use the <code>ifelse</code> command in this example:</p>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb728-1" title="1">acs<span class="op">$</span>yrmarr &lt;-<span class="st"> </span><span class="kw">ifelse</span>(acs<span class="op">$</span>yrmarr<span class="op">==</span><span class="dv">0</span>, <span class="ot">NA</span>, acs<span class="op">$</span>yrmarr)</a></code></pre></div>
+<p>When <code>acs$yrmarr==0</code> is TRUE, the <code>ifelse</code> command returns <code>NA</code> and when <code>acs$yrmarr==0</code> is false, the <code>ifelse</code> command returns the original value of <code>yrmarr</code>. This command accomplishes the same thing as the bracket-and-boolean approach above. Where the <code>ifelse</code> command really shines is when you can string together multiple “cascading” <code>ifelse</code> commands as I will demonstrate below.</p>
+</div>
+</div>
+<div id="recoding" class="section level3">
+<h3>Recoding</h3>
+<p>Recoding variables is an integral part of preparing your data for analysis. Rarely will all the variables come in exactly the form that you want for the reserch question at hand. In many cases, you will want to <em>collapse</em> and/or <em>combine</em> categorical variables and <em>transform</em> quantitative variables. It will also frequently be useful to use <strong>sensitivity analysis</strong> to try out muliple approaches to coding your variables to see how sensitive your results are to coding decisions. When you recode variables, it is usually a good idea to generate a new version of the variable with a different name. This allows you to check the new variable against the old variable to ensure that your code is working correctly.</p>
+<div id="coding-values-for-categorical-variables" class="section level4">
+<h4>Coding Values for Categorical Variables</h4>
+<p>As I noted above, all of the data from IPUMS come to us in numeric form. For example, lets run a table command on the <code>sex</code> variable.</p>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb729-1" title="1"><span class="kw">table</span>(acs<span class="op">$</span>sex)</a></code></pre></div>
+<pre><code>## 
+##       1       2 
+## 1574618 1639921</code></pre>
+<p>I have two unique values here: 1 and 2. How do these values compare to the categories that I expected? We can look at the codebook to see how the numeric values map onto the categories we want. Here is the relevant excerpt from the codebook:</p>
+<pre><code>SEX     Sex
+1       Male
+2       Female</code></pre>
+<p>I can accomplish this re-code using either the <strong>bracket-and-boolean</strong> approach or the <strong>ifelse</strong> approach. I am going to show the ifelse approach here first, because I can demonstrate the use of cascading <code>ifelse</code> statements. In both cases, I will assign my results to a new variable called <code>gender</code>.</p>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" title="1">acs<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">ifelse</span>(acs<span class="op">$</span>sex<span class="op">==</span><span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>, </a>
+<a class="sourceLine" id="cb732-2" title="2">                     <span class="kw">ifelse</span>(acs<span class="op">$</span>sex<span class="op">==</span><span class="dv">2</span>, <span class="st">&quot;Female&quot;</span>, <span class="ot">NA</span>))</a></code></pre></div>
+<p>What exactly is going on here? I have a second <code>ifelse</code> statement embedded inside the first statement for the final argument of that statement. What this approach does is create a cascade of <code>ifelse</code> statements that should pick up all of the possible cases. Anytime the boolean evaluates to TRUE, then I will assign the given value and pop out. Otherwise, I will continue on to the next statement. In simple terms, here is what the process looks like:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Research log:</strong> All changes to your project need to be “committed” to a repository with a brief description of your changes. You can look over the history of these commits to get a record of all the things you have done on your project.</li>
-<li><strong>Nothing is lost:</strong> All changes that you committed to your repository are recoverable. If you realize that the code you changed isn’t working right, you can easily revert back to a prior commit or find the text/code that was changed and bring it back in piecemeal.</li>
-<li><strong>Keep files tidy:</strong> The typical project folder for most academics will contain multiple versions of the same document, perhaps entitled something like “paper-1.docx”, “paper-v2.1_06272017.docx”, “paper_conference_revision.docx”, “paper_FINAL.docx”, “paper_FINAL_REALLY_THIS_TIME.docx”, and so on. Similarly, scripts are often littered throughout the directory without a clear indication of what scripts will do what and which ones are actually essential to the project. This is a mess. With version control, all of that messiness can go away. Because all changes are tracked by the version control system, there is no need to hang on to older versions of files.</li>
-<li><strong>Collaborate intelligently:</strong> Because changes can be shared among multiple users, version control systems make collaboration much simpler. I don’t have to hunt through my emails to find a version of the file that my co-author sent me. I don’t have to remember to send out my changes to everyone and hope they also didn’t make changes. I just “push” my changes directly and “pull” in the changes of others.</li>
-<li><strong>Back up your system:</strong> If you push your changes to another repository (highly encouraged), then you effectively back up your project. It also makes it easy to work on the same project across multiple computers because you can push and pull changes between the computers.</li>
+<li>Is the value a 1? If yes, then assign a value of “Male” to the <code>gender</code> variable. If no, then continue to (2).</li>
+<li>Is the value a 2? If so then assign a value of “Female” to the <code>gender</code> variable. If no, then move to (3).</li>
+<li>We have exhausted all possible logical cases. If you are still here, then assign a missing value.</li>
 </ol>
-<div id="plain-text-is-better" class="section level3">
-<h3>Plain Text is Better</h3>
-<p>Version control systems work best when your files are written in simple plain text rather than as binary files. Version control systems can get inside of a plain text file and document changes line to line. Version control can only tell that a binary file was changed, without information about the changes within the binary file. This makes is much easier to log, document, and merge changes in plain text files than in binary files.</p>
-<p>All of the scripts that we typically write are plain text files. A lot of the datasets that we use (but not all) are in plain text CSV or fixed-width format. Most academics, however, are more familiar with writing their papers in a WYSIWIG (What You See Is What You Get) document processing format like Microsoft Word, which saves files as a binary. To truly get the most out of a version control system, you might want to consider writing documents using a logical mark up language like R Markdown or <a href="https://www.latex-project.org">LaTeX</a>. We will discuss both of these options later in the term. In the meantime, I would recommend taking a look at <a href="https://kieranhealy.org/publications/plain-person-text/">Kieran Healy’s The Plain Person’s Guide to Plain Text Social Science</a> which gives an easy introduction to getting outside the “office” approach to science.</p>
-</div>
-<div id="git" class="section level3">
-<h3>Git</h3>
-<p>Git is a version control system designed by the legendary open-source programmer Linus Torvalds. It has become the de facto standard for version control in recent years. It is open-source, lightweight, free to use, and runs on all major platforms.</p>
-<p>Git should not be confused with a commercial service like GitHub. GitHub provides users with remote git repositories for sharing and collaborating on projects, but it is not git itself.</p>
-<p>Git at its most basic is a command-line program. All of the basic commands that I will discuss below can be run by opening up a console/terminal on your operating system and typing them in. That won’t be our primary way of accessing git, but I want you to know that when RStudio runs git, it is just performing the same commands that you could do directly from the command line. At the end of this document, I discuss the basic commands you can run from the command line with git.</p>
-<p>Here is a basic diagram of a git workflow. We will build up our understanding of this diagram in parts.</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/git_diagram.png" alt="Git Workflow" />
-<p class="caption">Git Workflow</p>
-</div>
-<div id="git-installation" class="section level4">
-<h4>Git installation</h4>
-<p>You can install git on your system by downloading the appropriate files <a href="https://git-scm.com/downloads">here</a> and installing them on your computer. On most computers, this will not give you a graphical client to open, but it will install git “under the hood” of your computer and make it accessible to RStudio.</p>
-<p>In order to use git properly, you will need to tell it your name and email address. This information will be attached to any commit you make. You can do this from the command line, but since that is intimidating to most people, we can also do it from within RStudio.</p>
-<p>In RStudio, you will need to install the <strong>usethis</strong> package:</p>
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb683-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;usethis&quot;</span>)</a></code></pre></div>
-<p>You can then run the <strong>use_git_config</strong> command to specify your user name and email:</p>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb684-1" title="1"><span class="kw">use_git_config</span>(<span class="dt">user.name =</span> <span class="st">&quot;Your Name Here&quot;</span>, <span class="dt">user.email =</span> <span class="st">&quot;myemail@uoregon.edu&quot;</span>)</a></code></pre></div>
-<p>Ideally, your email should be the same one that you provided as your primary email to GitHub. You should only have to setup this configuration once. You should now be ready to go.</p>
-</div>
-<div id="setting-up-a-repository" class="section level4">
-<h4>Setting up a repository</h4>
-<p>The basic idea of git is that your project directory is stored in a repository. This repository keeps a record of all changes made to the project. The repository lives in the same place as your project directory, but it is not the same as the project directory.</p>
-<p>You can set up a new git repository from within RStudio using the “File &gt; New Project” menu option. From the dialog window that opens, select “New Directory” and then “New Project.” On the “Create New Project” window, be sure to check “Create a git repository” and then give the directory a name and location. You can see from the screenshot below that I am creating a new test_project on my desktop.</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/git_new_project.png" alt="Setting up new project with Git" />
-<p class="caption">Setting up new project with Git</p>
-</div>
-<p>You will now see a couple of files in your new directory. The .gitignore file contains a list of files that you want git to ignore (i.e. not track changes). The Rproj file keeps track of this directory as a project in RStudio. You can double-click this file from your file browser to open up the project in RStudio.</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/git_tab.png" alt="Git Project View" />
-<p class="caption">Git Project View</p>
-</div>
-<p>Most importantly, you will notice a new “Git” tab in the upper right panel. This is where the magic happens. This tab is already listing two files in the workspace as different from the repository. Next we will learn how to commit these changed files to the repository.</p>
-</div>
-<div id="committing-changes-to-your-local-repository" class="section level4">
-<h4>Committing changes to your local repository</h4>
-<p>Any time you make a change to a file in your project directory, that change will be noted by git. However, the change will not be automatically added to your repository. Changes made to your files are changes in your workspace. To get those changes to show up in the repository, you have to follow a two-step process:</p>
-<ol style="list-style-type: decimal">
-<li><strong>add</strong>: This will add any changed files to the “staging area” but will not put them in the repository yet.</li>
-<li><strong>commit</strong>: This will commit all changes from the files in the “staging area” to the repository. Typically, you will also include a text message here that gives some indication of what the changes do.</li>
-</ol>
-<p>Now, lets make some substantive changes to the project. I am going to do two things. I am going to add in the movies RData file and a script that does some basic analysis:</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb685-1" title="1"><span class="co">#######################################################</span></a>
-<a class="sourceLine" id="cb685-2" title="2"><span class="co"># movie_analysis.R</span></a>
-<a class="sourceLine" id="cb685-3" title="3"><span class="co"># Aaron Gullickson</span></a>
-<a class="sourceLine" id="cb685-4" title="4"><span class="co"># Read in movie data and perform some basic analysis</span></a>
-<a class="sourceLine" id="cb685-5" title="5"><span class="co">#######################################################</span></a>
-<a class="sourceLine" id="cb685-6" title="6"></a>
-<a class="sourceLine" id="cb685-7" title="7"></a>
-<a class="sourceLine" id="cb685-8" title="8"><span class="co">#read in movie data</span></a>
-<a class="sourceLine" id="cb685-9" title="9"><span class="kw">load</span>(<span class="st">&quot;movies.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb685-10" title="10"></a>
-<a class="sourceLine" id="cb685-11" title="11"><span class="kw">summary</span>(movies)</a>
-<a class="sourceLine" id="cb685-12" title="12"></a>
-<a class="sourceLine" id="cb685-13" title="13"><span class="kw">ggplot</span>(movies, <span class="kw">aes</span>(<span class="dt">x=</span>runtime, <span class="dt">y=</span>BoxOffice))<span class="op">+</span></a>
-<a class="sourceLine" id="cb685-14" title="14"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb685-15" title="15"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;runtime in minutes&quot;</span>, <span class="dt">y=</span><span class="st">&quot;box office returns in millions of USD&quot;</span>,</a>
-<a class="sourceLine" id="cb685-16" title="16">       <span class="dt">title=</span><span class="st">&quot;Scatterplot of runtime by box office returns&quot;</span>)</a></code></pre></div>
-<p>Once I add these things to my directory, I will see that the git tab in RStudio is showing me changed files for both the movies.RData file and the movie_analysis.R script. I can click the “Staged” button to add these files to my staging area and then hit the “Commit” button.</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/git_changed_files.png" alt="Changed files in Git" />
-<p class="caption">Changed files in Git</p>
-</div>
-<p>The “Commit” button will bring up another window which will allow me to review changes and add a commit message.</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/git_review_changes.png" alt="Review changes dialog" />
-<p class="caption">Review changes dialog</p>
-</div>
-<p>Once I am satisfied with these changes and I have added a commit message, I can hit the “Commit” button to commit these changes to the repository. You can then close out of this dialog and you will see that there are no pending changes in the git repository.</p>
-<p>But wait! There is an error in my script. I forgot to capitalize the “Runtime” variable. If I make this correction to my script, I will see that movie_analysis.R is now showing up as modified. If you go to the review changes dialog, you will see that the single line that was changed is indicated in the diff view.</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/git_diff.png" alt="Git diff view" />
-<p class="caption">Git diff view</p>
-</div>
-<p>So the basic workflow here for a project is quite simple. At logical intervals, you should stage and commit changes that you have made to your repository. You will then have a complete log of all changes made to the project from its beginning. You can access this log with the little clock icon in the git tab in RStudio.</p>
-</div>
-<div id="working-with-remotes" class="section level4">
-<h4>Working with remotes</h4>
-<p>Keeping track of your own changes in a repository is only half the fun. The real power of git is in the ability to share changes with other repositories. One of the key features of git is that it allows for peer-to-peer connections between repositories. Often, collaborators will set up one repository as the central repository (on GitHub, for example). Each collaborator can <strong>clone</strong> this repository to their own computer. After changes are committed to the local repository (the “master” repository), those changes can then be <strong>pushed</strong> back to the central repository (the “origin” repository). If I want to get changes that have been pushed by other collaborators, I can <strong>pull</strong> those changes from the central repository to my own local repository.</p>
-<p>As an example, I am going to clone one of my own <a href="https://github.com/AaronGullickson/brazil_intermar">public repositories</a> and then show you how to make changes and push those changes back to the GitHub repository.</p>
-<div id="cloning-the-repository" class="section level5">
-<h5>Cloning the Repository</h5>
-<p>The first step is to clone the GitHub repository. You will notice a “Clone or Download” button in the upper right of all GitHub repositories. If I click on that, it will give me a link to clone via https (I can also clone by ssh, but that is more complicated).</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/github_clone.png" alt="GitHub clone button" />
-<p class="caption">GitHub clone button</p>
-</div>
-<p>I copy that link and then go back to the “File &gt; New Project” option in RStudio. This time, I will select the “Version Control” option and then “Git” option. I will then paste my https link into the “Repository URL” line. This will give me an automatic project directory name. I just have to select where to put this directory and then “Create Project.”</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/github_create_project.png" alt="Create Project in RStudio from GitHub" />
-<p class="caption">Create Project in RStudio from GitHub</p>
-</div>
-<p>Git will clone the repository and RStudio will open up this directory as a project. Notice that it already wants to add a couple of files, because I did not have this repository set up as an RStudio project yet.</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/git_intermar_project.png" alt="Git project from GitHub" />
-<p class="caption">Git project from GitHub</p>
-</div>
-<p>I am going to make one simple change to the analysis.R file in this directory. I am going to add the following simple comment right below the file header:</p>
-<pre><code>#This is an example comment for Sociology 512</code></pre>
-<p>I then commit those changes:</p>
-<p>Its important to understand clearly what I have and have not done at this point. I <strong>have</strong> made a change to my <strong>local</strong> workspace and committed that change to my <strong>local</strong> repository. But nobody else in the world knows about this change yet because I <strong>have not</strong> made any changes to the <strong>remote</strong> repository from GitHub. The Git tab in RStudio provides me an important reminder of this fact:</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/git_reminder.png" alt="Git reminder" />
-<p class="caption">Git reminder</p>
-</div>
-<p>It is telling me that my repository is one commit ahead of the origin repository on GitHub. Let me pause for an important note on nomenclature. The master repository is always your own local repository. The origin repository is the place from which you cloned your local repository. You can change this name and you can link to multiple remote repositories but we won’t get that complex at the moment.</p>
-<p>What we want to do is <strong>push</strong> the changes in our repository to the remote repository on GitHub. We can do this as easy as falling off a log by clicking the big green button in the Git tab. The first time you do this, you will be asked for your GitHub password. I give the password, and git pushes my changes. If you now look at this file on the GitHub repository, you will see the new comment.</p>
-<p>What if I want to get any changes that might have been made by someone else to the GitHub repository? I can get those changes easily enough by <strong>pulling</strong> from the GitHub repository. RStudio makes this easy with the big blue button pointing down.</p>
-<p>Sometimes you may need to merge in changes from someone else when you push and pull. This can usually be handled gracefully, but occasionally you may run into conflicts if you both changed the same line of code. In those cases, git will leave both versions of the code in the document and you will have to make a decision about how to integrate them. If you are working on some big changes with collaborators then a better solution is to create a separate <a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">branch</a> and then use the <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">pull request</a> system in GitHub to help manage conflicts, but that is beyond what we will learn for the basics.</p>
-</div>
-<div id="a-basic-git-workflow" class="section level5">
-<h5>A basic git workflow</h5>
-<p>I know that this may initially seem like a lot to juggle but the basic workflow of this process is really simple once you get used to it. Here is how you should think about integrating git into your workflow when you sit down to work on a project:</p>
-<ol style="list-style-type: decimal">
-<li>run a <strong>pull</strong> command to catch any changes made by other collaborators since the last time you worked on the project.</li>
-<li>Do your work (writing code, downloading data, writing a paper, etc.)</li>
-<li>When you have reached a logical place to do so, <strong>commit</strong> all of the changes from your project to your local repository. You can do this multiple times in a work session if you are working on different parts of the project. Remember that its best to separate out commits by logically distinct changes rather than something like “A bunch of changes for the day.”</li>
-<li>When you are done for the day <strong>push</strong> all the changes back to the central repository. Now your colleagues will have access to your changes and you have a backup.</li>
-</ol>
+<p>Note that since I don’t actually have any cases other than a 1 or a 2, I could have done this with a single <code>ifelse</code> statement. However, by always making the final category an <code>NA</code> I ensure that pick up any missing values for cases that I don’t explicitly assign. This is good practice and helps us to avoid mistakes.</p>
+<p>Since <code>gender</code> is a categorical variable, I really should make it a factor variable, but the command above did not turn it into a factor variable, but rather a character string variable. To “factor it up” I need to run the factor command and specify my categories:</p>
+<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb733-1" title="1">acs<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">factor</span>(acs<span class="op">$</span>gender,</a>
+<a class="sourceLine" id="cb733-2" title="2">                     <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>))</a></code></pre></div>
+<p>If I really want to be efficient, I could have wrapped my cascading <code>ifelse</code> statements in a <code>factor</code> command and done it all at once.</p>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb734-1" title="1">acs<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(acs<span class="op">$</span>sex<span class="op">==</span><span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>, </a>
+<a class="sourceLine" id="cb734-2" title="2">                            <span class="kw">ifelse</span>(acs<span class="op">$</span>sex<span class="op">==</span><span class="dv">2</span>, <span class="st">&quot;Female&quot;</span>, <span class="ot">NA</span>)),</a>
+<a class="sourceLine" id="cb734-3" title="3">                     <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>))</a></code></pre></div>
+<p>Now we need to <strong>check ourselves before we wreck ourselves</strong>. The most straightforward way to do this is to run a <code>table</code> command on the original and new variable to make sure all of the observations are being coded correctly. When I run this table command, I want to include the argument <code>exclude=NULL</code> so that missing value codes show up in the table.</p>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb735-1" title="1"><span class="kw">table</span>(acs<span class="op">$</span>sex, acs<span class="op">$</span>gender, <span class="dt">exclude=</span><span class="ot">NULL</span>)</a></code></pre></div>
+<pre><code>##    
+##        Male  Female
+##   1 1574618       0
+##   2       0 1639921</code></pre>
+<p>Everything looks good. All the 1s are “Male” and all the 2s are “Female.”</p>
+<p>What if I wanted to do this the bracket-and-boolean way? Well, typically the first step is to set up a new variable that is all missing values and then plug in the values one by one. Here is what it would look like:</p>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb737-1" title="1">acs<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb737-2" title="2">acs<span class="op">$</span>gender[acs<span class="op">$</span>sex<span class="op">==</span><span class="dv">1</span>] &lt;-<span class="st"> &quot;Male&quot;</span></a>
+<a class="sourceLine" id="cb737-3" title="3">acs<span class="op">$</span>gender[acs<span class="op">$</span>sex<span class="op">==</span><span class="dv">2</span>] &lt;-<span class="st"> &quot;Female&quot;</span></a>
+<a class="sourceLine" id="cb737-4" title="4">acs<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">factor</span>(acs<span class="op">$</span>gender,</a>
+<a class="sourceLine" id="cb737-5" title="5">                     <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>))</a>
+<a class="sourceLine" id="cb737-6" title="6"><span class="kw">table</span>(acs<span class="op">$</span>sex, acs<span class="op">$</span>gender, <span class="dt">exclude=</span><span class="ot">NULL</span>)</a></code></pre></div>
+<pre><code>##    
+##        Male  Female
+##   1 1574618       0
+##   2       0 1639921</code></pre>
 </div>
 </div>
-<div id="github-private-repositories" class="section level4">
-<h4>Github Private Repositories</h4>
-<p>Its important to keep in mind the distinction between git and GitHub. GitHub is just a service that provides free remote git repositories and a variety of additional bells and whistles like wiki’s and issue tracking (mostly associated with software development, but also useful for academics). There are other git repository service providers out there like <a href="https://gitlab.com/">GitLab</a> and <a href="https://bitbucket.org">BitBucket</a>. You can even run remote git repositories off of your own server, as I do.</p>
-<p>Free accounts on GitHub do not give you any access to private repositories, which means that any repository you push to GitHub is viewable by the world. However, as students, you can apply for the <a href="https://education.github.com/pack">GitHub Student Developer Pack</a>. This pack provides access to quite a list of software that you probably don’t need, but importantly it also gives you private repositories for free. If you plan to use git in your research workflow, its well worth it to apply. Note that the repositories you work with for our class will be private because they are associated with the GitHub Classroom that I have created.</p>
-<p>One important note about GitHub repositories: <strong>the maximum size for a single file is 100MB</strong>. This can create problems because git will allow you to commit a file larger than this size but you will not be able to push it up to GitHub, which means you will have to remove it from your commit history to push. If you are writing a script over 100MB, then you are doing it wrong. However, datasets can sometimes be larger than 100MB. R can usually read datasets that have been compressed (e.g. .zip, .gz, .bz2 extension) so keeping your datasets zipped is a good practice to avoid this problem. For really big datasets, you may need to either break up the dataset or host it somewhere else and read it remotely.</p>
+<div id="collapsing-categorical-variables" class="section level3">
+<h3>Collapsing Categorical Variables</h3>
+<p>Collapsing categorical variables means reducing the number of categories to a smaller set of categories, by lumping some categories together. As an example, take a look at the full set of categories for the detailed educational attainment category <code>educd</code>:</p>
+<pre><code>000     N/A or no schooling
+001     N/A
+002     No schooling completed
+010     Nursery school to grade 4
+011     Nursery school, preschool
+012     Kindergarten
+013     Grade 1, 2, 3, or 4
+014     Grade 1
+015     Grade 2
+016     Grade 3
+017     Grade 4
+020     Grade 5, 6, 7, or 8
+021     Grade 5 or 6
+022     Grade 5
+023     Grade 6
+024     Grade 7 or 8
+025     Grade 7
+026     Grade 8
+030     Grade 9
+040     Grade 10
+050     Grade 11
+060     Grade 12
+061     12th grade, no diploma
+062     High school graduate or GED
+063     Regular high school diploma
+064     GED or alternative credential
+065     Some college, but less than 1 year
+070     1 year of college
+071     1 or more years of college credit, no degree
+080     2 years of college
+081     Associate&#39;s degree, type not specified
+082     Associate&#39;s degree, occupational program
+083     Associate&#39;s degree, academic program
+090     3 years of college
+100     4 years of college
+101     Bachelor&#39;s degree
+110     5+ years of college
+111     6 years of college (6+ in 1960-1970)
+112     7 years of college
+113     8+ years of college
+114     Master&#39;s degree
+115     Professional degree beyond a bachelor&#39;s degree
+116     Doctoral degree
+999     Missing</code></pre>
+<p>There are a a lot of categories here. Its unlikely that this fine level of detail will be helpful in any analyses that we will perform. Lets also take a look at the case counts for these categories:</p>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb740-1" title="1"><span class="kw">table</span>(acs<span class="op">$</span>educd)</a></code></pre></div>
+<pre><code>## 
+##      1      2     11     12     14     15     16     17     22     23     25 
+##  95147  97571  45463  37691  35302  38104  41690  41318  44435  56815  45653 
+##     26     30     40     50     61     63     64     65     71     81    101 
+##  66566  69213  76684  85612  52431 602113 103161 190344 381192 213684 486531 
+##    114    115    116 
+## 217891  53833  36095</code></pre>
+<p>A lot of categories are not even showing up in our data. The <a href="https://usa.ipums.org/usa-action/variables/EDUC#comparability_section">reason for these zero categories</a> is that the set of categories was created to capture all of the ways that educational attainment was recorded across censuses since 1850, but many of the codes are not used in the particular 2018 data that we have.</p>
+<p>Many scholars use a parsimonious four-category coding of educational attainment: less than high school diploma, high school diploma, some college including associate’s degree, four-year college degree or more. We can collapse our full set of categories into this four-category system fairly easily using cascading <code>ifelse</code> statements:</p>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb742-1" title="1">acs<span class="op">$</span>edattain &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(acs<span class="op">$</span>educd<span class="op">&gt;=</span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>acs<span class="op">$</span>educd<span class="op">&lt;=</span><span class="dv">61</span>, <span class="st">&quot;Less than HS&quot;</span>,</a>
+<a class="sourceLine" id="cb742-2" title="2">                              <span class="kw">ifelse</span>(acs<span class="op">$</span>educd<span class="op">&gt;=</span><span class="dv">62</span> <span class="op">&amp;</span><span class="st"> </span>acs<span class="op">$</span>educd<span class="op">&lt;=</span><span class="dv">64</span>, <span class="st">&quot;HS Diploma&quot;</span>,</a>
+<a class="sourceLine" id="cb742-3" title="3">                                     <span class="kw">ifelse</span>(acs<span class="op">$</span>educd<span class="op">&gt;=</span><span class="dv">65</span> <span class="op">&amp;</span><span class="st"> </span>acs<span class="op">$</span>educd<span class="op">&lt;=</span><span class="dv">100</span>, <span class="st">&quot;Some College&quot;</span>,</a>
+<a class="sourceLine" id="cb742-4" title="4">                                            <span class="kw">ifelse</span>(acs<span class="op">$</span>educd<span class="op">&gt;=</span><span class="dv">101</span> <span class="op">&amp;</span><span class="st"> </span>acs<span class="op">$</span>educd<span class="op">&lt;=</span><span class="dv">116</span>, <span class="st">&quot;College&quot;</span>,</a>
+<a class="sourceLine" id="cb742-5" title="5">                                                   <span class="ot">NA</span>)))),</a>
+<a class="sourceLine" id="cb742-6" title="6">                       <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Less than HS&quot;</span>,<span class="st">&quot;HS Diploma&quot;</span>,<span class="st">&quot;Some College&quot;</span>,<span class="st">&quot;College&quot;</span>))</a>
+<a class="sourceLine" id="cb742-7" title="7"><span class="kw">table</span>(acs<span class="op">$</span>educd, acs<span class="op">$</span>edattain, <span class="dt">exclude=</span><span class="ot">NULL</span>)</a></code></pre></div>
+<pre><code>##      
+##       Less than HS HS Diploma Some College College   &lt;NA&gt;
+##   1              0          0            0       0  95147
+##   2          97571          0            0       0      0
+##   11         45463          0            0       0      0
+##   12         37691          0            0       0      0
+##   14         35302          0            0       0      0
+##   15         38104          0            0       0      0
+##   16         41690          0            0       0      0
+##   17         41318          0            0       0      0
+##   22         44435          0            0       0      0
+##   23         56815          0            0       0      0
+##   25         45653          0            0       0      0
+##   26         66566          0            0       0      0
+##   30         69213          0            0       0      0
+##   40         76684          0            0       0      0
+##   50         85612          0            0       0      0
+##   61         52431          0            0       0      0
+##   63             0     602113            0       0      0
+##   64             0     103161            0       0      0
+##   65             0          0       190344       0      0
+##   71             0          0       381192       0      0
+##   81             0          0       213684       0      0
+##   101            0          0            0  486531      0
+##   114            0          0            0  217891      0
+##   115            0          0            0   53833      0
+##   116            0          0            0   36095      0</code></pre>
+<p>Notice how I am pairing a <code>&gt;=</code> with a <code>&lt;=</code> in an AND boolean statement in order to define a range of values. The statement <code>x&gt;=A &amp; x&lt;=B</code> will return true for all values of x between A and B.</p>
+<p>Looking at the table, its clear that all of the numeric values are showing up in the right category and all the missing values coded at 1 (these are primarily youths) are coded as missing values correctly.</p>
+<p>In some cases, recoding may involve incorporating information on multiple variables in the construction of one new variable. The process is no different from the cases discussed above except for requiring possibly more complex boolean statements.</p>
 </div>
-<div id="git-from-the-command-line" class="section level4">
-<h4>Git from the command line</h4>
-<p>We will use the git tab interface in RStudio for all of our gitting needs this term, but its useful to know the actual command line interface as well for potential problem shooting. For this section, I will use the same “test_project” I described above as an example.</p>
-<p>You should be able to access a command line interface with the “Terminal” tab in the main window of RStudio. This will probably show up by default in MacOSX. If not, you should be able to bring up a new one with Tools &gt; Terminal &gt; New Terminal. It may not show up in Windows, but you can also get a command line interface in Windows using the “git-bash” application that came with Git.</p>
-<p>The terminal will look very similar to the command line interface of R, but this command line is actually interfacing directly with the command line of your computer, not R. Like R, it expects the commands to be executed in the correct working directory. You can change working directories with the <em>cd</em> command (short for “change directory”).</p>
-<p>Once in the correct directory, you can run git commands. All git commands are two words with the first word being “git”. The first and most useful git command is <strong>git status</strong>.</p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb687-1" title="1"><span class="fu">git</span> status</a></code></pre></div>
-<div class="sourceCode" id="cb688"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb688-1" title="1"><span class="ex">On</span> branch master</a>
-<a class="sourceLine" id="cb688-2" title="2"></a>
-<a class="sourceLine" id="cb688-3" title="3"><span class="ex">No</span> commits yet</a>
-<a class="sourceLine" id="cb688-4" title="4"></a>
-<a class="sourceLine" id="cb688-5" title="5"><span class="ex">Untracked</span> files:</a>
-<a class="sourceLine" id="cb688-6" title="6">  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span></a>
-<a class="sourceLine" id="cb688-7" title="7"></a>
-<a class="sourceLine" id="cb688-8" title="8">        <span class="ex">.gitignore</span></a>
-<a class="sourceLine" id="cb688-9" title="9">        <span class="ex">test_project.Rproj</span></a>
-<a class="sourceLine" id="cb688-10" title="10"></a>
-<a class="sourceLine" id="cb688-11" title="11"><span class="ex">nothing</span> added to commit but untracked files present (use <span class="st">&quot;git add&quot;</span> to track)</a></code></pre></div>
-<p>This command tells me the current state of my repository. It shows here that I have two untracked files that have not been committed to the repository. Committing these files is a two-step process. First I need to use the <strong>git add</strong> command followed by the file names (and paths if in sub-directories) to the staging area:</p>
-<div class="sourceCode" id="cb689"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb689-1" title="1"><span class="fu">git</span> add .gitignore test_project.Rproj</a>
-<a class="sourceLine" id="cb689-2" title="2"><span class="fu">git</span> status</a></code></pre></div>
-<div class="sourceCode" id="cb690"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb690-1" title="1"><span class="ex">On</span> branch master</a>
-<a class="sourceLine" id="cb690-2" title="2"></a>
-<a class="sourceLine" id="cb690-3" title="3"><span class="ex">No</span> commits yet</a>
-<a class="sourceLine" id="cb690-4" title="4"></a>
-<a class="sourceLine" id="cb690-5" title="5"><span class="ex">Changes</span> to be committed:</a>
-<a class="sourceLine" id="cb690-6" title="6">  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></a>
-<a class="sourceLine" id="cb690-7" title="7"></a>
-<a class="sourceLine" id="cb690-8" title="8">        <span class="ex">new</span> file:   .gitignore</a>
-<a class="sourceLine" id="cb690-9" title="9">        <span class="ex">new</span> file:   test_project.Rproj</a></code></pre></div>
-<p>The status command now shows the files are staged and ready to be committed. I can now commit them with the <strong>git commit</strong> command. I will use the “-m” option to specify a log message.</p>
-<div class="sourceCode" id="cb691"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb691-1" title="1"><span class="fu">git</span> commit -m <span class="st">&quot;initial commit of project files&quot;</span></a>
-<a class="sourceLine" id="cb691-2" title="2"><span class="fu">git</span> status</a></code></pre></div>
-<div class="sourceCode" id="cb692"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb692-1" title="1"><span class="ex">On</span> branch master</a>
-<a class="sourceLine" id="cb692-2" title="2"><span class="ex">nothing</span> to commit, working tree clean</a></code></pre></div>
-<p>Git is now telling me that everything looks good. I have no other uncommitted changes in my repository. If I make new files or edit existing files, I can then repeat this two step process of adding and committing files.</p>
-<p>I can also use <strong>git log</strong> to show the history of all my commits:</p>
-<div class="sourceCode" id="cb693"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb693-1" title="1"><span class="fu">git</span> log</a></code></pre></div>
-<div class="sourceCode" id="cb694"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb694-1" title="1"><span class="ex">commit</span> 35a0940b190dab64a08a5cad5025eb045ac7d353 (HEAD -<span class="op">&gt;</span> master)</a>
-<a class="sourceLine" id="cb694-2" title="2"><span class="ex">Author</span>: Aaron Gullickson <span class="op">&lt;</span>aarong@uoregon.edu<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb694-3" title="3"><span class="ex">Date</span>:   Mon Jan 27 10:17:40 2020 -0800</a>
-<a class="sourceLine" id="cb694-4" title="4"></a>
-<a class="sourceLine" id="cb694-5" title="5">    <span class="ex">initial</span> commit of project files</a></code></pre></div>
-<p>In this case its showing me the only commit that I made, when I made it and the commit message that I included. It also gives a unique ID for the commit.</p>
-<p>I can also push and pull my changes but first I need a remote repository. You can set up a new empty repository on GitHub through the GitHub web interface. GitHub will then nicely give you information on how to get your local repository up the remote one:</p>
-<div class="figure">
-<img src="resources/using_git_screenshots/github_new_repo.png" alt="Creating project from GitHub" />
-<p class="caption">Creating project from GitHub</p>
+<div id="transforming-quantitative-variables" class="section level3">
+<h3>Transforming Quantitative Variables</h3>
+<p>Quantitative variables can also be recoded in R and this is typically much easier as you just need to apply the right mathematical equation to it. Lets say for example that I want to create a new variable from <code>yrmarr</code> that is the age of the respondent for the current marriage for all currently married respondents. I can get this information simply by subtracting the <code>yrmarr</code> variable from the <code>year</code> variable to get the duration of marriage and then subtracting this value from the respondent’s dage..</p>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb744-1" title="1">acs<span class="op">$</span>age_marr &lt;-<span class="st"> </span>acs<span class="op">$</span>age <span class="op">-</span><span class="st"> </span>(acs<span class="op">$</span>year<span class="op">-</span>acs<span class="op">$</span>yrmarr)</a>
+<a class="sourceLine" id="cb744-2" title="2"><span class="kw">summary</span>(acs<span class="op">$</span>age_marr)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    14.0    22.0    26.0    29.5    34.0    95.0 1332999</code></pre>
+<p>Notice that this coding only works correctly because I already assigned missing values to the <code>yrmarr</code> variable above.</p>
+<div id="creating-interval-categories-from-a-quantitative-variable" class="section level4">
+<h4>Creating Interval Categories From a Quantitative Variable</h4>
+<p>In some cases, I may want to turn a quantitative variable into a categorical variable that measures intervals of data. For example, I might want to turn age into ten-year age groups (e.g. 20-29, 30-39). I can do this sort of coding using the same bracket-and-boolean or cascading ifelse appoaches outlined above. However, R also provides a built-in function called <code>cut</code> that makes this pretty easy to do:</p>
+<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb746-1" title="1">acs<span class="op">$</span>age_group &lt;-<span class="st"> </span><span class="kw">cut</span>(acs<span class="op">$</span>age, </a>
+<a class="sourceLine" id="cb746-2" title="2">                     <span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">100</span>, <span class="dt">by=</span><span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb746-3" title="3">                     <span class="dt">right=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb746-4" title="4"><span class="kw">summary</span>(acs<span class="op">$</span>age_group)</a></code></pre></div>
+<pre><code>##   [0,10)  [10,20)  [20,30)  [30,40)  [40,50)  [50,60)  [60,70)  [70,80) 
+##   338958   403401   378691   388612   380621   450316   443250   279682 
+##  [80,90) [90,100) 
+##   120200    30808</code></pre>
+<p>The most important argument to the <code>cut</code> function is the breakpoints for each interval. Here I have used the <code>seq</code> function to define a sequence of numbers from 0 to 100 at intervals of 10. I also specify <code>right=FALSE</code> so that the intervals are inclusive of the lower value and exclusive of the upper value. The <code>age_group</code> variable is now a proper factor variable and can be used like any other factor variable.</p>
 </div>
-<p>The first thing we have to do is create a new “origin” remote repository. We can do this with the <strong>git remote</strong> command:</p>
-<div class="sourceCode" id="cb695"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb695-1" title="1"><span class="fu">git</span> remote add origin https://github.com/AaronGullickson/test_project.git</a></code></pre></div>
-<p>Note that I could have called this anything I wanted, but “origin” is the general practice. Now that I have the remote repository’s address set up, I can use the <strong>git push</strong> command to upload the contents of my local repository to GitHub:</p>
-<div class="sourceCode" id="cb696"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb696-1" title="1"><span class="fu">git</span> push -u origin master</a></code></pre></div>
-<div class="sourceCode" id="cb697"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb697-1" title="1"><span class="ex">Enumerating</span> objects: 4, done.</a>
-<a class="sourceLine" id="cb697-2" title="2"><span class="ex">Counting</span> objects: 100% (4/4), <span class="kw">done</span><span class="ex">.</span></a>
-<a class="sourceLine" id="cb697-3" title="3"><span class="ex">Delta</span> compression using up to 12 threads</a>
-<a class="sourceLine" id="cb697-4" title="4"><span class="ex">Compressing</span> objects: 100% (3/3), <span class="kw">done</span><span class="ex">.</span></a>
-<a class="sourceLine" id="cb697-5" title="5"><span class="ex">Writing</span> objects: 100% (4/4), <span class="ex">457</span> bytes <span class="kw">|</span> <span class="ex">457.00</span> KiB/s, done.</a>
-<a class="sourceLine" id="cb697-6" title="6"><span class="ex">Total</span> 4 (delta 0), <span class="ex">reused</span> 0 (delta 0)</a>
-<a class="sourceLine" id="cb697-7" title="7"><span class="ex">To</span> https://github.com/AaronGullickson/test_project.git</a>
-<a class="sourceLine" id="cb697-8" title="8"> <span class="ex">*</span> [new branch]      master -<span class="op">&gt;</span> master</a>
-<a class="sourceLine" id="cb697-9" title="9"><span class="ex">Branch</span> <span class="st">&#39;master&#39;</span> set up to track remote branch <span class="st">&#39;master&#39;</span> from <span class="st">&#39;origin&#39;</span>.</a></code></pre></div>
-<p>It looks like everything worked. The first time I do this I need to specify the names of the repositories involved (“origin master”), but I also include the “-u” command which will tell git to treat the origin remote repository as my default “upstream” repository in the future. In the future, I will then just need to type “git push” to do the same operation.</p>
-<p>If someone else were to make changes to the remote repository, I could then use the <em>git pull</em> command to integrate them into my local repository.</p>
 </div>
+<div id="after-cleaning-you-still-need-to-tidy" class="section level3">
+<h3>After Cleaning You Still Need to Tidy</h3>
+<p>Because you are adding new variables as you recode, the size of your dataset will often grow as you clean, organize, and re-code. This can quickly lead to a lot of clutter and this clutter can have consequences. When you have multiple variables with similar names, it is easy to mistakenly use the wrong one. To avoid confusion, it is always best to limit your final analytical dataset to just the variables that you want. The easiest way to do this in R is to put a <code>subset</code> command at the bottom of your organizational script and use the select argument to add variables you want to keep to it as you clean them. So, for example my command here might look like:</p>
+<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb748-1" title="1">acs &lt;-<span class="st"> </span><span class="kw">subset</span>(acs, </a>
+<a class="sourceLine" id="cb748-2" title="2">              <span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;statefip&quot;</span>,<span class="st">&quot;gender&quot;</span>,<span class="st">&quot;edattain&quot;</span>,<span class="st">&quot;age_marr&quot;</span>,<span class="st">&quot;age&quot;</span>))</a>
+<a class="sourceLine" id="cb748-3" title="3">acs</a></code></pre></div>
+<pre><code>## # A tibble: 3,214,539 x 5
+##    statefip gender edattain     age_marr   age
+##       &lt;int&gt; &lt;fct&gt;  &lt;fct&gt;           &lt;int&gt; &lt;int&gt;
+##  1        1 Female Some College       NA    19
+##  2        1 Female Some College       NA    18
+##  3        1 Male   HS Diploma         NA    53
+##  4        1 Male   Some College       NA    28
+##  5        1 Female Less than HS       NA    25
+##  6        1 Female HS Diploma         NA    30
+##  7        1 Female Some College       40    66
+##  8        1 Male   Less than HS       NA    38
+##  9        1 Male   HS Diploma         NA    41
+## 10        1 Female Some College       NA    18
+## # … with 3,214,529 more rows</code></pre>
+<p>People often keep a bunch of cluttered variables in their data frame out of a misguided fear that they will lose them if they are dropped from the current dataset. But that is the wrong way to think about your data. If you discover that you actually want a variable you dropped, just add it to the subset command and re-source your cleaning data script. In most cases this will take minutes to process at most. Thats a reasonable price to pay for the clarity of a small analytical dataset.</p>
+</div>
+<div id="aggregating-data" class="section level3">
+<h3>Aggregating Data</h3>
+<p>It is not uncommon to want to aggregate data at one unit of analysis up to a higher unit of analysis. For example, the individual-level ACS data that we have contains a variable that identifies the state of residence for each respondent (<code>statefip</code>). What if I wanted to aggregate my individual level data up to the state-level? As a simple example, lets say that I wanted to calculate the mean age of marriage of married individuals for each state.</p>
+<p>The <code>aggregate</code> command is the easiest way to perform such tasks and it has the flexibility to do aggregations on multiple variables or multiple indices at the same time. There are two different syntax forms for <code>aggregate</code> but we will focus on the formula syntax. This syntax works like <code>agg_var~by_var1+by_var2</code> where the <code>agg_var</code> is the variable that you want to aggregate on and <code>by_var1</code> and <code>by_var2</code> are the variables that you want to aggregate by. Here is a simple example of getting the mean for marriage duration by state.</p>
+<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb750-1" title="1">temp &lt;-<span class="st"> </span><span class="kw">aggregate</span>(age_marr<span class="op">~</span>statefip, <span class="dt">data=</span>acs, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb750-2" title="2"><span class="kw">head</span>(temp)</a></code></pre></div>
+<pre><code>##   statefip age_marr
+## 1        1 29.27548
+## 2        2 29.92585
+## 3        4 30.36038
+## 4        5 29.39313
+## 5        6 30.02206
+## 6        8 29.72513</code></pre>
+<p>The results here are output as a <code>data.frame</code> aggregated to the level of states. The dataset contains an id for the state and the mean of <code>age_marr</code> for that state.</p>
+<p>The example above only aggregated one variable, but we can also get the mean of multiple variables at once by using the <code>cbind</code> command within the formula:</p>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb752-1" title="1">temp &lt;-<span class="st"> </span><span class="kw">aggregate</span>(<span class="kw">cbind</span>(age_marr,age)<span class="op">~</span>statefip, <span class="dt">data=</span>acs, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb752-2" title="2"><span class="kw">head</span>(temp)</a></code></pre></div>
+<pre><code>##   statefip age_marr      age
+## 1        1 29.27548 56.28057
+## 2        2 29.92585 53.06636
+## 3        4 30.36038 56.75826
+## 4        5 29.39313 55.65785
+## 5        6 30.02206 55.22376
+## 6        8 29.72513 54.17558</code></pre>
+<p>Now I get two variables for each state, mean age of marriage and mean age.</p>
+<p>We can also aggregate across multiple dimensions at the same time. Lets get mean age of marriage again, but this time by state and educational category.</p>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb754-1" title="1">temp &lt;-<span class="st"> </span><span class="kw">aggregate</span>(age_marr<span class="op">~</span>edattain<span class="op">+</span>statefip, <span class="dt">data=</span>acs, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb754-2" title="2"><span class="kw">head</span>(temp)</a></code></pre></div>
+<pre><code>##       edattain statefip age_marr
+## 1 Less than HS        1 29.63777
+## 2   HS Diploma        1 29.20512
+## 3 Some College        1 29.28409
+## 4      College        1 29.18011
+## 5 Less than HS        2 28.22311
+## 6   HS Diploma        2 28.90491</code></pre>
+<p>Now I get four means for each state, one for each educational attainment category. Its worth thinking a little about the structure of the output here. This data structure is a little different than what we are used to. I don’t have a single line for each observation (state) giving me the age of marriage as four separate variables. Instead I have four separate lines for each state. This data format is called the <strong>long</strong> format and we are not used to working with it. We will learn more in our next lab about how we can manipulate this format to get what we want.</p>
+<p>What if we want to aggregate the proportion of respondents in each category of a categorical variable by state? The syntax here is a little messier, but we can do this by creating booleans for each category and then calculating means:</p>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb756-1" title="1">temp &lt;-<span class="st"> </span><span class="kw">aggregate</span>(<span class="kw">cbind</span>(<span class="dt">prop_lhs=</span>edattain<span class="op">==</span><span class="st">&quot;Less than HS&quot;</span>, </a>
+<a class="sourceLine" id="cb756-2" title="2">                        <span class="dt">prop_hs_grad=</span>edattain<span class="op">==</span><span class="st">&quot;HS Diploma&quot;</span>,</a>
+<a class="sourceLine" id="cb756-3" title="3">                        <span class="dt">prop_scollege=</span>edattain<span class="op">==</span><span class="st">&quot;Some College&quot;</span>,</a>
+<a class="sourceLine" id="cb756-4" title="4">                        <span class="dt">prop_college_grad=</span>edattain<span class="op">==</span><span class="st">&quot;College&quot;</span>)<span class="op">~</span>statefip, </a>
+<a class="sourceLine" id="cb756-5" title="5">                  <span class="dt">data=</span>acs, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb756-6" title="6"><span class="kw">head</span>(temp)</a></code></pre></div>
+<pre><code>##   statefip  prop_lhs prop_hs_grad prop_scollege prop_college_grad
+## 1        1 0.2784240    0.2580242     0.2653052         0.1982465
+## 2        2 0.2907537    0.2587413     0.2665113         0.1839938
+## 3        4 0.2812910    0.2038612     0.2814826         0.2333653
+## 4        5 0.2969432    0.2821164     0.2503300         0.1706103
+## 5        6 0.2980686    0.1712014     0.2549658         0.2757642
+## 6        8 0.2389480    0.1763708     0.2509729         0.3337083</code></pre>
+<p>Its also important to note that I have been calculating the mean in all of these examples, but I could also easily substitute a different function. For example, I could use <code>sum</code> on the above codes to get counts of individuals by education:</p>
+<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb758-1" title="1">temp &lt;-<span class="st"> </span><span class="kw">aggregate</span>(<span class="kw">cbind</span>(<span class="dt">n_lhs=</span>edattain<span class="op">==</span><span class="st">&quot;Less than HS&quot;</span>, </a>
+<a class="sourceLine" id="cb758-2" title="2">                        <span class="dt">n_hs_grad=</span>edattain<span class="op">==</span><span class="st">&quot;HS Diploma&quot;</span>,</a>
+<a class="sourceLine" id="cb758-3" title="3">                        <span class="dt">n_scollege=</span>edattain<span class="op">==</span><span class="st">&quot;Some College&quot;</span>,</a>
+<a class="sourceLine" id="cb758-4" title="4">                        <span class="dt">n_college_grad=</span>edattain<span class="op">==</span><span class="st">&quot;College&quot;</span>)<span class="op">~</span>statefip, </a>
+<a class="sourceLine" id="cb758-5" title="5">                  <span class="dt">data=</span>acs, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb758-6" title="6"><span class="kw">head</span>(temp)</a></code></pre></div>
+<pre><code>##   statefip  n_lhs n_hs_grad n_scollege n_college_grad
+## 1        1  12925     11978      12316           9203
+## 2        2   1871      1665       1715           1184
+## 3        4  19087     13833      19100          15835
+## 4        5   8772      8334       7395           5040
+## 5        6 109649     62979      93793         101444
+## 6        8  12956      9563      13608          18094</code></pre>
 </div>
 </div>
             </section>
@@ -579,8 +679,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="pretty-pictures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reading-and-writing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reading-and-writing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reshaping-and-merging-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
