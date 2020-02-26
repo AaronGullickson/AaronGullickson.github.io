@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-02-21" />
+<meta name="date" content="2020-02-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="cleaning-data.html"/>
-
+<link rel="next" href="programming.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -345,6 +345,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reshaping-and-merging-data.html"><a href="reshaping-and-merging-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
 <li class="chapter" data-level="" data-path="reshaping-and-merging-data.html"><a href="reshaping-and-merging-data.html#merging-data"><i class="fa fa-check"></i>Merging data</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i>Programming</a><ul>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#an-example-theils-h"><i class="fa fa-check"></i>An Example: Theil’s H</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#our-data"><i class="fa fa-check"></i>Our Data</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#calculating-theils-h-for-a-single-state"><i class="fa fa-check"></i>Calculating Theil’s H for a single state</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#creating-functions"><i class="fa fa-check"></i>Creating Functions</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#iteration"><i class="fa fa-check"></i>Iteration</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -365,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="reshaping-and-merging-data" class="section level2">
 <h2>Reshaping and Merging Data</h2>
-<p>In this lab, I want to cover two important components of data wrangling, reshaping data from one format to one another and merging two diffent datasets together. As an example for this section, we are going to use some data from The <a href="http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators#">World Bank Development Indicators</a> and the <a href="http://www.ilo.org/ilostat/faces/wcnav_defaultSelection?_afrLoop=107076059659881&amp;_afrWindowMode=0&amp;_afrWindowId=kaen3qrnf_51#!%40%40%3F_afrWindowId%3Dkaen3qrnf_51%26_afrLoop%3D107076059659881%26_afrWindowMode%3D0%26_adf.ctrl-state%3Dkaen3qrnf_71">International Labour Organization</a>. Both of these sites have nice designs that allow users to filter an extract of their choosing by country, year, and variable type. They also allow download of the data in a variety of formats including CSV. The labor data provides information on unemployment rates by age and sex and I have limited the years to 2014 or later. I then pulled an extract of the world bank data from 2014 on all countries for the variables of GDP per capita, life expectancy at birth, and population size. You can download the World Bank extract <a href="https://aarongullickson.github.io/stat_book/resources/worldbank.csv">here</a> and the ILO data <a href="https://aarongullickson.github.io/stat_book/resources/ilostat.csv">here</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>In this lab, I want to cover two important components of data wrangling, reshaping data from one format to one another and merging two diffent datasets together. As an example for this section, we are going to use some data from The <a href="http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators#">World Bank Development Indicators</a> and the <a href="http://www.ilo.org/ilostat/faces/wcnav_defaultSelection?_afrLoop=107076059659881&amp;_afrWindowMode=0&amp;_afrWindowId=kaen3qrnf_51#!%40%40%3F_afrWindowId%3Dkaen3qrnf_51%26_afrLoop%3D107076059659881%26_afrWindowMode%3D0%26_adf.ctrl-state%3Dkaen3qrnf_71">International Labour Organization</a>. Both of these sites have nice designs that allow users to filter an extract of their choosing by country, year, and variable type. They also allow download of the data in a variety of formats including CSV. The labor data provides information on unemployment rates by age and sex and I have limited the years to 2014 or later. I then pulled an extract of the world bank data from 2014 on all countries for the variables of GDP per capita, life expectancy at birth, and population size. You can download the World Bank extract <a href="/stat_book/resources/worldbank.csv">here</a> and the ILO data <a href="/stat_book/resources/ilostat.csv">here</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>Ultimately, I want to create a final dataset which combined these sources. The final dataset should have an observation for each country with the variables of GDP per capita, life expectancy at birth, population size, and unemployment rates. In order to get there though, I am going to have to deal with some data issues.</p>
 <div id="reshaping" class="section level3">
 <h3>Reshaping</h3>
@@ -704,20 +712,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4          AGO               Angola  5232.7623 52.26688 24227524           NA
 ## 5          ALB              Albania  4568.5688 77.83046  2893654        17.49
 ## 6          ARE United Arab Emirates 44238.5998 77.36817  9086139           NA</code></pre>
-
 </div>
 </div>
-<!-- </div> -->
-
-
-
-
-
-
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>I should note that the World Bank CSV file had notes at the bottom that weren’t part of the data. I had to open up the CSV file in Excel in order to remove this junk, and then re-save it to get data that would be machine-readable by R. This is Very Bad but Unfortunately Common Practice.<a href="reshaping-and-merging-data.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>I should note that the World Bank CSV file had notes at the bottom that weren’t part of the data. I had to open up the CSV file in Excel in order to remove this junk, and then re-save it to get data that would be machine-readable by R. This is a Very Bad but Unfortunately Common Practice.<a href="reshaping-and-merging-data.html#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -725,8 +725,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="cleaning-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="cleaning-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

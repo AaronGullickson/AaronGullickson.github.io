@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-02-21" />
+<meta name="date" content="2020-02-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -345,6 +345,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="reshaping-and-merging-data.html"><a href="reshaping-and-merging-data.html#reshaping"><i class="fa fa-check"></i>Reshaping</a></li>
 <li class="chapter" data-level="" data-path="reshaping-and-merging-data.html"><a href="reshaping-and-merging-data.html#merging-data"><i class="fa fa-check"></i>Merging data</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i>Programming</a><ul>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#an-example-theils-h"><i class="fa fa-check"></i>An Example: Theil’s H</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#our-data"><i class="fa fa-check"></i>Our Data</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#calculating-theils-h-for-a-single-state"><i class="fa fa-check"></i>Calculating Theil’s H for a single state</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#creating-functions"><i class="fa fa-check"></i>Creating Functions</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#iteration"><i class="fa fa-check"></i>Iteration</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#putting-it-all-together"><i class="fa fa-check"></i>Putting It All Together</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -458,7 +466,7 @@ Mary Oakland,CAWhiteFemale16</code></pre>
 ## 2 Jim   Seattle,WA White Male      11
 ## 3 Mary  Oakland,CA White Female    16</code></pre>
 <p>I have to do a little more work than I did with CSV files. First I need to define a <code>col_positions</code> argument and feed in the results from the function <code>fwf_positions</code>. This <code>fwf_positions</code> function needs to have a vector of starting and ending positions for each variable. I also use the <code>col_names</code> argument in this function to assign names to each of my variables.</p>
-<p>Now I want to show you an example of fixed width data that is more realistic. The data I will use here were created from an extract of the 2018 <a href="https://www.census.gov/programs-surveys/acs">American Community Survey</a> data downloaded from <a href="https://usa.ipums.org/usa/">IPUMS</a>. The data come zipped up as a “G-zip” file with suffix “gz” which is a standard method of compressing data files. You can download the file <a href="https://aarongullickson.github.io/stat_book/resources/usa_00084.data.gz">here</a>. You can also <a href="https://aarongullickson.github.io/stat_book/resources/usa_00084.cbk.txt">view the codebook</a> that IPUMS provides which shows where the starting and ending positions are for each variable. Here is the relevant part of that codebook:</p>
+<p>Now I want to show you an example of fixed width data that is more realistic. The data I will use here were created from an extract of the 2018 <a href="https://www.census.gov/programs-surveys/acs">American Community Survey</a> data downloaded from <a href="https://usa.ipums.org/usa/">IPUMS</a>. The data come zipped up as a “G-zip” file with suffix “gz” which is a standard method of compressing data files. You can download the file <a href="/stat_book/resources/usa_00084.data.gz">here</a>. You can also <a href="/stat_book/resources/usa_00084.cbk.txt">view the codebook</a> that IPUMS provides which shows where the starting and ending positions are for each variable. Here is the relevant part of that codebook:</p>
 <pre><code>File Type:                    rectangular
 Case Selection:               No
   Variable               Columns        Len    2018   
