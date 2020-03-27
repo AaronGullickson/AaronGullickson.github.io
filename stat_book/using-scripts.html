@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-03-09" />
+<meta name="date" content="2020-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -240,8 +240,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html"><i class="fa fa-check"></i>The Linear Model, Revisited</a><ul>
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#reformulating-the-linear-model"><i class="fa fa-check"></i>Reformulating the linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#marginal-effects"><i class="fa fa-check"></i>Marginal effects</a></li>
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
@@ -250,7 +251,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The IID Violation and Robust Standard Errors</a><ul>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#violations-of-independence"><i class="fa fa-check"></i>Violations of independence</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#heteroscedasticity"><i class="fa fa-check"></i>Heteroscedasticity</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#fixing-iid-violations"><i class="fa fa-check"></i>Fixing IID violations</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#weighted-least-squares"><i class="fa fa-check"></i>Weighted least squares</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#robust-standard-errors"><i class="fa fa-check"></i>Robust standard errors</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a><ul>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#identifying-valid-skips"><i class="fa fa-check"></i>Identifying Valid Skips</a></li>
@@ -383,8 +390,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="getting-started-with-scripts" class="section level3">
 <h3>Getting Started with Scripts</h3>
 <p>Lets put together a simple script in R. In RStudio, you can go to <code>File &gt; New File &gt; R Script</code> to get a new script up and running. This will open a text pane in the upper left corner of RStudio. This is your R script. Lets start by writing a simple “Hello World” script. Type the following command into your script:</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" title="1"><span class="kw">cat</span>(<span class="st">&quot;Hello World!&quot;</span>)</a>
-<a class="sourceLine" id="cb477-2" title="2"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" title="1"><span class="kw">cat</span>(<span class="st">&quot;Hello World!&quot;</span>)</a>
+<a class="sourceLine" id="cb496-2" title="2"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a></code></pre></div>
 <p>You can run this script a couple of different ways:</p>
 <ul>
 <li>You could just copy and paste both lines of code to the console in the lower left. This is quick and dirty but is typically not the most efficient way to run code from your script.</li>
@@ -400,7 +407,7 @@ Hello World
 &gt; 2+2
 [1] 4</code></pre>
 <p>Now, lets save this script as <code>helloworld.R</code> (“.R” is the expected suffix for R scripts) and source it from the console:</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" title="1"><span class="kw">source</span>(<span class="st">&quot;helloworld.R&quot;</span>, <span class="dt">echo=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb498-1" title="1"><span class="kw">source</span>(<span class="st">&quot;helloworld.R&quot;</span>, <span class="dt">echo=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ## &gt; cat(&quot;Hello World&quot;)
 ## Hello World
@@ -413,15 +420,15 @@ Hello World
 <li>Calculate the odds ratio between the two new variables.</li>
 </ul>
 <p>I don’t expect you to know how all of this code works yet. I just want to show you an example of a script that actually does something interesting.</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" title="1">politics<span class="op">$</span>supportgmar &lt;-<span class="st"> </span>politics<span class="op">$</span>gaymarriage<span class="op">==</span><span class="st">&quot;Support gay marriage&quot;</span></a>
-<a class="sourceLine" id="cb481-2" title="2">politics<span class="op">$</span>evangelical &lt;-<span class="st"> </span>politics<span class="op">$</span>relig<span class="op">==</span><span class="st">&quot;Evangelical Protestant&quot;</span></a>
-<a class="sourceLine" id="cb481-3" title="3">tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>supportgmar, politics<span class="op">$</span>evangelical)</a>
-<a class="sourceLine" id="cb481-4" title="4">tab</a>
-<a class="sourceLine" id="cb481-5" title="5"><span class="kw">prop.table</span>(tab, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb481-6" title="6">OR &lt;-<span class="st"> </span>tab[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">/</span>(tab[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb481-7" title="7">OR</a></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb500-1" title="1">politics<span class="op">$</span>supportgmar &lt;-<span class="st"> </span>politics<span class="op">$</span>gaymarriage<span class="op">==</span><span class="st">&quot;Support gay marriage&quot;</span></a>
+<a class="sourceLine" id="cb500-2" title="2">politics<span class="op">$</span>evangelical &lt;-<span class="st"> </span>politics<span class="op">$</span>relig<span class="op">==</span><span class="st">&quot;Evangelical Protestant&quot;</span></a>
+<a class="sourceLine" id="cb500-3" title="3">tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>supportgmar, politics<span class="op">$</span>evangelical)</a>
+<a class="sourceLine" id="cb500-4" title="4">tab</a>
+<a class="sourceLine" id="cb500-5" title="5"><span class="kw">prop.table</span>(tab, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb500-6" title="6">OR &lt;-<span class="st"> </span>tab[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">/</span>(tab[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb500-7" title="7">OR</a></code></pre></div>
 <p>If I run this script, I will get:</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" title="1"><span class="kw">source</span>(<span class="st">&quot;politics.R&quot;</span>, <span class="dt">echo=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" title="1"><span class="kw">source</span>(<span class="st">&quot;politics.R&quot;</span>, <span class="dt">echo=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ## &gt; politics$supportgmar &lt;- politics$gaymarriage == &quot;Support gay marriage&quot;
 ## 
@@ -452,7 +459,7 @@ Hello World
 <div id="not-everything-goes-into-your-script" class="section level3">
 <h3>Not Everything Goes Into Your Script</h3>
 <p>You don’t need to put every command into your script. The script should provide a narrative of your analysis (the part that you want to be easily reproducible), not a log of every single command you ran. Sometimes you may try out some exploratory commands or may just need to get some basic information about a variable. For example, in the script above, I first had to remember what the names were for the categories of the <code>gaymarriage</code> variable. To figure this out, I typed:</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" title="1"><span class="kw">table</span>(politics<span class="op">$</span>gaymarriage)</a></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" title="1"><span class="kw">table</span>(politics<span class="op">$</span>gaymarriage)</a></code></pre></div>
 <pre><code>## 
 ## No legal recognition         Civil unions Support gay marriage 
 ##                  773                  992                 2473</code></pre>
@@ -462,35 +469,35 @@ Hello World
 <h3>Commenting for Sanity</h3>
 <p>There is one big thing missing from the scripts listed above: comments! Comments are crucial for good script writing. Comments are lines in your script that will not be processed by R (or Stata). In R, you can create single line comments by using the pound sign (#). Anything after the pound sign will be ignored by R until a new line. You should use these comments to explain what the code is doing. You can also use them to help visually separate the script into sections for easier readability. Comments help you remember what you were doing when you come back to a project you haven’t worked on for weeks or months. They are also useful for other people who might end up reading your code (co-authors, advisers, etc). Increasingly, academics are being asked to do more “open” research where we make our code available. As you write code, its useful to think of it as something that will eventually be seen by other people and thus needs to be well documented.</p>
 <p>Here is the script from above, but now with some helpful commenting:</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" title="1"><span class="co">#################################################################</span></a>
-<a class="sourceLine" id="cb487-2" title="2"><span class="co"># Aaron Gullickson</span></a>
-<a class="sourceLine" id="cb487-3" title="3"><span class="co"># Program to analyze the differences in support for gay marriage</span></a>
-<a class="sourceLine" id="cb487-4" title="4"><span class="co"># between evangelical christians and all those of other religious</span></a>
-<a class="sourceLine" id="cb487-5" title="5"><span class="co"># affiliations</span></a>
-<a class="sourceLine" id="cb487-6" title="6"><span class="co">#################################################################</span></a>
-<a class="sourceLine" id="cb487-7" title="7"></a>
-<a class="sourceLine" id="cb487-8" title="8"><span class="co">#### DATA ORGANIZATION ####</span></a>
-<a class="sourceLine" id="cb487-9" title="9"></a>
-<a class="sourceLine" id="cb487-10" title="10"><span class="co">#load the politics dataset. Note that this command will not work if </span></a>
-<a class="sourceLine" id="cb487-11" title="11"><span class="co">#you have the dataset loaded into a different directory. </span></a>
-<a class="sourceLine" id="cb487-12" title="12"><span class="kw">load</span>(<span class="st">&quot;politics.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb487-13" title="13"></a>
-<a class="sourceLine" id="cb487-14" title="14"><span class="co">#dichotomize both the support for gay marriage and the religious variable</span></a>
-<a class="sourceLine" id="cb487-15" title="15">politics<span class="op">$</span>supportgmar &lt;-<span class="st"> </span>politics<span class="op">$</span>gaymarriage<span class="op">==</span><span class="st">&quot;Support gay marriage&quot;</span></a>
-<a class="sourceLine" id="cb487-16" title="16">politics<span class="op">$</span>evangelical &lt;-<span class="st"> </span>politics<span class="op">$</span>relig<span class="op">==</span><span class="st">&quot;Evangelical Protestant&quot;</span></a>
-<a class="sourceLine" id="cb487-17" title="17"></a>
-<a class="sourceLine" id="cb487-18" title="18"><span class="co">#### ANALYSIS ####</span></a>
-<a class="sourceLine" id="cb487-19" title="19"></a>
-<a class="sourceLine" id="cb487-20" title="20"><span class="co">#create a crosstab</span></a>
-<a class="sourceLine" id="cb487-21" title="21">tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>supportgmar, politics<span class="op">$</span>evangelical)</a>
-<a class="sourceLine" id="cb487-22" title="22">tab</a>
-<a class="sourceLine" id="cb487-23" title="23"></a>
-<a class="sourceLine" id="cb487-24" title="24"><span class="co">#Distribution of support conditional on religion</span></a>
-<a class="sourceLine" id="cb487-25" title="25"><span class="kw">prop.table</span>(tab, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb487-26" title="26"></a>
-<a class="sourceLine" id="cb487-27" title="27"><span class="co">#Calculate the odds ratio of support</span></a>
-<a class="sourceLine" id="cb487-28" title="28">OR &lt;-<span class="st"> </span>tab[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">/</span>(tab[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb487-29" title="29">OR</a></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" title="1"><span class="co">#################################################################</span></a>
+<a class="sourceLine" id="cb506-2" title="2"><span class="co"># Aaron Gullickson</span></a>
+<a class="sourceLine" id="cb506-3" title="3"><span class="co"># Program to analyze the differences in support for gay marriage</span></a>
+<a class="sourceLine" id="cb506-4" title="4"><span class="co"># between evangelical christians and all those of other religious</span></a>
+<a class="sourceLine" id="cb506-5" title="5"><span class="co"># affiliations</span></a>
+<a class="sourceLine" id="cb506-6" title="6"><span class="co">#################################################################</span></a>
+<a class="sourceLine" id="cb506-7" title="7"></a>
+<a class="sourceLine" id="cb506-8" title="8"><span class="co">#### DATA ORGANIZATION ####</span></a>
+<a class="sourceLine" id="cb506-9" title="9"></a>
+<a class="sourceLine" id="cb506-10" title="10"><span class="co">#load the politics dataset. Note that this command will not work if </span></a>
+<a class="sourceLine" id="cb506-11" title="11"><span class="co">#you have the dataset loaded into a different directory. </span></a>
+<a class="sourceLine" id="cb506-12" title="12"><span class="kw">load</span>(<span class="st">&quot;politics.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb506-13" title="13"></a>
+<a class="sourceLine" id="cb506-14" title="14"><span class="co">#dichotomize both the support for gay marriage and the religious variable</span></a>
+<a class="sourceLine" id="cb506-15" title="15">politics<span class="op">$</span>supportgmar &lt;-<span class="st"> </span>politics<span class="op">$</span>gaymarriage<span class="op">==</span><span class="st">&quot;Support gay marriage&quot;</span></a>
+<a class="sourceLine" id="cb506-16" title="16">politics<span class="op">$</span>evangelical &lt;-<span class="st"> </span>politics<span class="op">$</span>relig<span class="op">==</span><span class="st">&quot;Evangelical Protestant&quot;</span></a>
+<a class="sourceLine" id="cb506-17" title="17"></a>
+<a class="sourceLine" id="cb506-18" title="18"><span class="co">#### ANALYSIS ####</span></a>
+<a class="sourceLine" id="cb506-19" title="19"></a>
+<a class="sourceLine" id="cb506-20" title="20"><span class="co">#create a crosstab</span></a>
+<a class="sourceLine" id="cb506-21" title="21">tab &lt;-<span class="st"> </span><span class="kw">table</span>(politics<span class="op">$</span>supportgmar, politics<span class="op">$</span>evangelical)</a>
+<a class="sourceLine" id="cb506-22" title="22">tab</a>
+<a class="sourceLine" id="cb506-23" title="23"></a>
+<a class="sourceLine" id="cb506-24" title="24"><span class="co">#Distribution of support conditional on religion</span></a>
+<a class="sourceLine" id="cb506-25" title="25"><span class="kw">prop.table</span>(tab, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb506-26" title="26"></a>
+<a class="sourceLine" id="cb506-27" title="27"><span class="co">#Calculate the odds ratio of support</span></a>
+<a class="sourceLine" id="cb506-28" title="28">OR &lt;-<span class="st"> </span>tab[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">/</span>(tab[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>tab[<span class="dv">2</span>,<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb506-29" title="29">OR</a></code></pre></div>
 <p>Even if you don’t understand what the code here is doing yet, you can at least get a sense of what it is supposed to be doing. Notice that I use multiple pound signs to draw attention to the header and larger sections. For a script this small, the division between DATA ORGANIZATION and ANALYSIS is probably overkill, but for larger scripts, this sectioning can be very useful in helping to easily distinguish different components of the analysis.</p>
 <p>One nice feature of RStudio is that if you surround your comments with at least four pound signs on either side, then the outline of your script will show these sections and you can navigate to them. You can also go to <code>Code &gt; Insert Section</code> to add a section with a somewhat different look.</p>
 <div id="dont-overcomment" class="section level4">

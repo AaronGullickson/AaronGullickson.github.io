@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-03-09" />
+<meta name="date" content="2020-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -240,8 +240,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html"><i class="fa fa-check"></i>The Linear Model, Revisited</a><ul>
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#reformulating-the-linear-model"><i class="fa fa-check"></i>Reformulating the linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#marginal-effects"><i class="fa fa-check"></i>Marginal effects</a></li>
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
@@ -250,7 +251,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The IID Violation and Robust Standard Errors</a><ul>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#violations-of-independence"><i class="fa fa-check"></i>Violations of independence</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#heteroscedasticity"><i class="fa fa-check"></i>Heteroscedasticity</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#fixing-iid-violations"><i class="fa fa-check"></i>Fixing IID violations</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#weighted-least-squares"><i class="fa fa-check"></i>Weighted least squares</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#robust-standard-errors"><i class="fa fa-check"></i>Robust standard errors</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a><ul>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#identifying-valid-skips"><i class="fa fa-check"></i>Identifying Valid Skips</a></li>
@@ -393,6 +400,66 @@ In this formulation, <span class="math inline">\(\hat{y}_i\)</span> is the predi
 <p>By dividing up the formula into two separate components, we can begin to think of our linear model as containing a structural component and a random (or stochastic) component. The structural component is the linear equation predicting <span class="math inline">\(\hat{y}_i\)</span>. This is the formal relationship we are trying to fit between the dependent and independent variables. The stochastic component on the other hand is given by the <span class="math inline">\(\epsilon_i\)</span> term in the second formula. In order to get back to the actual values of the dependent variable, we have to add in the residual component that is not accounted for by the linear model.</p>
 <p>From this perspective, we can rethink our entire linear model as a partition of the total variation in the dependent variable into the structural component that can be accounted for by our linear model and the residual component that is unaccounted for by the model. This is exactly as we envisioned things when we learned to calculate <span class="math inline">\(R^2\)</span> in previous chapters.</p>
 </div>
+<div id="marginal-effects" class="section level3">
+<h3>Marginal effects</h3>
+<p>The <strong>marginal effect</strong> of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> gives the expected change in <span class="math inline">\(y\)</span> for a one unit increase in <span class="math inline">\(x\)</span> at a given value of <span class="math inline">\(x\)</span>. If that sounds familiar, its because this is very similar to the interpretation we give of the slope in a linear model. In a basic linear model with no interaction terms, the marginal effect of a given independent variable is in fact given by the slope.</p>
+<p>The difference in interpretation is the little part about “at a given value of x.” In a basic linear model this addendum is irrelevant because the expected increase in <span class="math inline">\(y\)</span> for a one unit increase in <span class="math inline">\(x\)</span> is the same regardless of the current value of <span class="math inline">\(x\)</span> – thats what it means for an effect to be linear. However, when we start delving into more complex model structures, such as interaction terms and some of the models we will discuss in this module, things get more complicated. The marginal effect can help us make sense of complicated models.</p>
+<p>The marginal effect is calculated using calculus. I won’t delve too deeply into the details here, but the marginal effect is equal to the partial derivative of y with respect to x. This partial derivative gives us what is called the <em>tangent line</em> of a curve at any point of <span class="math inline">\(x\)</span> which measures the instantenous rate of change in some mathematical function.</p>
+<p>Lets take the case of a simple linear model with two predictor variables:</p>
+<p><span class="math display">\[y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\epsilon_i\]</span></p>
+<p>We can calculate the marginal effect of <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> by taking their partial derivatives. If you don’t know how to do that, its fine. But if you do know a little calculus, this is a simple calculation:</p>
+<p><span class="math display">\[\frac{\partial y}{\partial x_1}=\beta_1\]</span>
+<span class="math display">\[\frac{\partial y}{\partial x_2}=\beta_2\]</span></p>
+<p>As stated above, the marginal effects are just given by the slope for each variable, respectively.</p>
+<p>Marginal effects really become useful when we have more complex models. Lets now try a model similar to the one above but with an interaction term:</p>
+<p><span class="math display">\[y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\beta_3x_{i1}x_{i2}+\epsilon_i\]</span></p>
+<p>The partial derivatives of this model turn out to be:</p>
+<p><span class="math display">\[\frac{\partial y}{\partial x_1}=\beta_1+\beta_3x_{i2}\]</span>
+<span class="math display">\[\frac{\partial y}{\partial x_2}=\beta_2+\beta_3x_{i1}\]</span></p>
+<p>The marginal effect of each independent variable on <span class="math inline">\(y\)</span> now depends on the value of the other independent variable. Thats how interaction terms work, but now we can see that effect much more clearly in a mathematical sense. The slope of each independent variable is itself determined by a linear function rather than being a single constant value.</p>
+<div id="marginal-effect-interaction-example" class="section level4">
+<h4>Marginal effect interaction example</h4>
+<p>Lets try this with a concrete example. For this case, I will look at the effect on wages of the interaction between number of children in the household and gender:</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(wages<span class="op">~</span>nchild<span class="op">*</span>gender, <span class="dt">data=</span>earnings)</a>
+<a class="sourceLine" id="cb242-2" title="2"><span class="kw">round</span>(<span class="kw">coef</span>(model), <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##         (Intercept)              nchild        genderFemale nchild:genderFemale 
+##              24.720               1.779              -2.839              -1.335</code></pre>
+<p>So, my full model is given by:</p>
+<p><span class="math display">\[\hat{\text{wages}}_i=24.720+1.779(\text{nchildren}_i)-2.839(\text{female}_i)-1.335(\text{nchildren}_i)(\text{female}_i)\]</span></p>
+<p>Following the formulas above, the marginal effect of number of children is given by:</p>
+<p><span class="math display">\[1.779-1.335(\text{female}_i)\]</span></p>
+<p>Note that this only takes two values because female is an indicator variable. When we have a man, the <span class="math inline">\(\text{female}\)</span> variable will be zero and therefore the effect of an additional child will be 1.779. When we have a woman, <span class="math inline">\(\text{female}\)</span> variable will be one, and the effect of an additional child will be <span class="math inline">\(1.779-1.335=0.444\)</span>.</p>
+<p>The marginal effect for the gender gap will be given by:</p>
+<p><span class="math display">\[-2.839-1.335(\text{nchildren}_i)\]</span></p>
+<p>So the gender gap starts at 2.839 with no children in the household and grows by 1.335 for each additional child.</p>
+<p>We can also plot up a <strong>marginal effects graph</strong> that shows us how the gender gap changes by number of children in the household.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1">nchild &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb244-2" title="2">gender_gap &lt;-<span class="st"> </span><span class="fl">-2.839-1.335</span><span class="op">*</span>nchild</a>
+<a class="sourceLine" id="cb244-3" title="3">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(nchild, gender_gap)</a>
+<a class="sourceLine" id="cb244-4" title="4"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>nchild, <span class="dt">y=</span>gender_gap))<span class="op">+</span></a>
+<a class="sourceLine" id="cb244-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linetype=</span><span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb244-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb244-7" title="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;number of children in household&quot;</span>,</a>
+<a class="sourceLine" id="cb244-8" title="8">       <span class="dt">y=</span><span class="st">&quot;predicted gender gap in hourly wages&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb244-9" title="9"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb244-10" title="10"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:marginal-fx-graph"></span>
+<img src="stat_book_files/figure-html/marginal-fx-graph-1.png" alt="Marginal effect of number of children on the gender gap in wages" width="672" />
+<p class="caption">
+Figure 56: Marginal effect of number of children on the gender gap in wages
+</p>
+</div>
+</div>
+</div>
+<div id="linear-model-assumptions" class="section level3">
+<h3>Linear model assumptions</h3>
+<p>Two important assumptions underlie the linear model. The first assumption is the assumption of <strong>linearity</strong>. In short, we assume that the the relationship between the dependent and independent variables is best described by a linear function. In prior chapters, we have seen examples where this assumption of linearity was clearly violated. When we choose the wrong model for the given relationship, we have made a <em>specification error</em>. Fitting a linear model to a non-linear relationship is one of the most common forms of specification error. However, this assumption is not as deadly as it sounds. Provided that we correctly diagnose the problem, there are a variety of tools that we can use to fit a non-linear relationship within the linear model framework. We will cover this techniques in the next section.</p>
+<p>The second assumption of linear models is that the residual or error terms <span class="math inline">\(\epsilon_i\)</span> are <strong>independent</strong> of one another and <strong>identically distributed</strong>. This is often called the <strong>i.i.d. assumption</strong>, for short. This assumption is a little more subtle. In order to understand, we need to return to this equation from earlier:</p>
+<p><span class="math display">\[y_i=\hat{y}_i+\epsilon_i\]</span></p>
+<p>One way to think about what is going on here is that in order to get an actual value of <span class="math inline">\(y_i\)</span> you feed in all of the independent variables into your linear model equation to get <span class="math inline">\(\hat{y}_i\)</span> and then you reach into some distribution of numbers (or a bag of numbers if you need something more concrete to visualize) to pull out a random value of <span class="math inline">\(\epsilon_i\)</span> which you add to the end of your predicted value to get the actual value. When we think about the equation this way, we are thinking about it as a <strong>data generating process</strong> in which we get <span class="math inline">\(y_i\)</span> values from completing the equation on the right.</p>
+<p>The i.i.d. assumption comes into play when we reach into that distribution (or bag) to draw out our random values. <strong>Independence</strong> assumes that what we drew previously won’t affect what we draw in the future. The most common violation of this assumption is in time series data in which peaks and valleys in the time series tend to come clustered in time, so that when you have a high (or low) error in one year, you are likely to have a similar error in the next year. <strong>Identically distributed</strong> means that you are drawn from the same distribution (or bag) each time you make a draw. One of the most common violation of this assumption is when error terms tend to get larger in absolute size as the predicted value grows in size.</p>
+<p>In later sections of this chapter, we will cover the i.i.d. assumption in more detail including the consequences of violating it, diagnostics for detecting it, and some corrections for when it does occur.</p>
+</div>
 <div id="estimating-a-linear-model" class="section level3">
 <h3>Estimating a linear model</h3>
 <p>Up until now, we have not discussed how R actually calculates all of the slopes and intercept for a linear model with multiple independent variables. We only know the equations for a linear model with one independent variable.</p>
@@ -470,42 +537,42 @@ In this section, we will learn the formal math that underlies how this estimatio
 \end{eqnarray*}
 \]</span></p>
 <p>R can help us with these calculations. the <code>t</code> command will transpose a matrix or vector and the <code>%*%</code> operator will to matrix algebra multiplication.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb242-2" title="2">X &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">4</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">6</span>))</a>
-<a class="sourceLine" id="cb242-3" title="3">X</a></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb245-2" title="2">X &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">4</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb245-3" title="3">X</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    7    4
 ## [2,]    1    3    2
 ## [3,]    1    1    6</code></pre>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="kw">t</span>(X)</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1"><span class="kw">t</span>(X)</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    1    1
 ## [2,]    7    3    1
 ## [3,]    4    2    6</code></pre>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1">X<span class="op">%*%</span>y</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1">X<span class="op">%*%</span>y</a></code></pre></div>
 <pre><code>##      [,1]
 ## [1,]   51
 ## [2,]   25
 ## [3,]   27</code></pre>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="kw">t</span>(X)<span class="op">%*%</span>X</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="kw">t</span>(X)<span class="op">%*%</span>X</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    3   11   12
 ## [2,]   11   59   40
 ## [3,]   12   40   56</code></pre>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="co">#a shortcut for squaring a matrix</span></a>
-<a class="sourceLine" id="cb250-2" title="2"><span class="kw">crossprod</span>(X)</a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="co">#a shortcut for squaring a matrix</span></a>
+<a class="sourceLine" id="cb253-2" title="2"><span class="kw">crossprod</span>(X)</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    3   11   12
 ## [2,]   11   59   40
 ## [3,]   12   40   56</code></pre>
 <p>We can also calculate the <strong>inverse</strong> of a matrix. The inverse of a matrix (<span class="math inline">\(\mathbf{X}^{-1}\)</span>) is the matrix that when multiplied by the original matrix produces the <strong>identity</strong> matrix which is just a matrix of ones along the diagonal cells and zeroes elsewhere. Anything multiplied by the identity matrix is just itself, so the identity matrix is like 1 at the matrix algebra level. Calculating an inverse is a difficult calculation that I won’t go through here, but R can do it for us easily with the <code>solve</code> command:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1">inverse.X &lt;-<span class="st"> </span><span class="kw">solve</span>(X)</a>
-<a class="sourceLine" id="cb252-2" title="2">inverse.X</a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1">inverse.X &lt;-<span class="st"> </span><span class="kw">solve</span>(X)</a>
+<a class="sourceLine" id="cb255-2" title="2">inverse.X</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,] -0.8  1.9 -0.1
 ## [2,]  0.2 -0.1 -0.1
 ## [3,]  0.1 -0.3  0.2</code></pre>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="kw">round</span>(inverse.X <span class="op">%*%</span><span class="st"> </span>X,<span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="kw">round</span>(inverse.X <span class="op">%*%</span><span class="st"> </span>X,<span class="dv">0</span>)</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    0    0
 ## [2,]    0    1    0
@@ -543,8 +610,8 @@ SSR(\beta)&amp;=&amp;(\mathbf{y}-\mathbf{X\beta})&#39;(\mathbf{y}-\mathbf{X\beta
 \mathbf{\beta}&amp;=&amp;(\mathbf{X&#39;X})^{-1}\mathbf{X&#39;y}\\
 \end{eqnarray*}\]</span></p>
 <p>Ta-dah! We have arrived at the matrix algebra solution for the best fitting parameters for a linear model with any number of independent variables. Lets try this formula out in R:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(movies)), movies[,<span class="kw">c</span>(<span class="st">&quot;Runtime&quot;</span>,<span class="st">&quot;BoxOffice&quot;</span>)]))</a>
-<a class="sourceLine" id="cb256-2" title="2"><span class="kw">head</span>(X)</a></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(movies)), movies[,<span class="kw">c</span>(<span class="st">&quot;Runtime&quot;</span>,<span class="st">&quot;BoxOffice&quot;</span>)]))</a>
+<a class="sourceLine" id="cb259-2" title="2"><span class="kw">head</span>(X)</a></code></pre></div>
 <pre><code>##     rep(1, nrow(movies)) Runtime BoxOffice
 ## 164                    1     118      47.1
 ## 165                    1     104       3.9
@@ -552,15 +619,15 @@ SSR(\beta)&amp;=&amp;(\mathbf{y}-\mathbf{X\beta})&#39;(\mathbf{y}-\mathbf{X\beta
 ## 167                    1     111      11.4
 ## 168                    1     123      39.9
 ## 169                    1     116      32.4</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1">y &lt;-<span class="st"> </span>movies<span class="op">$</span>TomatoMeter </a>
-<a class="sourceLine" id="cb258-2" title="2">beta &lt;-<span class="st"> </span><span class="kw">solve</span>(<span class="kw">crossprod</span>(X))<span class="op">%*%</span><span class="kw">crossprod</span>(X,y) </a>
-<a class="sourceLine" id="cb258-3" title="3">beta</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1">y &lt;-<span class="st"> </span>movies<span class="op">$</span>TomatoMeter </a>
+<a class="sourceLine" id="cb261-2" title="2">beta &lt;-<span class="st"> </span><span class="kw">solve</span>(<span class="kw">crossprod</span>(X))<span class="op">%*%</span><span class="kw">crossprod</span>(X,y) </a>
+<a class="sourceLine" id="cb261-3" title="3">beta</a></code></pre></div>
 <pre><code>##                             [,1]
 ## rep(1, nrow(movies)) 11.09207358
 ## Runtime               0.32320152
 ## BoxOffice             0.05923506</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Runtime<span class="op">+</span>BoxOffice, <span class="dt">data=</span>movies)</a>
-<a class="sourceLine" id="cb260-2" title="2"><span class="kw">coef</span>(model)</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(TomatoMeter<span class="op">~</span>Runtime<span class="op">+</span>BoxOffice, <span class="dt">data=</span>movies)</a>
+<a class="sourceLine" id="cb263-2" title="2"><span class="kw">coef</span>(model)</a></code></pre></div>
 <pre><code>## (Intercept)     Runtime   BoxOffice 
 ## 11.09207358  0.32320152  0.05923506</code></pre>
 <p>It works!</p>
@@ -570,42 +637,33 @@ SSR(\beta)&amp;=&amp;(\mathbf{y}-\mathbf{X\beta})&#39;(\mathbf{y}-\mathbf{X\beta
 <p><span class="math display">\[s^2=\frac{\sum(y_i-\hat{y}_i)^2}{n-p-1}\]</span></p>
 <p>based on the fitted values of <span class="math inline">\(\hat{y}_i\)</span> from our linear model. <span class="math inline">\(p\)</span> is the number of independent variables in our model.</p>
 <p>The covariance matrix actually provides us with some interesting information about the correlation of our independent variables. For our purposes we just want the square root of the diagonal elements, which gives us the standard error for our model. Continuing with the example estimating tomato meter ratings by run time and box office returns in our movies dataset, lets calculate all the numbers we need for an inference test:</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" title="1"><span class="co">#get the predicted values of y</span></a>
-<a class="sourceLine" id="cb262-2" title="2">y.hat &lt;-<span class="st"> </span>X<span class="op">%*%</span>beta </a>
-<a class="sourceLine" id="cb262-3" title="3">df &lt;-<span class="st"> </span><span class="kw">length</span>(y)<span class="op">-</span><span class="kw">ncol</span>(X) </a>
-<a class="sourceLine" id="cb262-4" title="4"><span class="co">#calculate our sample variance of the residual terms</span></a>
-<a class="sourceLine" id="cb262-5" title="5">s.sq &lt;-<span class="st"> </span><span class="kw">sum</span>((y<span class="op">-</span>y.hat)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>df </a>
-<a class="sourceLine" id="cb262-6" title="6"><span class="co">#calculate the covariance matrix</span></a>
-<a class="sourceLine" id="cb262-7" title="7">covar.matrix &lt;-<span class="st"> </span>s.sq<span class="op">*</span><span class="kw">solve</span>(<span class="kw">crossprod</span>(X)) </a>
-<a class="sourceLine" id="cb262-8" title="8"><span class="co">#extract SEs from the square root of the diagonal</span></a>
-<a class="sourceLine" id="cb262-9" title="9">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">diag</span>(covar.matrix)) </a>
-<a class="sourceLine" id="cb262-10" title="10"><span class="co">## calculate t-stats from our betas and SEs</span></a>
-<a class="sourceLine" id="cb262-11" title="11">t.stat &lt;-<span class="st"> </span>beta<span class="op">/</span>se </a>
-<a class="sourceLine" id="cb262-12" title="12"><span class="co">#calculate p-values from the t-stat</span></a>
-<a class="sourceLine" id="cb262-13" title="13">p.value &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="kw">abs</span>(t.stat), df) </a>
-<a class="sourceLine" id="cb262-14" title="14"><span class="kw">data.frame</span>(beta,se,t.stat,p.value)</a></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1"><span class="co">#get the predicted values of y</span></a>
+<a class="sourceLine" id="cb265-2" title="2">y.hat &lt;-<span class="st"> </span>X<span class="op">%*%</span>beta </a>
+<a class="sourceLine" id="cb265-3" title="3">df &lt;-<span class="st"> </span><span class="kw">length</span>(y)<span class="op">-</span><span class="kw">ncol</span>(X) </a>
+<a class="sourceLine" id="cb265-4" title="4"><span class="co">#calculate our sample variance of the residual terms</span></a>
+<a class="sourceLine" id="cb265-5" title="5">s.sq &lt;-<span class="st"> </span><span class="kw">sum</span>((y<span class="op">-</span>y.hat)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>df </a>
+<a class="sourceLine" id="cb265-6" title="6"><span class="co">#calculate the covariance matrix</span></a>
+<a class="sourceLine" id="cb265-7" title="7">covar.matrix &lt;-<span class="st"> </span>s.sq<span class="op">*</span><span class="kw">solve</span>(<span class="kw">crossprod</span>(X)) </a>
+<a class="sourceLine" id="cb265-8" title="8"><span class="co">#extract SEs from the square root of the diagonal</span></a>
+<a class="sourceLine" id="cb265-9" title="9">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">diag</span>(covar.matrix)) </a>
+<a class="sourceLine" id="cb265-10" title="10"><span class="co">## calculate t-stats from our betas and SEs</span></a>
+<a class="sourceLine" id="cb265-11" title="11">t.stat &lt;-<span class="st"> </span>beta<span class="op">/</span>se </a>
+<a class="sourceLine" id="cb265-12" title="12"><span class="co">#calculate p-values from the t-stat</span></a>
+<a class="sourceLine" id="cb265-13" title="13">p.value &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span><span class="kw">abs</span>(t.stat), df) </a>
+<a class="sourceLine" id="cb265-14" title="14"><span class="kw">data.frame</span>(beta,se,t.stat,p.value)</a></code></pre></div>
 <pre><code>##                             beta          se    t.stat      p.value
 ## rep(1, nrow(movies)) 11.09207358 3.269128357  3.392976 7.019316e-04
 ## Runtime               0.32320152 0.031734307 10.184609 6.617535e-24
 ## BoxOffice             0.05923506 0.007978845  7.424014 1.540215e-13</code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1"><span class="co">#compare to the lm command</span></a>
-<a class="sourceLine" id="cb264-2" title="2"><span class="kw">summary</span>(model)<span class="op">$</span>coef</a></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" title="1"><span class="co">#compare to the lm command</span></a>
+<a class="sourceLine" id="cb267-2" title="2"><span class="kw">summary</span>(model)<span class="op">$</span>coef</a></code></pre></div>
 <pre><code>##                Estimate  Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept) 11.09207358 3.269128357  3.392976 7.019316e-04
 ## Runtime      0.32320152 0.031734307 10.184609 6.617535e-24
 ## BoxOffice    0.05923506 0.007978845  7.424014 1.540215e-13</code></pre>
 <p>And it all works. As I said at the beginning, this is a lot of math and not something you need to think about every day. I am not expecting all of this will stick the first time around, but I want it to be here for you as a handy reference for the future.</p>
-</div>
-</div>
-<div id="linear-model-assumptions" class="section level3">
-<h3>Linear model assumptions</h3>
-<p>Two important assumptions underlie the linear model. The first assumption is the assumption of <strong>linearity</strong>. In short, we assume that the the relationship between the dependent and independent variables is best described by a linear function. In prior chapters, we have seen examples where this assumption of linearity was clearly violated. When we choose the wrong model for the given relationship, we have made a <em>specification error</em>. Fitting a linear model to a non-linear relationship is one of the most common forms of specification error. However, this assumption is not as deadly as it sounds. Provided that we correctly diagnose the problem, there are a variety of tools that we can use to fit a non-linear relationship within the linear model framework. We will cover this techniques in the next section.</p>
-<p>The second assumption of linear models is that the residual or error terms <span class="math inline">\(\epsilon_i\)</span> are <strong>independent</strong> of one another and <strong>identically distributed</strong>. This is often called the <strong>i.i.d. assumption</strong>, for short. This assumption is a little more subtle. In order to understand, we need to return to this equation from earlier:</p>
-<p><span class="math display">\[y_i=\hat{y}_i+\epsilon_i\]</span></p>
-<p>One way to think about what is going on here is that in order to get an actual value of <span class="math inline">\(y_i\)</span> you feed in all of the independent variables into your linear model equation to get <span class="math inline">\(\hat{y}_i\)</span> and then you reach into some distribution of numbers (or a bag of numbers if you need something more concrete to visualize) to pull out a random value of <span class="math inline">\(\epsilon_i\)</span> which you add to the end of your predicted value to get the actual value. When we think about the equation this way, we are thinking about it as a <strong>data generating process</strong> in which we get <span class="math inline">\(y_i\)</span> values from completing the equation on the right.</p>
-<p>The i.i.d. assumption comes into play when we reach into that distribution (or bag) to draw out our random values. <strong>Independence</strong> assumes that what we drew previously won’t affect what we draw in the future. The most common violation of this assumption is in time series data in which peaks and valleys in the time series tend to come clustered in time, so that when you have a high (or low) error in one year, you are likely to have a similar error in the next year. <strong>Identically distributed</strong> means that you are drawn from the same distribution (or bag) each time you make a draw. One of the most common violation of this assumption is when error terms tend to get larger in absolute size as the predicted value grows in size.</p>
-<p>In later sections of this chapter, we will cover the i.i.d. assumption in more detail including the consequences of violating it, diagnostics for detecting it, and some corrections for when it does occur.</p>
 <hr />
+</div>
 </div>
 </div>
             </section>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>The i.i.d. Violation and Robust Standard Errors | Statistical Analysis in Sociology</title>
+  <title>The IID Violation and Robust Standard Errors | Statistical Analysis in Sociology</title>
   <meta name="description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="The i.i.d. Violation and Robust Standard Errors | Statistical Analysis in Sociology" />
+  <meta property="og:title" content="The IID Violation and Robust Standard Errors | Statistical Analysis in Sociology" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="The i.i.d. Violation and Robust Standard Errors | Statistical Analysis in Sociology" />
+  <meta name="twitter:title" content="The IID Violation and Robust Standard Errors | Statistical Analysis in Sociology" />
   
   <meta name="twitter:description" content="Textbook for Statistical Analysis for University of Oregon Sociology" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-03-09" />
+<meta name="date" content="2020-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -240,8 +240,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="model-complications.html"><a href="model-complications.html"><i class="fa fa-check"></i>Model Complications</a><ul>
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html"><i class="fa fa-check"></i>The Linear Model, Revisited</a><ul>
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#reformulating-the-linear-model"><i class="fa fa-check"></i>Reformulating the linear model</a></li>
-<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#marginal-effects"><i class="fa fa-check"></i>Marginal effects</a></li>
 <li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#linear-model-assumptions"><i class="fa fa-check"></i>Linear model assumptions</a></li>
+<li class="chapter" data-level="" data-path="the-linear-model-revisited.html"><a href="the-linear-model-revisited.html#estimating-a-linear-model"><i class="fa fa-check"></i>Estimating a linear model</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html"><i class="fa fa-check"></i>Modeling Non-Linearity</a><ul>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#smoothing"><i class="fa fa-check"></i>Smoothing</a></li>
@@ -250,7 +251,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#polynomial-models"><i class="fa fa-check"></i>Polynomial Models</a></li>
 <li class="chapter" data-level="" data-path="modeling-non-linearity.html"><a href="modeling-non-linearity.html#splines"><i class="fa fa-check"></i>Splines</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="the-i-i-d-violation-and-robust-standard-errors.html"><a href="the-i-i-d-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The i.i.d. Violation and Robust Standard Errors</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html"><i class="fa fa-check"></i>The IID Violation and Robust Standard Errors</a><ul>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#violations-of-independence"><i class="fa fa-check"></i>Violations of independence</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#heteroscedasticity"><i class="fa fa-check"></i>Heteroscedasticity</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#fixing-iid-violations"><i class="fa fa-check"></i>Fixing IID violations</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#weighted-least-squares"><i class="fa fa-check"></i>Weighted least squares</a></li>
+<li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#robust-standard-errors"><i class="fa fa-check"></i>Robust standard errors</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a><ul>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#identifying-valid-skips"><i class="fa fa-check"></i>Identifying Valid Skips</a></li>
@@ -377,9 +384,163 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-i.i.d.-violation-and-robust-standard-errors" class="section level2">
-<h2>The i.i.d. Violation and Robust Standard Errors</h2>
+<div id="the-iid-violation-and-robust-standard-errors" class="section level2">
+<h2>The IID Violation and Robust Standard Errors</h2>
+<p>Lets return to the idea of the idea of the linear model as a <strong>data-generating process</strong>:</p>
+<p><span class="math display">\[y_i=\underbrace{\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\ldots+\beta_px_{ip}}_{\hat{y}_i}+\epsilon_i\]</span></p>
+<p>To get a given value of <span class="math inline">\(y_i\)</span> for some observation <span class="math inline">\(i\)</span> you feed in all of the independent variables for that obseravation into your linear model equation to get a predicted value, <span class="math inline">\(\hat{y}_i\)</span>. However, you still need to take account of the stochastic element that is not predicted by your linear function. To do this, imagine reaching into a bag full of numbers and pulling out one value. Thats your <span class="math inline">\(\epsilon_i\)</span> which you add on to your predicted value to get the actual value of <span class="math inline">\(y\)</span>.</p>
+<p>What exactly is in that “bag full of numbers?” Each time you reach into that bag, you are drawing a number from some distribution based on the values in that bag. The procedure of estimating linear models makes two key assumption about how this process works:</p>
+<ol style="list-style-type: decimal">
+<li>Each observation is drawing from the same bag. In other words, you are drawing values from the same distribution. The shape of this distribution does not matter, even though some people will claim that it must be normally distributed. However, regardless of the shape, all obervations must be drawing from an <strong>identically</strong> shaped distribution.</li>
+<li>Each draw from the bag must be <strong>independent</strong>. This means that the value you get on one draw does not depend in any way on other draws.</li>
+</ol>
+<p>Together these two assumptions are often called the IID assumption which stands for <strong>independent and identically distributed</strong>.</p>
+<p>What is the consequence of violating the IID assumption? The good news is that violating this assumption will not bias your estimates of the slope and intercept. The bad news is that violating this assumption will often produce incorrect standard errors on your estimates. In the worst case, you may drastically underestimate standard errors and thus reach incorrect conclusions from classical statistical inference procedures such as hypothesis tests.</p>
+<p>How do IID violations occur? Lets talk about a couple of common cases.</p>
+<div id="violations-of-independence" class="section level3">
+<h3>Violations of independence</h3>
+<p>The two most common ways for the independence assumption to be violated are by <strong>serial autocorrelation</strong> and <strong>repeated observations</strong>.</p>
+<div id="serial-autocorrelation" class="section level4">
+<h4>Serial autocorrelation</h4>
+<p>Serial autocorrelation occurs in longitudinal data, most commonly with time series data. In this case, observations close in time tend to be more similar for reasons not captured by the model and thus you observe a positive correlation between subsequent residuals when they are ordered by time.</p>
+<p>For example, the <code>longley</code> data that come as an example dataset in base R provide a classic example of serial autocorrelation, as illustrated in Figure <a href="#fig:longley"><strong>??</strong></a>.</p>
+<p><img src="stat_book_files/figure-html/longley-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The number unemployed tends to be cyclical and cycles last longer than a year, so we get a an up-down-up pattern show in red that leads to non-independence among the residuals from the linear model (shown in blue).</p>
+<p>We can more formally look at this by looking at the correlation between temporally-adjacent residuals, although this requires a bit of work to set up.</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(Employed<span class="op">~</span>GNP, <span class="dt">data=</span>longley)</a>
+<a class="sourceLine" id="cb329-2" title="2">temp &lt;-<span class="st"> </span><span class="kw">augment</span>(model)<span class="op">$</span>.resid</a>
+<a class="sourceLine" id="cb329-3" title="3">temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">earlier=</span>temp[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>], <span class="dt">later=</span>temp[<span class="dv">2</span><span class="op">:</span><span class="dv">16</span>])</a>
+<a class="sourceLine" id="cb329-4" title="4"><span class="kw">head</span>(temp)</a></code></pre></div>
+<pre><code>##       earlier       later
+## 1  0.33732993  0.26276150
+## 2  0.26276150 -0.64055835
+## 3 -0.64055835 -0.54705800
+## 4 -0.54705800 -0.05522581
+## 5 -0.05522581 -0.26360117
+## 6 -0.26360117  0.44744315</code></pre>
+<p>The two values in the first row are the residuals fro 1947 and 1948. The second row contains the residuals for 1948 and 1949, and so on. Notice how the later value becomes the earlier value in the next row.</p>
+<p>Lets look at how big the serial autocorrelation is:</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" title="1"><span class="kw">cor</span>(temp<span class="op">$</span>earlier, temp<span class="op">$</span>later)</a></code></pre></div>
+<pre><code>## [1] 0.1622029</code></pre>
+<p>We are definitely seeing some positive serial autocorrelation, but its of a moderate size in this case.</p>
+</div>
+<div id="repeated-observations" class="section level4">
+<h4>Repeated observations</h4>
+<p>Imagine that you have data on fourth grade students at a particular elementary school. You want to look at the relationship between scores on some test and a measure of socioeconomic status (SES). In this case, the students are clustered into different classrooms with different teachers. Any differences between classrooms and teachers that might affect test performance (e.g. quality of instruction, lower stugdent/teacher ratio, aid in class) will show up in the residual of your model. But because students are clustered into these classrooms, their residuals will not be independent. Students from a “good” classroom will tend to have higher than average residuals while students from a “bad” classroom will tend to have below average residuals.</p>
+<p>The issue here is that our residual terms are <strong>clustered</strong> by some higher-level identification. This problem most often appears when your data have a <strong>multilevel structure</strong> in which you are drawing repeated observations from some higher-level unit.</p>
+<p>Longitudinal or panel data in which the same respondent is interviewed at different time intervals inherently face this problem. In this case, you are drawing repeated observations on the same individual at different points in time and so you expect that if that respondent has a higher than average residual in time 1, they also likely have a higher than average residual in time 2. However, as in the classroom example above, it can occur in a variety of situations even with cross-sectional data.</p>
+</div>
+</div>
+<div id="heteroscedasticity" class="section level3">
+<h3>Heteroscedasticity</h3>
+<p>Say what? Yes, this is a real term. Heteroscedasticity means that the variance of your residuals is not constant but depends in some way on the terms in your model. In this case, observations are not drawn from identical distributions because the variance of this distribution is different for different observations.</p>
+<p>One of the most common ways that heteroscedasticity arises is when the variance of the residuals increases with the predicted value of the dependent variables. This can easily be diagnosed on a residual by fitted value plot, where it shows up as a cone shape as in Figure <a href="the-iid-violation-and-robust-standard-errors.html#fig:heteroscedasticity-cone">77</a>.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(BoxOffice<span class="op">~</span>Runtime, <span class="dt">data=</span>movies)</a>
+<a class="sourceLine" id="cb333-2" title="2"><span class="kw">ggplot</span>(<span class="kw">augment</span>(model), <span class="kw">aes</span>(<span class="dt">x=</span>.fitted, <span class="dt">y=</span>.resid))<span class="op">+</span></a>
+<a class="sourceLine" id="cb333-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb333-4" title="4"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb333-5" title="5"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>dollar)<span class="op">+</span></a>
+<a class="sourceLine" id="cb333-6" title="6"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb333-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb333-8" title="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;predicted box office returns&quot;</span>,</a>
+<a class="sourceLine" id="cb333-9" title="9">       <span class="dt">y=</span><span class="st">&quot;residuals from the model&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:heteroscedasticity-cone"></span>
+<img src="stat_book_files/figure-html/heteroscedasticity-cone-1.png" alt="Residual plot of model predicting box office returns by movie runtime" width="672" />
+<p class="caption">
+Figure 77: Residual plot of model predicting box office returns by movie runtime
+</p>
+</div>
+<p>Such patterns are common with right-skewed variables that have a lower threshold (often zero). In Figure <a href="the-iid-violation-and-robust-standard-errors.html#fig:heteroscedasticity-cone">77</a>, the residuals can never produce an actual value below zero, leading to the very clear linear pattern on the low end. The high end residuals are more scattered but also seem to show a cone pattern. Its not terribly surprising that as our predicted values grow in absolute terms, the residuals from this predicted value also grow in absolute value. In relative terms, the size of the residuals may be more constant.</p>
+</div>
+<div id="fixing-iid-violations" class="section level3">
+<h3>Fixing IID violations</h3>
+<p>Given that you have identified an IID violation in your model, what can you do about it? The best solution is to <strong>get a better model</strong>. IID violations are often implicitly telling you that the model you have selected is not the best approach to the actual data-generating process that you have.</p>
+<p>Lets take the case of heteroscedasticity. If you observe a cone shape to the residuals, it suggests that the absolute size of the residuals is growing with the size of the predicted value of your dependent variable. In relative terms (i.e. as a percentage of the predicted value), the size of those residuals may be more constant. A simple solution would be to log our dependent variable because this would move us from a model of absolute change in the dependent variable to one of relative change.</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span>Runtime, <span class="dt">data=</span>movies)</a>
+<a class="sourceLine" id="cb334-2" title="2"><span class="kw">ggplot</span>(<span class="kw">augment</span>(model), <span class="kw">aes</span>(<span class="dt">x=</span>.fitted, <span class="dt">y=</span>.resid))<span class="op">+</span></a>
+<a class="sourceLine" id="cb334-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb334-4" title="4"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb334-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb334-6" title="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;predicted log of box office returns&quot;</span>,</a>
+<a class="sourceLine" id="cb334-7" title="7">       <span class="dt">y=</span><span class="st">&quot;residuals from the model&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:heteroscedasticity-log"></span>
+<img src="stat_book_files/figure-html/heteroscedasticity-log-1.png" alt="Residual plot of model predicting the log of box office returns by movie runtime" width="672" />
+<p class="caption">
+Figure 78: Residual plot of model predicting the log of box office returns by movie runtime
+</p>
+</div>
+<p>I now no longer observe the cone shape to my residuals. I might be a little concerned about the lack of residuals in the lower right quadrant, but overall this plot does not suggest a strong problem of heteroscedasticity. Furthermore, loggin box office returns may help address issues of non-linearity and outliers and give me results that are more sensible in terms of predicting percent change in box office returns rather than absolute dollars and cents.</p>
+<p>Similarly, the problem of repeated observations can be addressed by the use of <strong>multilevel models</strong> that explicitly account for the higher-level units that repeated observations are clustered within. We won’t talk about these models in this course, but in aaddition to resolving the IID problem, these models make possible more interesting and complex models that analyze effects at different levels and across levels.</p>
+<p>In some cases, a clear and better alternative may not be readily apparent. In this case, two techniques are common. The first is the use of <strong>weighted least squares</strong> and the second is the use of <strong>robust standard errors</strong>. Both of these techniques mathematically correct for the IID violation on the existing model. Weighted least squares requires the user to specify exacty how the IID violation arises, while robust standard errors seemingly figures it out mathemagically.</p>
+</div>
+<div id="weighted-least-squares" class="section level3">
+<h3>Weighted least squares</h3>
+<p>To do a weighted least squares regression model, we need to add a weighting matrix, <span class="math inline">\(\mathbf{W}\)</span>, to the standard matrix calculation of model coefficients and standard errors:</p>
+<p><span class="math display">\[\mathbf{\beta}=(\mathbf{X&#39;W^{-1}X})^{-1}\mathbf{X&#39;W^{-1}y}\]</span>
+<span class="math display">\[SE_{\beta}=\sqrt{\sigma^{2}(\mathbf{X&#39;W^{-1}X})^{-1}}\]</span></p>
+<p>This weighting matrix is an <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrix of the residuals. What goes into that weighting matrix depends on what kind of IID violation you are addressing.</p>
+<ol style="list-style-type: decimal">
+<li>To deal with heteroscedasticity, you need to apply a weight to the diagonal terms of that matrix which is equal to the inverse of the variance of the residual for that observation.</li>
+<li>For violation of independence, you need to apply some value to the off-diagonal cells that indicates the correlation between those residuals.</li>
+</ol>
+<p>In practice, the values of this weighting matrix <span class="math inline">\(\mathbf{W}\)</span> have to be estimated by the results from a basic OLS regression model. Therefore, in practice, people actually use <strong>iteratively-reweighted</strong> estimating or IRWLS for short. To run an IRWLS:</p>
+<ol style="list-style-type: decimal">
+<li>First estimate an OLS regression model.</li>
+<li>Use the results from that OLS regression model to determine weights for the weighting matrix <span class="math inline">\(\mathbf{W}\)</span> and run another model using the formulas above for weighted least squares.</li>
+<li>Repeat step (2) over and over again until the results stop changing from iteration to iteration.</li>
+</ol>
+<p>For some types of weighted least squares, R has some built-in packages to handle the details internally. The <code>nlme</code> package can handle IRWLS using the <code>gls</code> function for a variety of weighting structures. For example, we can correct the <code>longley</code> data above by using an “AR1” structure for the autocorrelation. The AR1 pattern (which stands for “auto-regressive 1”) assumes that each subsequent residual is only correlated with its immediate temporal predecessor.</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"><span class="kw">library</span>(nlme)</a>
+<a class="sourceLine" id="cb335-2" title="2">model.ar1 &lt;-<span class="st"> </span><span class="kw">gls</span>(Employed<span class="op">~</span>GNP<span class="op">+</span>Population, <span class="dt">correlation=</span><span class="kw">corAR1</span>(<span class="dt">form=</span><span class="op">~</span>Year),<span class="dt">data=</span>longley)</a>
+<a class="sourceLine" id="cb335-3" title="3"><span class="kw">summary</span>(model.ar1)<span class="op">$</span>tTable</a></code></pre></div>
+<pre><code>##                    Value  Std.Error   t-value      p-value
+## (Intercept) 101.85813305 14.1989324  7.173647 7.222049e-06
+## GNP           0.07207088  0.0106057  6.795485 1.271171e-05
+## Population   -0.54851350  0.1541297 -3.558778 3.497130e-03</code></pre>
+</div>
+<div id="robust-standard-errors" class="section level3">
+<h3>Robust standard errors</h3>
+<p>Robust standard errors have become popular in recent years, partly due (I believe) to how easy they are to add to standard regression models in Stata. We won’t delve into the math behind the robust standard error, but the general idea is that robust standard errors will give you “correct” standard errors even when the model is mis-specified due to issues such as non-linearity, heteroscedasticity, and autocorrelation. Unlike weighted least squares, we don’t have to specify much about the underlying nature of the IID violation.</p>
+<p>Robust standard errors can be estimated in R using the <code>sandwich</code> and <code>lmtest</code> packages, and specifically with the <code>coeftest</code> command. Within this command, it is possible to specify different types of robust standard errors, but we will use the “HC1” version which is equivalent to the robust standard errors produced in Stata by default.</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" title="1"><span class="kw">library</span>(sandwich)</a>
+<a class="sourceLine" id="cb337-2" title="2"><span class="kw">library</span>(lmtest)</a>
+<a class="sourceLine" id="cb337-3" title="3">model &lt;-<span class="st"> </span><span class="kw">lm</span>(BoxOffice<span class="op">~</span>Runtime, <span class="dt">data=</span>movies)</a>
+<a class="sourceLine" id="cb337-4" title="4"><span class="kw">summary</span>(model)<span class="op">$</span>coef</a></code></pre></div>
+<pre><code>##                Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) -101.031612 7.86167078 -12.85116 1.134182e-36
+## Runtime        1.389274 0.07378674  18.82824 3.754966e-74</code></pre>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1"><span class="kw">coeftest</span>(model, <span class="dt">vcov=</span><span class="kw">vcovHC</span>(model, <span class="st">&quot;HC1&quot;</span>))</a></code></pre></div>
+<pre><code>## 
+## t test of coefficients:
+## 
+##               Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept) -101.03161   12.77190 -7.9105 3.786e-15 ***
+## Runtime        1.38927    0.12659 10.9745 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Notice that the standard error has increased from 0.074 in the OLS regression model to 0.127 for the robust standard error. It is implicitly correcting for the heteroscedasticity problem.</p>
+<div id="robust-standard-errors-are-diagnostics-not-corrections" class="section level4">
+<h4>Robust standard errors are diagnostics not corrections</h4>
+<p>The problem with robust standard errors is that the “robust” does not necessarily mean “better.” Robust standard errors will still be inefficient because they are implicitly telling you that your model specification is wrong. Intuitively, it would be better to fit the right model with regular standard errors than the wrong model with robust standard errors. From this perspective, robust standard errors can be an effective diagnostic tool but are generally not a good ultimate solution.</p>
+<p>To illustrate this, lets run the same model as above but now with the log of box office returns which we know will resolve the problem of heteroscedasticity:</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BoxOffice)<span class="op">~</span>Runtime, <span class="dt">data=</span>movies)</a>
+<a class="sourceLine" id="cb341-2" title="2"><span class="kw">summary</span>(model)<span class="op">$</span>coef</a></code></pre></div>
+<pre><code>##                Estimate  Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) -1.96019099 0.311641612 -6.289889 3.726077e-10
+## Runtime      0.04025076 0.002924953 13.761164 1.288695e-41</code></pre>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1"><span class="kw">coeftest</span>(model, <span class="dt">vcov=</span><span class="kw">vcovHC</span>(model, <span class="st">&quot;HC1&quot;</span>))</a></code></pre></div>
+<pre><code>## 
+## t test of coefficients:
+## 
+##               Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept) -1.9601910  0.2897926 -6.7641 1.657e-11 ***
+## Runtime      0.0402508  0.0025875 15.5556 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The robust standard error (0.026) is no longer larger than the regular standard error (0.029). This indicates that we have solved the underlying problem leading to inflated robust standard errors by better model specification. Whenever possible, you should try to fix the problem in your model by better model specification rather than rely on the brute-force method of robust standard errors.</p>
 <hr />
+</div>
+</div>
 </div>
             </section>
 
