@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Gullickson" />
 
 
-<meta name="date" content="2020-03-26" />
+<meta name="date" content="2020-04-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -258,7 +258,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#weighted-least-squares"><i class="fa fa-check"></i>Weighted least squares</a></li>
 <li class="chapter" data-level="" data-path="the-iid-violation-and-robust-standard-errors.html"><a href="the-iid-violation-and-robust-standard-errors.html#robust-standard-errors"><i class="fa fa-check"></i>Robust standard errors</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a></li>
+<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html"><i class="fa fa-check"></i>Sample Design and Weighting</a><ul>
+<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html#clustermultistage-sampling"><i class="fa fa-check"></i>Cluster/multistage sampling</a></li>
+<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html#stratification"><i class="fa fa-check"></i>Stratification</a></li>
+<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html#weights"><i class="fa fa-check"></i>Weights</a></li>
+<li class="chapter" data-level="" data-path="sample-design-and-weighting.html"><a href="sample-design-and-weighting.html#correcting-for-sample-design-in-models"><i class="fa fa-check"></i>Correcting for sample design in models</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i>Missing Values</a><ul>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#identifying-valid-skips"><i class="fa fa-check"></i>Identifying Valid Skips</a></li>
 <li class="chapter" data-level="" data-path="missing-values.html"><a href="missing-values.html#kinds-of-missingness"><i class="fa fa-check"></i>Kinds of Missingness</a></li>
@@ -272,7 +277,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#creating-scales"><i class="fa fa-check"></i>Creating Scales</a></li>
 <li class="chapter" data-level="" data-path="multicollinearity-and-scale-creation.html"><a href="multicollinearity-and-scale-creation.html#factor-analysis"><i class="fa fa-check"></i>Factor Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model Selection</a></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i>Model Selection</a><ul>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html#there-is-no-right-model"><i class="fa fa-check"></i>There is no “right” model</a></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html#the-accuracy-vs.-parsimony-tradeoff"><i class="fa fa-check"></i>The accuracy vs. parsimony tradeoff</a></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html#null-vs.-saturated-model"><i class="fa fa-check"></i>Null vs. saturated model</a></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html#a-not-very-useful-tool-the-f-test"><i class="fa fa-check"></i>A not-very-useful tool: the F-test</a></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html#tools-with-a-parsimony-penalty"><i class="fa fa-check"></i>Tools with a parsimony penalty</a></li>
+<li class="chapter" data-level="" data-path="model-selection.html"><a href="model-selection.html#model-averaging"><i class="fa fa-check"></i>Model Averaging</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="modeling-categorical-outcomes.html"><a href="modeling-categorical-outcomes.html"><i class="fa fa-check"></i>Modeling Categorical Outcomes</a><ul>
 <li class="chapter" data-level="" data-path="dichotomous-outcomes-and-the-binomial-distribution.html"><a href="dichotomous-outcomes-and-the-binomial-distribution.html"><i class="fa fa-check"></i>Dichotomous Outcomes and The Binomial Distribution</a></li>
@@ -403,8 +415,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="serial-autocorrelation" class="section level4">
 <h4>Serial autocorrelation</h4>
 <p>Serial autocorrelation occurs in longitudinal data, most commonly with time series data. In this case, observations close in time tend to be more similar for reasons not captured by the model and thus you observe a positive correlation between subsequent residuals when they are ordered by time.</p>
-<p>For example, the <code>longley</code> data that come as an example dataset in base R provide a classic example of serial autocorrelation, as illustrated in Figure <a href="#fig:longley"><strong>??</strong></a>.</p>
-<p><img src="stat_book_files/figure-html/longley-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>For example, the <code>longley</code> data that come as an example dataset in base R provide a classic example of serial autocorrelation, as illustrated in Figure <a href="the-iid-violation-and-robust-standard-errors.html#fig:longley">77</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:longley"></span>
+<img src="stat_book_files/figure-html/longley-1.png" alt="Scatterplot of GNP and number of workers unemployed, US 1947-1962" width="672" />
+<p class="caption">
+Figure 77: Scatterplot of GNP and number of workers unemployed, US 1947-1962
+</p>
+</div>
 <p>The number unemployed tends to be cyclical and cycles last longer than a year, so we get a an up-down-up pattern show in red that leads to non-independence among the residuals from the linear model (shown in blue).</p>
 <p>We can more formally look at this by looking at the correlation between temporally-adjacent residuals, although this requires a bit of work to set up.</p>
 <div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(Employed<span class="op">~</span>GNP, <span class="dt">data=</span>longley)</a>
@@ -434,7 +451,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="heteroscedasticity" class="section level3">
 <h3>Heteroscedasticity</h3>
 <p>Say what? Yes, this is a real term. Heteroscedasticity means that the variance of your residuals is not constant but depends in some way on the terms in your model. In this case, observations are not drawn from identical distributions because the variance of this distribution is different for different observations.</p>
-<p>One of the most common ways that heteroscedasticity arises is when the variance of the residuals increases with the predicted value of the dependent variables. This can easily be diagnosed on a residual by fitted value plot, where it shows up as a cone shape as in Figure <a href="the-iid-violation-and-robust-standard-errors.html#fig:heteroscedasticity-cone">77</a>.</p>
+<p>One of the most common ways that heteroscedasticity arises is when the variance of the residuals increases with the predicted value of the dependent variables. This can easily be diagnosed on a residual by fitted value plot, where it shows up as a cone shape as in Figure <a href="the-iid-violation-and-robust-standard-errors.html#fig:heteroscedasticity-cone">78</a>.</p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(BoxOffice<span class="op">~</span>Runtime, <span class="dt">data=</span>movies)</a>
 <a class="sourceLine" id="cb333-2" title="2"><span class="kw">ggplot</span>(<span class="kw">augment</span>(model), <span class="kw">aes</span>(<span class="dt">x=</span>.fitted, <span class="dt">y=</span>.resid))<span class="op">+</span></a>
 <a class="sourceLine" id="cb333-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span></a>
@@ -447,10 +464,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:heteroscedasticity-cone"></span>
 <img src="stat_book_files/figure-html/heteroscedasticity-cone-1.png" alt="Residual plot of model predicting box office returns by movie runtime" width="672" />
 <p class="caption">
-Figure 77: Residual plot of model predicting box office returns by movie runtime
+Figure 78: Residual plot of model predicting box office returns by movie runtime
 </p>
 </div>
-<p>Such patterns are common with right-skewed variables that have a lower threshold (often zero). In Figure <a href="the-iid-violation-and-robust-standard-errors.html#fig:heteroscedasticity-cone">77</a>, the residuals can never produce an actual value below zero, leading to the very clear linear pattern on the low end. The high end residuals are more scattered but also seem to show a cone pattern. Its not terribly surprising that as our predicted values grow in absolute terms, the residuals from this predicted value also grow in absolute value. In relative terms, the size of the residuals may be more constant.</p>
+<p>Such patterns are common with right-skewed variables that have a lower threshold (often zero). In Figure <a href="the-iid-violation-and-robust-standard-errors.html#fig:heteroscedasticity-cone">78</a>, the residuals can never produce an actual value below zero, leading to the very clear linear pattern on the low end. The high end residuals are more scattered but also seem to show a cone pattern. Its not terribly surprising that as our predicted values grow in absolute terms, the residuals from this predicted value also grow in absolute value. In relative terms, the size of the residuals may be more constant.</p>
 </div>
 <div id="fixing-iid-violations" class="section level3">
 <h3>Fixing IID violations</h3>
@@ -466,7 +483,7 @@ Figure 77: Residual plot of model predicting box office returns by movie runtime
 <div class="figure" style="text-align: center"><span id="fig:heteroscedasticity-log"></span>
 <img src="stat_book_files/figure-html/heteroscedasticity-log-1.png" alt="Residual plot of model predicting the log of box office returns by movie runtime" width="672" />
 <p class="caption">
-Figure 78: Residual plot of model predicting the log of box office returns by movie runtime
+Figure 79: Residual plot of model predicting the log of box office returns by movie runtime
 </p>
 </div>
 <p>I now no longer observe the cone shape to my residuals. I might be a little concerned about the lack of residuals in the lower right quadrant, but overall this plot does not suggest a strong problem of heteroscedasticity. Furthermore, loggin box office returns may help address issues of non-linearity and outliers and give me results that are more sensible in terms of predicting percent change in box office returns rather than absolute dollars and cents.</p>
