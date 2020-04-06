@@ -4,7 +4,7 @@
     <title>Model Complications</title>
     <meta charset="utf-8" />
     <meta name="author" content="Aaron Gullickson" />
-    <meta name="date" content="2020-03-26" />
+    <meta name="date" content="2020-04-03" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/uo.css" rel="stylesheet" />
     <link href="libs/remark-css/uol-fonts.css" rel="stylesheet" />
@@ -19,7 +19,7 @@ class: center, middle, inverse, title-slide
 ## Sociology 513
 ### Aaron Gullickson
 ### University of Oregon
-### 2020-03-26
+### 2020-04-03
 
 ---
 
@@ -31,11 +31,30 @@ class: center, middle, inverse, title-slide
 
 
 
+## Jump to...
+
+[Linear Model, Revisited](#lm-revisited)
+
+[Nonlinearity](#nonlinearity)
+
+[IID Violations](#iid)
+
+[Sample Design and Weighting](#sample-design)
+
+[Missing Data](#missing-data)
+
+[Multicollinearity and Scale Creation](#multicollinearity)
+
+[Model Selection](#model-selection)
+
+---
 
 class: inverse, center, middle
 
 background-image: url(images/jeremy-bishop-FzrlPh20l7Q-unsplash.jpg)
 background-size: cover
+
+name: lm-revisited
 
 # The Linear Model Revisited
 
@@ -450,6 +469,8 @@ class: inverse, center, middle
 
 background-image: url(images/fabian-quintero-nq02weVF_mk-unsplash.jpg)
 background-size: cover
+
+name: nonlinearity
 
 # Modeling Non-Linearity
 
@@ -1468,6 +1489,8 @@ class: inverse, center, middle
 background-image: url(images/bence-balla-schottner-o5ttfkZU9_Q-unsplash.jpg)
 background-size: cover
 
+name: iid
+
 # The IID Violation and Robust Standard Errors
 
 ---
@@ -1729,6 +1752,8 @@ class: inverse, center, middle
 background-image: url(images/cyril-saulnier-TsVN31Dzyv4-unsplash.jpg)
 background-size: cover
 
+name: sample-design
+
 # Sample Design and Weighting
 
 ---
@@ -1849,7 +1874,11 @@ Stratification in sampling operates in a manner somewhat similar to cluster samp
 
 ##  Weights in Sneetchville
 
+.left-column[
+![sneetches](images/sneetches.jpg)
+]
 
+.right-column[
 In Sneetchville, there are 3 star-bellied and 7 regular sneetches. Lets say I take a stratified sample of two star-bellied and two regular sneetches. Here is the population data:
 
 
@@ -1873,6 +1902,8 @@ sneetches
 ## 9       Regular      2 0.2857143
 ## 10      Regular      1 0.2857143
 ```
+]
+
 
 ---
 
@@ -1890,8 +1921,8 @@ sneetch.sample
 ##           type income      prob weight
 ## 2 Star-bellied      7 0.6666667    1.5
 ## 3 Star-bellied      6 0.6666667    1.5
-## 4      Regular      2 0.2857143    3.5
 ## 7      Regular      5 0.2857143    3.5
+## 6      Regular      4 0.2857143    3.5
 ```
 
 ```r
@@ -1903,7 +1934,7 @@ x
 
 ```
 ##        population sample.unweighted   sample.weighted 
-##               3.1               5.0               4.4
+##               3.1               5.5               5.1
 ```
 
 ---
@@ -2059,8 +2090,8 @@ I can use the `svydesign` command in the `survey` package to correctly specify b
 
 ```r
 library(survey)
-addhealth.svy &lt;- svydesign(ids=~cluster, weight=~sweight, data=addhealth)
-model.svy &lt;- svyglm(indegree~nsports, design=addhealth.svy)
+popularity.svy &lt;- svydesign(ids=~cluster, weight=~sweight, data=popularity)
+model.svy &lt;- svyglm(indegree~nsports, design=popularity.svy)
 summary(model.svy)$coef
 ```
 
@@ -2156,6 +2187,8 @@ class: inverse, center, middle
 
 background-image: url(images/kyaw-tun-UvL9JrLkagM-unsplash.jpg)
 background-size: cover
+
+name: missing-data
 
 # Missing Data
 
@@ -2600,7 +2633,7 @@ addhealth$parentinc.randi[is.na(addhealth$parentinc)] &lt;- sample(na.omit(addhe
 |:--------------------|--------------------------:|-------------------:|
 | Valid cases         |  0.1320575 | 33.6984995|
 | Valid cases +mean imputed |  0.1167858 | 29.5006936|
-| Valid cases +random imputed |  0.0911366 | 34.2111413|
+| Valid cases +random imputed |  0.1076341 | 33.8174488|
 
 - Both techniques will systematically underestimate correlation.
 - Mean imputation will underestimate the variance of the imputed variable. 
@@ -2707,7 +2740,7 @@ sd(addhealth$parentinc.rregi, na.rm=TRUE)
 ```
 
 ```
-## [1] 32.93179
+## [1] 32.80286
 ```
 
 
@@ -2793,10 +2826,10 @@ I can then use this new dataset `addhealth.ce` to run my models.
 &lt;td style="padding-right: 12px; border: none;"&gt;3.391&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;3.360&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;3.399&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;3.524&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;3.470&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;3.350&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;3.444&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;3.403&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;3.441&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;3.340&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
@@ -2813,10 +2846,10 @@ I can then use this new dataset `addhealth.ce` to run my models.
 &lt;td style="padding-right: 12px; border: none;"&gt;0.012&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.012&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.012&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.008&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.009&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.013&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.010&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.011&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.013&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
@@ -2833,10 +2866,10 @@ I can then use this new dataset `addhealth.ce` to run my models.
 &lt;td style="padding-right: 12px; border: none;"&gt;0.383&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.201&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.203&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.197&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.196&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.187&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.198&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.211&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.193&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.201&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
@@ -2855,8 +2888,8 @@ I can then use this new dataset `addhealth.ce` to run my models.
 &lt;td style="padding-right: 12px; border: none;"&gt;0.668&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.679&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.665&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.673&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.618&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.665&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.656&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
@@ -2873,10 +2906,10 @@ I can then use this new dataset `addhealth.ce` to run my models.
 &lt;td style="padding-right: 12px; border: none;"&gt;0.454&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.476&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.474&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.488&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.481&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;0.462&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.474&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.467&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.475&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.461&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
@@ -2913,10 +2946,10 @@ I can then use this new dataset `addhealth.ce` to run my models.
 &lt;td style="border-top: 1px solid black;"&gt;0.048&lt;/td&gt;
 &lt;td style="border-top: 1px solid black;"&gt;0.046&lt;/td&gt;
 &lt;td style="border-top: 1px solid black;"&gt;0.046&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.042&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.044&lt;/td&gt;
 &lt;td style="border-top: 1px solid black;"&gt;0.048&lt;/td&gt;
 &lt;td style="border-top: 1px solid black;"&gt;0.045&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.046&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.049&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style="border-bottom: 2px solid black;"&gt;Num. obs.&lt;/td&gt;
@@ -3079,6 +3112,8 @@ class: inverse, center, middle
 
 background-image: url(images/nareeta-martin-z7LRp54Yulw-unsplash.jpg)
 background-size: cover
+
+name: multicollinearity
 
 # Multicollinearity and Scale Creation
 
@@ -3828,6 +3863,8 @@ class: inverse, center, middle
 
 background-image: url(images/caleb-jones-J3JMyXWQHXU-unsplash.jpg)
 background-size: cover
+
+name: model-selection
 
 # Model Selection
 
